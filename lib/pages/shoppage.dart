@@ -19,7 +19,7 @@ class _ShopPageState extends State<ShopPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ShopCard(),
+            ShopCard(currency: widget.currency,),
             const Spacer(),
             ElevatedButton(
               onPressed: () {

@@ -1,21 +1,10 @@
 import 'package:flutter/material.dart';
-
-class ShopCardApp extends StatelessWidget {
-  const ShopCardApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Card Sample')),
-        body: const ShopCard(),
-      ),
-    );
-  }
-}
+import 'package:orbital_test_space/components/insufficientfundsalert.dart';
 
 class ShopCard extends StatelessWidget {
-  const ShopCard({super.key});
+  final int cost = 110;
+  int currency = 0;
+  ShopCard({required int this.currency});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +23,24 @@ class ShopCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Chip(
+                      avatar: CircleAvatar(
+                          backgroundColor: Colors.grey.shade800,
+                          child: const CircleAvatar(
+                            backgroundImage: AssetImage('web/currency.png'),
+                          )),
+                      label: Text('$cost'),
+                    ),
+                  ),
                   FilledButton(
                     child: const Text('Buy'),
-                    onPressed: () {/* ... */},
+                    onPressed: () {
+                      currency <= cost
+                          ? showDialog<String>(builder: (BuildContext context) => insufficientFunds(context), context: context)
+                          : print("ALL G" + currency.toString());
+                    },
                   ),
                   const SizedBox(width: 8),
                 ],
