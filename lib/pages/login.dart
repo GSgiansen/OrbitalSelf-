@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orbital_test_space/components/loginform.dart';
 
 
 class MyLoginPage extends StatefulWidget {
@@ -26,6 +27,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
               'Login Page',
               style: TextStyle(fontSize: 30),
             ),
+            LoginForm(),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);

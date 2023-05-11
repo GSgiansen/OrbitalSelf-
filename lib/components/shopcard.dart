@@ -39,7 +39,7 @@ class ShopCard extends StatelessWidget {
                     onPressed: () {
                       currency <= cost
                           ? showDialog<String>(builder: (BuildContext context) => insufficientFunds(context), context: context)
-                          : print("ALL G" + currency.toString());
+                          : print("ALL G " + currency.toString());
                     },
                   ),
                   const SizedBox(width: 8),
