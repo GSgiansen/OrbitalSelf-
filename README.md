@@ -1,6 +1,6 @@
 # orbital_test_space
 
-A new Flutter project.
+A new Flutter project for Orbital Team self++
 
 ## Getting Started
 
