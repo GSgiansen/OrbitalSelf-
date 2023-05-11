@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/shopcard.dart';
-
+import 'package:orbital_test_space/components/header.dart';
 class ShopPage extends StatefulWidget {
-  const ShopPage({super.key, required this.title});
+  ShopPage({super.key, required this.title, required this.currency});
   final String title;
+  final int currency;
 
   @override
   State<ShopPage> createState() => _ShopPageState();
@@ -13,15 +14,13 @@ class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Shop Page'),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: header(context, widget.currency, false),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ShopCard(),
+            const Spacer(),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);

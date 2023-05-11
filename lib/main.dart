@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orbital_test_space/components/header.dart';
 import 'package:orbital_test_space/pages/login.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
 
@@ -51,6 +52,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int currency = 100;
 
   void _incrementCounter() {
     setState(() {
@@ -63,6 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void increaseCurrency() {
+    setState(() {
+      currency++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -72,11 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
+      appBar: header(context, currency, true),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -104,23 +108,36 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyLoginPage(title: "deez")),
-                );
-              },
-              child: const Text('Go to Login Page'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ShopPage(title: "deez")),
-                );
-              },
-              child: const Text('Go to Shop Page'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MyLoginPage(title: "deez")),
+                    );
+                  },
+                  child: const Text('Go to Login Page'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ShopPage(title: "deez", currency: currency)),
+                    );
+                  },
+                  child: const Text('Go to Shop Page'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    increaseCurrency();
+                  },
+                  child: const Text('Increase Currency'),
+                ),
+              ],
             ),
           ],
         ),
