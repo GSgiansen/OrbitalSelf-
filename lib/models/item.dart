@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class Item {
   final String name;
   final String description;
-  final String price;
-  final String image;
+  final int price;
+  final Image image;
 
   Item({
     required this.name,

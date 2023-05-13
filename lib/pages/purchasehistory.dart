@@ -1,33 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:orbital_test_space/components/loginform.dart';
+import 'package:orbital_test_space/components/inventory.dart';
+import 'package:orbital_test_space/main.dart';
 
-
-class MyLoginPage extends StatefulWidget {
-  //const MyLoginPage({Key? key}) : super(key: key);
-  const MyLoginPage({super.key, required this.title});
-  final String title;
-
+class PurchaseHistoryPage extends StatefulWidget {
+  final ItemsOwned itemsOwned;
+  PurchaseHistoryPage({required this.itemsOwned,});
   @override
-  State<MyLoginPage> createState() => _MyLoginPageState();
+  _PurchaseHistoryPageState createState() => _PurchaseHistoryPageState();
 }
 
-class _MyLoginPageState extends State<MyLoginPage> {
+class _PurchaseHistoryPageState extends State<PurchaseHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login Page'),
+        title: Text('Purchase History'),
         backgroundColor: Colors.blue,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Login Page',
-              style: TextStyle(fontSize: 30),
-            ),
-            LoginForm(),
+            for (var item in widget.itemsOwned.items) 
+            InventoryCard(item: item),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);

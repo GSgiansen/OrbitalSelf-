@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:orbital_test_space/components/header.dart';
+import 'package:orbital_test_space/models/item.dart';
 import 'package:orbital_test_space/pages/login.dart';
+import 'package:orbital_test_space/pages/purchasehistory.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
 
 void main() {
@@ -8,6 +11,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  //here should house all the user data when login is implemented
 
   // This widget is the root of your application.
   @override
@@ -15,35 +19,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
+  MyHomePage({super.key, required this.title});
   final String title;
+  CurrencyNotifier currencyNotifier = CurrencyNotifier();
+  ItemsOwned itemsOwned = ItemsOwned();
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -54,11 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
@@ -72,11 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
+      appBar: header(context, widget.currencyNotifier, true),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -97,47 +75,82 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyLoginPage(title: "deez")),
-                );
-              },
-              child: const Text('Go to Login Page'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ShopPage(title: "deez")),
-                );
-              },
-              child: const Text('Go to Shop Page'),
+            Wrap(
+              spacing: 8.0, // gap between adjacent chips
+              runSpacing: 4.0, // gap between lines
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyLoginPage(title: "deez")),
+                      );
+                    },
+                    child: const Text('Login Page'),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ShopPage(
+                                title: "deez",
+                                currencyNotifier: widget.currencyNotifier,
+                                itemsOwned: widget.itemsOwned,
+                              )),
+                    );
+                  },
+                  child: const Text('Go to Shop Page'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    widget.currencyNotifier.increaseCurrency();
+                  },
+                  child: const Text('Increase Currency'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PurchaseHistoryPage(
+                              itemsOwned: widget.itemsOwned)),
+                    );
+                  },
+                  child: const Text('Past Purchases Page'),
+                ),
+              ],
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
 
-class MyAppState extends ChangeNotifier {
-  var currentpage = 0;
-  void setpage(int page) {
-    currentpage = page;
-    notifyListeners();
+class CurrencyNotifier {
+  ValueNotifier currency = ValueNotifier<int>(100);
+  void increaseCurrency() {
+    currency.value += 10;
+  }
+
+  void decreaseCurrency(int cost) {
+    currency.value -= cost;
+  }
+}
+
+class ItemsOwned {
+  List<Item> items = [];
+
+  void addItem(Item item) {
+    items.add(item);
+  }
+
+  void removeItem(Item item) {
+    items.remove(item);
   }
 }
