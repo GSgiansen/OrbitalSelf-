@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/insufficientfundsalert.dart';
+import 'package:orbital_test_space/main.dart';
 
 class ShopCard extends StatelessWidget {
   final int cost = 110;
-  int currency = 0;
-  ShopCard({required int this.currency});
+  CurrencyNotifier currencyNotifier;
+  ShopCard({required CurrencyNotifier this.currencyNotifier});
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +38,18 @@ class ShopCard extends StatelessWidget {
                   FilledButton(
                     child: const Text('Buy'),
                     onPressed: () {
-                      currency <= cost
-                          ? showDialog<String>(builder: (BuildContext context) => insufficientFunds(context), context: context)
-                          : print("ALL G " + currency.toString());
+                      if (currencyNotifier.currency.value < cost) {
+                        showDialog<String>(
+                            builder: (BuildContext context) =>
+                                insufficientFunds(context),
+                            context: context);
+                      } else {
+                        currencyNotifier.decreaseCurrency(cost);
+
+                        print("Currency is $currencyNotifier.currency");
+                        
+                      }
+                          ;
                     },
                   ),
                   const SizedBox(width: 8),

@@ -27,24 +27,15 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
+  MyHomePage({super.key, required this.title});
   final String title;
+  CurrencyNotifier currencyNotifier = CurrencyNotifier();
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -52,22 +43,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  int currency = 100;
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
-    });
-  }
-
-  void increaseCurrency() {
-    setState(() {
-      currency++;
     });
   }
 
@@ -80,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: header(context, currency, true),
+      appBar: header(context, widget.currencyNotifier, true),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -111,29 +90,31 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MyLoginPage(title: "deez")),
-                    );
-                  },
-                  child: const Text('Go to Login Page'),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyLoginPage(title: "deez")),
+                      );
+                    },
+                    child: const Text('Login Page'),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ShopPage(title: "deez", currency: currency)),
+                          builder: (context) => ShopPage(title: "deez", currencyNotifier: widget.currencyNotifier,)),
                     );
                   },
                   child: const Text('Go to Shop Page'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    increaseCurrency();
+                    widget.currencyNotifier.increaseCurrency();
                   },
                   child: const Text('Increase Currency'),
                 ),
@@ -151,10 +132,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class MyAppState extends ChangeNotifier {
-  var currentpage = 0;
-  void setpage(int page) {
-    currentpage = page;
-    notifyListeners();
+class CurrencyNotifier{
+  ValueNotifier currency = ValueNotifier<int>(100);
+  void increaseCurrency() {
+    currency.value += 10;
   }
+  void decreaseCurrency(int cost) {
+    currency.value -= cost;
+  }
+
+
 }
