@@ -4,13 +4,7 @@ import 'package:orbital_test_space/models/item.dart';
 import 'package:orbital_test_space/pages/login.dart';
 import 'package:orbital_test_space/pages/purchasehistory.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
-
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-Future<void> main() async {
-  await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+void main() {
   runApp(const MyApp());
 }
 
@@ -83,13 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
             Wrap(
               spacing: 8.0, // gap between adjacent chips
               runSpacing: 4.0, // gap between lines
@@ -131,7 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PurchaseHistoryPage(itemsOwned: widget.itemsOwned)),
+                          builder: (context) => PurchaseHistoryPage(
+                              itemsOwned: widget.itemsOwned)),
                     );
                   },
                   child: const Text('Past Purchases Page'),
@@ -141,11 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
@@ -167,6 +151,7 @@ class ItemsOwned {
   void addItem(Item item) {
     items.add(item);
   }
+
   void removeItem(Item item) {
     items.remove(item);
   }
