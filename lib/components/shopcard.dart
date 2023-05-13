@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/insufficientfundsalert.dart';
 import 'package:orbital_test_space/main.dart';
+import 'package:orbital_test_space/models/item.dart';
 
 class ShopCard extends StatelessWidget {
   final int cost = 110;
   CurrencyNotifier currencyNotifier;
-  ShopCard({required CurrencyNotifier this.currencyNotifier});
+  ItemsOwned itemsOwned;
+  ShopCard({required CurrencyNotifier this.currencyNotifier, required ItemsOwned this.itemsOwned});
+
+  //test data with Item Object
+  final Item doggo = Item(
+    name: "Doggo",
+    description: "The goodest of bois",
+    price: 110,
+    image: Image.asset('web/doggo.png'),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +55,11 @@ class ShopCard extends StatelessWidget {
                             context: context);
                       } else {
                         currencyNotifier.decreaseCurrency(cost);
-
-                        print("Currency is $currencyNotifier.currency");
+                        itemsOwned.addItem(doggo);
+                        print("Currency is ${currencyNotifier.currency.value}");
                         
-                      }
-                          ;
+                        
+                      };
                     },
                   ),
                   const SizedBox(width: 8),

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/header.dart';
+import 'package:orbital_test_space/models/item.dart';
 import 'package:orbital_test_space/pages/login.dart';
+import 'package:orbital_test_space/pages/purchasehistory.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
-
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  //here should house all the user data when login is implemented
 
   // This widget is the root of your application.
   @override
@@ -16,15 +18,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
@@ -36,6 +29,7 @@ class MyHomePage extends StatefulWidget {
   MyHomePage({super.key, required this.title});
   final String title;
   CurrencyNotifier currencyNotifier = CurrencyNotifier();
+  ItemsOwned itemsOwned = ItemsOwned();
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -87,8 +81,9 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Wrap(
+              spacing: 8.0, // gap between adjacent chips
+              runSpacing: 4.0, // gap between lines
               children: [
                 Expanded(
                   child: ElevatedButton(
@@ -107,7 +102,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ShopPage(title: "deez", currencyNotifier: widget.currencyNotifier,)),
+                          builder: (context) => ShopPage(
+                                title: "deez",
+                                currencyNotifier: widget.currencyNotifier,
+                                itemsOwned: widget.itemsOwned,
+                              )),
                     );
                   },
                   child: const Text('Go to Shop Page'),
@@ -117,6 +116,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     widget.currencyNotifier.increaseCurrency();
                   },
                   child: const Text('Increase Currency'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PurchaseHistoryPage(itemsOwned: widget.itemsOwned)),
+                    );
+                  },
+                  child: const Text('Past Purchases Page'),
                 ),
               ],
             ),
@@ -132,14 +141,24 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class CurrencyNotifier{
+class CurrencyNotifier {
   ValueNotifier currency = ValueNotifier<int>(100);
   void increaseCurrency() {
     currency.value += 10;
   }
+
   void decreaseCurrency(int cost) {
     currency.value -= cost;
   }
+}
 
+class ItemsOwned {
+  List<Item> items = [];
 
+  void addItem(Item item) {
+    items.add(item);
+  }
+  void removeItem(Item item) {
+    items.remove(item);
+  }
 }

@@ -5,7 +5,7 @@ AppBar header(BuildContext context, CurrencyNotifier currencyNotifier, bool isAp
   
     return AppBar(
       backgroundColor: Colors.blue,
-        title: Text("Self++"),
+        title: const Text("Self++"),
         actions: <Widget>[
 
           ValueListenableBuilder(
@@ -19,7 +19,7 @@ AppBar header(BuildContext context, CurrencyNotifier currencyNotifier, bool isAp
                     child: const CircleAvatar(
                       backgroundImage: AssetImage('web/currency.png'),
                     )),
-                label: Text('${value.toString()}')
+                label: Text('$value')
                 )
           );
             }
