@@ -16,6 +16,8 @@ Future<void> main() async {
 
 
 class MyApp extends StatelessWidget {
+  
+  
   const MyApp({super.key});
   //here should house all the user data when login is implemented
 
