@@ -4,14 +4,13 @@ import 'package:orbital_test_space/models/item.dart';
 import 'package:orbital_test_space/pages/login.dart';
 import 'package:orbital_test_space/pages/purchasehistory.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 void main() {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
-  
-  
   const MyApp({super.key});
   //here should house all the user data when login is implemented
 
@@ -39,25 +38,67 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+  int currentPageIndex = 2;
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: header(context, widget.currencyNotifier, true),
-      body: Center(
+        appBar: header(context, widget.currencyNotifier, true),
+        body: Center(
+          child: _buildSelectedScreen(),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.green,
+          currentIndex: currentPageIndex,
+          onTap: (index) => setState(() => currentPageIndex = index),
+          type: BottomNavigationBarType.fixed,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.store), // shop
+              label: "Shop",
+            ),
+            BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.bookMedical), //heath_and_safety
+              label: "My Health",
+            ),
+            BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.house),
+              label: "My Island",
+              activeIcon: FaIcon(FontAwesomeIcons.houseChimney),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.people),
+              label: "My Friends",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle),
+              label: "My Account",
+            )
+          ],
+        ));
+  }
+
+  Widget _buildSelectedScreen() {
+    switch (currentPageIndex) {
+      case 0:
+        return ShopPage(
+            title: "deez",
+            currencyNotifier: widget.currencyNotifier,
+            itemsOwned: widget.itemsOwned);
+    }
+    return Container();
+  }
+}
+
+/** 
+      body: <Widget> [
+        Navigator.push(context, 
+          MaterialPageRoute(builder: (context) => MyLoginPage(title: "deez")),);
+      ]
+       * 
+       */
+
+/** 
+      Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
@@ -129,10 +170,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
+      **/
+// This trailing comma makes auto-formatting nicer for build methods.
 
 class CurrencyNotifier {
   ValueNotifier currency = ValueNotifier<int>(100);
