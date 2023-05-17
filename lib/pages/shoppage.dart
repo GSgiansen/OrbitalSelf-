@@ -32,6 +32,19 @@ class _ShopPageState extends State<ShopPage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: widget.currencyNotifier.increaseCurrency),
     );
+  }
+}
+
+class CurrencyNotifier {
+  ValueNotifier currency = ValueNotifier<int>(100);
+  void increaseCurrency() {
+    currency.value += 10;
+  }
+
+  void decreaseCurrency(int cost) {
+    currency.value -= cost;
   }
 }

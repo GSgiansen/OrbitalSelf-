@@ -84,6 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
             title: "deez",
             currencyNotifier: widget.currencyNotifier,
             itemsOwned: widget.itemsOwned);
+      case 4:
+        return const MyLoginPage(title: "test");
     }
     return Container();
   }
