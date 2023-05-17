@@ -29,12 +29,6 @@ class _ShopPageState extends State<ShopPage> {
                 currencyNotifier: widget.currencyNotifier,
                 itemsOwned: widget.itemsOwned),
             const Spacer(),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Back'),
-            ),
           ],
         ),
       ),
