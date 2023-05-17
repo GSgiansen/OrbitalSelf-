@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/loginform.dart';
 
-
 class MyLoginPage extends StatefulWidget {
   //const MyLoginPage({Key? key}) : super(key: key);
   const MyLoginPage({super.key, required this.title});
@@ -15,25 +14,15 @@ class _MyLoginPageState extends State<MyLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login Page'),
-        backgroundColor: Colors.blue,
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Login Page',
+            const Text(
+              'Sign In',
               style: TextStyle(fontSize: 30),
             ),
             LoginForm(),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Back'),
-            ),
           ],
         ),
       ),
