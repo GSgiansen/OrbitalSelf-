@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:orbital_test_space/components/header.dart';
 import 'package:orbital_test_space/models/item.dart';
 import 'package:orbital_test_space/pages/login.dart';
+import 'package:orbital_test_space/pages/profilepage.dart';
 import 'package:orbital_test_space/pages/purchasehistory.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(MyApp());
 }
 
@@ -21,11 +27,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return MyHomePage(title: snapshot.data!.email.toString());
+          } else {
+            return const MyLoginPage(title: "HealthQuest");
+          }
+        },
+      ),
     );
   }
 }
@@ -88,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
             currencyNotifier: widget.currencyNotifier,
             itemsOwned: widget.itemsOwned);
       case 4:
-        return const MyLoginPage(title: "HealthQuest");
+        return ProfilePage(title: widget.title);
     }
     return Container();
   }
