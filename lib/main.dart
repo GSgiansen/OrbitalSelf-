@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:orbital_test_space/components/header.dart';
 import 'package:orbital_test_space/models/item.dart';
 import 'package:orbital_test_space/pages/login.dart';
@@ -6,8 +7,10 @@ import 'package:orbital_test_space/pages/purchasehistory.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -85,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
             currencyNotifier: widget.currencyNotifier,
             itemsOwned: widget.itemsOwned);
       case 4:
-        return const MyLoginPage(title: "test");
+        return const MyLoginPage(title: "HealthQuest");
     }
     return Container();
   }
