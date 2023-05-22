@@ -4,51 +4,43 @@ Widget LoginForm() {
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: <Widget>[
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.3),
-          borderRadius: BorderRadius.circular(25),
-        ),
-        child: TextField(
-          style: TextStyle(color: Colors.white),
-          obscureText: false,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(25),
-            ),
-            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            labelText: 'Email',
-            labelStyle: TextStyle(color: Colors.white),
+      TextField(
+        obscureText: false,
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF338a3e)),
+            borderRadius: BorderRadius.circular(25),
           ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF66BB6A)),
+            borderRadius: BorderRadius.circular(25),
+          ),
+          labelText: 'Email',
+          labelStyle: TextStyle(color: Color(0xFF338a3e)),
         ),
       ),
       SizedBox(height: 20),
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.3),
-          borderRadius: BorderRadius.circular(25),
-        ),
-        child: TextField(
-          style: TextStyle(color: Colors.white),
-          obscureText: true,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(25),
-            ),
-            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            labelText: 'Password',
-            labelStyle: TextStyle(color: Colors.white),
+      TextField(
+        obscureText: true,
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF338a3e)),
+            borderRadius: BorderRadius.circular(25),
           ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF66BB6A)),
+            borderRadius: BorderRadius.circular(25),
+          ),
+          labelText: 'Password',
+          labelStyle: TextStyle(color: Color(0xFF338a3e)),
         ),
       ),
-      SizedBox(height: 20),
+      SizedBox(height: 30),
       ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+          backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF338a3e)),
           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-            EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+            EdgeInsets.symmetric(horizontal: 50, vertical: 15),
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(

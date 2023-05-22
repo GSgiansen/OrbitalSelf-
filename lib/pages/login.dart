@@ -13,29 +13,48 @@ class _MyLoginPageState extends State<MyLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [Color(0xFF66BB6A), Color(0xFF338a3e)],
-          ),
-        ),
-        child: Padding(
+      body: SafeArea(
+        child: Container(
+          color: Colors.white,
           padding: EdgeInsets.all(40),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                'Welcome to HealthQuest!',
-                style: TextStyle(fontSize: 25, color: Colors.white),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    'Welcome to HealthQuest!',
+                    style: TextStyle(fontSize: 28, color: Color(0xFF338a3e)),
+                  ),
+                ),
               ),
-              SizedBox(height: 20),
-              LoginForm(),
-              SizedBox(height: 20),
-              TextButton(
-                child: Text('Sign Up', style: TextStyle(color: Colors.white)),
-                onPressed: () {},
+              Expanded(
+                flex: 4,
+                child: LoginForm(),
+              ),
+              Expanded(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      child: Text('Create an account',
+                          style: TextStyle(color: Color(0xFF338a3e))),
+                      onPressed: () {
+                        // TODO: Navigate to Create an Account page
+                      },
+                    ),
+                    TextButton(
+                      child: Text('Forgot password?',
+                          style: TextStyle(color: Color(0xFF338a3e))),
+                      onPressed: () {
+                        // TODO: Navigate to Forgot Password page
+                      },
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
