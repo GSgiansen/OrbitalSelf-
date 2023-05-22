@@ -25,11 +25,16 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 child: Container(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    'Welcome to HealthQuest!',
+                    'Welcome to',
                     style: TextStyle(fontSize: 28, color: Color(0xFF338a3e)),
                   ),
                 ),
               ),
+              Expanded(
+                  flex: 2,
+                  child: Image.asset(
+                    'web/logo3.png',
+                  )),
               Expanded(
                 flex: 4,
                 child: LoginForm(),
