@@ -1,19 +1,18 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:orbital_test_space/components/loginform.dart';
-import 'package:orbital_test_space/pages/register.dart';
+import 'package:orbital_test_space/pages/login.dart';
 
-import '../controllers/authFunctions.dart';
+import '../components/loginform.dart';
 
-class MyLoginPage extends StatefulWidget {
-  const MyLoginPage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
   @override
-  State<MyLoginPage> createState() => _MyLoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _MyLoginPageState extends State<MyLoginPage> {
-
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +28,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 child: Container(
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    'Welcome to',
+                    'New to Self++? Join us now!',
                     style: TextStyle(fontSize: 28, color: Color(0xFF338a3e)),
                   ),
                 ),
@@ -41,7 +40,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   )),
               Expanded(
                 flex: 4,
-                child: LoginForm(true),
+                child: LoginForm(false),
               ),
               Expanded(
                 flex: 1,
@@ -49,12 +48,14 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
-                      child: Text('Create an account',
+                      child: Text('Already have an account?',
                           style: TextStyle(color: Color(0xFF338a3e))),
                       onPressed: () {
-                          Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const RegisterPage()),
-                          );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MyLoginPage(title:"login")),
+                        );
                         // TODO: Navigate to Create an Account page
                       },
                     ),
@@ -63,7 +64,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
                           style: TextStyle(color: Color(0xFF338a3e))),
                       onPressed: () {
                         // TODO: Navigate to Forgot Password page
-                        
                       },
                     ),
                   ],
