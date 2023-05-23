@@ -1,11 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/controllers/authFunctions.dart';
+import 'package:orbital_test_space/main.dart';
 
-Widget LoginForm(bool login) {
+Widget LoginForm(BuildContext context, bool login) {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  
   return Form(
                   child: Container(
                     child: Column(
@@ -65,15 +65,36 @@ Widget LoginForm(bool login) {
                               ),
                             ),
                             child: Text(
-                              'PLS LOG IN',
+                              'Login',
                               style: TextStyle(color: Colors.white),
                             ),
-                            onPressed: () {
-                              login = true;
+                            onPressed: () async {
+                              if (!_emailController.text.contains('@')) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Please enter a valid email'),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                                return;
+                              }
+                              
                               Authservices.signinUser(
                                   _emailController.text,
                                   _passwordController.text,
-                                  );
+                                  )
+                                  .then((value) =>
+                                   value == "no user found" ?
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content:Text("User not found"),
+                                        backgroundColor: Colors.red,)) :
+                                    value == "wrong password" ?
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                       SnackBar(
+                                        content:Text("Wrong password"),
+                                        backgroundColor: Colors.red,)) :
+                                    login = true);
                               print('email is ${_emailController.text}');
                             }) :
                             ElevatedButton(
@@ -97,11 +118,44 @@ Widget LoginForm(bool login) {
                               style: TextStyle(color: Colors.white),
                             ),
                             onPressed: () {
-                              login = true;
+                                if (!_emailController.text.contains('@')) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Please enter a valid email'),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                                return;
+                              }
+                              if ((_passwordController.text.trim().length < 6)) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Password must be at least 6 characters'),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                                return;
+                              }
+                              String check = 
                               Authservices.createUser(
                                   _emailController.text,
                                   _passwordController.text,
-                                  );
+                                  ).then((value) => Authservices.signinUser(
+                                  _emailController.text,
+                                  _passwordController.text,)
+                                      .then((value) => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  MyHomePage(title: _emailController.text)))
+                                  )).then((value) =>
+                                   value == "email-already-in-use" ?
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content:Text("Email already in use"),
+                                        backgroundColor: Colors.red,)) :
+                                    print("Registered and Signed up"));
+                              login = true;
                               print('user is being created with ${_emailController.text}');
                             })
                             

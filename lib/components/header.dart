@@ -4,6 +4,7 @@ import 'package:orbital_test_space/main.dart';
 AppBar header(
     BuildContext context, CurrencyNotifier currencyNotifier, bool isAppTitle) {
   return AppBar(
+    automaticallyImplyLeading: false,
     backgroundColor: Colors.blue,
     title: const Text("HealthQuest"),
     actions: <Widget>[

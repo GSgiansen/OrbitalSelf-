@@ -40,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   )),
               Expanded(
                 flex: 4,
-                child: LoginForm(false),
+                child: LoginForm(context, false),
               ),
               Expanded(
                 flex: 1,

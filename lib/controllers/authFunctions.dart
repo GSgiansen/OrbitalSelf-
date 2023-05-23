@@ -9,19 +9,21 @@ class Authservices {
       print('success');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        //print('No user found for that email.');
+        return "no user found";
 
       } else if (e.code == 'wrong-password') {
-        print('password bad');
+        //print('password bad');
+        return "wrong password";
 
       }
-      print('end of line');
     }
   }
   static createUser(String email, password) async {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      
       return print('success');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
