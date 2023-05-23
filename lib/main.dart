@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/header.dart';
 import 'package:orbital_test_space/models/item.dart';
@@ -22,15 +24,16 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   //here should house all the user data when login is implemented
+  
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var auth = FirebaseAuth.instance;
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
@@ -41,6 +44,7 @@ class MyApp extends StatelessWidget {
           }
         },
       ),
+
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:orbital_test_space/pages/login.dart';
 
 class ProfilePage extends StatefulWidget {
   final String title;
@@ -15,6 +16,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
         title: Text(widget.title),
       ),
@@ -25,14 +27,17 @@ class _ProfilePageState extends State<ProfilePage> {
             Text('Profile Page'),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                ;
               },
               child: Text('Back'),
             ),
             Text('Signout'),
             ElevatedButton(
               onPressed: () async {
-                await FirebaseAuth.instance.signOut();
+                await FirebaseAuth.instance.signOut().then((value) => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyLoginPage(title:"login")),
+                ));
               },
               child: Text('gtfo'),
             ),

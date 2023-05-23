@@ -41,7 +41,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   )),
               Expanded(
                 flex: 4,
-                child: LoginForm(true),
+                child: LoginForm(context, true),
               ),
               Expanded(
                 flex: 1,
