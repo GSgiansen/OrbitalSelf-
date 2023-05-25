@@ -107,7 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
             currencyNotifier: widget.currencyNotifier,
             itemsOwned: widget.itemsOwned);
       case 4:
-        return ProfilePage(title: widget.title);
+        return ProfilePage(title: widget.title,
+            currencyNotifier: widget.currencyNotifier,
+            itemsOwned: widget.itemsOwned);
     }
     return Container();
   }

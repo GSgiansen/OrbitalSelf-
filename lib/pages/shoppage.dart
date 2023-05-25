@@ -22,6 +22,7 @@ class _ShopPageState extends State<ShopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

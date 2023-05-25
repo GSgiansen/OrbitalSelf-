@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/controllers/authFunctions.dart';
+import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
 import 'package:orbital_test_space/main.dart';
 
 Widget LoginForm(BuildContext context, bool login) {
@@ -143,12 +144,17 @@ Widget LoginForm(BuildContext context, bool login) {
                                   ).then((value) => Authservices.signinUser(
                                   _emailController.text,
                                   _passwordController.text,)
-                                      .then((value) => Navigator.push(
+                                      .then((value) => 
+                                          {
+                                          Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  MyHomePage(title: _emailController.text)))
-                                  )).then((value) =>
+                                                  MyHomePage(title: _emailController.text))),
+                                          FireStoreFunctions.addNewUser(_emailController.text, _passwordController.text)
+                                          }
+                            )
+                                  ).then((value) =>
                                    value == "email-already-in-use" ?
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
