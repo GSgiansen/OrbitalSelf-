@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/insufficientfundsalert.dart';
+import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
 import 'package:orbital_test_space/main.dart';
 import 'package:orbital_test_space/models/item.dart';
 
 class ShopCard extends StatelessWidget {
   final int cost = 110;
+  final String email;
   CurrencyNotifier currencyNotifier;
   ItemsOwned itemsOwned;
-  ShopCard({required CurrencyNotifier this.currencyNotifier, required ItemsOwned this.itemsOwned});
+  ShopCard({required CurrencyNotifier this.currencyNotifier, 
+            required ItemsOwned this.itemsOwned,
+            required String this.email
+            });
 
   //test data with Item Object
   final Item doggo = Item(
@@ -55,6 +60,7 @@ class ShopCard extends StatelessWidget {
                             context: context);
                       } else {
                         currencyNotifier.decreaseCurrency(cost);
+                        FireStoreFunctions.addNewPurchase(email, doggo.name);
                         itemsOwned.addItem(doggo);
                         print("Currency is ${currencyNotifier.currency.value}");
                         
