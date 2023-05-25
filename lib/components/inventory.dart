@@ -10,7 +10,9 @@ class InventoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading: item.image,
+        leading: item.image == null
+            ? const Icon(Icons.no_photography)
+            : Image.network(item.image!),
         title: Text(item.name),
         subtitle: Text(item.description),
       ),
