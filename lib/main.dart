@@ -9,6 +9,7 @@ import 'package:orbital_test_space/pages/purchasehistory.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'controllers/fireStoreFunctions.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -25,7 +26,6 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   //here should house all the user data when login is implemented
   
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return MyHomePage(title: snapshot.data!.email.toString());
+            return MyHomePage(user: snapshot.data!.email.toString());
           } else {
             return const MyLoginPage(title: "HealthQuest");
           }
@@ -50,9 +50,10 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key, required this.title});
-  final String title;
+  MyHomePage({super.key, required this.user});
+  final String user;
   CurrencyNotifier currencyNotifier = CurrencyNotifier();
+  
   ItemsOwned itemsOwned = ItemsOwned();
 
   @override
@@ -61,6 +62,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentPageIndex = 2;
+  @override
+  void initState() {
+    // TODO: implement initState
+    FireStoreFunctions.getCurrentUserCurrency(email: widget.user).then((value) => widget.currencyNotifier.setValue(value));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,101 +109,23 @@ class _MyHomePageState extends State<MyHomePage> {
     switch (currentPageIndex) {
       case 0:
         return ShopPage(
-            title: "deez",
+            currencyNotifier: widget.currencyNotifier,
+            itemsOwned: widget.itemsOwned,
+            user: widget.user,
+            );
+      case 4:
+        return ProfilePage(
+            title: widget.user,
             currencyNotifier: widget.currencyNotifier,
             itemsOwned: widget.itemsOwned);
-      case 4:
-        return ProfilePage(title: widget.title);
     }
     return Container();
   }
 }
 
-/** 
-      body: <Widget> [
-        Navigator.push(context, 
-          MaterialPageRoute(builder: (context) => MyLoginPage(title: "deez")),);
-      ]
-       * 
-       */
 
-/** 
-      Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Wrap(
-              spacing: 8.0, // gap between adjacent chips
-              runSpacing: 4.0, // gap between lines
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MyLoginPage(title: "deez")),
-                      );
-                    },
-                    child: const Text('Login Page'),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ShopPage(
-                                title: "deez",
-                                currencyNotifier: widget.currencyNotifier,
-                                itemsOwned: widget.itemsOwned,
-                              )),
-                    );
-                  },
-                  child: const Text('Go to Shop Page'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    widget.currencyNotifier.increaseCurrency();
-                  },
-                  child: const Text('Increase Currency'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PurchaseHistoryPage(
-                              itemsOwned: widget.itemsOwned)),
-                    );
-                  },
-                  child: const Text('Past Purchases Page'),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      **/
-// This trailing comma makes auto-formatting nicer for build methods.
-
-class CurrencyNotifier {
+class CurrencyNotifier{
+  //Todo, set currency to what is stored in the database
   ValueNotifier currency = ValueNotifier<int>(100);
   void increaseCurrency() {
     currency.value += 10;
@@ -206,7 +134,15 @@ class CurrencyNotifier {
   void decreaseCurrency(int cost) {
     currency.value -= cost;
   }
+
+  void setValue(int value) {
+    currency.value = value;
+  }
+
+
 }
+
+
 
 class ItemsOwned {
   List<Item> items = [];

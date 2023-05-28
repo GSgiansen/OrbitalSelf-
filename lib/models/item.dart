@@ -4,7 +4,7 @@ class Item {
   final String name;
   final String description;
   final int price;
-  final Image image;
+  final String image;
 
   Item({
     required this.name,

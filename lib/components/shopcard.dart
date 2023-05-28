@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/insufficientfundsalert.dart';
+import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
 import 'package:orbital_test_space/main.dart';
 import 'package:orbital_test_space/models/item.dart';
 
 class ShopCard extends StatelessWidget {
   final int cost = 110;
+  final String email;
   CurrencyNotifier currencyNotifier;
   ItemsOwned itemsOwned;
-  ShopCard({required CurrencyNotifier this.currencyNotifier, required ItemsOwned this.itemsOwned});
+  Item item;
+  ShopCard({required CurrencyNotifier this.currencyNotifier, 
+            required ItemsOwned this.itemsOwned,
+            required String this.email,
+            required Item this.item,
+            });
 
   //test data with Item Object
-  final Item doggo = Item(
-    name: "Doggo",
-    description: "The goodest of bois",
-    price: 110,
-    image: Image.asset('web/doggo.png'),
-  );
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,10 +26,10 @@ class ShopCard extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              const ListTile(
+              ListTile(
                 leading: Text("imag"),
-                title: Text('Doggo'),
-                subtitle: Text('The goodest of bois'),
+                title: Text(item.name),
+                subtitle: Text(item.description),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -42,7 +42,7 @@ class ShopCard extends StatelessWidget {
                           child: const CircleAvatar(
                             backgroundImage: AssetImage('web/currency.png'),
                           )),
-                      label: Text('$cost'),
+                      label: Text(item.price.toString()),
                     ),
                   ),
                   FilledButton(
@@ -55,7 +55,9 @@ class ShopCard extends StatelessWidget {
                             context: context);
                       } else {
                         currencyNotifier.decreaseCurrency(cost);
-                        itemsOwned.addItem(doggo);
+                        FireStoreFunctions.removeOldCurrency(email, currencyNotifier.currency.value as int);
+                        FireStoreFunctions.addNewPurchase(email, item.name);
+                        itemsOwned.addItem(item);
                         print("Currency is ${currencyNotifier.currency.value}");
                         
                         
