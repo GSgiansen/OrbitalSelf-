@@ -39,6 +39,7 @@ dependencies:
   cloud_firestore: ^4.7.1
   font_awesome_flutter: ^10.4.0
   firebase_auth: ^4.6.1
+  google_fonts: ^4.0.5
 
 dev_dependencies:
   flutter_test:
@@ -94,3 +95,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Rotorcap
+      fonts:
+        - asset: fonts/ROTORcapNeue-Regular.ttf
+        - asset: fonts/ROTORcapNeue-Bold.ttf
+          weight: 700

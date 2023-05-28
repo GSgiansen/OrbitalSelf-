@@ -10,11 +10,12 @@ class ProfilePage extends StatefulWidget {
   final String title;
   final CurrencyNotifier currencyNotifier;
   final ItemsOwned itemsOwned;
-  const ProfilePage({super.key, 
-  required this.title,
-  required CurrencyNotifier this.currencyNotifier,
-  required this.itemsOwned});
-  
+  const ProfilePage(
+      {super.key,
+      required this.title,
+      required CurrencyNotifier this.currencyNotifier,
+      required this.itemsOwned});
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
@@ -44,10 +45,14 @@ class _ProfilePageState extends State<ProfilePage> {
               Spacer(),
               ElevatedButton(
                 onPressed: () async {
-                  await FirebaseAuth.instance.signOut().then((value) => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyLoginPage(title:"login")),
-                  ));
+                  await FirebaseAuth.instance
+                      .signOut()
+                      .then((value) => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const MyLoginPage(title: "login")),
+                          ));
                 },
                 child: Text('gtfo'),
               ),
@@ -56,15 +61,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PurchaseHistoryPage(itemsOwned: widget.itemsOwned,
-                    currencyNotifier: widget.currencyNotifier)),
+                    MaterialPageRoute(
+                        builder: (context) => PurchaseHistoryPage(
+                            itemsOwned: widget.itemsOwned,
+                            currencyNotifier: widget.currencyNotifier)),
                   );
                 },
                 child: Text('My Items'),
               )
-        
-        
-        
             ],
           ),
         ),

@@ -4,7 +4,7 @@ import 'package:orbital_test_space/controllers/authFunctions.dart';
 import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
 import 'package:orbital_test_space/main.dart';
 
-Widget LoginForm(BuildContext context, bool login) {
+Widget registerForm(BuildContext context, bool login) {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   return Form(
@@ -97,7 +97,7 @@ Widget LoginForm(BuildContext context, bool login) {
                         fontSize: 22,
                         fontFamily: 'Rotorcap',
                       )),
-                  child: const Text('LOGIN'),
+                  child: const Text('REGISTER'),
                   onPressed: () async {
                     if (!_emailController.text.contains('@')) {
                       ScaffoldMessenger.of(context).showSnackBar(
