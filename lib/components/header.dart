@@ -6,7 +6,7 @@ AppBar header(
   return AppBar(
     automaticallyImplyLeading: false,
     backgroundColor: Colors.blue,
-    title: const Text("HealthQuest"),
+    title: const Text("Self++"),
     actions: <Widget>[
       ValueListenableBuilder(
           valueListenable: currencyNotifier.currency,
