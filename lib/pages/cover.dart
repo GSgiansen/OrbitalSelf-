@@ -15,6 +15,7 @@ class _MyCoverPageState extends State<MyCoverPage> {
     return Scaffold(
         body: Stack(children: <Widget>[
       Container(
+        width: MediaQuery.of(context).size.width * 1.5,
         decoration: BoxDecoration(
             image: DecorationImage(image: AssetImage('web/forest.jpg'))),
       ),
