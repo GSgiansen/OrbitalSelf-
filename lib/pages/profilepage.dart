@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/pages/login.dart';
 import 'package:orbital_test_space/pages/purchasehistory.dart';
+import 'package:orbital_test_space/pages/unitypage.dart';
 
 import '../main.dart';
 
@@ -31,7 +32,6 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: Center(
         child: SizedBox(
-          height: 100,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -40,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 },
                 child: const Text('Back'),
               ),
-              const Spacer(),
+              const SizedBox(height: 10),  
               ElevatedButton(
                 onPressed: () async {
                   await FirebaseAuth.instance
@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 },
                 child: const Text('gtfo'),
               ),
-              const Spacer(),
+              const SizedBox(height: 10),  
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -66,7 +66,22 @@ class _ProfilePageState extends State<ProfilePage> {
                   );
                 },
                 child: const Text('My Items'),
-              )
+              ),
+              const SizedBox(height: 10),  
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UnityPage(
+                            title: "Unity",
+                            itemsOwned: widget.itemsOwned,
+                            currencyNotifier: widget.currencyNotifier)),
+                  );
+                },
+                child: const Text('Unity'),
+              ),
+
             ],
           ),
         ),
