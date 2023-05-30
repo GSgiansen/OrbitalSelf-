@@ -64,43 +64,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                           style: TextStyle(fontSize: 0.03 * height))
                     ])),
             const SizedBox(height: 40),
-            LoginForm(context, true),
-            const SizedBox(height: 5),
-            TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: const Color(0xFFF4F4F4),
-              ),
-              onPressed: () {},
-              child: const Text('FORGOT PASSWORD',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'Rotorcap',
-                      fontSize: 16)),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-              const Text("DON'T HAVE AN ACCOUNT?",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'Rotorcap',
-                      fontSize: 16)),
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RegisterPage()));
-                  },
-                  child: const Text('SIGN UP',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Rotorcap',
-                          fontSize: 16,
-                          decoration: TextDecoration.underline)))
-            ]
-            )
+            
           ]
           )
       ),

@@ -75,7 +75,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   style: TextStyle(
                       color: Colors.black,
                       fontFamily: 'Rotorcap',
-                      fontSize: 16)),
+                      fontSize: 16)
+                      ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
