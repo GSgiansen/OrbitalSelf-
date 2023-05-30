@@ -4,7 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:orbital_test_space/pages/login.dart';
 import 'package:flutter/material.dart';
 
-import '../components/registerform.dart';
+import '../components/loginform.dart';
+
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -15,13 +16,17 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
-        body: Stack(children: <Widget>[
+        body: ListView(children: <Widget>[
       Container(
         decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('web/forest_login.jpg'))),
-      ),
-      Center(
+            image: DecorationImage(image: AssetImage('web/forest_login.jpg'))
+            ),
+
+      child: Center(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -46,17 +51,22 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(height: 180),
             RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
+                text: TextSpan(
                     style: TextStyle(
-                        fontFamily: 'Rotorcap', color: Color(0xFF5c5a71)),
+                        fontFamily: 'Rotorcap', 
+                        color: Color(0xFF5c5a71), 
+                        fontSize: 0.08 * height),
                     children: [
+                      //make the text responsive to screen size
                       TextSpan(
-                          text: 'WELCOME\n', style: TextStyle(fontSize: 60)),
+                          text: 'Welcome\n',
+                          style: TextStyle(fontSize: 0.05 * height)),
                       TextSpan(
-                          text: 'JOIN US NOW!', style: TextStyle(fontSize: 22))
+                          text: 'TO SELF++',
+                          style: TextStyle(fontSize: 0.03 * height))
                     ])),
             const SizedBox(height: 40),
-            registerForm(context, true),
+            LoginForm(context, true),
             const SizedBox(height: 5),
             TextButton(
               child: Text('FORGOT PASSWORD',
@@ -69,25 +79,36 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               onPressed: () {},
             ),
-            Padding(
-                padding: const EdgeInsets.only(left: 100),
-                child: Row(children: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const MyLoginPage(title: 'test')));
-                      },
-                      child: const Text('ALREADY HAVE AN ACCOUNT?',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: 'Rotorcap',
-                              fontSize: 16,
-                              decoration: TextDecoration.underline)))
-                ]))
-          ]))
-    ]));
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+              const Text("HAVE AN ACCOUNT?",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Rotorcap',
+                      fontSize: 16)),
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyLoginPage(title: 'login',)));
+                  },
+                  child: const Text('LOGIN',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Rotorcap',
+                          fontSize: 16,
+                          decoration: TextDecoration.underline)))
+            ]
+            )
+          ]
+          )
+      ),
+          )
+    ])
+    );
   }
+
 }

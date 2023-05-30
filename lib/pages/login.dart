@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/loginform.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:orbital_test_space/pages/register.dart';
+import 'dart:io';
 
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({Key? key, required this.title}) : super(key: key);
@@ -12,15 +13,20 @@ class MyLoginPage extends StatefulWidget {
 }
 
 class _MyLoginPageState extends State<MyLoginPage> {
+
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
-        body: Stack(children: <Widget>[
+        body: ListView(children: <Widget>[
       Container(
         decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('web/forest_login.jpg'))),
-      ),
-      Center(
+            image: DecorationImage(image: AssetImage('web/forest_login.jpg'))
+            ),
+
+      child: Center(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -45,13 +51,19 @@ class _MyLoginPageState extends State<MyLoginPage> {
             const SizedBox(height: 180),
             RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
+                text: TextSpan(
                     style: TextStyle(
-                        fontFamily: 'Rotorcap', color: Color(0xFF5c5a71)),
+                        fontFamily: 'Rotorcap', 
+                        color: Color(0xFF5c5a71), 
+                        fontSize: 0.08 * height),
                     children: [
-                      TextSpan(text: 'LOGIN\n', style: TextStyle(fontSize: 60)),
+                      //make the text responsive to screen size
                       TextSpan(
-                          text: 'TO CONTINUE', style: TextStyle(fontSize: 22))
+                          text: 'LOGIN\n',
+                          style: TextStyle(fontSize: 0.05 * height)),
+                      TextSpan(
+                          text: 'TO CONTINUE',
+                          style: TextStyle(fontSize: 0.03 * height))
                     ])),
             const SizedBox(height: 40),
             LoginForm(context, true),
@@ -67,29 +79,35 @@ class _MyLoginPageState extends State<MyLoginPage> {
               ),
               onPressed: () {},
             ),
-            Padding(
-                padding: const EdgeInsets.only(left: 80),
-                child: Row(children: [
-                  const Text("DON'T HAVE AN ACCOUNT?",
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+              const Text("DON'T HAVE AN ACCOUNT?",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Rotorcap',
+                      fontSize: 16)),
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegisterPage()));
+                  },
+                  child: const Text('SIGN UP',
                       style: TextStyle(
                           color: Colors.black,
                           fontFamily: 'Rotorcap',
-                          fontSize: 16)),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const RegisterPage()));
-                      },
-                      child: const Text('SIGN UP',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: 'Rotorcap',
-                              fontSize: 16,
-                              decoration: TextDecoration.underline)))
-                ]))
-          ]))
-    ]));
+                          fontSize: 16,
+                          decoration: TextDecoration.underline)))
+            ]
+            )
+          ]
+          )
+      ),
+          )
+    ])
+    );
   }
 }
