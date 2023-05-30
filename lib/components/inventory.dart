@@ -12,7 +12,7 @@ class InventoryCard extends StatelessWidget {
       child: ListTile(
         leading: item.image == null
             ? const Icon(Icons.no_photography)
-            : Image.network(item.image!),
+            : Image.network(item.image),
         title: Text(item.name),
         subtitle: Text(item.description),
       ),

@@ -16,7 +16,7 @@ class _MyCoverPageState extends State<MyCoverPage> {
         body: Stack(children: <Widget>[
       Container(
         width: MediaQuery.of(context).size.width * 1.5,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(image: AssetImage('web/forest.jpg'))),
       ),
       Center(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/loginform.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:orbital_test_space/pages/register.dart';
-import 'dart:io';
 
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({Key? key, required this.title}) : super(key: key);
@@ -22,7 +20,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
     return Scaffold(
         body: ListView(children: <Widget>[
       Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(image: AssetImage('web/forest_login.jpg'))
             ),
 
@@ -54,7 +52,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 text: TextSpan(
                     style: TextStyle(
                         fontFamily: 'Rotorcap', 
-                        color: Color(0xFF5c5a71), 
+                        color: const Color(0xFF5c5a71), 
                         fontSize: 0.08 * height),
                     children: [
                       //make the text responsive to screen size
@@ -69,15 +67,15 @@ class _MyLoginPageState extends State<MyLoginPage> {
             LoginForm(context, true),
             const SizedBox(height: 5),
             TextButton(
-              child: Text('FORGOT PASSWORD',
+              style: TextButton.styleFrom(
+                backgroundColor: const Color(0xFFF4F4F4),
+              ),
+              onPressed: () {},
+              child: const Text('FORGOT PASSWORD',
                   style: TextStyle(
                       color: Colors.black,
                       fontFamily: 'Rotorcap',
                       fontSize: 16)),
-              style: TextButton.styleFrom(
-                backgroundColor: Color(0xFFF4F4F4),
-              ),
-              onPressed: () {},
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

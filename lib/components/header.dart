@@ -23,5 +23,4 @@ AppBar header(
           })
     ],
   );
-  ;
 }

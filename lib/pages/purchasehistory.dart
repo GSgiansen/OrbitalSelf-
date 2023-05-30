@@ -7,8 +7,8 @@ import '../components/header.dart';
 class PurchaseHistoryPage extends StatefulWidget {
   final ItemsOwned itemsOwned;
   CurrencyNotifier currencyNotifier;
-  PurchaseHistoryPage({required this.itemsOwned,
-  required CurrencyNotifier this.currencyNotifier});
+  PurchaseHistoryPage({super.key, required this.itemsOwned,
+  required this.currencyNotifier});
   @override
   _PurchaseHistoryPageState createState() => _PurchaseHistoryPageState();
 }
@@ -28,7 +28,7 @@ class _PurchaseHistoryPageState extends State<PurchaseHistoryPage> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Back'),
+              child: const Text('Back'),
             ),
           ],
         ),

@@ -10,10 +10,10 @@ class ShopCard extends StatelessWidget {
   CurrencyNotifier currencyNotifier;
   ItemsOwned itemsOwned;
   Item item;
-  ShopCard({required CurrencyNotifier this.currencyNotifier, 
-            required ItemsOwned this.itemsOwned,
-            required String this.email,
-            required Item this.item,
+  ShopCard({super.key, required this.currencyNotifier, 
+            required this.itemsOwned,
+            required this.email,
+            required this.item,
             });
 
   //test data with Item Object
@@ -27,7 +27,7 @@ class ShopCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               ListTile(
-                leading: Text("imag"),
+                leading: const Text("imag"),
                 title: Text(item.name),
                 subtitle: Text(item.description),
               ),
@@ -61,7 +61,7 @@ class ShopCard extends StatelessWidget {
                         print("Currency is ${currencyNotifier.currency.value}");
                         
                         
-                      };
+                      }
                     },
                   ),
                   const SizedBox(width: 8),

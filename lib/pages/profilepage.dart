@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/pages/login.dart';
 import 'package:orbital_test_space/pages/purchasehistory.dart';
-import 'package:orbital_test_space/pages/shoppage.dart';
 
 import '../main.dart';
 
@@ -13,7 +12,7 @@ class ProfilePage extends StatefulWidget {
   const ProfilePage(
       {super.key,
       required this.title,
-      required CurrencyNotifier this.currencyNotifier,
+      required this.currencyNotifier,
       required this.itemsOwned});
 
   @override
@@ -31,18 +30,17 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Container(
+        child: SizedBox(
           height: 100,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {
-                  ;
                 },
-                child: Text('Back'),
+                child: const Text('Back'),
               ),
-              Spacer(),
+              const Spacer(),
               ElevatedButton(
                 onPressed: () async {
                   await FirebaseAuth.instance
@@ -54,9 +52,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                     const MyLoginPage(title: "login")),
                           ));
                 },
-                child: Text('gtfo'),
+                child: const Text('gtfo'),
               ),
-              Spacer(),
+              const Spacer(),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -67,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             currencyNotifier: widget.currencyNotifier)),
                   );
                 },
-                child: Text('My Items'),
+                child: const Text('My Items'),
               )
             ],
           ),
