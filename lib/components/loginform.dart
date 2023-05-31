@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/controllers/authFunctions.dart';
 import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
@@ -9,8 +8,8 @@ Image image = Image.asset('web/forest_login.jpg');
 var heightImg = image.width?.toDouble();
 
 Widget LoginForm(BuildContext context, bool login) {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   
 
   return SingleChildScrollView(
@@ -19,15 +18,15 @@ Widget LoginForm(BuildContext context, bool login) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            EmailField(emailController: _emailController),
-            PasswordField(passwordController: _passwordController),
+            EmailField(emailController: emailController),
+            PasswordField(passwordController: passwordController),
             login
                 ? LoginButton(
-                    emailController: _emailController,
-                    passwordController: _passwordController)
+                    emailController: emailController,
+                    passwordController: passwordController)
                 : RegisterButton(
-                    emailController: _emailController,
-                    passwordController: _passwordController),
+                    emailController: emailController,
+                    passwordController: passwordController),
           ],
         ),
       ),
@@ -50,9 +49,9 @@ class RegisterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF338a3e)),
+          backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF338a3e)),
           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-            EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+            const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
@@ -60,14 +59,14 @@ class RegisterButton extends StatelessWidget {
             ),
           ),
         ),
-        child: Text(
+        child: const Text(
           'Register',
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () {
           if (!_emailController.text.contains('@')) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
+              const SnackBar(
                 content: Text('Please enter a valid email'),
                 backgroundColor: Colors.red,
               ),
@@ -76,7 +75,7 @@ class RegisterButton extends StatelessWidget {
           }
           if ((_passwordController.text.trim().length < 6)) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
+              const SnackBar(
                 content: Text('Password must be at least 6 characters'),
                 backgroundColor: Colors.red,
               ),
@@ -100,7 +99,7 @@ class RegisterButton extends StatelessWidget {
                             _emailController.text, _passwordController.text)
                       }))
               .then((value) => value == "email-already-in-use"
-                  ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  ? ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Email already in use"),
                       backgroundColor: Colors.red,
                     ))
@@ -142,7 +141,7 @@ class LoginButton extends StatelessWidget {
         onPressed: () async {
           if (!_emailController.text.contains('@')) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
+              const SnackBar(
                 content: Text('Please enter a valid email'),
                 backgroundColor: Colors.red,
               ),
@@ -153,12 +152,12 @@ class LoginButton extends StatelessWidget {
             _emailController.text,
             _passwordController.text,
           ).then((value) => value == "no user found"
-              ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              ? ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text("User not found"),
                   backgroundColor: Colors.red,
                 ))
               : value == "wrong password"
-                  ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  ? ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Wrong password"),
                       backgroundColor: Colors.red,
                     ))
@@ -207,7 +206,7 @@ class PasswordField extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Container(
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               maxWidth: 270,
             ),
             child: FittedBox(
@@ -216,7 +215,7 @@ class PasswordField extends StatelessWidget {
                 width: 0.3 * width * 1.3,
           
                 child: TextFormField(
-                  key: ValueKey('password'),
+                  key: const ValueKey('password'),
                   controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
@@ -224,7 +223,7 @@ class PasswordField extends StatelessWidget {
                     filled: true,
                     fillColor: const Color(0xFFd9d9d9),
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(15),
@@ -277,7 +276,7 @@ class EmailField extends StatelessWidget {
             height: 10,
           ),
           Container(
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               maxWidth: 270,
             ),
             child: FittedBox(
@@ -285,14 +284,14 @@ class EmailField extends StatelessWidget {
               child: SizedBox(
                 width: 0.3 * width * 1.3,
                 child: TextFormField(
-                  key: ValueKey('email'),
+                  key: const ValueKey('email'),
                   controller: _emailController,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     filled: true,
                     fillColor: const Color(0xFFd9d9d9),
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(15),

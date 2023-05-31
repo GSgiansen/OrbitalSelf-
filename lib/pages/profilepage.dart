@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/pages/login.dart';
 import 'package:orbital_test_space/pages/purchasehistory.dart';
-import 'package:orbital_test_space/pages/shoppage.dart';
+import 'package:orbital_test_space/pages/unitypage.dart';
 
 import '../main.dart';
 
@@ -13,7 +13,7 @@ class ProfilePage extends StatefulWidget {
   const ProfilePage(
       {super.key,
       required this.title,
-      required CurrencyNotifier this.currencyNotifier,
+      required this.currencyNotifier,
       required this.itemsOwned});
 
   @override
@@ -31,18 +31,16 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Container(
-          height: 100,
+        child: SizedBox(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {
-                  ;
                 },
-                child: Text('Back'),
+                child: const Text('Back'),
               ),
-              Spacer(),
+              const SizedBox(height: 10),  
               ElevatedButton(
                 onPressed: () async {
                   await FirebaseAuth.instance
@@ -54,9 +52,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                     const MyLoginPage(title: "login")),
                           ));
                 },
-                child: Text('gtfo'),
+                child: const Text('gtfo'),
               ),
-              Spacer(),
+              const SizedBox(height: 10),  
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -67,8 +65,23 @@ class _ProfilePageState extends State<ProfilePage> {
                             currencyNotifier: widget.currencyNotifier)),
                   );
                 },
-                child: Text('My Items'),
-              )
+                child: const Text('My Items'),
+              ),
+              const SizedBox(height: 10),  
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UnityPage(
+                            title: "Unity",
+                            itemsOwned: widget.itemsOwned,
+                            currencyNotifier: widget.currencyNotifier)),
+                  );
+                },
+                child: const Text('Unity'),
+              ),
+
             ],
           ),
         ),

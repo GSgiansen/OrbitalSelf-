@@ -6,7 +6,6 @@ import 'package:orbital_test_space/models/item.dart';
 import 'package:orbital_test_space/pages/cover.dart';
 import 'package:orbital_test_space/pages/health.dart';
 import 'package:orbital_test_space/pages/profilepage.dart';
-import 'package:orbital_test_space/pages/purchasehistory.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,7 +19,7 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        textTheme: TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
+        textTheme: const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
         primarySwatch: Colors.blue,
       ),
       home: StreamBuilder(
@@ -41,7 +40,7 @@ class MyApp extends StatelessWidget {
           if (snapshot.hasData) {
             return MyHomePage(user: snapshot.data!.email.toString());
           } else {
-            return MyCoverPage(title: "Self++");
+            return const MyCoverPage(title: "Self++");
           }
         },
       ),
@@ -116,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           user: widget.user,
         );
       case 1:
-        return MyHealthPage();
+        return const MyHealthPage();
       case 4:
         return ProfilePage(
             title: widget.user,

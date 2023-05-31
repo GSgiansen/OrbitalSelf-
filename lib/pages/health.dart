@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MyHealthPage extends StatelessWidget {
+  const MyHealthPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridView.count(
         crossAxisCount: 2,
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         childAspectRatio: 8.0 / 9.0,
         mainAxisSpacing: 16.0,
         crossAxisSpacing: 16.0,

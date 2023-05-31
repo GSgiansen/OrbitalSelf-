@@ -2,18 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:orbital_test_space/components/shopcard.dart';
-import 'package:orbital_test_space/components/header.dart';
-import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
 import 'package:orbital_test_space/main.dart';
 
-import '../controllers/shopFireStoreFunctions.dart';
 import '../models/item.dart';
 
 class ShopPage extends StatefulWidget {
-  ShopPage(
+  const ShopPage(
       {super.key,
       required this.user,
-      required CurrencyNotifier this.currencyNotifier,
+      required this.currencyNotifier,
       required this.itemsOwned});
   final String user;
   final CurrencyNotifier currencyNotifier;
@@ -24,7 +21,7 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
-  Widget _body = CircularProgressIndicator();
+  final Widget _body = const CircularProgressIndicator();
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +45,9 @@ class _ShopPageState extends State<ShopPage> {
             );
             lst.add(item);
           }
-          lst.forEach((element) {
+          for (var element in lst) {
             print(element.name);
-          });
+          }
           return Scaffold(
               body: Center(
                 child: Column(
