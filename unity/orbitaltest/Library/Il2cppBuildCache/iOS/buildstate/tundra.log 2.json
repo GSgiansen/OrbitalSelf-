@@ -1,0 +1,3 @@
+{"msg":"init","dagFile":"/Users/tangiansen/Desktop/MobileAppDev/orbital_test_space/unity/orbitaltest/Library/Il2cppBuildCache/iOS/buildstate/bee.dag","targets":["FinalProgram"]}
+{"msg":"enqueueNode","enqueuedNodeAnnotation":"FinalProgram","enqueuedNodeIndex":2}
+{"msg":"enqueueNode","enqueuedNodeAnnotation":"IL2CPP_CodeGen /Users/tangiansen/Desktop/MobileAppDev/orbital_test_space/unity/orbitaltest/Library/Il2cppBuildCache/iOS/buildstate/artifacts/il2cpp_conv_fisg.traceevents","enqueuedNodeIndex":1,"enqueueingNodeAnnotation":"FinalProgram","enqueueingNodeIndex":2}
