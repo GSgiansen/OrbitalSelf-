@@ -23,8 +23,9 @@ static const char* g_methodExecutionContextInfoStrings[1] = { NULL };
 static const char* g_methodExecutionContextInfoStrings[1] = { NULL };
 #endif
 #if IL2CPP_MONO_DEBUGGER
-static const Il2CppMethodExecutionContextInfoIndex g_methodExecutionContextInfoIndexes[3171] = 
+static const Il2CppMethodExecutionContextInfoIndex g_methodExecutionContextInfoIndexes[3172] = 
 {
+	{ 0, 0 },
 	{ 0, 0 },
 	{ 0, 0 },
 	{ 0, 0 },
@@ -3209,22 +3210,22 @@ Il2CppSequencePoint g_sequencePointsSystem_Core[1] = { { 0, 0, 0, 0, 0, 0, 0, kS
 #endif
 #if IL2CPP_MONO_DEBUGGER
 static const Il2CppCatchPoint g_catchPoints[] = {
-{ 28891, 13361, 53, 0, -1 },
-{ 28891, 13361, 131, 1, -1 },
-{ 28896, 13361, 57, 1, 0 },
-{ 28896, 13361, 132, 2, 0 },
-{ 28942, -1, 201, -1, 0 },
-{ 28942, 12511, 325, 2, 0 },
-{ 29519, 11703, 150, 0, -1 },
-{ 29647, 13361, 58, 0, -1 },
-{ 29650, 13361, 126, 0, -1 },
-{ 29815, 13361, 26, 0, -1 },
-{ 29819, 13361, 14, 0, -1 },
-{ 29934, 13361, 38, 0, -1 },
-{ 29939, 13361, 38, 1, 0 },
-{ 30263, 10656, 25, 0, -1 },
-{ 30266, 10656, 26, 0, -1 },
-{ 30270, 10656, 26, 0, -1 },
+{ 28893, 13698, 53, 0, -1 },
+{ 28893, 13698, 131, 1, -1 },
+{ 28898, 13698, 57, 1, 0 },
+{ 28898, 13698, 132, 2, 0 },
+{ 28944, -1, 201, -1, 0 },
+{ 28944, 12840, 325, 2, 0 },
+{ 29521, 12025, 150, 0, -1 },
+{ 29649, 13698, 58, 0, -1 },
+{ 29652, 13698, 126, 0, -1 },
+{ 29817, 13698, 26, 0, -1 },
+{ 29821, 13698, 14, 0, -1 },
+{ 29936, 13698, 38, 0, -1 },
+{ 29941, 13698, 38, 1, 0 },
+{ 30265, 10966, 25, 0, -1 },
+{ 30268, 10966, 26, 0, -1 },
+{ 30272, 10966, 26, 0, -1 },
 };
 #else
 static const Il2CppCatchPoint g_catchPoints[1] = { { 0, 0, 0, 0, } };
@@ -3245,8 +3246,9 @@ static const Il2CppMethodScope g_methodScopes[1] = { { 0, 0 } };
 static const Il2CppMethodScope g_methodScopes[1] = { { 0, 0 } };
 #endif
 #if IL2CPP_MONO_DEBUGGER
-static const Il2CppMethodHeaderInfo g_methodHeaderInfos[3171] = 
+static const Il2CppMethodHeaderInfo g_methodHeaderInfos[3172] = 
 {
+	{ 0, 0, 0 },
 	{ 0, 0, 0 },
 	{ 0, 0, 0 },
 	{ 0, 0, 0 },

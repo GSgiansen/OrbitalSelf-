@@ -1,8 +1,18 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Unity.AdaptivePerformance.Simulator.Editor.dll:
-    - UnityEditor.AdaptivePerformance.Simulator.Editor.SimulatorProviderSettings
-    - UnityEditor.AdaptivePerformance.Simulator.Editor.SimulatorProviderSettingsEditor
+    Assembly-CSharp-Editor.dll:
+    - ReadmeEditor
+    Assembly-CSharp.dll:
+    - FlutterUnityIntegration.UnityMessageManager
+    - Readme
+    - Rotatecamera
+    - addCube
+    - changeColor
+    Unity.AdaptivePerformance.Editor.dll:
+    - UnityEditor.AdaptivePerformance.Editor.AdaptivePerformanceGeneralSettingsPerBuildTarget
+    Unity.AdaptivePerformance.dll:
+    - UnityEngine.AdaptivePerformance.AdaptivePerformanceGeneralSettings
+    - UnityEngine.AdaptivePerformance.AdaptivePerformanceManagerSettings
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -31,6 +41,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 81
@@ -40,6 +52,20 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 19210}
+    - Class: 114
+      Script: {instanceID: 20186}
+    - Class: 114
+      Script: {instanceID: 22270}
+    - Class: 114
+      Script: {instanceID: 22362}
+    - Class: 114
+      Script: {instanceID: 23322}
+    - Class: 114
+      Script: {instanceID: 23324}
+    - Class: 115
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -678,6 +704,12 @@ ScriptsOnlyBuild:
     className: AdaptivePerformanceGeneralSettings
   - hash:
       serializedVersion: 2
+      Hash: a0908d135c39e214ab62d806e4c859f6
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: changeColor
+  - hash:
+      serializedVersion: 2
       Hash: b1f06645bc33f83158c09805ea1f29cd
     assemblyName: Unity.AdaptivePerformance
     namespaceName: UnityEngine.AdaptivePerformance
@@ -948,6 +980,12 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
+      Hash: a0908d135c39e214ab62d806e4c859f6
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: addCube
+  - hash:
+      serializedVersion: 2
       Hash: 1acffdc47de1ca014dae3d384c3d1086
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -964,6 +1002,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.AdaptivePerformance
     namespaceName: UnityEngine.AdaptivePerformance
     className: IAdaptivePerformanceSettings
+  - hash:
+      serializedVersion: 2
+      Hash: d3b41637f3c3bbc203cf194263b93390
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Rotatecamera
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1057,4 +1101,4 @@ ScriptsOnlyBuild:
   platform: 9
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: /Users/tangiansen/Desktop/MobileAppDev/orbital_test_space/ios/UnityLibrary
+  playerPath: /Users/tangiansen/Desktop/MobileAppDev.nosync/orbital_test_space/ios/UnityLibrary

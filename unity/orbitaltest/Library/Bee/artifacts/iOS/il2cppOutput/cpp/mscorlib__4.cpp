@@ -445,6 +445,7 @@ IL2CPP_EXTERN_C const RuntimeMethod* Int64_ToString_mFA343EF42719C6D9CBCB4FAFCE9
 IL2CPP_EXTERN_C const RuntimeMethod* Int64_TryFormat_mF0F333FE3128E1A83692861D177DDDC3DC8E8E27_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Int64_TryParse_m3FC0128C89CC2331239FC2A0A749BF33455F03D2_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Int64_TryParse_m64CEDECE4C3F16B715CA1057801018B2957AE0E3_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* InvalidCastException__ctor_m40BCFD6C1C79DE81191B829AF71BEB590E300396_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* InvalidCastException__ctor_m40D702C69DA15301A5CA06C9BE88036A0F3F4E6E_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* InvalidCastException__ctor_mCBC218CE25034242D2EB33B3E59933295CE93C56_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* InvalidCastException__ctor_mED3F9781E6CA47A92C602C896EDDF2F40ECB8644_RuntimeMethod_var;
@@ -13761,6 +13762,24 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InvalidCastException__ctor_mED3F9781E6CA
 	{
 		String_t* L_0 = ___0_message;
 		SystemException__ctor_mC481DFD60F19362A0B3523FBD5E429EC4F1F3FB5(__this, L_0, NULL);
+		Exception_set_HResult_m010A171183E240EBF4F7611E924B533FAB2E471F_inline(__this, ((int32_t)-2147467262), NULL);
+		return;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InvalidCastException__ctor_m40BCFD6C1C79DE81191B829AF71BEB590E300396 (InvalidCastException_t47FC62F21A3937E814D20381DDACEF240E95AC2E* __this, String_t* ___0_message, Exception_t* ___1_innerException, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&InvalidCastException__ctor_m40BCFD6C1C79DE81191B829AF71BEB590E300396_RuntimeMethod_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, InvalidCastException__ctor_m40BCFD6C1C79DE81191B829AF71BEB590E300396_RuntimeMethod_var, NULL, NULL, NULL);
+	CHECK_PAUSE_POINT;
+	{
+		String_t* L_0 = ___0_message;
+		Exception_t* L_1 = ___1_innerException;
+		SystemException__ctor_m0FC84CACD2A5D66222998AA601A5C41CEC36A611(__this, L_0, L_1, NULL);
 		Exception_set_HResult_m010A171183E240EBF4F7611E924B533FAB2E471F_inline(__this, ((int32_t)-2147467262), NULL);
 		return;
 	}
