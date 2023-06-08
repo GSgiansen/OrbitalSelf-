@@ -12,7 +12,6 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   static final GlobalKey<ScaffoldState> _scaffoldKey =
       GlobalKey<ScaffoldState>();
   UnityWidgetController? _unityWidgetController;
-  double _sliderValue = 0.0;
 
   @override
   void initState() {
@@ -98,18 +97,6 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
                         );
                       },
                       child: const Text('gameObj'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        _unityWidgetController?.postMessage(
-                          'Cube',
-                          'OnMessage',
-                          'addCube',
-                        )?.then(
-                          (value) => print("add new cube"),
-                        );
-                      },
-                      child: const Text('cube'),
                     ),
                   ]),
                 ),
