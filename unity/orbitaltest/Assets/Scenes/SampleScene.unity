@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 9467399}
   - component: {fileID: 9467398}
   - component: {fileID: 9467397}
+  - component: {fileID: 9467401}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -229,6 +230,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9467401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9467396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9980f9c47b7444b87a41bf94577b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savePath: Assets/Scenes/scene.json
 --- !u!1 &116600303
 GameObject:
   m_ObjectHideFlags: 0

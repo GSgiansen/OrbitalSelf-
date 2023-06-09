@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - FlutterUnityIntegration.UnityMessageManager
     - Rotatecamera
+    - TemplateSceneLoader
     - addCube
     - changeColor
     - loadNewScene
@@ -62,9 +63,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 22366}
     - Class: 114
-      Script: {instanceID: 23334}
+      Script: {instanceID: 23398}
     - Class: 114
-      Script: {instanceID: 23336}
+      Script: {instanceID: 23400}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -113,9 +114,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 22366}
     - Class: 114
-      Script: {instanceID: 23334}
+      Script: {instanceID: 22386}
     - Class: 114
-      Script: {instanceID: 23336}
+      Script: {instanceID: 23398}
+    - Class: 114
+      Script: {instanceID: 23400}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -162,9 +165,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 22366}
     - Class: 114
-      Script: {instanceID: 23334}
+      Script: {instanceID: 23398}
     - Class: 114
-      Script: {instanceID: 23336}
+      Script: {instanceID: 23400}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -1126,6 +1129,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.AdaptivePerformance
     namespaceName: UnityEngine.AdaptivePerformance
     className: AdaptiveMSAA
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TemplateSceneLoader
   - hash:
       serializedVersion: 2
       Hash: c2552273656d3e2189c71046dbb7e62a

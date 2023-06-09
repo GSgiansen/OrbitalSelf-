@@ -1,0 +1,360 @@
+{
+    "name": "truetest",
+    "objects": [
+        {
+            "name": "MainCamera",
+            "position": {
+                "x": 1.7300000190734864,
+                "y": 8.930000305175782,
+                "z": 1.4500000476837159
+            },
+            "rotation": {
+                "x": -0.350021094083786,
+                "y": 0.7056425213813782,
+                "z": -0.5238399505615234,
+                "w": -0.3242616653442383
+            },
+            "scale": {
+                "x": -0.03825320675969124,
+                "y": 0.8546168208122253,
+                "z": 0.605847954750061
+            },
+            "components": [
+                {
+                    "instanceID": 25422
+                },
+                {
+                    "instanceID": 25420
+                },
+                {
+                    "instanceID": 25418
+                },
+                {
+                    "instanceID": 25426
+                },
+                {
+                    "instanceID": 25424
+                }
+            ],
+            "prefabPath": ""
+        },
+        {
+            "name": "Directional Light",
+            "position": {
+                "x": 0.0,
+                "y": 3.0,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.4082178771495819,
+                "y": -0.23456968367099763,
+                "z": 0.10938163101673126,
+                "w": 0.8754261136054993
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "components": [
+                {
+                    "instanceID": 25414
+                },
+                {
+                    "instanceID": 25412
+                }
+            ],
+            "prefabPath": ""
+        },
+        {
+            "name": "MainIsland",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.05000000074505806
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 3.292173385620117,
+                "y": 0.41839975118637087,
+                "z": 3.424718141555786
+            },
+            "components": [
+                {
+                    "instanceID": -4754
+                },
+                {
+                    "instanceID": -4756
+                },
+                {
+                    "instanceID": -4758
+                },
+                {
+                    "instanceID": -4760
+                },
+                {
+                    "instanceID": -4762
+                }
+            ],
+            "prefabPath": "Assets/prefab/MainIsland.prefab"
+        },
+        {
+            "name": "MiniIsland1",
+            "position": {
+                "x": 2.0190000534057619,
+                "y": -0.0010000000474974514,
+                "z": -0.05000000074505806
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.6043403148651124,
+                "y": 0.0903211161494255,
+                "z": 1.6689319610595704
+            },
+            "components": [
+                {
+                    "instanceID": -4686
+                },
+                {
+                    "instanceID": -4688
+                },
+                {
+                    "instanceID": -4690
+                },
+                {
+                    "instanceID": -4692
+                },
+                {
+                    "instanceID": -4694
+                }
+            ],
+            "prefabPath": "Assets/prefab/MiniIsland1.prefab"
+        },
+        {
+            "name": "MiniIsland2",
+            "position": {
+                "x": -0.4300000071525574,
+                "y": -0.0010000000474974514,
+                "z": 1.5169999599456788
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.6043403148651124,
+                "y": 0.0903211161494255,
+                "z": 1.6689319610595704
+            },
+            "components": [
+                {
+                    "instanceID": -4710
+                },
+                {
+                    "instanceID": -4712
+                },
+                {
+                    "instanceID": -4714
+                },
+                {
+                    "instanceID": -4716
+                },
+                {
+                    "instanceID": -4718
+                }
+            ],
+            "prefabPath": "Assets/prefab/MiniIsland2.prefab"
+        },
+        {
+            "name": "Plane",
+            "position": {
+                "x": -8.145899772644043,
+                "y": -3.3087000846862795,
+                "z": 10.09469985961914
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 5.619473457336426,
+                "y": 1.0,
+                "z": 7.508884429931641
+            },
+            "components": [
+                {
+                    "instanceID": -4744
+                },
+                {
+                    "instanceID": -4746
+                },
+                {
+                    "instanceID": -4748
+                },
+                {
+                    "instanceID": -4750
+                }
+            ],
+            "prefabPath": "Assets/prefab/Plane.prefab"
+        },
+        {
+            "name": "Cube",
+            "position": {
+                "x": 0.2199999988079071,
+                "y": 0.5400000214576721,
+                "z": 0.7200000286102295
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.5580599904060364,
+                "y": 0.5580599904060364,
+                "z": 0.5580599904060364
+            },
+            "components": [
+                {
+                    "instanceID": 25448
+                },
+                {
+                    "instanceID": 25446
+                },
+                {
+                    "instanceID": 25444
+                },
+                {
+                    "instanceID": 25442
+                },
+                {
+                    "instanceID": 25440
+                },
+                {
+                    "instanceID": 25450
+                },
+                {
+                    "instanceID": 25438
+                }
+            ],
+            "prefabPath": ""
+        },
+        {
+            "name": "Tree",
+            "position": {
+                "x": -0.5600000023841858,
+                "y": 0.5699999928474426,
+                "z": -0.6800000071525574
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.3303399980068207,
+                "y": 1.0,
+                "z": 0.3196899890899658
+            },
+            "components": [
+                {
+                    "instanceID": 25398
+                },
+                {
+                    "instanceID": 25396
+                },
+                {
+                    "instanceID": 25394
+                },
+                {
+                    "instanceID": 25392
+                }
+            ],
+            "prefabPath": ""
+        },
+        {
+            "name": "Cube (1)",
+            "position": {
+                "x": 1.1200000047683716,
+                "y": 0.75,
+                "z": -0.5899999737739563
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 0.28404998779296877,
+                "y": 0.28404998779296877,
+                "z": 0.28404998779296877
+            },
+            "components": [
+                {
+                    "instanceID": -4732
+                },
+                {
+                    "instanceID": -4734
+                },
+                {
+                    "instanceID": -4736
+                },
+                {
+                    "instanceID": -4738
+                },
+                {
+                    "instanceID": -4740
+                }
+            ],
+            "prefabPath": "Assets/Cube (1).prefab"
+        },
+        {
+            "name": "GameObject",
+            "position": {
+                "x": 3.020479440689087,
+                "y": 2.605318069458008,
+                "z": -2.1513543128967287
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            },
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            },
+            "components": [
+                {
+                    "instanceID": 25434
+                },
+                {
+                    "instanceID": 25432
+                },
+                {
+                    "instanceID": 25430
+                }
+            ],
+            "prefabPath": ""
+        }
+    ]
+}

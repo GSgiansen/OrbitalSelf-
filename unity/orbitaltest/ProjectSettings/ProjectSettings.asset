@@ -815,8 +815,10 @@ PlayerSettings:
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
-  il2cppCompilerConfiguration: {}
+  il2cppCompilerConfiguration:
+    Android: 0
   il2cppCodeGeneration:
+    Android: 1
     iPhone: 1
   managedStrippingLevel:
     EmbeddedLinux: 1

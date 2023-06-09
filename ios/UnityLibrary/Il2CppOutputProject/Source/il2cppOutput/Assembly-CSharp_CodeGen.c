@@ -44,6 +44,12 @@ extern void loadNewScene_Update_m90AEEA793AD4B6EA5D9271A64F1418E21367AA99 (void)
 extern void loadNewScene_OnMessage_m67AD7BDE3E032813BA013B75FF22B6C075003B34 (void);
 extern void loadNewScene_LoadTemplateScene_mD5A18D2FAB29399AC4CFD63A58D00140D481D772 (void);
 extern void loadNewScene__ctor_mA4636121FF4DC9C0487548BC539AFCF39724EA28 (void);
+extern void TemplateSceneLoader_Start_m081884B6095A92F13549B564C584D92D02421555 (void);
+extern void TemplateSceneLoader_OnMessage_mC61F812FD94CFAB3B9D4C2CBBD18D4833042CC1A (void);
+extern void TemplateSceneLoader_GenerateSceneFromByteArray_mACB8215B12246C9FEB15DEFDD962FA25615E88DA (void);
+extern void TemplateSceneLoader__ctor_mD43CF173219312E7B2AB7A627939A800E2A64FED (void);
+extern void SceneData_IsValid_m0A64D17B39BBD47EE7CA73C1FF45753E1607DA5C (void);
+extern void SceneData__ctor_mB01CABBEC1B9D9FF920E5B42D636563EB4B00A74 (void);
 extern void UnityMessageHandler_Start_m5DB0DD74793F806CE93250AD332F67A5BFEB5BD6 (void);
 extern void UnityMessageHandler_OnMessage_m20E29BE08583F208B718DAB824AD48645C578D44 (void);
 extern void UnityMessageHandler_LoadTemplateScene_m7D1B058913989BF206788E930AB63EA66137B843 (void);
@@ -93,7 +99,7 @@ extern void MessageHandlerDelegate__ctor_m287CBD25D77011FC5A52D1090F6CC31353AB63
 extern void MessageHandlerDelegate_Invoke_mD1EC9E1841D5014C40A26D4C4BA076482FFC8A4B (void);
 extern void MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D (void);
 extern void MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16 (void);
-static Il2CppMethodPointer s_methodPointers[94] = 
+static Il2CppMethodPointer s_methodPointers[100] = 
 {
 	NULL,
 	NULL,
@@ -135,6 +141,12 @@ static Il2CppMethodPointer s_methodPointers[94] =
 	loadNewScene_OnMessage_m67AD7BDE3E032813BA013B75FF22B6C075003B34,
 	loadNewScene_LoadTemplateScene_mD5A18D2FAB29399AC4CFD63A58D00140D481D772,
 	loadNewScene__ctor_mA4636121FF4DC9C0487548BC539AFCF39724EA28,
+	TemplateSceneLoader_Start_m081884B6095A92F13549B564C584D92D02421555,
+	TemplateSceneLoader_OnMessage_mC61F812FD94CFAB3B9D4C2CBBD18D4833042CC1A,
+	TemplateSceneLoader_GenerateSceneFromByteArray_mACB8215B12246C9FEB15DEFDD962FA25615E88DA,
+	TemplateSceneLoader__ctor_mD43CF173219312E7B2AB7A627939A800E2A64FED,
+	SceneData_IsValid_m0A64D17B39BBD47EE7CA73C1FF45753E1607DA5C,
+	SceneData__ctor_mB01CABBEC1B9D9FF920E5B42D636563EB4B00A74,
 	UnityMessageHandler_Start_m5DB0DD74793F806CE93250AD332F67A5BFEB5BD6,
 	UnityMessageHandler_OnMessage_m20E29BE08583F208B718DAB824AD48645C578D44,
 	UnityMessageHandler_LoadTemplateScene_m7D1B058913989BF206788E930AB63EA66137B843,
@@ -190,7 +202,7 @@ static Il2CppMethodPointer s_methodPointers[94] =
 	MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D,
 	MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16,
 };
-static const int32_t s_InvokerIndices[94] = 
+static const int32_t s_InvokerIndices[100] = 
 {
 	0,
 	0,
@@ -231,6 +243,12 @@ static const int32_t s_InvokerIndices[94] =
 	1957,
 	1725,
 	1725,
+	1957,
+	1957,
+	1725,
+	1725,
+	1957,
+	1852,
 	1957,
 	1957,
 	1725,
@@ -290,8 +308,8 @@ static const int32_t s_InvokerIndices[94] =
 static const Il2CppTokenRangePair s_rgctxIndices[3] = 
 {
 	{ 0x02000002, { 0, 29 } },
-	{ 0x02000010, { 29, 11 } },
-	{ 0x06000044, { 40, 2 } },
+	{ 0x02000012, { 29, 11 } },
+	{ 0x0600004A, { 40, 2 } },
 };
 extern const uint32_t g_rgctx_U3CU3Ef__AnonymousType0_4_t93FD0713D40011506D6B5581D9D5064D1A1A31B8;
 extern const uint32_t g_rgctx_U3CidU3Ej__TPar_tB4283D6614B0A1B9713411CF590AE6445EC76C76;
@@ -385,7 +403,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	94,
+	100,
 	s_methodPointers,
 	0,
 	NULL,
