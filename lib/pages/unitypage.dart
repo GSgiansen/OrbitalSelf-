@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
+import 'package:orbital_test_space/controllers/unityfirebaseFunctions.dart';
 
 class UnityDemoScreen extends StatefulWidget {
   const UnityDemoScreen({Key? key}) : super(key: key);
@@ -50,53 +51,73 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        _unityWidgetController?.postMessage(
-                          'Cube',
-                          'OnMessage',
-                          'ChangeColor',
-                        )?.then(
-                          (value) => print("called color change"),
-                        );
-                      },
-                      child: const Text('red'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        _unityWidgetController?.postMessage(
-                          'MainCamera',
-                          'OnMessage',
-                          'RotateCameraLeft',
-                        )?.then(
-                          (value) => print("rotate camera left"),
-                        );
-                      },
-                      child: const Text('left'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        _unityWidgetController?.postMessage(
-                          'MainCamera',
-                          'OnMessage',
-                          'RotateCameraRight',
-                        )?.then(
-                          (value) => print("rotate camera right"),
-                        );
-                      },
-                      child: const Text('right'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        _unityWidgetController?.postMessage(
-                          'GameObject',
-                          'OnMessage',
-                          'addCube',
-                        )?.then(
-                          (value) => print("add new cube"),
-                        );
-                      },
-                      child: const Text('gameObj'),
+                    Wrap(
+                        spacing: 8.0, // gap between adjacent chip
+                        runSpacing: 4.0,
+                      children: [
+                        /*
+                        ElevatedButton(
+                          onPressed: () {
+                            _unityWidgetController?.postMessage(
+                              'Cube',
+                              'OnMessage',
+                              'ChangeColor',
+                            )?.then(
+                              (value) => print("called color change"),
+                            );
+                          },
+                          child: const Text('red'),
+                        ),
+                        */
+                        ElevatedButton(
+                          onPressed: () {
+                            _unityWidgetController?.postMessage(
+                              'MainCamera',
+                              'OnMessage',
+                              'RotateCameraLeft',
+                            )?.then(
+                              (value) => print("rotate camera left"),
+                            );
+                          },
+                          child: const Text('left'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            _unityWidgetController?.postMessage(
+                              'MainCamera',
+                              'OnMessage',
+                              'RotateCameraRight',
+                            )?.then(
+                              (value) => print("rotate camera right"),
+                            );
+                          },
+                          child: const Text('right'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            _unityWidgetController?.postMessage(
+                              'GameObject',
+                              'OnMessage',
+                              'addCube',
+                            )?.then(
+                              (value) => print("add new cube"),
+                            );
+                          },
+                          child: const Text('gameObj'),
+                        ),
+                         ElevatedButton(
+                          onPressed: () {
+                            _unityWidgetController?.postMessage(
+                              'GameObject',
+                              'OnMessage',
+                              'loadNewScene',
+                            )?.then(
+                              (value) => print("loaded new scene"),
+                            );
+                          },
+                          child: const Text('scene'),
+                        ),
+                      ],
                     ),
                   ]),
                 ),
@@ -108,14 +129,6 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
     );
   }
 
-  // Communcation from Flutter to Unity
-  void setRotationSpeed(String speed) {
-    _unityWidgetController?.postMessage(
-      'MainIsland',
-      'SetRotationSpeed',
-      speed,
-    );
-  }
 
   // Communication from Unity to Flutter
   void onUnityMessage(message) {
@@ -126,14 +139,15 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
     _unityWidgetController = controller;
+    UnityFireBase.CallTemplateScence();
+    print("connected to storage");
+
   }
 
   // Communication from Unity when new scene is loaded to Flutter
   void onUnitySceneLoaded(SceneLoaded? sceneInfo) {
     if (sceneInfo != null) {
       print('Received scene loaded from unity: ${sceneInfo.name}');
-      print(
-          'Received scene loaded from unity buildIndex: ${sceneInfo.buildIndex}');
     }
   }
 }
