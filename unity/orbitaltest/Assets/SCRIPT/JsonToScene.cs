@@ -27,26 +27,22 @@ public class JsonLoader : MonoBehaviour
             // Destroy the GameObject
             Destroy(obj);
         }
-        
+
 
 
     }
 
     void OnMessage(string message) {
-        if (message == "load") {
-            UnityMessageManager.Instance.SendMessageToFlutter("loading scene");
-        }
-        else {
-        UnityMessageManager.Instance.SendMessageToFlutter("length of message is " + message.Length.ToString());
+        UnityMessageManager.Instance.SendMessageToFlutter("message is " + message.Substring(0, 27));
+        LoadSceneFromJson(message);
         GameObject cube = Resources.Load("Tree") as GameObject;
         Instantiate(cube, new Vector3(1, 0.5f, 1), Quaternion.identity);
-        LoadSceneFromJson(message);
         //message would be the json string
         //save the json string to a file
         //load the scene from the file
-        }
+    
     }
-    private void LoadSceneFromJson(string jsonString) {
+    public void LoadSceneFromJson(string jsonString) {
         UnityMessageManager.Instance.SendMessageToFlutter("jsonString length is " + jsonString.Length);
         UnityMessageManager.Instance.SendMessageToFlutter(jsonString);
         SceneObjectData[] sceneData = JsonHelper.FromJson<SceneObjectData>(jsonString);

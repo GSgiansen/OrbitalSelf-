@@ -45,9 +45,8 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
 
       if (response.statusCode == 200) {
         // Convert the response body to a string
-        String jsonString = utf8.decode(response.bodyBytes);
-        //print(jsonString);
-        return jsonString;
+        jsonString = utf8.decode(response.bodyBytes);
+        return jsonString.toString();
       } else {
         print(
             'Failed to download JSON file. Status code: ${response.statusCode}');
@@ -204,8 +203,8 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
     _unityWidgetController = controller;
-    _unityWidgetController?.postMessage('Chair', 'OnMessage', jsonString);
-    print("trying to load before sceen loaded");
+    //_unityWidgetController?.postMessage('Chair', 'OnMessage', jsonString.toString());
+    //print("trying to load before sceen loaded");
   }
 
   // Communication from Unity when new scene is loaded to Flutter
