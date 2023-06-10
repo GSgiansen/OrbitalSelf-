@@ -1,9 +1,14 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Assembly-CSharp.dll:
+    Assembly-CSharp:
     - FlutterUnityIntegration.UnityMessageManager
     - Rotatecamera
-    - TemplateSceneLoader
+    - addCube
+    - changeColor
+    Assembly-CSharp.dll:
+    - FlutterUnityIntegration.UnityMessageManager
+    - JsonLoader
+    - Rotatecamera
     - addCube
     - changeColor
     - loadNewScene
@@ -53,19 +58,15 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 19210}
+      Script: {instanceID: 19216}
     - Class: 114
-      Script: {instanceID: 20186}
+      Script: {instanceID: 20192}
     - Class: 114
-      Script: {instanceID: 20244}
+      Script: {instanceID: 20250}
     - Class: 114
-      Script: {instanceID: 22274}
+      Script: {instanceID: 22280}
     - Class: 114
-      Script: {instanceID: 22366}
-    - Class: 114
-      Script: {instanceID: 23398}
-    - Class: 114
-      Script: {instanceID: 23400}
+      Script: {instanceID: 22372}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -104,21 +105,17 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 19210}
+      Script: {instanceID: 18326}
     - Class: 114
-      Script: {instanceID: 20186}
+      Script: {instanceID: 19216}
     - Class: 114
-      Script: {instanceID: 20244}
+      Script: {instanceID: 20192}
     - Class: 114
-      Script: {instanceID: 22274}
+      Script: {instanceID: 22280}
     - Class: 114
-      Script: {instanceID: 22366}
+      Script: {instanceID: 22372}
     - Class: 114
-      Script: {instanceID: 22386}
-    - Class: 114
-      Script: {instanceID: 23398}
-    - Class: 114
-      Script: {instanceID: 23400}
+      Script: {instanceID: 23396}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -157,17 +154,13 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 19210}
+      Script: {instanceID: 19216}
     - Class: 114
-      Script: {instanceID: 20186}
+      Script: {instanceID: 20192}
     - Class: 114
-      Script: {instanceID: 22274}
+      Script: {instanceID: 22280}
     - Class: 114
-      Script: {instanceID: 22366}
-    - Class: 114
-      Script: {instanceID: 23398}
-    - Class: 114
-      Script: {instanceID: 23400}
+      Script: {instanceID: 22372}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -199,6 +192,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UIElements
     className: PanelRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: JsonToSceneLocal
   - hash:
       serializedVersion: 2
       Hash: 16c8cbd24a32f9d6625615e0e9098073
@@ -489,6 +488,12 @@ ScriptsOnlyBuild:
     className: AdaptiveShadowQuality
   - hash:
       serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: JsonLoader
+  - hash:
+      serializedVersion: 2
       Hash: 0249933f35dcc970b31eaae0159aebf9
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -529,6 +534,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SceneToJsonConverter
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b

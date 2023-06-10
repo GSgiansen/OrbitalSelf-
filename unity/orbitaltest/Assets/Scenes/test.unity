@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 9467399}
   - component: {fileID: 9467398}
   - component: {fileID: 9467397}
-  - component: {fileID: 9467401}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -230,18 +229,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9467401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9467396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c9980f9c47b7444b87a41bf94577b32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &116600303
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +347,6 @@ GameObject:
   - component: {fileID: 296699082}
   - component: {fileID: 296699081}
   - component: {fileID: 296699085}
-  - component: {fileID: 296699086}
   m_Layer: 0
   m_Name: MainIsland
   m_TagString: Untagged
@@ -465,18 +451,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8f0d555a552e429a9e36a2bec4c1faf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &296699086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296699080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba87ff61606844caaa65d3304e1bb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &330967252
@@ -941,6 +915,7 @@ GameObject:
   - component: {fileID: 717545974}
   - component: {fileID: 717545973}
   - component: {fileID: 717545972}
+  - component: {fileID: 717545977}
   m_Layer: 0
   m_Name: Chair
   m_TagString: Untagged
@@ -1039,6 +1014,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &717545977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717545971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d60dde9f252f7475b850235c6a9d1ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,7 +2052,6 @@ GameObject:
   - component: {fileID: 1979579421}
   - component: {fileID: 1979579420}
   - component: {fileID: 1979579418}
-  - component: {fileID: 1979579423}
   - component: {fileID: 1979579424}
   m_Layer: 0
   m_Name: GameObject
@@ -2115,18 +2101,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1979579423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979579417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0fc4f3ff24ef4330aeb76b9c2db39bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1979579424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2139,7 +2113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60dde9f252f7475b850235c6a9d1ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFilePath: /Assets/scene.json
 --- !u!1 &2071217770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,7 +2128,6 @@ GameObject:
   - component: {fileID: 2071217772}
   - component: {fileID: 2071217778}
   - component: {fileID: 2071217771}
-  - component: {fileID: 2071217777}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -2275,18 +2247,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2071217777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2071217770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4a3a65431684d109f11c6e812f1dd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2071217778
 MonoBehaviour:
   m_ObjectHideFlags: 0

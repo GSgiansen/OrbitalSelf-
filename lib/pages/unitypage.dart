@@ -1,9 +1,11 @@
 import 'dart:typed_data';
-
+import 'dart:convert';
+import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:orbital_test_space/controllers/unityfirebaseFunctions.dart';
+import 'package:http/http.dart' as http;
 
 class UnityDemoScreen extends StatefulWidget {
   const UnityDemoScreen({Key? key}) : super(key: key);
@@ -18,34 +20,48 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   UnityWidgetController? _unityWidgetController;
   List<int> templateSceneData = [];
   final storage = FirebaseStorage.instance;
+  String jsonString = "";
 
   @override
   void initState() {
     super.initState();
-    initializeAsync();
-  }
-
-  Future<void> initializeAsync() async {
-    // Perform async initialization tasks here
-    final ref = storage.ref().child("templates/SampleScene.unity");
-    // Download the file as a byte array
-    final downloadData = await ref.getData();
-    await downloadTemplateScene(downloadData);
-    // Other initialization tasks...
-  }
-
-  Future<dynamic> downloadTemplateScene(Uint8List? data) async {
-    // Download the template scene file from Firebase Storage
-
+    downloadJsonFileFromFirebase();
     setState(() {
-      templateSceneData =
-          data!.buffer.asUint8List(); // Update the scene file data in the state
+      jsonString = downloadJsonFileFromFirebase().toString();
     });
+  }
+
+  Future<String> downloadJsonFileFromFirebase() async {
+    // Create a reference to the Firebase Storage file
+    String filePath = "templates/scene.json";
+    Reference ref = FirebaseStorage.instance.ref().child(filePath);
+
+    try {
+      // Get the download URL for the file
+      String downloadUrl = await ref.getDownloadURL();
+
+      // Make an HTTP GET request to download the file
+      http.Response response = await http.get(Uri.parse(downloadUrl));
+
+      if (response.statusCode == 200) {
+        // Convert the response body to a string
+        String jsonString = utf8.decode(response.bodyBytes);
+        //print(jsonString);
+        return jsonString;
+      } else {
+        print(
+            'Failed to download JSON file. Status code: ${response.statusCode}');
+        return "cannot download";
+      }
+    } catch (e) {
+      print('Error occurred while downloading JSON file: $e');
+      return "error";
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (templateSceneData.isEmpty) {
+    if (jsonString == "") {
       return const Center(
         child: CircularProgressIndicator(),
       );
@@ -158,8 +174,8 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
                             ElevatedButton(
                               onPressed: () {
                                 _unityWidgetController
-                                    ?.postMessage('GameObject', 'OnMessage',
-                                        templateSceneData.toString())
+                                    ?.postMessage(
+                                        'Chair', 'OnMessage', jsonString)
                                     ?.then(
                                       (value) => print("loaded new scene"),
                                     );
@@ -181,14 +197,15 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   // Communication from Unity to Flutter
   void onUnityMessage(message) {
     print('Received message from unity: ${message.toString()}');
+
     //_unityWidgetController?.postMessage('LoadScene', 'SampleScene', '');
   }
 
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
     _unityWidgetController = controller;
-    _unityWidgetController?.postMessage(
-        'GameObject', 'OnMessage', templateSceneData.toString());
+    _unityWidgetController?.postMessage('Chair', 'OnMessage', jsonString);
+    print("trying to load before sceen loaded");
   }
 
   // Communication from Unity when new scene is loaded to Flutter
