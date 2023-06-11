@@ -51,12 +51,13 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
           ),
           SfCartesianChart(
             primaryXAxis: DateTimeAxis(),
-            series: <ChartSeries>[
-              ColumnSeries<SleepEntry, DateTime>(
+            series: <LineSeries>[
+              LineSeries<SleepEntry, DateTime>(
                 dataSource: pastWeekEntries,
                 xValueMapper: (SleepEntry entry, _) => entry.date,
                 yValueMapper: (SleepEntry entry, _) => entry.hoursOfSleep,
                 name: 'Hours of sleep',
+                markerSettings: MarkerSettings(isVisible: true),
               ),
             ],
           ),
