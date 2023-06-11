@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:orbital_test_space/models/SleepEntry.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
-import 'package:intl/intl.dart';
 
 class SleepLoggingPage extends StatefulWidget {
   @override
