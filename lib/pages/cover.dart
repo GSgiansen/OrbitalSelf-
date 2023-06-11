@@ -147,8 +147,7 @@ class Loginpopup extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         context: context,
-                        builder: (context) => 
-                        Registerpopup(
+                        builder: (context) => Registerpopup(
                               imgwidth: 400,
                               imgheight: 375,
                             ));
