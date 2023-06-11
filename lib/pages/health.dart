@@ -35,6 +35,11 @@ class MyHealthPage extends StatelessWidget {
             color: Colors.blueAccent,
             onPressed: () {},
           ),
+          _HealthCard(
+              title: 'To Do List',
+              icon: Icons.calendar_month,
+              color: Colors.green,
+              onPressed: () {})
           // add more cards as needed
         ],
       ),
