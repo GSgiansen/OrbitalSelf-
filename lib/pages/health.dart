@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orbital_test_space/pages/pomodoro.dart';
 
 class MyHealthPage extends StatelessWidget {
   const MyHealthPage({super.key});
@@ -17,7 +18,10 @@ class MyHealthPage extends StatelessWidget {
             title: 'Pomodoro',
             icon: Icons.alarm,
             color: Colors.orangeAccent,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PomodoroTimerPage()));
+            },
           ),
           _HealthCard(
             title: 'Sleep Log',
