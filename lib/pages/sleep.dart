@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/models/SleepEntry.dart';
-import 'package:flutter_charts/flutter_charts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:intl/intl.dart';
 
 class SleepLoggingPage extends StatefulWidget {
@@ -32,12 +33,6 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
     final pastWeekEntries =
         _sleepLog.where((entry) => entry.date.isAfter(weekAgo)).toList();
 
-    // convert the entries to chart data
-    final chartData = pastWeekEntries.map((entry) => FlutterChartData(
-          xAxis: DateFormat('yyyy-MM-dd').format(entry.date),
-          yAxis: entry.hoursOfSleep,
-        ));
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Sleep Logging'),
@@ -55,11 +50,16 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
             child: Text('Log sleep'),
             onPressed: _addSleepEntry,
           ),
-          FlutterCharts(
-            data: chartData.toList(),
-            chartStyle: FlutterChartsStyle(
-              chartType: ChartType.bar,
-            ),
+          SfCartesianChart(
+            primaryXAxis: DateTimeAxis(),
+            series: <ChartSeries>[
+              ColumnSeries<SleepEntry, DateTime>(
+                dataSource: pastWeekEntries,
+                xValueMapper: (SleepEntry entry, _) => entry.date,
+                yValueMapper: (SleepEntry entry, _) => entry.hoursOfSleep,
+                name: 'Hours of sleep',
+              ),
+            ],
           ),
         ],
       ),
