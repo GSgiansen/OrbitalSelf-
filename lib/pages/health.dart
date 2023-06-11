@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/pages/pomodoro.dart';
+import 'package:orbital_test_space/pages/sleep.dart';
 
 class MyHealthPage extends StatelessWidget {
   const MyHealthPage({super.key});
@@ -27,7 +28,10 @@ class MyHealthPage extends StatelessWidget {
             title: 'Sleep Log',
             icon: Icons.bedtime,
             color: Colors.purpleAccent,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SleepLoggingPage()));
+            },
           ),
           _HealthCard(
             title: 'Water Log',
@@ -35,6 +39,11 @@ class MyHealthPage extends StatelessWidget {
             color: Colors.blueAccent,
             onPressed: () {},
           ),
+          _HealthCard(
+              title: 'To Do List',
+              icon: Icons.calendar_month,
+              color: Colors.green,
+              onPressed: () {})
           // add more cards as needed
         ],
       ),
