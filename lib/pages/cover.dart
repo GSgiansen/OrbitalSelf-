@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/loginform.dart';
-import 'package:orbital_test_space/pages/login.dart';
-import 'package:orbital_test_space/pages/register.dart';
 
 class MyCoverPage extends StatefulWidget {
   const MyCoverPage({Key? key, required this.title}) : super(key: key);
@@ -15,6 +13,7 @@ class _MyCoverPageState extends State<MyCoverPage> {
   @override
   Image img = Image.asset('web/forest.jpg');
 
+  @override
   Widget build(BuildContext context) {
     var imgHeight = img.height;
     var imgWidth = img.width;

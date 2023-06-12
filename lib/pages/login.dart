@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:orbital_test_space/components/loginform.dart';
-import 'package:orbital_test_space/pages/register.dart';
 
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({Key? key, required this.title}) : super(key: key);
