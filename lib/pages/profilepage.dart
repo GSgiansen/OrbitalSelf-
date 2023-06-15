@@ -7,12 +7,12 @@ import 'package:orbital_test_space/pages/unitypage.dart';
 import '../main.dart';
 
 class ProfilePage extends StatefulWidget {
-  final String title;
+  final User? user;
   final CurrencyNotifier currencyNotifier;
   final ItemsOwned itemsOwned;
   const ProfilePage(
       {super.key,
-      required this.title,
+      required this.user,
       required this.currencyNotifier,
       required this.itemsOwned});
 
@@ -28,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
-        title: Text(widget.title),
+        title: Text(widget.user!.email!),
       ),
       body: Center(
         child: SizedBox(
@@ -52,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     const MyLoginPage(title: "login")),
                           ));
                 },
-                child: const Text('gtfo'),
+                child: const Text('get out'),
               ),
               const SizedBox(height: 10),  
               ElevatedButton(

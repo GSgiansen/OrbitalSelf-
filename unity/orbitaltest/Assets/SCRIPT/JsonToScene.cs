@@ -16,6 +16,7 @@ public class JsonLoader : MonoBehaviour
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
 
         // Iterate through each GameObject
+        /*
         foreach (GameObject obj in allObjects)
         {
             // Skip the object this script is attached to
@@ -27,6 +28,7 @@ public class JsonLoader : MonoBehaviour
             // Destroy the GameObject
             Destroy(obj);
         }
+        */
 
 
 

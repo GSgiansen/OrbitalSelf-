@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/insufficientfundsalert.dart';
 import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
@@ -6,13 +7,13 @@ import 'package:orbital_test_space/models/item.dart';
 
 class ShopCard extends StatelessWidget {
   final int cost = 110;
-  final String email;
+  final User? user;
   CurrencyNotifier currencyNotifier;
   ItemsOwned itemsOwned;
   Item item;
   ShopCard({super.key, required this.currencyNotifier, 
             required this.itemsOwned,
-            required this.email,
+            required this.user,
             required this.item,
             });
 
@@ -55,8 +56,8 @@ class ShopCard extends StatelessWidget {
                             context: context);
                       } else {
                         currencyNotifier.decreaseCurrency(cost);
-                        FireStoreFunctions.removeOldCurrency(email, currencyNotifier.currency.value as int);
-                        FireStoreFunctions.addNewPurchase(email, item.name);
+                        FireStoreFunctions.removeOldCurrency(user, currencyNotifier.currency.value as int);
+                        FireStoreFunctions.addNewPurchase(user, item.name);
                         itemsOwned.addItem(item);
                         print("Currency is ${currencyNotifier.currency.value}");
                         

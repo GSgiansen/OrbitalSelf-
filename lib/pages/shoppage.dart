@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:orbital_test_space/components/shopcard.dart';
@@ -12,7 +13,7 @@ class ShopPage extends StatefulWidget {
       required this.user,
       required this.currencyNotifier,
       required this.itemsOwned});
-  final String user;
+  final User? user;
   final CurrencyNotifier currencyNotifier;
   final ItemsOwned itemsOwned;
 
@@ -56,7 +57,7 @@ class _ShopPageState extends State<ShopPage> {
                     for (var j = 0; j < lst.length; j ++)
                     ShopCard(
                         item: lst[j],
-                        email: widget.user,
+                        user: widget.user,
                         currencyNotifier: widget.currencyNotifier,
                         itemsOwned: widget.itemsOwned),
                     const Spacer(),

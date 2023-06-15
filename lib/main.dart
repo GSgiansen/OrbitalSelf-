@@ -31,17 +31,35 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        textTheme: const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
-        primarySwatch: Colors.blue,
+        textTheme:
+            const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
+        primarySwatch: Colors.green,
       ),
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return MyHomePage(user: snapshot.data!.email.toString());
-          } else {
-            return const MyCoverPage(title: "Self++");
-          }
+            var data = snapshot.data;
+            User? user;
+            if (data != null) {
+              for (final providerProfile in data.providerData) {
+                // ID of the provider (google.com, apple.com, etc.)
+                final provider = providerProfile.providerId;
+
+                // UID specific to the provider
+                final uid = providerProfile.uid;
+
+                // Name, email address, and profile photo URL
+                final name = providerProfile.displayName;
+                final emailAddress = providerProfile.email;
+                final profilePhoto = providerProfile.photoURL;
+
+                user = FirebaseAuth.instance.currentUser;
+                return MyHomePage(user: user);
+              }
+            }
+          } 
+          return const MyCoverPage(title: "Self++");
         },
       ),
     );
@@ -50,7 +68,8 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({super.key, required this.user});
-  final String user;
+  final User? user;
+
   CurrencyNotifier currencyNotifier = CurrencyNotifier();
 
   ItemsOwned itemsOwned = ItemsOwned();
@@ -64,12 +83,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     // TODO: implement initState
-    FireStoreFunctions.getCurrentUserCurrency(email: widget.user)
+    FireStoreFunctions.getCurrentUserCurrency(user: widget.user)
         .then((value) => widget.currencyNotifier.setValue(value));
   }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.user == null) {
+      return const CircularProgressIndicator();
+    }
     return Scaffold(
         appBar: header(context, widget.currencyNotifier, true),
         body: Center(
@@ -118,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return const MyHealthPage();
       case 4:
         return ProfilePage(
-            title: widget.user,
+            user: widget.user,
             currencyNotifier: widget.currencyNotifier,
             itemsOwned: widget.itemsOwned);
     }
