@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/item.dart';
 
@@ -16,7 +17,9 @@ class FireStoreFunctions {
         .then((value) => print("User Retrieved"))
         .catchError((error) => print("Failed to retrieve user: $error"));
   }
-  static getCurrentUserCurrency({required String email}) {
+  static getCurrentUserCurrency({required User? user}) {
+    var email = user?.email;
+    
     return db
         .collection("users")
         .doc(email)
@@ -48,7 +51,8 @@ class FireStoreFunctions {
         .catchError((error) => print("Failed to add user: $error"));
   }
 
-  static addNewPurchase(String email, String item) {
+  static addNewPurchase(User? user, String item) {
+    var email = user?.email;
     return db
         .collection("users")
         .doc(email)
@@ -75,7 +79,8 @@ class FireStoreFunctions {
         .catchError((error) => print("Failed to add currency: $error"));
   }
 
-  static removeOldCurrency(String email, int currency) {
+  static removeOldCurrency(User? user, int currency) {
+    var email = user?.email;
     return db
         .collection("users")
         .doc(email)

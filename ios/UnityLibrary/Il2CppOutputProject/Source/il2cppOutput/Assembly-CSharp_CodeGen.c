@@ -39,6 +39,11 @@ extern void changeColor_OnMessage_m0BA07A5F0DDC0935850A91AE764DAB4ECEBD3668 (voi
 extern void changeColor_UpdateColor_mB747922CE98FF71702D307DCABE38DD2B46094E4 (void);
 extern void changeColor_GenerateCubeToRight_m3F080822A47F3F7C8522C0617FFCD87A79BDEBD9 (void);
 extern void changeColor__ctor_m31295285FCA0F687164DFB8BB421447E044BD1A9 (void);
+extern void JsonToFlutter_Start_m7A981CE687B8C6BC39BA8F00C52298F86ABB5E7D (void);
+extern void JsonToFlutter_Update_m6B6CB4A79D5D6579D76E6531622D99FA9E891855 (void);
+extern void JsonToFlutter_OnMessage_mA61DD6A3BA39A4203C8A1452506A434F1B50D661 (void);
+extern void JsonToFlutter_sendJsonToFlutter_m2FF12093043AEE860318069620AF7F001EA1AAEC (void);
+extern void JsonToFlutter__ctor_m724E15E842BED7621255C1967717C6EF75DFAF7E (void);
 extern void JsonLoader_Start_mEA40FB408713DC5BC50D3F2A654637977AD6D82D (void);
 extern void JsonLoader_OnMessage_mF075FF61C19F894E8DB95704C440B01165DF351C (void);
 extern void JsonLoader_LoadSceneFromJson_mB47272CD9720C283C2E89A5A3818127D7A7BE139 (void);
@@ -73,8 +78,18 @@ extern void Rotatecamera_Update_m51476AE2402E09A8C569A7EFFFEABB752A685A77 (void)
 extern void Rotatecamera_OnMessage_mA2CDE1183F142EFD0D2E345F37679570DA3197EA (void);
 extern void Rotatecamera_RotateCamera_m429A98A9C565768F69FBD969E795086A13853AF1 (void);
 extern void Rotatecamera__ctor_m1A0812CCB7F2606C0A8D31C9286724FED6E36105 (void);
+extern void SceneToJsonConverter_Start_mB757311E7CB69DB492A52AACC1F06D370DF04544 (void);
 extern void SceneToJsonConverter_SaveSceneToJson_m667F619F35483D8A9A46AD11BAF6C45F94BE7E64 (void);
+extern void SceneToJsonConverter_OnMessage_m408FCF57563912E6BBCC82E157965D14D9E1575A (void);
 extern void SceneToJsonConverter__ctor_m9844796ADA26C6F1BA42A26EB7AF26FB8B8A8553 (void);
+extern void CameraController_Start_m8EAAC188934ECCBD009EC00751280DCFF4D96C71 (void);
+extern void CameraController_Update_mBCB871B23DBA60444D43AB56D780478BA3D355E6 (void);
+extern void CameraController_OnMessage_m0683AF53DCD6C27ABDFCDF032C225691F5DB59F0 (void);
+extern void CameraController_LateUpdate_mC14DB0924E6F67288113AA92B3345A9B0ACEA27F (void);
+extern void CameraController_MoveCamera_m65B03FD43A017D1845F096DEBB9259A16108E989 (void);
+extern void CameraController_ZoomIn_m03594CFA4057BD118BE6423B0807E87E45364BB5 (void);
+extern void CameraController_ZoomOut_m5118452187BD8FCFDF99B2162E4C4C84046DD021 (void);
+extern void CameraController__ctor_mE196A6332BDDED632D6F9DB6260E424594598950 (void);
 extern void Readme__ctor_m69C325C4C171DCB0312B646A9034AA91EA8C39C6 (void);
 extern void Section__ctor_m5F732533E4DFC0167D965E5F5DB332E46055399B (void);
 extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033 (void);
@@ -114,7 +129,7 @@ extern void MessageHandlerDelegate__ctor_m287CBD25D77011FC5A52D1090F6CC31353AB63
 extern void MessageHandlerDelegate_Invoke_mD1EC9E1841D5014C40A26D4C4BA076482FFC8A4B (void);
 extern void MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D (void);
 extern void MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16 (void);
-static Il2CppMethodPointer s_methodPointers[119] = 
+static Il2CppMethodPointer s_methodPointers[134] = 
 {
 	NULL,
 	NULL,
@@ -155,6 +170,11 @@ static Il2CppMethodPointer s_methodPointers[119] =
 	NULL,
 	NULL,
 	NULL,
+	JsonToFlutter_Start_m7A981CE687B8C6BC39BA8F00C52298F86ABB5E7D,
+	JsonToFlutter_Update_m6B6CB4A79D5D6579D76E6531622D99FA9E891855,
+	JsonToFlutter_OnMessage_mA61DD6A3BA39A4203C8A1452506A434F1B50D661,
+	JsonToFlutter_sendJsonToFlutter_m2FF12093043AEE860318069620AF7F001EA1AAEC,
+	JsonToFlutter__ctor_m724E15E842BED7621255C1967717C6EF75DFAF7E,
 	JsonLoader_Start_mEA40FB408713DC5BC50D3F2A654637977AD6D82D,
 	JsonLoader_OnMessage_mF075FF61C19F894E8DB95704C440B01165DF351C,
 	JsonLoader_LoadSceneFromJson_mB47272CD9720C283C2E89A5A3818127D7A7BE139,
@@ -189,8 +209,18 @@ static Il2CppMethodPointer s_methodPointers[119] =
 	Rotatecamera_OnMessage_mA2CDE1183F142EFD0D2E345F37679570DA3197EA,
 	Rotatecamera_RotateCamera_m429A98A9C565768F69FBD969E795086A13853AF1,
 	Rotatecamera__ctor_m1A0812CCB7F2606C0A8D31C9286724FED6E36105,
+	SceneToJsonConverter_Start_mB757311E7CB69DB492A52AACC1F06D370DF04544,
 	SceneToJsonConverter_SaveSceneToJson_m667F619F35483D8A9A46AD11BAF6C45F94BE7E64,
+	SceneToJsonConverter_OnMessage_m408FCF57563912E6BBCC82E157965D14D9E1575A,
 	SceneToJsonConverter__ctor_m9844796ADA26C6F1BA42A26EB7AF26FB8B8A8553,
+	CameraController_Start_m8EAAC188934ECCBD009EC00751280DCFF4D96C71,
+	CameraController_Update_mBCB871B23DBA60444D43AB56D780478BA3D355E6,
+	CameraController_OnMessage_m0683AF53DCD6C27ABDFCDF032C225691F5DB59F0,
+	CameraController_LateUpdate_mC14DB0924E6F67288113AA92B3345A9B0ACEA27F,
+	CameraController_MoveCamera_m65B03FD43A017D1845F096DEBB9259A16108E989,
+	CameraController_ZoomIn_m03594CFA4057BD118BE6423B0807E87E45364BB5,
+	CameraController_ZoomOut_m5118452187BD8FCFDF99B2162E4C4C84046DD021,
+	CameraController__ctor_mE196A6332BDDED632D6F9DB6260E424594598950,
 	Readme__ctor_m69C325C4C171DCB0312B646A9034AA91EA8C39C6,
 	Section__ctor_m5F732533E4DFC0167D965E5F5DB332E46055399B,
 	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033,
@@ -236,7 +266,7 @@ static Il2CppMethodPointer s_methodPointers[119] =
 	MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D,
 	MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16,
 };
-static const int32_t s_InvokerIndices[119] = 
+static const int32_t s_InvokerIndices[134] = 
 {
 	0,
 	0,
@@ -278,6 +308,11 @@ static const int32_t s_InvokerIndices[119] =
 	0,
 	0,
 	1957,
+	1957,
+	1725,
+	1725,
+	1957,
+	1957,
 	1725,
 	1725,
 	1957,
@@ -311,7 +346,17 @@ static const int32_t s_InvokerIndices[119] =
 	1725,
 	1746,
 	1957,
+	1957,
 	3860,
+	1725,
+	1957,
+	1957,
+	1957,
+	1725,
+	1957,
+	1242,
+	1957,
+	1957,
 	1957,
 	1957,
 	1957,
@@ -361,11 +406,11 @@ static const int32_t s_InvokerIndices[119] =
 static const Il2CppTokenRangePair s_rgctxIndices[6] = 
 {
 	{ 0x02000002, { 0, 29 } },
-	{ 0x0200001B, { 38, 11 } },
+	{ 0x0200001D, { 38, 11 } },
 	{ 0x06000024, { 29, 3 } },
 	{ 0x06000025, { 32, 3 } },
 	{ 0x06000026, { 35, 3 } },
-	{ 0x0600005D, { 49, 2 } },
+	{ 0x0600006C, { 49, 2 } },
 };
 extern const uint32_t g_rgctx_U3CU3Ef__AnonymousType0_4_t93FD0713D40011506D6B5581D9D5064D1A1A31B8;
 extern const uint32_t g_rgctx_U3CidU3Ej__TPar_tB4283D6614B0A1B9713411CF590AE6445EC76C76;
@@ -477,7 +522,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	119,
+	134,
 	s_methodPointers,
 	0,
 	NULL,

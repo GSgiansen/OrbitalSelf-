@@ -2,10 +2,16 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
+using FlutterUnityIntegration;
 
 public class SceneToJsonConverter : MonoBehaviour
 {
     //[MenuItem("Tools/Save Scene to JSON")]
+    
+    public void  Start(){
+        UnityMessageManager.Instance.OnMessage += OnMessage;
+
+    }
     private static void SaveSceneToJson()
     {
         // Get the current active scene
@@ -72,10 +78,17 @@ public class SceneToJsonConverter : MonoBehaviour
 
         // Specify the file path to save the JSON file
         string filePath = Path.Combine(Application.dataPath, "scene.json");
-
+        JsonToFlutter helper = new JsonToFlutter();
+        helper.sendJsonToFlutter("upload" + sceneJson);
         // Write the JSON string to the file
         File.WriteAllText(filePath, sceneJson);
 
         Debug.Log("Scene saved as JSON file: " + filePath);
+    }
+
+    void OnMessage(string message) {
+        if (message == "saveScene") {
+            SaveSceneToJson();
+        }
     }
 }

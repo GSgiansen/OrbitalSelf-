@@ -329,6 +329,7 @@
 "Assets/SCRIPT/addCube.cs"
 "Assets/SCRIPT/changeColor.cs"
 "Assets/SCRIPT/JsonHelper.cs"
+"Assets/SCRIPT/JsonToFlutter.cs"
 "Assets/SCRIPT/JsonToScene.cs"
 "Assets/SCRIPT/JsonToSceneLocal.cs"
 "Assets/SCRIPT/loadNewScene.cs"
@@ -336,6 +337,7 @@
 "Assets/SCRIPT/loodStorage.cs"
 "Assets/SCRIPT/rotateCamera.cs"
 "Assets/SCRIPT/sceneToJson.cs"
+"Assets/SCRIPT/zoomCamera.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 

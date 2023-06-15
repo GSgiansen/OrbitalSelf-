@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:orbital_test_space/controllers/unityfirebaseFunctions.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+
+import '../controllers/unityContoller.dart';
 
 class UnityDemoScreen extends StatefulWidget {
   const UnityDemoScreen({Key? key}) : super(key: key);
@@ -58,6 +62,34 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
     }
   }
 
+  Future<void> uploadJSONfromUnity(String jsonstring) async {
+    // Create a reference to the Firebase Storage file
+    String filePath = "templatesUsers/scene.json";
+    Reference ref = FirebaseStorage.instance.ref().child(filePath);
+    Directory appDir = await getApplicationDocumentsDirectory();
+    String localPath = '${appDir.path}/scene.json';
+
+    // Create the JSON file
+    File jsonFile = File(localPath);
+    await jsonFile.writeAsString(jsonString);
+    try {
+      // Upload raw data.
+      await ref.putFile(jsonFile);
+    } on FirebaseException catch (e) {
+      // ...
+      print(e);
+    }
+  }
+
+
+  Future<String> newUserLogin() async {
+    //todo 
+
+    //check if user is in the storage
+    String filePath = "templatesUsers/scene.json";
+    return "newuser";
+  }
+
   @override
   Widget build(BuildContext context) {
     if (jsonString == "") {
@@ -66,136 +98,107 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
       );
     }
     return MaterialApp(
-      home: Scaffold(
-        key: _scaffoldKey,
-        body: Card(
-          margin: const EdgeInsets.all(8),
-          clipBehavior: Clip.antiAlias,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          child: Stack(children: <Widget>[
-            Stack(children: <Widget>[
-              UnityWidget(
-                onUnityCreated: onUnityCreated,
-                onUnityMessage: onUnityMessage,
-                onUnitySceneLoaded: onUnitySceneLoaded,
-                fullscreen: false,
+        home: Scaffold(
+            key: _scaffoldKey,
+            body: Card(
+              margin: const EdgeInsets.all(8),
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
               ),
-              Positioned(
-                bottom: 20,
-                left: 20,
-                right: 20,
-                child: Card(
-                  elevation: 10,
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                        ),
-                        Wrap(
-                          spacing: 8.0, // gap between adjacent chip
-                          runSpacing: 4.0,
-                          children: [
-                            /*
-                        ElevatedButton(
+              child: Stack(children: <Widget>[
+                Stack(children: <Widget>[
+                  UnityWidget(
+                    onUnityCreated: onUnityCreated,
+                    onUnityMessage: onUnityMessage,
+                    onUnitySceneLoaded: onUnitySceneLoaded,
+                    fullscreen: false,
+                  ),
+                  Positioned(
+                    bottom: 20,
+                    left: 20,
+                    right: 20,
+                    child: Card(
+                      elevation: 10,
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                            ),
+                            Wrap(
+                              spacing: 8.0, // gap between adjacent chip
+                              runSpacing: 4.0,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    RotateCameraLeft(_unityWidgetController);
+                                  },
+                                  child: const Text('left'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    RotateCameraRight(_unityWidgetController);
+                                  },
+                                  child: const Text('right'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    AddCube(_unityWidgetController);
+                                  },
+                                  child: const Text('gameObj'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    _unityWidgetController
+                                        ?.postMessage(
+                                            'Chair', 'OnMessage', jsonString)
+                                        ?.then(
+                                          (value) => print("loaded new scene"),
+                                        );
+                                  },
+                                  child: const Text('scene'),
+                                ),
+                              ],
+                            ),
+                          ]),
+                    ),
+                  ),
+                  Positioned(
+                    top: 10,
+                    child: Row(children: <Widget>[
+                      ElevatedButton(
+                        onPressed: () {
+                          saveSceneToFirebase(_unityWidgetController);
+                        },
+                        child: const Text('firebase'),
+                      ),
+                      ElevatedButton(
                           onPressed: () {
-                            _unityWidgetController?.postMessage(
-                              'Cube',
-                              'OnMessage',
-                              'ChangeColor',
-                            )?.then(
-                              (value) => print("called color change"),
-                            );
+                            ZoomIn(_unityWidgetController);
                           },
-                          child: const Text('red'),
-                        ),
-                        */
-                            ElevatedButton(
-                              onPressed: () {
-                                _unityWidgetController
-                                    ?.postMessage(
-                                      'MainCamera',
-                                      'OnMessage',
-                                      'RotateCameraLeft',
-                                    )
-                                    ?.then(
-                                      (value) => print("rotate camera left"),
-                                    );
-                              },
-                              child: const Text('left'),
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                _unityWidgetController
-                                    ?.postMessage(
-                                      'MainCamera',
-                                      'OnMessage',
-                                      'RotateCameraRight',
-                                    )
-                                    ?.then(
-                                      (value) => print("rotate camera right"),
-                                    );
-                              },
-                              child: const Text('right'),
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                _unityWidgetController
-                                    ?.postMessage(
-                                      'GameObject',
-                                      'OnMessage',
-                                      'addCube',
-                                    )
-                                    ?.then(
-                                      (value) => print("add new cube"),
-                                    );
-                              },
-                              child: const Text('gameObj'),
-                            ),
-                            /*
-                         ElevatedButton(
+                          child: const Text('In')),
+                      ElevatedButton(
                           onPressed: () {
-                            _unityWidgetController?.postMessage(
-                              'GameObject',
-                              'OnMessage',
-                              'loadNewScene',
-                            )?.then(
-                              (value) => print("loaded new scene"),
-                            );
+                            ZoomOut(_unityWidgetController);
                           },
-                          child: const Text('scene'),
-                        ),
-
-                        */
-                            ElevatedButton(
-                              onPressed: () {
-                                _unityWidgetController
-                                    ?.postMessage(
-                                        'Chair', 'OnMessage', jsonString)
-                                    ?.then(
-                                      (value) => print("loaded new scene"),
-                                    );
-                              },
-                              child: const Text('scene'),
-                            ),
-                          ],
-                        ),
-                      ]),
-                ),
-              )
-            ]),
-          ]),
-        ),
-      ),
-    );
+                          child: const Text('Out')),
+                    ]),
+                  ),
+                ]),
+              ]),
+            )));
   }
 
   // Communication from Unity to Flutter
   void onUnityMessage(message) {
     print('Received message from unity: ${message.toString()}');
+    if (message.substring(0,6) == 'upload') {
+      print(message.substring(0,6));
+      var jsonString = message.substring(6);
+      uploadJSONfromUnity(jsonString);
+    }
 
     //_unityWidgetController?.postMessage('LoadScene', 'SampleScene', '');
   }
@@ -203,8 +206,7 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
     _unityWidgetController = controller;
-    //_unityWidgetController?.postMessage('Chair', 'OnMessage', jsonString.toString());
-    //print("trying to load before sceen loaded");
+    
   }
 
   // Communication from Unity when new scene is loaded to Flutter

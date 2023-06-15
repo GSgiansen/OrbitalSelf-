@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/controllers/authFunctions.dart';
 import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
@@ -86,7 +87,8 @@ class RegisterButton extends StatelessWidget {
             _emailController.text,
             _passwordController.text,
           )
-              .then((value) => Authservices.signinUser(
+              .then(
+                (value) => Authservices.signinUser(
                     _emailController.text,
                     _passwordController.text,
                   ).then((value) => {
@@ -94,10 +96,11 @@ class RegisterButton extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    MyHomePage(user: _emailController.text))),
+                                    MyHomePage(user: value))),
                         FireStoreFunctions.addNewUser(
                             _emailController.text, _passwordController.text)
-                      }))
+                      })
+                      )
               .then((value) => value == "email-already-in-use"
                   ? ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Email already in use"),
@@ -167,7 +170,7 @@ class LoginButton extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  MyHomePage(user: _emailController.text))),
+                                  MyHomePage(user: value))),
                       print('email is ${_emailController.text}'),
                     });
           print('email is ${_emailController.text}');
