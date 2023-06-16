@@ -1,6 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:typed_data';
 import 'dart:convert';
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
@@ -12,7 +15,9 @@ import 'dart:io';
 import '../controllers/unityContoller.dart';
 
 class UnityDemoScreen extends StatefulWidget {
-  const UnityDemoScreen({Key? key}) : super(key: key);
+  UnityDemoScreen({Key? key, User? user}) : super(key: key);
+  User? user ;
+
 
   @override
   State<UnityDemoScreen> createState() => __UnityDemoScreenState();
@@ -26,18 +31,40 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   final storage = FirebaseStorage.instance;
   String jsonString = "";
 
+  var UID = FirebaseAuth.instance.currentUser!.uid;
+  //query if user exists in the database
+
   @override
   void initState() {
     super.initState();
+    future();
+  }
+
+  Future<void> future() async {
+    bool newUser = await checkNewUser(UID);
+    print(newUser);
+    if (newUser) {
+      //create new json file in firebase
+      print("making new user");
+      setState(() {
+      jsonString = createNewJsonFile(UID).toString();
+    });
+
+    } else {
+      //download json file from firebas
+
     downloadJsonFileFromFirebase();
     setState(() {
       jsonString = downloadJsonFileFromFirebase().toString();
     });
+    }
   }
 
   Future<String> downloadJsonFileFromFirebase() async {
     // Create a reference to the Firebase Storage file
-    String filePath = "templates/scene.json";
+    User? user = FirebaseAuth.instance.currentUser;
+    var uid = user!.uid;
+    String filePath = "templatesUsers/${uid}.json";
     Reference ref = FirebaseStorage.instance.ref().child(filePath);
 
     try {
@@ -49,6 +76,7 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
 
       if (response.statusCode == 200) {
         // Convert the response body to a string
+        // print("downloading from new link");
         jsonString = utf8.decode(response.bodyBytes);
         return jsonString.toString();
       } else {
@@ -64,14 +92,19 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
 
   Future<void> uploadJSONfromUnity(String jsonstring) async {
     // Create a reference to the Firebase Storage file
-    String filePath = "templatesUsers/scene.json";
+    User? user = FirebaseAuth.instance.currentUser;
+    var uid = user!.uid;
+    String filePath = "templatesUsers/${uid}.json";
     Reference ref = FirebaseStorage.instance.ref().child(filePath);
+
+    //local pat file
     Directory appDir = await getApplicationDocumentsDirectory();
     String localPath = '${appDir.path}/scene.json';
 
     // Create the JSON file
     File jsonFile = File(localPath);
     await jsonFile.writeAsString(jsonString);
+
     try {
       // Upload raw data.
       await ref.putFile(jsonFile);
@@ -82,17 +115,73 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   }
 
 
-  Future<String> newUserLogin() async {
-    //todo 
+  // new users would not have json files with their UID yet
+  Future<bool> checkNewUser(var UID) async {
+    // Create a reference to the Firebase Storage file
+    String filePath = "templatesUsers/${UID}.json";
+    Reference ref = FirebaseStorage.instance.ref().child(filePath);
+    bool state = false;
 
-    //check if user is in the storage
-    String filePath = "templatesUsers/scene.json";
-    return "newuser";
+    // Check if the file exists
+    await ref.getDownloadURL().then((value) {
+      print("file exists");
+      setState(() {
+        state = false;
+      });
+    }).catchError((onError) {
+      print("file does not exist");
+      setState(() {
+        state = true;
+      });
+      //if file does not exist, sreturn true
+    });
+
+    return state;
+    
+
   }
+
+   Future<String> createNewJsonFile(var UID) async {
+    // Create a reference to the Firebase Storage file
+    // load scene.json from the storage, then save it as itself
+
+    String filePath = "templatesUsers/${UID}.json";
+    Reference ref = FirebaseStorage.instance.ref().child(filePath);
+
+    String templatePath = "templatesUsers/scene.json";
+    
+    //load the template scene.json and send to firebase
+    Reference templateRef = FirebaseStorage.instance.ref().child(templatePath);
+    try {
+      // Get the download URL for the file
+      String downloadUrl = await templateRef.getDownloadURL();
+
+      // Make an HTTP GET request to download the file
+      http.Response response = await http.get(Uri.parse(downloadUrl));
+
+      if (response.statusCode == 200) {
+        // Convert the response body to a string
+        // print("downloading from new link");
+        Uint8List fileBytes = response.bodyBytes;
+        jsonString = utf8.decode(fileBytes);
+        await ref.putData(fileBytes);
+
+        return jsonString.toString();
+      } else {
+        print(
+            'Failed to download JSON file. Status code: ${response.statusCode}');
+        return "cannot download";
+      }
+    } catch (e) {
+      print('Error occurred while downloading JSON file: $e');
+      return "error";
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    if (jsonString == "") {
+    if (jsonString == "" || FirebaseAuth.instance.currentUser == null) {
       return const Center(
         child: CircularProgressIndicator(),
       );
@@ -153,7 +242,7 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
                                   onPressed: () {
                                     _unityWidgetController
                                         ?.postMessage(
-                                            'Chair', 'OnMessage', jsonString)
+                                            'GameObject', 'OnMessage', jsonString)
                                         ?.then(
                                           (value) => print("loaded new scene"),
                                         );

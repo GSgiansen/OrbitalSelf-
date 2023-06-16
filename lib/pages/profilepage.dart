@@ -73,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const UnityDemoScreen()),
+                        builder: (context) => UnityDemoScreen(user: widget.user)),
                   );
                 },
                 child: const Text('Unity'),
