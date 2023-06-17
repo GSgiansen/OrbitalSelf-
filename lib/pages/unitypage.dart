@@ -16,8 +16,7 @@ import '../controllers/unityContoller.dart';
 
 class UnityDemoScreen extends StatefulWidget {
   UnityDemoScreen({Key? key, User? user}) : super(key: key);
-  User? user ;
-
+  User? user;
 
   @override
   State<UnityDemoScreen> createState() => __UnityDemoScreenState();
@@ -47,16 +46,15 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
       //create new json file in firebase
       print("making new user");
       setState(() {
-      jsonString = createNewJsonFile(UID).toString();
-    });
-
+        jsonString = createNewJsonFile(UID).toString();
+      });
     } else {
       //download json file from firebas
 
-    downloadJsonFileFromFirebase();
-    setState(() {
-      jsonString = downloadJsonFileFromFirebase().toString();
-    });
+      downloadJsonFileFromFirebase();
+      setState(() {
+        jsonString = downloadJsonFileFromFirebase().toString();
+      });
     }
   }
 
@@ -114,7 +112,6 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
     }
   }
 
-
   // new users would not have json files with their UID yet
   Future<bool> checkNewUser(var UID) async {
     // Create a reference to the Firebase Storage file
@@ -137,11 +134,9 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
     });
 
     return state;
-    
-
   }
 
-   Future<String> createNewJsonFile(var UID) async {
+  Future<String> createNewJsonFile(var UID) async {
     // Create a reference to the Firebase Storage file
     // load scene.json from the storage, then save it as itself
 
@@ -149,7 +144,7 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
     Reference ref = FirebaseStorage.instance.ref().child(filePath);
 
     String templatePath = "templatesUsers/scene.json";
-    
+
     //load the template scene.json and send to firebase
     Reference templateRef = FirebaseStorage.instance.ref().child(templatePath);
     try {
@@ -177,7 +172,6 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
       return "error";
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -241,8 +235,8 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
                                 ElevatedButton(
                                   onPressed: () {
                                     _unityWidgetController
-                                        ?.postMessage(
-                                            'GameObject', 'OnMessage', jsonString)
+                                        ?.postMessage('GameObject', 'OnMessage',
+                                            jsonString)
                                         ?.then(
                                           (value) => print("loaded new scene"),
                                         );
@@ -283,8 +277,8 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   // Communication from Unity to Flutter
   void onUnityMessage(message) {
     print('Received message from unity: ${message.toString()}');
-    if (message.substring(0,6) == 'upload') {
-      print(message.substring(0,6));
+    if (message.substring(0, 6) == 'upload') {
+      print(message.substring(0, 6));
       var jsonString = message.substring(6);
       uploadJSONfromUnity(jsonString);
     }
@@ -295,7 +289,11 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
     _unityWidgetController = controller;
-    
+    _unityWidgetController
+        ?.postMessage('GameObject', 'OnMessage', jsonString)
+        ?.then(
+          (value) => print("loaded new scene rendered"),
+        );
   }
 
   // Communication from Unity when new scene is loaded to Flutter

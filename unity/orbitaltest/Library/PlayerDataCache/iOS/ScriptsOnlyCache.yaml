@@ -5,10 +5,13 @@ ScriptsOnlyBuild:
     - Rotatecamera
     - addCube
     - changeColor
+    Assembly-CSharp-Editor.dll:
+    - ReadmeEditor
     Assembly-CSharp.dll:
     - CameraController
     - FlutterUnityIntegration.UnityMessageManager
     - JsonLoader
+    - Readme
     - Rotatecamera
     - SceneToJsonConverter
     - addCube
@@ -172,7 +175,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 22378}
     - Class: 114
-      Script: {instanceID: 23742}
+      Script: {instanceID: 23780}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157

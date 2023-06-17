@@ -15,12 +15,25 @@ public class CameraController : MonoBehaviour
     private float originalOrthographicSize;
     private Vector3 targetPosition;
     private float targetOrthographicSize;
+    private bool initialZoomIn = false;
 
     private void Start()
     {
         UnityMessageManager.Instance.OnMessage += OnMessage;
         originalPosition = transform.position;
         originalOrthographicSize = Camera.main.orthographicSize;
+
+        // Check if initial zoom-in is enabled
+        if (initialZoomIn)
+        {
+            // Perform the initial zoom-in
+            ZoomIn();
+        }
+        else
+        {
+            // Set the camera to its original position and size
+            MoveCamera(originalPosition, originalOrthographicSize);
+        }
     }
 
     private void Update()
@@ -33,20 +46,24 @@ public class CameraController : MonoBehaviour
         {
             ZoomOut();
         }
-    }
-    
-    void OnMessage(string message) {
-        if (message == "zoomIn") {
-            ZoomIn();
-        } else if (message == "zoomOut") {
-            ZoomOut();
-        }
+
+        // Smoothly move the camera towards the target position
+        transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+
+        // Smoothly adjust the orthographic size
+        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetOrthographicSize, zoomSpeed * Time.deltaTime);
     }
 
-    private void LateUpdate()
+    void OnMessage(string message)
     {
-        transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetOrthographicSize, zoomSpeed * Time.deltaTime);
+        if (message == "zoomIn")
+        {
+            ZoomIn();
+        }
+        else if (message == "zoomOut")
+        {
+            ZoomOut();
+        }
     }
 
     private void MoveCamera(Vector3 position, float orthographicSize)
@@ -54,21 +71,23 @@ public class CameraController : MonoBehaviour
         targetPosition = position;
         targetOrthographicSize = orthographicSize;
     }
-
     public void ZoomIn()
+{
+    Vector3 targetPosition = target.position + new Vector3(0f, 0f, 0f); // Offset the target position slightly above the island
+
+    Vector3 originalToTarget = targetPosition - originalPosition;
+    Vector3 zoomedPosition = originalPosition + originalToTarget.normalized * (zoomDistance * zoomOffset);
+
+    float distance = Vector3.Distance(zoomedPosition, targetPosition);
+    float maxDistance = maxZoomDistance;
+    if (distance > maxDistance)
     {
-        Vector3 originalToTarget = target.position - originalPosition;
-        Vector3 zoomedPosition = originalPosition + originalToTarget.normalized * (zoomDistance * zoomOffset);
-
-        float distance = Vector3.Distance(zoomedPosition, target.position);
-        float maxDistance = maxZoomDistance;
-        if (distance > maxDistance)
-        {
-            zoomedPosition = target.position + (originalToTarget.normalized * maxDistance);
-        }
-
-        MoveCamera(zoomedPosition, 1f);
+        zoomedPosition = targetPosition + (originalToTarget.normalized * maxDistance);
     }
+
+    MoveCamera(zoomedPosition, 1f);
+}
+
 
     public void ZoomOut()
     {
