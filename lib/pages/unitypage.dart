@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
+import 'package:orbital_test_space/components/unityMenu.dart';
 import 'package:orbital_test_space/controllers/unityfirebaseFunctions.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -183,6 +184,10 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
     return MaterialApp(
         home: Scaffold(
             key: _scaffoldKey,
+            bottomNavigationBar: UnityMenu(
+              _unityWidgetController,
+              widget.user,
+            ),
             body: Card(
               margin: const EdgeInsets.all(8),
               clipBehavior: Clip.antiAlias,
@@ -195,79 +200,7 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
                     onUnityCreated: onUnityCreated,
                     onUnityMessage: onUnityMessage,
                     onUnitySceneLoaded: onUnitySceneLoaded,
-                    fullscreen: false,
-                  ),
-                  Positioned(
-                    bottom: 20,
-                    left: 20,
-                    right: 20,
-                    child: Card(
-                      elevation: 10,
-                      child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                            ),
-                            Wrap(
-                              spacing: 8.0, // gap between adjacent chip
-                              runSpacing: 4.0,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    RotateCameraLeft(_unityWidgetController);
-                                  },
-                                  child: const Text('left'),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    RotateCameraRight(_unityWidgetController);
-                                  },
-                                  child: const Text('right'),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    AddCube(_unityWidgetController);
-                                  },
-                                  child: const Text('gameObj'),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    _unityWidgetController
-                                        ?.postMessage('GameObject', 'OnMessage',
-                                            jsonString)
-                                        ?.then(
-                                          (value) => print("loaded new scene"),
-                                        );
-                                  },
-                                  child: const Text('scene'),
-                                ),
-                              ],
-                            ),
-                          ]),
-                    ),
-                  ),
-                  Positioned(
-                    top: 10,
-                    child: Row(children: <Widget>[
-                      ElevatedButton(
-                        onPressed: () {
-                          saveSceneToFirebase(_unityWidgetController);
-                        },
-                        child: const Text('firebase'),
-                      ),
-                      ElevatedButton(
-                          onPressed: () {
-                            ZoomIn(_unityWidgetController);
-                          },
-                          child: const Text('In')),
-                      ElevatedButton(
-                          onPressed: () {
-                            ZoomOut(_unityWidgetController);
-                          },
-                          child: const Text('Out')),
-                    ]),
+                    fullscreen: true,
                   ),
                 ]),
               ]),
@@ -288,12 +221,14 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
 
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
-    _unityWidgetController = controller;
+    setState(() {
+      _unityWidgetController = controller;
     _unityWidgetController
         ?.postMessage('GameObject', 'OnMessage', jsonString)
         ?.then(
           (value) => print("loaded new scene rendered"),
         );
+    });
   }
 
   // Communication from Unity when new scene is loaded to Flutter

@@ -5,13 +5,10 @@ ScriptsOnlyBuild:
     - Rotatecamera
     - addCube
     - changeColor
-    Assembly-CSharp-Editor.dll:
-    - ReadmeEditor
     Assembly-CSharp.dll:
     - CameraController
     - FlutterUnityIntegration.UnityMessageManager
     - JsonLoader
-    - Readme
     - Rotatecamera
     - SceneToJsonConverter
     - addCube
@@ -67,11 +64,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 20194}
     - Class: 114
-      Script: {instanceID: 20254}
+      Script: {instanceID: 20252}
     - Class: 114
-      Script: {instanceID: 22286}
+      Script: {instanceID: 22284}
     - Class: 114
-      Script: {instanceID: 22378}
+      Script: {instanceID: 22376}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -118,11 +115,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 20194}
     - Class: 114
-      Script: {instanceID: 20198}
+      Script: {instanceID: 22284}
     - Class: 114
-      Script: {instanceID: 22286}
+      Script: {instanceID: 22376}
     - Class: 114
-      Script: {instanceID: 22378}
+      Script: {instanceID: 23082}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -169,13 +166,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 20194}
     - Class: 114
-      Script: {instanceID: 20198}
+      Script: {instanceID: 22284}
     - Class: 114
-      Script: {instanceID: 22286}
+      Script: {instanceID: 22376}
     - Class: 114
-      Script: {instanceID: 22378}
+      Script: {instanceID: 23082}
     - Class: 114
-      Script: {instanceID: 23780}
+      Script: {instanceID: 23412}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -218,9 +215,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 20194}
     - Class: 114
-      Script: {instanceID: 22286}
+      Script: {instanceID: 22284}
     - Class: 114
-      Script: {instanceID: 22378}
+      Script: {instanceID: 22376}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -890,12 +887,6 @@ ScriptsOnlyBuild:
     className: changeColor
   - hash:
       serializedVersion: 2
-      Hash: aa65e318d6c63ea2d1283b0c31a9fe2a
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: CameraController
-  - hash:
-      serializedVersion: 2
       Hash: b1f06645bc33f83158c09805ea1f29cd
     assemblyName: Unity.AdaptivePerformance
     namespaceName: UnityEngine.AdaptivePerformance
@@ -1302,6 +1293,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: aa65e318d6c63ea2d1283b0c31a9fe2a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CameraController
   platform: 9
   scenePathNames:
   - Assets/Scenes/blank.unity

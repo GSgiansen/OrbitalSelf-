@@ -88,6 +88,7 @@ extern void CameraController_OnMessage_m0683AF53DCD6C27ABDFCDF032C225691F5DB59F0
 extern void CameraController_MoveCamera_m65B03FD43A017D1845F096DEBB9259A16108E989 (void);
 extern void CameraController_ZoomIn_m03594CFA4057BD118BE6423B0807E87E45364BB5 (void);
 extern void CameraController_ZoomOut_m5118452187BD8FCFDF99B2162E4C4C84046DD021 (void);
+extern void CameraController_SetTreeSpawned_m3CD5EB3093C261B924ECDD2C1324D1925D5CCFF0 (void);
 extern void CameraController__ctor_mE196A6332BDDED632D6F9DB6260E424594598950 (void);
 extern void Readme__ctor_m69C325C4C171DCB0312B646A9034AA91EA8C39C6 (void);
 extern void Section__ctor_m5F732533E4DFC0167D965E5F5DB332E46055399B (void);
@@ -128,7 +129,7 @@ extern void MessageHandlerDelegate__ctor_m287CBD25D77011FC5A52D1090F6CC31353AB63
 extern void MessageHandlerDelegate_Invoke_mD1EC9E1841D5014C40A26D4C4BA076482FFC8A4B (void);
 extern void MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D (void);
 extern void MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16 (void);
-static Il2CppMethodPointer s_methodPointers[133] = 
+static Il2CppMethodPointer s_methodPointers[134] = 
 {
 	NULL,
 	NULL,
@@ -218,6 +219,7 @@ static Il2CppMethodPointer s_methodPointers[133] =
 	CameraController_MoveCamera_m65B03FD43A017D1845F096DEBB9259A16108E989,
 	CameraController_ZoomIn_m03594CFA4057BD118BE6423B0807E87E45364BB5,
 	CameraController_ZoomOut_m5118452187BD8FCFDF99B2162E4C4C84046DD021,
+	CameraController_SetTreeSpawned_m3CD5EB3093C261B924ECDD2C1324D1925D5CCFF0,
 	CameraController__ctor_mE196A6332BDDED632D6F9DB6260E424594598950,
 	Readme__ctor_m69C325C4C171DCB0312B646A9034AA91EA8C39C6,
 	Section__ctor_m5F732533E4DFC0167D965E5F5DB332E46055399B,
@@ -264,7 +266,7 @@ static Il2CppMethodPointer s_methodPointers[133] =
 	MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D,
 	MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16,
 };
-static const int32_t s_InvokerIndices[133] = 
+static const int32_t s_InvokerIndices[134] = 
 {
 	0,
 	0,
@@ -357,6 +359,7 @@ static const int32_t s_InvokerIndices[133] =
 	1957,
 	1957,
 	1957,
+	1957,
 	3865,
 	1957,
 	3764,
@@ -407,7 +410,7 @@ static const Il2CppTokenRangePair s_rgctxIndices[6] =
 	{ 0x06000024, { 29, 3 } },
 	{ 0x06000025, { 32, 3 } },
 	{ 0x06000026, { 35, 3 } },
-	{ 0x0600006B, { 49, 2 } },
+	{ 0x0600006C, { 49, 2 } },
 };
 extern const uint32_t g_rgctx_U3CU3Ef__AnonymousType0_4_t93FD0713D40011506D6B5581D9D5064D1A1A31B8;
 extern const uint32_t g_rgctx_U3CidU3Ej__TPar_tB4283D6614B0A1B9713411CF590AE6445EC76C76;
@@ -519,7 +522,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	133,
+	134,
 	s_methodPointers,
 	0,
 	NULL,

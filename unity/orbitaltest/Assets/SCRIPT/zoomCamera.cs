@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour
     private Vector3 targetPosition;
     private float targetOrthographicSize;
     private bool initialZoomIn = false;
+    private bool treeSpawned = false;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
+        SetTreeSpawned();
         if (Input.GetKeyDown(KeyCode.Z))
         {
             ZoomIn();
@@ -71,26 +73,47 @@ public class CameraController : MonoBehaviour
         targetPosition = position;
         targetOrthographicSize = orthographicSize;
     }
+
     public void ZoomIn()
-{
-    Vector3 targetPosition = target.position + new Vector3(0f, 0f, 0f); // Offset the target position slightly above the island
-
-    Vector3 originalToTarget = targetPosition - originalPosition;
-    Vector3 zoomedPosition = originalPosition + originalToTarget.normalized * (zoomDistance * zoomOffset);
-
-    float distance = Vector3.Distance(zoomedPosition, targetPosition);
-    float maxDistance = maxZoomDistance;
-    if (distance > maxDistance)
     {
-        zoomedPosition = targetPosition + (originalToTarget.normalized * maxDistance);
+        if (!treeSpawned)
+        {
+            Debug.LogWarning("Tree not spawned yet. Cannot perform zoom in.");
+            return;
+        }
+
+        Vector3 originalToTarget = target.position - originalPosition;
+        Vector3 zoomedPosition = originalPosition + originalToTarget.normalized * (zoomDistance * zoomOffset);
+
+        float distance = Vector3.Distance(zoomedPosition, target.position);
+        float maxDistance = maxZoomDistance;
+        if (distance > maxDistance)
+        {
+            zoomedPosition = target.position + (originalToTarget.normalized * maxDistance);
+        }
+
+        MoveCamera(zoomedPosition, 1f);
     }
-
-    MoveCamera(zoomedPosition, 1f);
-}
-
 
     public void ZoomOut()
     {
         MoveCamera(originalPosition, originalOrthographicSize);
+    }
+
+    public void SetTreeSpawned()
+    {
+        GameObject treeObject = GameObject.FindWithTag("Tree");
+        if (treeObject != null)
+        {
+            treeSpawned = true;
+            target = treeObject.transform;
+            UnityMessageManager.Instance.SendMessageToFlutter("treeSpawned");
+        }
+        else
+        {
+            treeSpawned = false;
+            target = GameObject.Find("Island").transform;
+            UnityMessageManager.Instance.SendMessageToFlutter("treeDespawned");
+        }
     }
 }
