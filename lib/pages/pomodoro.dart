@@ -8,7 +8,7 @@ class PomodoroTimerPage extends StatefulWidget {
 }
 
 class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
-  late Timer _timer;
+  Timer _timer = Timer(Duration.zero, () {});
   int _startWorkTime = 25 * 60; // 25 minutes to seconds
   int _startRestTime = 5 * 60; // 5 minutes to seconds
   int _numSessions = 3;
