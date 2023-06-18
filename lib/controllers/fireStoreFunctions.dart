@@ -1,13 +1,10 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/item.dart';
 
 class FireStoreFunctions {
-
   static FirebaseFirestore db = FirebaseFirestore.instance;
-
 
   static getCurrentUser(String email) {
     return FirebaseFirestore.instance
@@ -17,53 +14,53 @@ class FireStoreFunctions {
         .then((value) => print("User Retrieved"))
         .catchError((error) => print("Failed to retrieve user: $error"));
   }
+
   static getCurrentUserCurrency({required User? user}) {
     var email = user?.email;
-    
+
     return db
         .collection("users")
         .doc(email)
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-          if (documentSnapshot.exists) {
-            print(documentSnapshot.get("currency"));
-            return documentSnapshot.get("currency");
-          } else {
-            print("0");
-          }
-        })
-        .catchError((error) => print("Failed to retrieve user: $error"));
+      if (documentSnapshot.exists) {
+        print(documentSnapshot.get("currency"));
+        return documentSnapshot.get("currency");
+      } else {
+        print("0");
+      }
+    }).catchError((error) => print("Failed to retrieve user: $error"));
   }
 
-
-  
   static addNewUser(String email, String password) {
     return db
-        .collection("users")
+       .collection("users")
         .doc(email)
         .set({
           "email": email,
           "password": password,
           "currency": 0,
-          "items": List<Item>.empty(growable: true),
+          "items":
+              List<Item>.empty(growable: true), //Change to handle map of map
         })
         .then((value) => print("User Added to Firestore"))
         .catchError((error) => print("Failed to add user: $error"));
   }
 
-  static addNewPurchase(User? user, String item) {
+  static addNewPurchase(User? user, String item) async {
     var email = user?.email;
+    
     return db
         .collection("users")
         .doc(email)
-        .set(
+        .update(
           {
-            "items": FieldValue.arrayUnion([item]),
-          },
-          SetOptions(merge: true),
+            "items.${item}.number":FieldValue.increment(1)
+          }
         )
         .then((value) => print("Purchase Added"))
         .catchError((error) => print("Failed to add purchase: $error"));
+        
   }
 
   static addNewCurrency(String email, int currency) {
@@ -72,9 +69,7 @@ class FireStoreFunctions {
         .doc(email)
         .set({
           "currency": currency,
-        },
-        SetOptions(merge: true)
-        )
+        }, SetOptions(merge: true))
         .then((value) => print("Currency Added to Firestore"))
         .catchError((error) => print("Failed to add currency: $error"));
   }
@@ -86,11 +81,8 @@ class FireStoreFunctions {
         .doc(email)
         .set({
           "currency": currency,
-        },
-        SetOptions(merge: true)
-        )
+        }, SetOptions(merge: true))
         .then((value) => print("Currency Removed"))
         .catchError((error) => print("Failed to remove currency: $error"));
   }
-
 }
