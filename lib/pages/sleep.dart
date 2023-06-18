@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:orbital_test_space/models/SleepEntry.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SleepLoggingPage extends StatefulWidget {
   @override
@@ -13,13 +14,31 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
   final TextEditingController _textController = TextEditingController();
 
   void _addSleepEntry() {
-    setState(() {
-      _sleepLog.add(SleepEntry(
-        date: DateTime.now(),
-        hoursOfSleep: double.parse(_textController.text),
+    final today = DateTime.now();
+    final todayDateOnly = DateTime(today.year, today.month, today.day);
+
+    if (_sleepLog.any((entry) {
+      final entryDate = entry.date;
+      final entryDateOnly =
+          DateTime(entryDate.year, entryDate.month, entryDate.day);
+      return entryDateOnly == todayDateOnly;
+    })) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('You have already logged sleep for today.'),
       ));
-    });
-    _textController.clear();
+    } else {
+      setState(() {
+        _sleepLog.add(SleepEntry(
+          date: DateTime.now(),
+          hoursOfSleep: double.parse(_textController.text),
+        ));
+      });
+      _textController.clear();
+    }
+  }
+
+  bool _sleepEntryExistsForDate(DateTime date) {
+    return _sleepLog.any((entry) => entry.date.day == date.day);
   }
 
   @override
