@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/models/SleepEntry.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
 
 class SleepLoggingPage extends StatefulWidget {
   @override
@@ -13,13 +16,50 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
   final TextEditingController _textController = TextEditingController();
 
   void _addSleepEntry() {
-    setState(() {
-      _sleepLog.add(SleepEntry(
-        date: DateTime.now(),
-        hoursOfSleep: double.parse(_textController.text),
+    final today = DateTime.now();
+    final todayDateOnly = DateTime(today.year, today.month, today.day);
+
+    if (_sleepLog.any((entry) {
+      final entryDate = entry.date;
+      final entryDateOnly =
+          DateTime(entryDate.year, entryDate.month, entryDate.day);
+      return entryDateOnly == todayDateOnly;
+    })) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('You have already logged sleep for today.'),
       ));
-    });
-    _textController.clear();
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Confirmation'),
+            content: Text('Are you sure you want to submit?'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Yes'),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                  setState(() {
+                    _sleepLog.add(SleepEntry(
+                      date: DateTime.now(),
+                      hoursOfSleep: double.parse(_textController.text),
+                    ));
+                  });
+                  _textController.clear();
+                },
+              ),
+              TextButton(
+                child: Text('No'),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -38,16 +78,8 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
       ),
       body: Column(
         children: <Widget>[
-          TextField(
-            controller: _textController,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              labelText: 'Hours of sleep',
-            ),
-          ),
-          ElevatedButton(
-            child: Text('Log sleep'),
-            onPressed: _addSleepEntry,
+          SizedBox(
+            height: 40,
           ),
           SfCartesianChart(
             primaryXAxis: DateTimeAxis(),
@@ -60,6 +92,26 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
                 markerSettings: MarkerSettings(isVisible: true),
               ),
             ],
+          ),
+          SizedBox(height: 60),
+          Container(
+              width: 200,
+              child: TextField(
+                controller: _textController,
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
+                decoration: InputDecoration(
+                  labelText: 'Hours of sleep',
+                ),
+              )),
+          SizedBox(
+            height: 30,
+          ),
+          ElevatedButton(
+            child: Text('Log sleep'),
+            onPressed: _addSleepEntry,
           ),
         ],
       ),
