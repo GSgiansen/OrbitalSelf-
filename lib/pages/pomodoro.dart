@@ -118,6 +118,9 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => SettingsPage(
+                          workTime: _startWorkTime ~/ 60,
+                          restTime: _startRestTime ~/ 60,
+                          numSessions: _numSessions,
                           onSave: (workTime, restTime, numSessions) {
                             setState(() {
                               _startWorkTime = workTime * 60;
