@@ -62,13 +62,64 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 19216}
     - Class: 114
-      Script: {instanceID: 20192}
+      Script: {instanceID: 20194}
     - Class: 114
       Script: {instanceID: 20252}
     - Class: 114
       Script: {instanceID: 22284}
     - Class: 114
       Script: {instanceID: 22376}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    Assets/Scenes/blank.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 18326}
+    - Class: 114
+      Script: {instanceID: 18516}
+    - Class: 114
+      Script: {instanceID: 19216}
+    - Class: 114
+      Script: {instanceID: 20194}
+    - Class: 114
+      Script: {instanceID: 22284}
+    - Class: 114
+      Script: {instanceID: 22376}
+    - Class: 114
+      Script: {instanceID: 23082}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -113,15 +164,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 19216}
     - Class: 114
-      Script: {instanceID: 20192}
-    - Class: 114
-      Script: {instanceID: 20196}
+      Script: {instanceID: 20194}
     - Class: 114
       Script: {instanceID: 22284}
     - Class: 114
       Script: {instanceID: 22376}
     - Class: 114
-      Script: {instanceID: 23406}
+      Script: {instanceID: 23082}
+    - Class: 114
+      Script: {instanceID: 23412}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -162,7 +213,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 19216}
     - Class: 114
-      Script: {instanceID: 20192}
+      Script: {instanceID: 20194}
     - Class: 114
       Script: {instanceID: 22284}
     - Class: 114
@@ -699,6 +750,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: JsonToFlutter
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnPointerClickMessageListener
@@ -828,12 +885,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: changeColor
-  - hash:
-      serializedVersion: 2
-      Hash: aa65e318d6c63ea2d1283b0c31a9fe2a
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: CameraController
   - hash:
       serializedVersion: 2
       Hash: b1f06645bc33f83158c09805ea1f29cd
@@ -1244,12 +1295,13 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 751e5bae2a317288c2ab58d66687092b
+      Hash: aa65e318d6c63ea2d1283b0c31a9fe2a
     assemblyName: Assembly-CSharp
     namespaceName: 
-    className: JsonToFlutter
+    className: CameraController
   platform: 9
   scenePathNames:
+  - Assets/Scenes/blank.unity
   - Assets/Scenes/test.unity
   - Assets/Scenes/truetest.unity
   - Assets/Scenes/SampleScene.unity

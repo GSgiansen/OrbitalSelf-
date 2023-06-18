@@ -78,7 +78,7 @@ void ZoomOut(UnityWidgetController? _unityWidgetController) {
 void saveSceneToFirebase(UnityWidgetController? _unityWidgetController) {
   _unityWidgetController
       ?.postMessage(
-        'Tree',
+        'GameObject',
         'OnMessage',
         'saveScene',
       )
