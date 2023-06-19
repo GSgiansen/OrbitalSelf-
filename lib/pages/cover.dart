@@ -201,7 +201,7 @@ class Registerpopup extends StatelessWidget {
                       style: TextStyle(fontSize: 0.1 * imgheight))
                 ])),
         const SizedBox(height: 5),
-        LoginForm(context, true),
+        LoginForm(context, false),
         const SizedBox(height: 5),
         TextButton(
           style: TextButton.styleFrom(

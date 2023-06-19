@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/header.dart';
 import 'package:orbital_test_space/models/item.dart';
@@ -55,10 +56,12 @@ class MyApp extends StatelessWidget {
                 final profilePhoto = providerProfile.photoURL;
 
                 user = FirebaseAuth.instance.currentUser;
-                return MyHomePage(user: user);
+                if (user != null) {
+                  return MyHomePage(user: user);
+                }
               }
             }
-          } 
+          }
           return const MyCoverPage(title: "Self++");
         },
       ),
@@ -68,7 +71,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({super.key, required this.user});
-  final User? user;
+  User? user;
 
   CurrencyNotifier currencyNotifier = CurrencyNotifier();
 
@@ -79,23 +82,51 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  User? user;
   int currentPageIndex = 2;
   @override
   void initState() {
-    // TODO: implement initState
-    FireStoreFunctions.getCurrentUserCurrency(user: widget.user)
-        .then((value) => widget.currencyNotifier.setValue(value));
+    waitForUserCreation();
+  }
+
+  void waitForUserCreation() async {
+    if (widget.user != null) {
+      await FireStoreFunctions.getCurrentUserCurrency(user: widget.user)
+          .then((value) => widget.currencyNotifier.setValue(value));
+    }
+  }
+
+  Future<DocumentSnapshot> getUserData() async {
+    // Fetch user data from Firebase
+    
+    DocumentSnapshot snapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(widget.user!.email)
+        .get();
+    return snapshot;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.user == null) {
-      return const CircularProgressIndicator();
-    }
     return Scaffold(
         appBar: header(context, widget.currencyNotifier, true),
-        body: Center(
-          child: _buildSelectedScreen(),
+        body:
+            // a previously-obtained Future<String> or null
+            FutureBuilder(
+          future: getUserData(), //Call the function to fetch user data
+          builder: (context, snapshot) {
+            print(snapshot);
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              // Display a loading indicator while fetching data
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              // Handle error case
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else {
+              // User data is loaded, build the UI
+              return Center(child: _buildSelectedScreen());
+            }
+          },
         ),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.green,

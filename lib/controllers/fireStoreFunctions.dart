@@ -33,6 +33,12 @@ class FireStoreFunctions {
   }
 
   static addNewUser(String email, String password) {
+    Map<String, dynamic> itemsMap = {
+    'cat': {'name': 'Cat', 'number': 3},
+    'dog': {'name': 'Dog', 'number': 5},
+    'plant': {'name': 'Plant', 'number': 1},
+    'chair': {'name': 'Chair', 'number': 2},
+  };
     return db
        .collection("users")
         .doc(email)
@@ -40,8 +46,7 @@ class FireStoreFunctions {
           "email": email,
           "password": password,
           "currency": 0,
-          "items":
-              List<Item>.empty(growable: true), //Change to handle map of map
+          "items": itemsMap //Change to handle map of map
         })
         .then((value) => print("User Added to Firestore"))
         .catchError((error) => print("Failed to add user: $error"));
