@@ -9,6 +9,8 @@ import 'package:orbital_test_space/pages/profilepage.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:orbital_test_space/pages/taskprovider.dart';
+import 'package:provider/provider.dart';
 import 'controllers/fireStoreFunctions.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,22 +31,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        textTheme: const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
-        primarySwatch: Colors.blue,
-      ),
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return MyHomePage(user: snapshot.data!.email.toString());
-          } else {
-            return const MyCoverPage(title: "Self++");
-          }
-        },
-      ),
-    );
+    return ChangeNotifierProvider(
+        create: (context) => TaskProvider(),
+        child: MaterialApp(
+          theme: ThemeData(
+            textTheme:
+                const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
+            primarySwatch: Colors.blue,
+          ),
+          home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return MyHomePage(user: snapshot.data!.email.toString());
+              } else {
+                return const MyCoverPage(title: "Self++");
+              }
+            },
+          ),
+        ));
   }
 }
 
