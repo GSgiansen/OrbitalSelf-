@@ -14,10 +14,16 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
 import '../controllers/unityContoller.dart';
+import '../main.dart';
 
 class UnityDemoScreen extends StatefulWidget {
-  UnityDemoScreen({Key? key, User? user}) : super(key: key);
+  UnityDemoScreen(      {super.key,
+      required this.user,
+      required this.currencyNotifier,
+      required this.itemsOwned});
   User? user;
+  final CurrencyNotifier currencyNotifier;
+  final ItemsOwned itemsOwned;
 
   @override
   State<UnityDemoScreen> createState() => __UnityDemoScreenState();
@@ -184,9 +190,13 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
     return MaterialApp(
         home: Scaffold(
             key: _scaffoldKey,
-            bottomNavigationBar: UnityMenu(
-              _unityWidgetController,
-              widget.user,
+            bottomNavigationBar: 
+            UnityMenu(
+              
+              user: widget.user,
+              currencyNotifier: widget.currencyNotifier,
+              itemsOwned: widget.itemsOwned,
+              unityWidgetController: _unityWidgetController,
             ),
             body: Card(
               margin: const EdgeInsets.all(8),

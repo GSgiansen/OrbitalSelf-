@@ -22,6 +22,7 @@ class _InventoryMenuState extends State<InventoryMenu> {
       .snapshots();
   @override
   Widget build(BuildContext context) {
+    List<Widget> lst = [];
     return StreamBuilder<QuerySnapshot>(
       stream: _usersStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -39,16 +40,50 @@ class _InventoryMenuState extends State<InventoryMenu> {
             if (data.containsKey('items')) {
               Map<String, dynamic> items =
                   data['items'] as Map<String, dynamic>;
-              print(items);
-              if (items.containsKey('cat') && items.containsKey('plant')) {
-                return ListTile(
-                  title: Text(items['cat']['name']),
-                  subtitle: Text(items['plant']['name']),
-                );
+              //print(items);
+              for (var item in items.entries) {
+                Map<String, dynamic> indiv = item.value;
+
+                lst.add(ListTile(
+                  title: Text(
+                    indiv["name"],
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      fontFamily: 'Rotorcap',
+                    ),
+                  ),
+                  subtitle: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+
+                    children: [
+                      Expanded(
+                        child: Text(
+                          "X " + indiv["number"].toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            fontFamily: 'Rotorcap',
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          icon: Icon(Icons.add),
+                          onPressed: () {
+                            print("spawn object done");
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ));
               }
             }
-            // Return an empty container or null if the data is not as expected
-            return Container();
+            return Column(
+              children: lst,
+            );
           }).toList(),
         );
       },
