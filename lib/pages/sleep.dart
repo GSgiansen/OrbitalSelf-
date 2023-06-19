@@ -166,7 +166,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
             onPressed: _addSleepEntry,
           ),
           SizedBox(
-            height: 30,
+            height: 40,
           ),
           Text(computeSleepTrendMessage(pastWeekEntries)),
         ],
