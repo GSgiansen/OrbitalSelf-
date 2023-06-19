@@ -10,6 +10,8 @@ import 'package:orbital_test_space/pages/profilepage.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:orbital_test_space/pages/taskprovider.dart';
+import 'package:provider/provider.dart';
 import 'controllers/fireStoreFunctions.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,42 +32,46 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        textTheme:
-            const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
-        primarySwatch: Colors.green,
-      ),
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            var data = snapshot.data;
-            User? user;
-            if (data != null) {
-              for (final providerProfile in data.providerData) {
-                // ID of the provider (google.com, apple.com, etc.)
-                final provider = providerProfile.providerId;
 
-                // UID specific to the provider
-                final uid = providerProfile.uid;
+    return ChangeNotifierProvider(
+        create: (context) => TaskProvider(),
+        child: MaterialApp(
+          theme: ThemeData(
+            textTheme:
+                const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
+            primarySwatch: Colors.blue,
+          ),
+          home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                var data = snapshot.data;
+                User? user;
+                if (data != null) {
+                  for (final providerProfile in data.providerData) {
+                    // ID of the provider (google.com, apple.com, etc.)
+                    final provider = providerProfile.providerId;
 
-                // Name, email address, and profile photo URL
-                final name = providerProfile.displayName;
-                final emailAddress = providerProfile.email;
-                final profilePhoto = providerProfile.photoURL;
+                    // UID specific to the provider
+                    final uid = providerProfile.uid;
 
-                user = FirebaseAuth.instance.currentUser;
-                if (user != null) {
-                  return MyHomePage(user: user);
+                    // Name, email address, and profile photo URL
+                    final name = providerProfile.displayName;
+                    final emailAddress = providerProfile.email;
+                    final profilePhoto = providerProfile.photoURL;
+
+                    user = FirebaseAuth.instance.currentUser;
+                    if (user != null) {
+                      return MyHomePage(user: user);
+                    }
+                  }
                 }
-              }
-            }
-          }
-          return const MyCoverPage(title: "Self++");
-        },
-      ),
-    );
+              } 
+                return const MyCoverPage(title: "Self++");
+
+            },
+          ),
+        ));
   }
 }
 

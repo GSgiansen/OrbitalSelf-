@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:orbital_test_space/pages/settings.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class PomodoroTimerPage extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class PomodoroTimerPage extends StatefulWidget {
 }
 
 class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
-  late Timer _timer;
+  Timer _timer = Timer(Duration.zero, () {});
   int _startWorkTime = 25 * 60; // 25 minutes to seconds
   int _startRestTime = 5 * 60; // 5 minutes to seconds
   int _numSessions = 3;
@@ -16,9 +17,12 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   int _current = 25 * 60;
   bool _isResting = false;
   bool _isRunning = false;
+  bool _isPomodoroCompleted = false;
+  bool _isReset = true;
 
   void startTimer() {
     _isRunning = true;
+    _isPomodoroCompleted = false;
     _timer = Timer.periodic(
       Duration(seconds: 1),
       (Timer timer) {
@@ -31,7 +35,9 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
               _isResting = false;
               _currentSession++;
               if (_currentSession >= _numSessions) {
-                _currentSession = 0; // Reset sessions
+                _currentSession = 0;
+                _isPomodoroCompleted = true; // Reset sessions
+                _isReset = false;
               } else {
                 _current = _startWorkTime;
                 startTimer();
@@ -52,14 +58,12 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     );
   }
 
-  void pauseTimer() {
-    _isRunning = false;
-    _timer.cancel();
-  }
-
   void resetTimer() {
-    pauseTimer();
+    _timer.cancel();
+    _isRunning = false;
+    _isReset = true;
     setState(() {
+      _isPomodoroCompleted = false;
       _current = _startWorkTime;
       _currentSession = 0;
       _isResting = false;
@@ -76,35 +80,48 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _currentSession >= _numSessions
+            _isPomodoroCompleted
                 ? Text(
                     "Completed Pomodoro!",
-                    style: TextStyle(fontSize: 24),
+                    style: TextStyle(fontSize: 24, color: Colors.black),
                   )
-                : Text(
-                    "${_isResting ? "Resting" : "Working"}: ${_currentSession + 1}/$_numSessions",
-                    style: TextStyle(fontSize: 24),
-                  ),
-            CircularProgressIndicator(
-              value: _current / (_isResting ? _startRestTime : _startWorkTime),
-            ),
+                : DefaultTextStyle(
+                    style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.black,
+                        fontFamily: 'Rotorcap'),
+                    child: _isRunning
+                        ? AnimatedTextKit(
+                            animatedTexts: [
+                              WavyAnimatedText(
+                                  "${_isResting ? "Resting" : "Working"}: ${_currentSession + 1}/$_numSessions")
+                            ],
+                            repeatForever: true,
+                          )
+                        : Text(
+                            "${_isResting ? "Resting" : "Working"}: ${_currentSession + 1}/$_numSessions")),
+            Transform.scale(
+                scale: 8,
+                child: CircularProgressIndicator(
+                  value:
+                      _current / (_isResting ? _startRestTime : _startWorkTime),
+                )),
             Text(
-              '$_current',
+              '${_current ~/ 60}:${(_current % 60).toString().padLeft(2, '0')}',
               style: TextStyle(fontSize: 60),
             ),
+            SizedBox(height: 160),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FloatingActionButton(
-                  heroTag: "play",
-                  child: Icon(Icons.play_arrow),
-                  onPressed: _isRunning ? null : startTimer,
-                ),
-                FloatingActionButton(
-                  heroTag: "pause",
-                  child: Icon(Icons.pause),
-                  onPressed: _isRunning ? pauseTimer : null,
-                ),
+                    heroTag: "play",
+                    child: Icon(Icons.play_arrow),
+                    onPressed: _isRunning
+                        ? null
+                        : _isReset
+                            ? startTimer
+                            : null),
                 FloatingActionButton(
                   heroTag: "refresh",
                   child: Icon(Icons.refresh),
@@ -114,10 +131,14 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
                   heroTag: "settings",
                   child: Icon(Icons.settings),
                   onPressed: () {
-                    pauseTimer();
+                    _timer.cancel();
+                    _isRunning = false;
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => SettingsPage(
+                          workTime: _startWorkTime ~/ 60,
+                          restTime: _startRestTime ~/ 60,
+                          numSessions: _numSessions,
                           onSave: (workTime, restTime, numSessions) {
                             setState(() {
                               _startWorkTime = workTime * 60;

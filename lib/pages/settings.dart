@@ -38,18 +38,33 @@ class AdjustableNumberField extends StatelessWidget {
 }
 
 class SettingsPage extends StatefulWidget {
+  final int workTime;
+  final int restTime;
+  final int numSessions;
   final void Function(int, int, int) onSave;
 
-  SettingsPage({required this.onSave});
+  SettingsPage(
+      {required this.onSave,
+      required this.workTime,
+      required this.restTime,
+      required this.numSessions});
 
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  int _workTime = 25;
-  int _restTime = 5;
-  int _numSessions = 3;
+  late int _workTime;
+  late int _restTime;
+  late int _numSessions;
+
+  @override
+  void initState() {
+    super.initState();
+    _workTime = widget.workTime;
+    _restTime = widget.restTime;
+    _numSessions = widget.numSessions;
+  }
 
   @override
   Widget build(BuildContext context) {
