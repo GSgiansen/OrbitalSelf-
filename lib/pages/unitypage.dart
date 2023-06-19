@@ -194,7 +194,10 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              child: Stack(children: <Widget>[
+              child: 
+              Container(),
+              /*
+              Stack(children: <Widget>[
                 Stack(children: <Widget>[
                   UnityWidget(
                     onUnityCreated: onUnityCreated,
@@ -204,7 +207,8 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
                   ),
                 ]),
               ]),
-            )));
+              */
+    )));
   }
 
   // Communication from Unity to Flutter

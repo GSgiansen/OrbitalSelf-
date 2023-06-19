@@ -24,7 +24,7 @@ class FireStoreFunctions {
         .get()
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
-        print(documentSnapshot.get("currency"));
+        //print(documentSnapshot.get("currency"));
         return documentSnapshot.get("currency");
       } else {
         print("0");
@@ -90,4 +90,15 @@ class FireStoreFunctions {
         .then((value) => print("Currency Removed"))
         .catchError((error) => print("Failed to remove currency: $error"));
   }
+  
+
+  static getInventory(User? user) async {
+    var email = user?.email;
+    return await db
+        .doc("users")
+        .get()
+        .then((value) => print("Inventory Added"))
+        .catchError((error) => print("Failed to add inventory: $error"));
+  }
+  
 }

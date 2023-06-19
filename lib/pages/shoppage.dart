@@ -33,8 +33,6 @@ class _ShopPageState extends State<ShopPage> {
 
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
-          //print("has data");
-          //print(snapshot.data!.docs.length);
           List<Item> lst = [];
           for (var element in snapshot.data!.docs) {
             Map<String, dynamic> data = element.data() as Map<String, dynamic>;
