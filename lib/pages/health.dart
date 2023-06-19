@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/pages/pomodoro.dart';
 import 'package:orbital_test_space/pages/sleep.dart';
+import 'package:orbital_test_space/pages/todo.dart';
+import 'package:orbital_test_space/pages/water.dart';
 
 class MyHealthPage extends StatelessWidget {
   const MyHealthPage({super.key});
@@ -37,13 +39,19 @@ class MyHealthPage extends StatelessWidget {
             title: 'Water Log',
             icon: Icons.local_drink,
             color: Colors.blueAccent,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => WaterIntakeApp()));
+            },
           ),
           _HealthCard(
               title: 'To Do List',
               icon: Icons.calendar_month,
               color: Colors.green,
-              onPressed: () {})
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ToDoPage()));
+              })
           // add more cards as needed
         ],
       ),
