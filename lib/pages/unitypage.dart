@@ -205,8 +205,7 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: 
-              Container(),
-              /*
+              
               Stack(children: <Widget>[
                 Stack(children: <Widget>[
                   UnityWidget(
@@ -217,7 +216,7 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
                   ),
                 ]),
               ]),
-              */
+              
     )));
   }
 
