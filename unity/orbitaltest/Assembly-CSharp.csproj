@@ -72,9 +72,11 @@
     <Compile Include="Assets/FlutterUnityIntegration/Demo/SceneLoader.cs" />
     <Compile Include="Assets/SCRIPT/loadNewScene.cs" />
     <Compile Include="Assets/SCRIPT/JsonHelper.cs" />
+    <Compile Include="Assets/SCRIPT/zoomCamera.cs" />
     <Compile Include="Assets/SCRIPT/rotateCamera.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/UnityMessageManager.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/Demo/Rotate.cs" />
+    <Compile Include="Assets/SCRIPT/JsonToFlutter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/FlutterUnityIntegration/JsonDotNet/link.xml" />
