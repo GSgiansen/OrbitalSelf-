@@ -2,16 +2,26 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
+import 'package:orbital_test_space/components/inventory.dart';
+import 'package:orbital_test_space/components/inventoryMenu.dart';
+import 'package:orbital_test_space/main.dart';
+import 'package:orbital_test_space/pages/profilepage.dart';
 
 import '../controllers/unityContoller.dart';
 
 class UnityMenu extends StatefulWidget{
-  User? user;
-  UnityWidgetController? unityWidgetController;
-  UnityMenu(UnityWidgetController? unityWidgetController, user){
-    this.unityWidgetController = unityWidgetController;
-    this.user = user;
-  } 
+  final User? user;
+  final UnityWidgetController? unityWidgetController;
+  final CurrencyNotifier currencyNotifier;
+  final ItemsOwned itemsOwned;
+  const UnityMenu( 
+      {super.key,
+      required this.user,
+      required this.currencyNotifier,
+      required this.itemsOwned,
+      required this.unityWidgetController}
+
+  );
 
   @override
   
@@ -70,11 +80,35 @@ class _UnityMenuState extends State<UnityMenu> {
           ),
           IconButton(
             tooltip: "Change Color",
-            icon: Icon(Icons.color_lens),
+            icon: Icon(Icons.shopping_bag),
             onPressed: () {
-              CubeRed(widget.unityWidgetController);
+              //todo, but shld show current inventory items in a modal bottom sheet
+              showModalBottomSheet<void>(
+            context: context,
+            builder: (BuildContext context) {
+              print(widget.user);
+              var user = widget.user;
+              if (user == null) {
+                user = FirebaseAuth.instance.currentUser;
+              }
+              return InventoryMenu(user: widget.user);
+            });
             },
           ),
+
+          IconButton(
+            tooltip: "Back to Profile",
+            icon: Icon(Icons.person),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                    MyHomePage(
+                      user: widget.user,
+            )));
+            },
+          )
         ]
 
 

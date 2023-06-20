@@ -33,8 +33,6 @@ class _ShopPageState extends State<ShopPage> {
 
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
-          print("has data");
-          print(snapshot.data!.docs.length);
           List<Item> lst = [];
           for (var element in snapshot.data!.docs) {
             Map<String, dynamic> data = element.data() as Map<String, dynamic>;
@@ -43,11 +41,9 @@ class _ShopPageState extends State<ShopPage> {
               price: data["cost"],
               description: data["description"],
               image: data["image"],
+              inventory: data["inventory"] // represents if shld spawn object into the game or not
             );
             lst.add(item);
-          }
-          for (var element in lst) {
-            print(element.name);
           }
           return Scaffold(
               body: Center(

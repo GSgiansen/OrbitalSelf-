@@ -1,0 +1,92 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:orbital_test_space/components/inventory.dart';
+import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
+
+class InventoryMenu extends StatefulWidget {
+  final User? user;
+  InventoryMenu({required this.user});
+
+  @override
+  State<InventoryMenu> createState() => _InventoryMenuState();
+}
+
+class _InventoryMenuState extends State<InventoryMenu> {
+  var email = FirebaseAuth.instance.currentUser!.email;
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+      .collection('users')
+      .where('email', isEqualTo: FirebaseAuth.instance.currentUser!.email)
+      .limit(1)
+      .snapshots();
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> lst = [];
+    return StreamBuilder<QuerySnapshot>(
+      stream: _usersStream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
+        return ListView(
+          children: snapshot.data!.docs.map((DocumentSnapshot document) {
+            Map<String, dynamic> data =
+                document.data()! as Map<String, dynamic>;
+            if (data.containsKey('items')) {
+              Map<String, dynamic> items =
+                  data['items'] as Map<String, dynamic>;
+              //print(items);
+              for (var item in items.entries) {
+                Map<String, dynamic> indiv = item.value;
+
+                lst.add(ListTile(
+                  title: Text(
+                    indiv["name"],
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      fontFamily: 'Rotorcap',
+                    ),
+                  ),
+                  subtitle: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+
+                    children: [
+                      Expanded(
+                        child: Text(
+                          "X " + indiv["number"].toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            fontFamily: 'Rotorcap',
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          icon: Icon(Icons.add),
+                          onPressed: () {
+                            print("spawn object done");
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ));
+              }
+            }
+            return Column(
+              children: lst,
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
+}
