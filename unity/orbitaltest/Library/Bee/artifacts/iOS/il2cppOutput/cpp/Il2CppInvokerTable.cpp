@@ -20187,6 +20187,12 @@ void RuntimeInvoker_TrueColor_tD001788D726C3A7F1379BEED0260B9591F440C1F_Int32_t6
 	*((Color_tD001788D726C3A7F1379BEED0260B9591F440C1F*)returnAddress) = ((Func)methodPointer)(obj, *((int32_t*)args[0]), methodMetadata);
 }
 
+void RuntimeInvoker_TrueColor_tD001788D726C3A7F1379BEED0260B9591F440C1F_RuntimeObject (Il2CppMethodPointer methodPointer, const RuntimeMethod* methodMetadata, void* obj, void** args, void* returnAddress)
+{
+	typedef Color_tD001788D726C3A7F1379BEED0260B9591F440C1F (*Func)(void* obj, RuntimeObject* p1, const RuntimeMethod* method);
+	*((Color_tD001788D726C3A7F1379BEED0260B9591F440C1F*)returnAddress) = ((Func)methodPointer)(obj, (RuntimeObject*)args[0], methodMetadata);
+}
+
 void RuntimeInvoker_TrueColor_tD001788D726C3A7F1379BEED0260B9591F440C1F_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C (Il2CppMethodPointer methodPointer, const RuntimeMethod* methodMetadata, void* obj, void** args, void* returnAddress)
 {
 	typedef Color_tD001788D726C3A7F1379BEED0260B9591F440C1F (*Func)(void* obj, float p1, const RuntimeMethod* method);
@@ -35277,12 +35283,6 @@ void RuntimeInvoker_FalseScale_t5594C69C1AC9398B57ABF6C4FA0D4E791B7A4DC7 (Il2Cpp
 	*((Scale_t5594C69C1AC9398B57ABF6C4FA0D4E791B7A4DC7*)returnAddress) = ((Func)methodPointer)(methodMetadata);
 }
 
-void RuntimeInvoker_FalseScene_tA1DC762B79745EB5140F054C884855B922318356 (Il2CppMethodPointer methodPointer, const RuntimeMethod* methodMetadata, void* obj, void** args, void* returnAddress)
-{
-	typedef Scene_tA1DC762B79745EB5140F054C884855B922318356 (*Func)(const RuntimeMethod* method);
-	*((Scene_tA1DC762B79745EB5140F054C884855B922318356*)returnAddress) = ((Func)methodPointer)(methodMetadata);
-}
-
 void RuntimeInvoker_FalseSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C (Il2CppMethodPointer methodPointer, const RuntimeMethod* methodMetadata, void* obj, void** args, void* returnAddress)
 {
 	typedef float (*Func)(const RuntimeMethod* method);
@@ -36870,6 +36870,7 @@ const InvokerMethod g_Il2CppInvokerPointers[3867] =
 	RuntimeInvoker_TrueCancellationTokenRegistration_tC925A8BC86C629A2A3DA73765FA964A95FC83389_RuntimeObject,
 	RuntimeInvoker_TrueColor_tD001788D726C3A7F1379BEED0260B9591F440C1F_Color_tD001788D726C3A7F1379BEED0260B9591F440C1F,
 	RuntimeInvoker_TrueColor_tD001788D726C3A7F1379BEED0260B9591F440C1F_Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C,
+	RuntimeInvoker_TrueColor_tD001788D726C3A7F1379BEED0260B9591F440C1F_RuntimeObject,
 	RuntimeInvoker_TrueColor_tD001788D726C3A7F1379BEED0260B9591F440C1F_Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C,
 	RuntimeInvoker_TrueColor_tD001788D726C3A7F1379BEED0260B9591F440C1F_StyleValueHandle_t5831643AAA7AD8C5C43A4498C5E0A2545F78227D,
 	RuntimeInvoker_TrueColor32_t73C5004937BF5BB8AD55323D51AAA40A898EF48B_BMPAlloc_t29DA9D09157B8BAD2D5643711A53A5F11D216D30,
@@ -39247,7 +39248,6 @@ const InvokerMethod g_Il2CppInvokerPointers[3867] =
 	RuntimeInvoker_FalseRotate_tE965CA0281A547AB38B881A3416FF97756D3F4D7,
 	RuntimeInvoker_FalseSByte_tFEFFEF5D2FEBF5207950AE6FAC150FC53B668DB5,
 	RuntimeInvoker_FalseScale_t5594C69C1AC9398B57ABF6C4FA0D4E791B7A4DC7,
-	RuntimeInvoker_FalseScene_tA1DC762B79745EB5140F054C884855B922318356,
 	RuntimeInvoker_FalseSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C,
 	RuntimeInvoker_FalseTextShadow_t6BADF37AB90ABCB63859A225B58AC5A580950A05,
 	RuntimeInvoker_FalseTileData_tFB814629D010ABD175127C0BE96FD96EA606E00F,

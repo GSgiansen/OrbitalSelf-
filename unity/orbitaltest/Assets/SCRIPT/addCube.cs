@@ -8,10 +8,14 @@ public class addCube : MonoBehaviour
     // Start is called before the first frame update
     public GameObject existingCube;
     public GameObject cubePrefab;
+    public GameObject dogPrefab;
+    public GameObject plantPrefab;
+    public GameObject chairPrefab;
+
     void Start()
     {
         UnityMessageManager.Instance.OnMessage += OnMessage;
-        
+
     }
 
     // Update is called once per frame
@@ -19,11 +23,20 @@ public class addCube : MonoBehaviour
     {
         
     }
+
+    
     void OnMessage(string message) {
-        if (message.Equals("addCube"))
+        if (message.Equals("addcube"))
         {
             GenerateCubeToRight();
         }
+        if (message.Equals("adddog")) {
+            GenerateDogToFront();
+        }
+        if (message.Equals("addplant")) {
+            GeneratePlantToRight();
+        }
+
     }
     void GenerateCubeToRight()
     {
@@ -36,5 +49,54 @@ public class addCube : MonoBehaviour
         // Set the parent of the new cube to match the existing cube's parent
         newCube.transform.SetParent(existingCube.transform.parent);
         UnityMessageManager.Instance.SendMessageToFlutter("Added new cube to the right from empty game ");
+    }
+
+
+    void GenerateDogToFront()
+{
+    // Set the distance at which the dog spawns from the existing cube
+    float spawnDistance = 2f;
+
+    // Calculate the position for the new dog
+    Vector3 newPosition = existingCube.transform.position + existingCube.transform.forward * spawnDistance;
+
+    // Instantiate a new dog at the calculated position
+    GameObject newDog = Instantiate(dogPrefab, newPosition, Quaternion.identity);
+
+    // Set the parent of the new dog to match the existing cube's parent
+    newDog.transform.SetParent(existingCube.transform.parent);
+    UnityMessageManager.Instance.SendMessageToFlutter("Added dog to the game");
+}
+
+
+
+
+    void GeneratePlantToRight() {
+        float spawnDistance = 1f;
+        Vector3 newPosition = existingCube.transform.position + existingCube.transform.right * spawnDistance;
+        
+
+        // Instantiate a new cube at the calculated position
+        GameObject newCube = Instantiate(plantPrefab, newPosition, Quaternion.identity);
+
+        // Set the parent of the new cube to match the existing cube's parent
+        newCube.transform.SetParent(existingCube.transform.parent);
+        UnityMessageManager.Instance.SendMessageToFlutter("Added dog to the game");
+
+    }
+
+    void GenerateChairToRight() {
+        float spawnDistance = 1f;
+        Vector3 newPosition = existingCube.transform.position + existingCube.transform.right * spawnDistance + existingCube.transform.forward * spawnDistance;
+        
+        
+
+        // Instantiate a new cube at the calculated position
+        GameObject newCube = Instantiate(chairPrefab, newPosition, Quaternion.identity);
+
+        // Set the parent of the new cube to match the existing cube's parent
+        newCube.transform.SetParent(existingCube.transform.parent);
+        UnityMessageManager.Instance.SendMessageToFlutter("Added dog to the game");
+
     }
 }

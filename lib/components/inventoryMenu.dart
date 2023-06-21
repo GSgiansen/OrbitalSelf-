@@ -2,12 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:orbital_test_space/components/inventory.dart';
 import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
+import 'package:orbital_test_space/controllers/unityContoller.dart';
 
 class InventoryMenu extends StatefulWidget {
   final User? user;
-  InventoryMenu({required this.user});
+  UnityWidgetController? unityWidgetController;
+
+  InventoryMenu({required this.user, 
+    required this.unityWidgetController
+  }
+  );
 
   @override
   State<InventoryMenu> createState() => _InventoryMenuState();
@@ -73,6 +80,10 @@ class _InventoryMenuState extends State<InventoryMenu> {
                           icon: Icon(Icons.add),
                           onPressed: () {
                             print("spawn object done");
+                            String objectname = indiv["name"].toLowerCase();
+                            print("object is" + objectname);
+                            loadChosenObject(widget.unityWidgetController, objectname);
+                            print("object is" + objectname);
                           },
                         ),
                       )

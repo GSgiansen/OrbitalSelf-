@@ -21,7 +21,7 @@ static Il2CppMethodPointer s_methodPointers[2] =
 };
 static const int32_t s_InvokerIndices[2] = 
 {
-	3453,
+	3454,
 	3860,
 };
 extern const Il2CppDebuggerMetadataRegistration g_DebuggerMetadataRegistrationUnity_Subsystem_Registration;
