@@ -73,92 +73,111 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Pomodoro Timer'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _isPomodoroCompleted
-                ? Text(
-                    "Completed Pomodoro!",
-                    style: TextStyle(fontSize: 24, color: Colors.black),
-                  )
-                : DefaultTextStyle(
-                    style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.black,
-                        fontFamily: 'Rotorcap'),
-                    child: _isRunning
-                        ? AnimatedTextKit(
-                            animatedTexts: [
-                              WavyAnimatedText(
-                                  "${_isResting ? "Resting" : "Working"}: ${_currentSession + 1}/$_numSessions")
-                            ],
-                            repeatForever: true,
-                          )
-                        : Text(
-                            "${_isResting ? "Resting" : "Working"}: ${_currentSession + 1}/$_numSessions")),
-            Transform.scale(
-                scale: 8,
-                child: CircularProgressIndicator(
-                  value:
-                      _current / (_isResting ? _startRestTime : _startWorkTime),
-                )),
-            Text(
-              '${_current ~/ 60}:${(_current % 60).toString().padLeft(2, '0')}',
-              style: TextStyle(fontSize: 60),
+        appBar: AppBar(
+          title: Text('Pomodoro Timer'),
+          leading: IconButton(
+            icon: Icon(Icons.chevron_left),
+            onPressed: () {
+              resetTimer(); // Cancel the timer and reset the state when the back button is pressed
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('web/timerbackground.png'),
+              fit: BoxFit.cover,
             ),
-            SizedBox(height: 160),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FloatingActionButton(
-                    heroTag: "play",
-                    child: Icon(Icons.play_arrow),
-                    onPressed: _isRunning
-                        ? null
-                        : _isReset
-                            ? startTimer
-                            : null),
-                FloatingActionButton(
-                  heroTag: "refresh",
-                  child: Icon(Icons.refresh),
-                  onPressed: resetTimer,
+                _isPomodoroCompleted
+                    ? Text(
+                        "Completed Pomodoro!",
+                        style: TextStyle(fontSize: 24, color: Colors.black),
+                      )
+                    : DefaultTextStyle(
+                        style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.black,
+                            fontFamily: 'Rotorcap'),
+                        child: _isRunning
+                            ? AnimatedTextKit(
+                                animatedTexts: [
+                                  WavyAnimatedText(
+                                      "${_isResting ? "Resting" : "Working"}: ${_currentSession + 1}/$_numSessions")
+                                ],
+                                repeatForever: true,
+                              )
+                            : Text(
+                                "${_isResting ? "Resting" : "Working"}: ${_currentSession + 1}/$_numSessions")),
+
+                //Transform.scale(
+                //scale: 8,
+                //child: CircularProgressIndicator(
+                //value: _current /
+                //(_isResting ? _startRestTime : _startWorkTime),
+                //valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                //)),
+                Text(
+                  '${_current ~/ 60}:${(_current % 60).toString().padLeft(2, '0')}',
+                  style: TextStyle(fontSize: 60),
                 ),
-                FloatingActionButton(
-                  heroTag: "settings",
-                  child: Icon(Icons.settings),
-                  onPressed: () {
-                    _timer.cancel();
-                    _isRunning = false;
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => SettingsPage(
-                          workTime: _startWorkTime ~/ 60,
-                          restTime: _startRestTime ~/ 60,
-                          numSessions: _numSessions,
-                          onSave: (workTime, restTime, numSessions) {
-                            setState(() {
-                              _startWorkTime = workTime * 60;
-                              _startRestTime = restTime * 60;
-                              _numSessions = numSessions;
-                              _current = _startWorkTime;
-                              _currentSession = 0;
-                              _isResting = false;
-                            });
-                          },
-                        ),
-                      ),
-                    );
-                  },
+                SizedBox(height: 160),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    FloatingActionButton(
+                        heroTag: "play",
+                        child: Icon(Icons.play_arrow),
+                        backgroundColor: Colors.green,
+                        onPressed: _isRunning
+                            ? null
+                            : _isReset
+                                ? startTimer
+                                : null),
+                    FloatingActionButton(
+                      heroTag: "refresh",
+                      backgroundColor: Colors.green,
+                      child: Icon(Icons.refresh),
+                      onPressed: resetTimer,
+                    ),
+                    FloatingActionButton(
+                      heroTag: "settings",
+                      backgroundColor: Colors.green,
+                      child: Icon(Icons.settings),
+                      onPressed: () {
+                        _timer.cancel();
+                        _isRunning = false;
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => SettingsPage(
+                              workTime: _startWorkTime ~/ 60,
+                              restTime: _startRestTime ~/ 60,
+                              numSessions: _numSessions,
+                              onSave: (workTime, restTime, numSessions) {
+                                setState(() {
+                                  _startWorkTime = workTime * 60;
+                                  _startRestTime = restTime * 60;
+                                  _numSessions = numSessions;
+                                  _current = _startWorkTime;
+                                  _currentSession = 0;
+                                  _isResting = false;
+                                });
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
