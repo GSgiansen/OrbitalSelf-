@@ -10,27 +10,9 @@ public class JsonLoader : MonoBehaviour
     void Start()
     {
         UnityMessageManager.Instance.OnMessage += OnMessage;
-        //GameObject cube = Resources.Load("Tree") as GameObject;
-        //Instantiate(cube, new Vector3(1, 0.5f, 1), Quaternion.identity);
-        //proof that resources folder is accessible
+
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
-
-        // Iterate through each GameObject
-        /*
-        foreach (GameObject obj in allObjects)
-        {
-            // Skip the object this script is attached to
-            if (obj == gameObject)
-                continue;
-            if (obj.name == "MainCamera" || obj.name == "Directional Light")
-                continue;
-
-            // Destroy the GameObject
-            Destroy(obj);
-        }
-        */
-
-
+        UnityMessageManager.Instance.SendMessageToFlutter("allObjects length is " + allObjects.Length);
 
     }
 
@@ -60,6 +42,11 @@ public class JsonLoader : MonoBehaviour
                 UnityMessageManager.Instance.SendMessageToFlutter("object name is " + objectData.name);
                 GameObject myPrefab = Resources.Load(objectData.name) as GameObject;
                 Instantiate(myPrefab, new Vector3(objectData.position.x, objectData.position.y, objectData.position.z), objectData.rotation);
+                if (myPrefab.CompareTag("Tree")) {
+                    UnityMessageManager.Instance.SendMessageToFlutter("tree spawned");
+                    addCube newScript = myPrefab.AddComponent<addCube>();
+
+                }
             }
         }
     }
@@ -130,9 +117,16 @@ public class SceneObjectData
 [System.Serializable]
 public class Position
 {
+
     public float x;
     public float y;
     public float z;
+    public Position(float x, float y, float z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
     public static implicit operator Vector3(Position position)
     {
         return new Vector3(position.x, position.y, position.z);

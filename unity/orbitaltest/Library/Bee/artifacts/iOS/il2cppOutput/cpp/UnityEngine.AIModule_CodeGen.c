@@ -25,7 +25,7 @@ static const int32_t s_InvokerIndices[3] =
 {
 	3860,
 	1186,
-	1957,
+	1958,
 };
 extern const Il2CppDebuggerMetadataRegistration g_DebuggerMetadataRegistrationUnityEngine_AIModule;
 IL2CPP_EXTERN_C const Il2CppCodeGenModule g_UnityEngine_AIModule_CodeGenModule;

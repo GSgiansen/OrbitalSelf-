@@ -107,12 +107,11 @@ public class CameraController : MonoBehaviour
         {
             treeSpawned = true;
             target = treeObject.transform;
-            UnityMessageManager.Instance.SendMessageToFlutter("treeSpawned");
+            //UnityMessageManager.Instance.SendMessageToFlutter("treeSpawned");
         }
         else
         {
             treeSpawned = false;
-            target = GameObject.Find("Island").transform;
             UnityMessageManager.Instance.SendMessageToFlutter("treeDespawned");
         }
     }

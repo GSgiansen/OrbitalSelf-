@@ -104,11 +104,11 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
 
     //local pat file
     Directory appDir = await getApplicationDocumentsDirectory();
-    String localPath = '${appDir.path}/scene.json';
-
+    String localPath = '${appDir.path}/scene1.json';
+    print(jsonstring);
     // Create the JSON file
     File jsonFile = File(localPath);
-    await jsonFile.writeAsString(jsonString);
+    await jsonFile.writeAsString(jsonstring);
 
     try {
       // Upload raw data.
@@ -224,9 +224,10 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   void onUnityMessage(message) {
     print('Received message from unity: ${message.toString()}');
     if (message.substring(0, 6) == 'upload') {
-      print(message.substring(0, 6));
+      print(message.substring(6));
       var jsonString = message.substring(6);
       uploadJSONfromUnity(jsonString);
+      print("made it here");
     }
 
     //_unityWidgetController?.postMessage('LoadScene', 'SampleScene', '');
@@ -236,11 +237,7 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   void onUnityCreated(controller) {
     setState(() {
       _unityWidgetController = controller;
-    _unityWidgetController
-        ?.postMessage('GameObject', 'OnMessage', jsonString)
-        ?.then(
-          (value) => print("loaded new scene rendered"),
-        );
+      loadSceneFromFirebase(_unityWidgetController, jsonString);
     });
   }
 

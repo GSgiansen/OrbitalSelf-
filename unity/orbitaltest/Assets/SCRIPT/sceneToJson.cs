@@ -1,94 +1,67 @@
 using UnityEngine;
-using UnityEditor;
-using System.IO;
 using System.Collections.Generic;
+using System.Text;
 using FlutterUnityIntegration;
-
 public class SceneToJsonConverter : MonoBehaviour
 {
-    //[MenuItem("Tools/Save Scene to JSON")]
-    
-    public void  Start(){
+    void Start() {
         UnityMessageManager.Instance.OnMessage += OnMessage;
-
-    }
-    private static void SaveSceneToJson()
-    {
-        // Get the current active scene
-        UnityEngine.SceneManagement.Scene currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-
-        SceneObjectData[] sceneData = new SceneObjectData[currentScene.rootCount];
-
-        // Iterate through all root objects in the scene
-        for (int i = 0; i < currentScene.rootCount ; i++)
-        {
-            if (currentScene.GetRootGameObjects()[i].name == "MainCamera" ||
-                currentScene.GetRootGameObjects()[i].name == "Directional Light" ||
-                currentScene.GetRootGameObjects()[i].name == "GameObject")
-            {
-                continue;
-            }
-
-            GameObject rootObject = currentScene.GetRootGameObjects()[i];
-
-            // Create an object data structure to store the object's information
-            SceneObjectData objectData = new SceneObjectData();
-            objectData.name = rootObject.name;
-            objectData.position = new Position
-            {
-                x = rootObject.transform.position.x,
-                y = rootObject.transform.position.y,
-                z = rootObject.transform.position.z
-            };
-            objectData.rotation = new Quaternion
-            {
-                x = rootObject.transform.rotation.x,
-                y = rootObject.transform.rotation.y,
-                z = rootObject.transform.rotation.z,
-                w = rootObject.transform.rotation.w
-            };
-            objectData.scale = new Vector3
-            {
-                x = rootObject.transform.localScale.x,
-                y = rootObject.transform.localScale.y,
-                z = rootObject.transform.localScale.z
-            };
-
-            /*
-            // Store the components of the object
-            Component[] components = rootObject.GetComponents<Component>();
-            List<ComponentData> componentDataList = new List<ComponentData>();
-            foreach (Component component in components)
-            {
-                ComponentData componentData = new ComponentData
-                {
-                    instanceID = component.GetInstanceID()
-                };
-                componentDataList.Add(componentData);
-            }
-            objectData.components = componentDataList.ToArray();
-            */
-
-            sceneData[i] = objectData;
-            
-        }
-
-        // Serialize the scene data to JSON
-        string sceneJson = JsonHelper.ToJson(sceneData, true);
-
-        // Specify the file path to save the JSON file
-        string filePath = Path.Combine(Application.dataPath, "scene.json");
-        JsonToFlutter helper = new JsonToFlutter();
-        helper.sendJsonToFlutter("upload" + sceneJson);
-        // Write the JSON string to the file
-        File.WriteAllText(filePath, sceneJson);
-
-        Debug.Log("Scene saved as JSON file: " + filePath);
     }
 
     void OnMessage(string message) {
         if (message == "saveScene") {
-            SaveSceneToJson();
+            UnityMessageManager.Instance.SendMessageToFlutter("saveScene");
+            string jsonString = ConvertSceneToJson();
         }
     }
+    public string ConvertSceneToJson()
+    {
+        List<SceneObjectData> sceneObjects = new List<SceneObjectData>();
+
+        // Find all objects in the scene
+        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+        UnityMessageManager.Instance.SendMessageToFlutter("allObjects length is " + allObjects.Length);
+        List<GameObject> parentObjects = new List<GameObject>();
+
+// Iterate through the GameObjects
+foreach (GameObject obj in allObjects)
+{
+    // Check if the GameObject is the top-level parent
+    if (obj.transform.root.gameObject == obj)
+    {
+        // This is the top-level parent GameObject, add it to the list
+        parentObjects.Add(obj);
+    }
 }
+
+
+
+
+
+        foreach (GameObject obj in parentObjects)
+        {
+            UnityMessageManager.Instance.SendMessageToFlutter("obj name is " + obj.name);
+            SceneObjectData objectData = new SceneObjectData();
+            objectData.name = obj.name.Replace("(Clone)", "");
+            objectData.position = new Position(obj.transform.position.x, obj.transform.position.y, obj.transform.position.z);
+            objectData.rotation = obj.transform.rotation;
+            objectData.scale = obj.transform.localScale;
+            objectData.prefabPath = ""; // Set the prefab path if needed
+
+            // Add component data if necessary
+            // objectData.components = GetObjectComponentData(obj);
+
+            sceneObjects.Add(objectData);
+        }
+
+        UnityMessageManager.Instance.SendMessageToFlutter("sceneObjects length is " + sceneObjects.Count);
+
+        // Convert the scene objects to JSON string
+        string jsonString = JsonHelper.ToJson<SceneObjectData>(sceneObjects.ToArray());
+
+        UnityMessageManager.Instance.SendMessageToFlutter("upload" + jsonString);
+
+        return jsonString;
+    }
+}
+

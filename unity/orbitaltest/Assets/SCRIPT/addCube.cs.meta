@@ -3,7 +3,13 @@ guid: 44c6dce285b3145ccb2b9d2df19b5552
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - existingCube: {instanceID: 0}
+  - cubePrefab: {instanceID: 0}
+  - dogPrefab: {fileID: 6049355975015384687, guid: e58f6051c824b48e39151e9ae550f809,
+      type: 3}
+  - plantPrefab: {fileID: 3371103908360940911, guid: ded2bc4c1ea0946b894a2dc01c27179d,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

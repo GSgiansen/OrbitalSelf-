@@ -86,3 +86,28 @@ void saveSceneToFirebase(UnityWidgetController? _unityWidgetController) {
         (value) => print("saved scene to firebase"),
       );
 }
+
+void loadSceneFromFirebase(UnityWidgetController? _unityWidgetController, String jsonstring) {
+  _unityWidgetController
+      ?.postMessage(
+        'GameObject',
+        'OnMessage',
+        jsonstring,
+      )
+      ?.then(
+        (value) => print("loaded scene from firebase"),
+      );
+}
+
+void loadChosenObject(UnityWidgetController? _unityWidgetController, String objectname) {
+  _unityWidgetController
+      ?.postMessage(
+        'Tree(Clone)',
+        'OnMessage',
+        'add' + objectname,
+      )
+      ?.then(
+        (value) => print("loaded ${objectname} from firebase"),
+      );
+
+}

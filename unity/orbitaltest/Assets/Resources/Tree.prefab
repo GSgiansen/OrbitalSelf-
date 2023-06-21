@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3145882663951592064}
   - component: {fileID: 1296833000402102285}
   - component: {fileID: 1567333168076037425}
+  - component: {fileID: -2432949216957513244}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Tree
@@ -106,6 +107,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2432949216957513244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661265704114796932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c6dce285b3145ccb2b9d2df19b5552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  existingCube: {fileID: 1661265704114796932}
+  cubePrefab: {fileID: 1270701489996230061, guid: 3329e1f50e7124ca2a6e14e85b815ab1,
+    type: 3}
+  dogPrefab: {fileID: 6049355975015384687, guid: e58f6051c824b48e39151e9ae550f809,
+    type: 3}
+  plantPrefab: {fileID: 3371103908360940911, guid: ded2bc4c1ea0946b894a2dc01c27179d,
+    type: 3}
+  chairPrefab: {fileID: 2495105774481037469, guid: f4bd7245f00674463965ed41a944218f,
+    type: 3}
 --- !u!1 &5075134820081813776
 GameObject:
   m_ObjectHideFlags: 0
