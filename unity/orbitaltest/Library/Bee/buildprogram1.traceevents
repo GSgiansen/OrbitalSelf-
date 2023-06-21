@@ -1,6 +1,7 @@
 { "pid": 35942, "tid": -1, "ph": "M", "name": "process_name", "args": { "name": "netcorerun.dll" } },
 { "pid": 35942, "tid": -1, "ph": "M", "name": "process_sort_index", "args": { "sort_index": "-1" } },
 { "pid": 35942, "tid": 1, "ph": "M", "name": "thread_name", "args": { "name": "" } },
+<<<<<<< HEAD
 { "pid": 35942, "tid": 1, "ts": 1687270264197778, "dur": 736599, "ph": "X", "name": "BuildProgram", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1687270264199907, "dur": 78977, "ph": "X", "name": "BuildProgramContextConstructor", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1687270264295086, "dur": 535192, "ph": "X", "name": "RunBuildProgram", "args": {} },
@@ -15,3 +16,19 @@
 { "pid": 35942, "tid": 1, "ts": 1687270264853492, "dur": 40472, "ph": "X", "name": "JsonToString", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1687270264943441, "dur": 1908, "ph": "X", "name": "", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1687270264942898, "dur": 2830, "ph": "X", "name": "Write chrome-trace events", "args": {} },
+=======
+{ "pid": 35942, "tid": 1, "ts": 1687369427370597, "dur": 922152, "ph": "X", "name": "BuildProgram", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369427372661, "dur": 80106, "ph": "X", "name": "BuildProgramContextConstructor", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369427467080, "dur": 748182, "ph": "X", "name": "RunBuildProgram", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369427467700, "dur": 444924, "ph": "X", "name": "PlayerBuildProgramBase.SetupPlayerBuild", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369427468627, "dur": 46180, "ph": "X", "name": "SetupDataFiles", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369427515717, "dur": 89899, "ph": "X", "name": "SetupCopyPlugins", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369427609015, "dur": 299561, "ph": "X", "name": "SetupUnityLinker", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369427930482, "dur": 47118, "ph": "X", "name": "SetupIl2CppIdeCommandLine", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369427932314, "dur": 44753, "ph": "X", "name": "SetupIl2Cpp", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369428235451, "dur": 4957, "ph": "X", "name": "OutputData.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369428240411, "dur": 52300, "ph": "X", "name": "Backend.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369428242310, "dur": 39936, "ph": "X", "name": "JsonToString", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369428302159, "dur": 2096, "ph": "X", "name": "", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1687369428301595, "dur": 3318, "ph": "X", "name": "Write chrome-trace events", "args": {} },
+>>>>>>> main

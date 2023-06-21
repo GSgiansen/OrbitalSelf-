@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/pages/pomodoro.dart';
 import 'package:orbital_test_space/pages/sleep.dart';
@@ -5,69 +6,141 @@ import 'package:orbital_test_space/pages/todo.dart';
 import 'package:orbital_test_space/pages/water.dart';
 
 class MyHealthPage extends StatelessWidget {
-  const MyHealthPage({super.key});
+  const MyHealthPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GridView.count(
-        crossAxisCount: 2,
-        padding: const EdgeInsets.all(16.0),
-        childAspectRatio: 8.0 / 9.0,
-        mainAxisSpacing: 16.0,
-        crossAxisSpacing: 16.0,
-        children: <Widget>[
-          _HealthCard(
-            title: 'Pomodoro',
-            icon: Icons.alarm,
-            color: Colors.orangeAccent,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => PomodoroTimerPage()));
-            },
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('web/health.png'),
+            fit: BoxFit.cover,
           ),
-          _HealthCard(
-            title: 'Sleep Log',
-            icon: Icons.bedtime,
-            color: Colors.purpleAccent,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SleepLoggingPage()));
-            },
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 16),
+              _buildTitleBox('Health'),
+              SizedBox(height: 20.0),
+              _buildProgress('Sleep', 0.5),
+              SizedBox(height: 16),
+              _buildProgress('Water', 0.5),
+              SizedBox(height: 16),
+              _buildProgress('Productivity', 0.5),
+              SizedBox(height: 77.0),
+              Column(
+                children: [
+                  _buildTitleBox('Tools'),
+                  SizedBox(height: 20.0),
+                  GridView.count(
+                    crossAxisCount: 2,
+                    childAspectRatio: 18.0 / 9.0,
+                    mainAxisSpacing: 5.0,
+                    crossAxisSpacing: 5.0,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    children: <Widget>[
+                      _HealthCard(
+                        title: 'Pomodoro',
+                        imagePath: 'web/timer.png',
+                        color: Color(0xffffdf88),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PomodoroTimerPage()));
+                        },
+                      ),
+                      _HealthCard(
+                        title: 'Sleep',
+                        imagePath: 'web/sleep.png',
+                        color: Color(0xffffdf88),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SleepLoggingPage()));
+                        },
+                      ),
+                      _HealthCard(
+                        title: 'Water',
+                        imagePath: 'web/water.png',
+                        color: Color(0xffffdf88),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => WaterIntakeApp()));
+                        },
+                      ),
+                      _HealthCard(
+                        title: 'To Do List',
+                        imagePath: 'web/book.png',
+                        color: Color(0xffffdf88),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ToDoPage()));
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 60),
+              Padding(
+                  padding: EdgeInsets.only(left: 150),
+                  child: Container(
+                      height: 30,
+                      width: 200,
+                      child: AnimatedTextKit(
+                        repeatForever: true,
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                              "Today's goal: Complete 3 pomodoro sessions."),
+                        ],
+                      )))
+            ],
           ),
-          _HealthCard(
-            title: 'Water Log',
-            icon: Icons.local_drink,
-            color: Colors.blueAccent,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => WaterIntakeApp()));
-            },
-          ),
-          _HealthCard(
-              title: 'To Do List',
-              icon: Icons.calendar_month,
-              color: Colors.green,
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ToDoPage()));
-              })
-          // add more cards as needed
-        ],
+        ),
       ),
+    );
+  }
+
+  Widget _buildTitleBox(String title) {
+    return Container(
+      decoration: BoxDecoration(color: Colors.transparent),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(title, style: TextStyle(fontSize: 20, color: Colors.white)),
+      ),
+    );
+  }
+
+  Widget _buildProgress(String label, double progress) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(label),
+        SizedBox(height: 20, child: LinearProgressIndicator(value: progress))
+      ],
     );
   }
 }
 
 class _HealthCard extends StatelessWidget {
   final String title;
-  final IconData icon;
+  final String imagePath;
   final Color color;
   final VoidCallback onPressed;
 
   const _HealthCard({
     required this.title,
-    required this.icon,
+    required this.imagePath,
     required this.color,
     required this.onPressed,
   });
@@ -87,13 +160,14 @@ class _HealthCard extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Icon(icon, size: 80, color: Colors.white),
+                Image.asset(
+                  imagePath,
+                  width: 60,
+                  height: 60,
+                ),
                 Text(
                   title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall
-                      ?.copyWith(color: Colors.white),
+                  style: TextStyle(fontSize: 20, color: Color(0xFF595b70)),
                   maxLines: 1,
                 ),
               ],
