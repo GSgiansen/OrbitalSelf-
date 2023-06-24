@@ -3,14 +3,17 @@ class Task {
   final String title;
   final String description;
   final String category;
+  final DateTime dateTime;
   bool isDone;
 
-  Task(
-      {required this.id,
-      required this.title,
-      required this.description,
-      required this.category,
-      required this.isDone});
+  Task({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.category,
+    required this.dateTime,
+    required this.isDone,
+  });
 
   factory Task.fromJson(Map<String, dynamic> json) {
     return Task(
@@ -18,6 +21,9 @@ class Task {
       title: json['title'],
       description: json['description'],
       category: json['category'],
+      dateTime: json['datetime'] != null
+          ? DateTime.parse(json['datetime'])
+          : DateTime.now(), // Provide a default value if it's null
       isDone: json['isDone'],
     );
   }
@@ -28,6 +34,7 @@ class Task {
       'title': title,
       'description': description,
       'category': category,
+      'datetime': dateTime.toString(),
       'isDone': isDone,
     };
   }

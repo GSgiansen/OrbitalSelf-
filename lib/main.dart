@@ -32,14 +32,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider(
         create: (context) => TaskProvider(),
         child: MaterialApp(
           theme: ThemeData(
             textTheme:
                 const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.green,
           ),
           home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
@@ -66,9 +65,8 @@ class MyApp extends StatelessWidget {
                     }
                   }
                 }
-              } 
-                return const MyCoverPage(title: "Self++");
-
+              }
+              return const MyCoverPage(title: "Self++");
             },
           ),
         ));
@@ -104,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<DocumentSnapshot> getUserData() async {
     // Fetch user data from Firebase
-    
+
     DocumentSnapshot snapshot = await FirebaseFirestore.instance
         .collection('users')
         .doc(widget.user!.email)

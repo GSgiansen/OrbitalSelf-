@@ -11,7 +11,8 @@ class TaskProvider with ChangeNotifier {
 
   var uuid = Uuid();
 
-  void addTask(String title, String description, String category) {
+  void addTask(
+      String title, String description, String category, DateTime dateTime) {
     _tasks.insert(
       0,
       Task(
@@ -19,6 +20,7 @@ class TaskProvider with ChangeNotifier {
         title: title,
         description: description,
         category: category,
+        dateTime: dateTime,
         isDone: false,
       ),
     );
@@ -41,8 +43,10 @@ class TaskProvider with ChangeNotifier {
   void loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> stringTasks = prefs.getStringList('tasks') ?? [];
-    _tasks =
-        stringTasks.map((item) => Task.fromJson(jsonDecode(item))).toList();
+    _tasks = stringTasks.map((item) {
+      Map<String, dynamic> jsonTask = jsonDecode(item);
+      return Task.fromJson(jsonTask);
+    }).toList();
     notifyListeners();
   }
 
