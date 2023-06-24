@@ -34,10 +34,12 @@ class _NewTaskPageState extends State<NewTaskPage> {
             TextField(
               controller: titleController,
             ),
+            SizedBox(height: 20),
             Text('Description:'),
             TextField(
               controller: descriptionController,
             ),
+            SizedBox(height: 20),
             Text('Category:'),
             DropdownButton<String>(
               value: dropdownValue,
@@ -55,24 +57,28 @@ class _NewTaskPageState extends State<NewTaskPage> {
                 }
               },
             ),
-            ElevatedButton(
-              onPressed: () {
-                if (titleController.text.isNotEmpty) {
-                  Provider.of<TaskProvider>(context, listen: false).addTask(
-                    titleController.text,
-                    descriptionController.text,
-                    dropdownValue,
-                  );
-                  Navigator.pop(context);
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Please enter a title for the task.'),
-                    ),
-                  );
-                }
-              },
-              child: Text('Add Task'),
+            Center(
+              // Wrap the button with Center widget
+              child: ElevatedButton(
+                onPressed: () {
+                  if (titleController.text.isNotEmpty) {
+                    Provider.of<TaskProvider>(context, listen: false).addTask(
+                      titleController.text,
+                      descriptionController.text,
+                      dropdownValue,
+                      DateTime.now(),
+                    );
+                    Navigator.pop(context);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Please enter a title for the task.'),
+                      ),
+                    );
+                  }
+                },
+                child: Text('Add Task'),
+              ),
             ),
           ],
         ),
