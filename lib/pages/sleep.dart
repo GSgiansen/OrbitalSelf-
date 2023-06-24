@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:orbital_test_space/models/SleepEntry.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:orbital_test_space/models/sleepEntry.dart';
+import 'dart:convert';
 
 class SleepLoggingPage extends StatefulWidget {
   @override
@@ -12,9 +14,29 @@ class SleepLoggingPage extends StatefulWidget {
 }
 
 class _SleepLoggingPageState extends State<SleepLoggingPage> {
-  final List<SleepEntry> _sleepLog = [];
+  List<SleepEntry> _sleepLog = [];
   final TextEditingController _textController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
+  Future<void>? _loadDataFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDataFuture = _loadSleepLog();
+  }
+
+  Future<void> _loadSleepLog() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? stringSleepLogs = prefs.getStringList('sleepLogs');
+    if (stringSleepLogs != null) {
+      setState(() {
+        _sleepLog = stringSleepLogs
+            .map((stringSleepEntry) =>
+                SleepEntry.fromMap(jsonDecode(stringSleepEntry)))
+            .toList();
+      });
+    }
+  }
 
   void _chooseDate() async {
     final DateTime? picked = await showDatePicker(
@@ -23,10 +45,18 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
       firstDate: DateTime(2000, 1),
       lastDate: DateTime.now(),
     );
-    if (picked != null && picked != _selectedDate)
+    if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
       });
+    }
+  }
+
+  Future<void> _saveSleepLog() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> stringSleepLogs =
+        _sleepLog.map((entry) => jsonEncode(entry.toMap())).toList();
+    await prefs.setStringList('sleepLogs', stringSleepLogs);
   }
 
   void _addSleepEntry() {
@@ -56,6 +86,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
                     date: _selectedDate,
                     hoursOfSleep: double.parse(_textController.text),
                   ));
+                  _saveSleepLog();
                 });
                 _textController.clear();
               },
@@ -95,7 +126,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
     if (slope > 0) {
       return 'Great job! You\'re getting more sleep!';
     } else if (slope < 0) {
-      return 'You\'ve been getting less sleep lately. Try to get more sleep to feel refreshed!';
+      return 'You\'ve been getting less sleep lately... Try to get more sleep to feel refreshed!';
     } else if (yIntercept >= 7) {
       return 'You\'re getting at least 7 hours of sleep. Keep it up!';
     } else {
@@ -118,29 +149,55 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
       appBar: AppBar(
         title: Text('Sleep Logging'),
       ),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 40,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('web/sleepui.png'),
+            fit: BoxFit.cover,
           ),
-          SfCartesianChart(
-            primaryXAxis: DateTimeAxis(
-              visibleMinimum: weekAgo,
-              visibleMaximum: today,
+        ),
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 40,
             ),
-            series: <LineSeries>[
-              LineSeries<SleepEntry, DateTime>(
-                dataSource: pastWeekEntries,
-                xValueMapper: (SleepEntry entry, _) => entry.date,
-                yValueMapper: (SleepEntry entry, _) => entry.hoursOfSleep,
-                name: 'Hours of sleep',
-                markerSettings: MarkerSettings(isVisible: true),
-              ),
-            ],
-          ),
-          SizedBox(height: 60),
-          Container(
+            FutureBuilder<void>(
+              future: _loadDataFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return SfCartesianChart(
+                    primaryXAxis: DateTimeAxis(
+                      visibleMinimum: weekAgo,
+                      visibleMaximum: today,
+                      labelStyle: TextStyle(color: Colors.white, fontSize: 14),
+                      majorGridLines: MajorGridLines(width: 0),
+                    ),
+                    primaryYAxis: NumericAxis(
+                      labelStyle: TextStyle(color: Colors.white, fontSize: 14),
+                      majorGridLines: MajorGridLines(width: 0),
+                    ),
+                    series: <LineSeries>[
+                      LineSeries<SleepEntry, DateTime>(
+                        dataSource: pastWeekEntries,
+                        xValueMapper: (SleepEntry entry, _) => entry.date,
+                        yValueMapper: (SleepEntry entry, _) =>
+                            entry.hoursOfSleep,
+                        name: 'Hours of sleep',
+                        color: Colors.white,
+                        width: 2,
+                        markerSettings: MarkerSettings(isVisible: true),
+                      ),
+                    ],
+                  );
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+            ),
+            SizedBox(height: 60),
+            Container(
               width: 200,
+              height: 50,
               child: TextField(
                 controller: _textController,
                 keyboardType: TextInputType.number,
@@ -149,27 +206,50 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
                 ],
                 decoration: InputDecoration(
                   labelText: 'Hours of sleep',
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
-              )),
-          SizedBox(
-            height: 10,
-          ),
-          ElevatedButton(
-            child: Text('Choose date'),
-            onPressed: _chooseDate,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          ElevatedButton(
-            child: Text('Log sleep'),
-            onPressed: _addSleepEntry,
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Text(computeSleepTrendMessage(pastWeekEntries)),
-        ],
+              ),
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  child: Text('Choose date',
+                      style: TextStyle(fontFamily: 'Rotorcap')),
+                  onPressed: _chooseDate,
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff5d6734)),
+                ),
+                SizedBox(width: 10),
+                ElevatedButton(
+                  child: Text('Log sleep',
+                      style: TextStyle(fontFamily: 'Rotorcap')),
+                  onPressed: _addSleepEntry,
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff5d6734)),
+                ),
+              ],
+            ),
+            SizedBox(height: 200),
+            Padding(
+              padding: EdgeInsets.only(left: 130),
+              child: Container(
+                height: 100,
+                width: 200,
+                child: AnimatedTextKit(
+                  repeatForever: true,
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      computeSleepTrendMessage(pastWeekEntries),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

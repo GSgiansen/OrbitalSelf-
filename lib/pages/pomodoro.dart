@@ -114,14 +114,13 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
                               )
                             : Text(
                                 "${_isResting ? "Resting" : "Working"}: ${_currentSession + 1}/$_numSessions")),
-
-                //Transform.scale(
-                //scale: 8,
-                //child: CircularProgressIndicator(
-                //value: _current /
-                //(_isResting ? _startRestTime : _startWorkTime),
-                //valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-                //)),
+                Transform.scale(
+                    scale: 8,
+                    child: CircularProgressIndicator(
+                      value: _current /
+                          (_isResting ? _startRestTime : _startWorkTime),
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                    )),
                 Text(
                   '${_current ~/ 60}:${(_current % 60).toString().padLeft(2, '0')}',
                   style: TextStyle(fontSize: 60),
