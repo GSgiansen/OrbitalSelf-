@@ -283,7 +283,7 @@ class TaskListItem extends StatelessWidget {
               style: task.isDone
                   ? TextStyle(
                       decoration: TextDecoration.lineThrough,
-                      color: Colors.grey,
+                      color: Colors.black,
                     )
                   : null,
             ),
