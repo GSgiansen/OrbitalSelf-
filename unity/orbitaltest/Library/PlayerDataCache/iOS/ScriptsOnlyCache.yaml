@@ -6,15 +6,14 @@ ScriptsOnlyBuild:
     - Rotatecamera
     - addCube
     - changeColor
-    Assembly-CSharp-Editor.dll:
-    - ReadmeEditor
     Assembly-CSharp.dll:
     - CameraController
     - FlutterUnityIntegration.UnityMessageManager
     - JsonLoader
-    - Readme
     - Rotatecamera
     - SceneToJsonConverter
+    - addCube
+    - changeColor
     Unity.AdaptivePerformance.Editor.dll:
     - UnityEditor.AdaptivePerformance.Editor.AdaptivePerformanceGeneralSettingsPerBuildTarget
     Unity.AdaptivePerformance.dll:
@@ -61,19 +60,19 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 18338}
+      Script: {instanceID: 18344}
     - Class: 114
-      Script: {instanceID: 18528}
+      Script: {instanceID: 18534}
     - Class: 114
-      Script: {instanceID: 19224}
+      Script: {instanceID: 19232}
     - Class: 114
-      Script: {instanceID: 20196}
+      Script: {instanceID: 20210}
     - Class: 114
-      Script: {instanceID: 20200}
+      Script: {instanceID: 20214}
     - Class: 114
-      Script: {instanceID: 22286}
+      Script: {instanceID: 22306}
     - Class: 114
-      Script: {instanceID: 22380}
+      Script: {instanceID: 22402}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -701,6 +700,12 @@ ScriptsOnlyBuild:
     className: GlobalMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 892b5093967522535ba980d28ce42084
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Slider
+  - hash:
+      serializedVersion: 2
       Hash: 41ac98c9880a6f3758ca69dbaa1e7777
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -1037,7 +1042,7 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
-      Hash: e0bfb8286090b920591ca5ee34e4618d
+      Hash: b0b96636c1e59436fae776b7ff38bded
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: addCube
@@ -1167,12 +1172,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 892b5093967522535ba980d28ce42084
-    assemblyName: UnityEngine.UI
-    namespaceName: UnityEngine.UI
-    className: Slider
   platform: 9
   scenePathNames:
   - Assets/Scenes/blank.unity

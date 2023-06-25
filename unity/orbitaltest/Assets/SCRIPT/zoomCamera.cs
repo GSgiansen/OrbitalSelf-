@@ -112,7 +112,8 @@ public class CameraController : MonoBehaviour
         else
         {
             treeSpawned = false;
-            UnityMessageManager.Instance.SendMessageToFlutter("treeDespawned");
+            //UnityMessageManager.Instance.SendMessageToFlutter("treeNotpawned");
+
         }
     }
 }

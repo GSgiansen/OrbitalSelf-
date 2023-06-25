@@ -4625,6 +4625,7 @@ struct addCube_t54073F12AB540103852061131E32B4FBEE9F4884  : public MonoBehaviour
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___dogPrefab;
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___plantPrefab;
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___chairPrefab;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___catPrefab;
 };
 struct changeColor_tD0F3C37D18D9ACF6C09D5A84FAB68A1AF7B4D81B  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
@@ -5897,9 +5898,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6377[4] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6379[1] = 
 {
 	static_cast<int32_t>(offsetof(Rotate_t3280DFA30ADF04B60D2B142844F3B2364A472EAE, ___RotateAmount)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6381[5] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6381[6] = 
 {
-	static_cast<int32_t>(offsetof(addCube_t54073F12AB540103852061131E32B4FBEE9F4884, ___existingCube)),static_cast<int32_t>(offsetof(addCube_t54073F12AB540103852061131E32B4FBEE9F4884, ___cubePrefab)),static_cast<int32_t>(offsetof(addCube_t54073F12AB540103852061131E32B4FBEE9F4884, ___dogPrefab)),static_cast<int32_t>(offsetof(addCube_t54073F12AB540103852061131E32B4FBEE9F4884, ___plantPrefab)),static_cast<int32_t>(offsetof(addCube_t54073F12AB540103852061131E32B4FBEE9F4884, ___chairPrefab)),};
+	static_cast<int32_t>(offsetof(addCube_t54073F12AB540103852061131E32B4FBEE9F4884, ___existingCube)),static_cast<int32_t>(offsetof(addCube_t54073F12AB540103852061131E32B4FBEE9F4884, ___cubePrefab)),static_cast<int32_t>(offsetof(addCube_t54073F12AB540103852061131E32B4FBEE9F4884, ___dogPrefab)),static_cast<int32_t>(offsetof(addCube_t54073F12AB540103852061131E32B4FBEE9F4884, ___plantPrefab)),static_cast<int32_t>(offsetof(addCube_t54073F12AB540103852061131E32B4FBEE9F4884, ___chairPrefab)),static_cast<int32_t>(offsetof(addCube_t54073F12AB540103852061131E32B4FBEE9F4884, ___catPrefab)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6382[2] = 
 {
 	static_cast<int32_t>(offsetof(changeColor_tD0F3C37D18D9ACF6C09D5A84FAB68A1AF7B4D81B, ___existingCube)),static_cast<int32_t>(offsetof(changeColor_tD0F3C37D18D9ACF6C09D5A84FAB68A1AF7B4D81B, ___cubePrefab)),};

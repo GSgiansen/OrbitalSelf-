@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 5739091853310314148}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3145882663951592064
 MeshFilter:
@@ -128,6 +128,7 @@ MonoBehaviour:
     type: 3}
   chairPrefab: {fileID: 2495105774481037469, guid: f4bd7245f00674463965ed41a944218f,
     type: 3}
+  catPrefab: {fileID: 87696461381117046, guid: dad9909f622b646ff93a579cd37e8bbc, type: 3}
 --- !u!1 &5075134820081813776
 GameObject:
   m_ObjectHideFlags: 0
