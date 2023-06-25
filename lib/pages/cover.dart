@@ -15,12 +15,9 @@ class _MyCoverPageState extends State<MyCoverPage> {
 
   @override
   Widget build(BuildContext context) {
-    var imgHeight = img.height;
-    var imgWidth = img.width;
     return Scaffold(
         body: Stack(children: <Widget>[
       Container(
-        width: MediaQuery.of(context).size.width * 1.5,
         decoration: const BoxDecoration(
             image: DecorationImage(image: AssetImage('web/forest.jpg'))),
       ),
@@ -49,14 +46,11 @@ class _MyCoverPageState extends State<MyCoverPage> {
             OutlinedButton(
               onPressed: () {
                 showModalBottomSheet(
-                    constraints:
-                        const BoxConstraints(maxHeight: 400, maxWidth: 375),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     context: context,
-                    builder: (context) =>
-                        Loginpopup(imgheight: 400, imgwidth: 375));
+                    builder: (context) => Loginpopup());
                 /* 
                 Navigator.push(
                   context,
@@ -87,8 +81,6 @@ class _MyCoverPageState extends State<MyCoverPage> {
 class Loginpopup extends StatelessWidget {
   Loginpopup({
     super.key,
-    required double imgwidth,
-    required double imgheight,
   });
   double imgwidth = 500;
   double imgheight = 375;
@@ -140,16 +132,11 @@ class Loginpopup extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                     showModalBottomSheet(
-                        constraints:
-                            const BoxConstraints(maxHeight: 400, maxWidth: 375),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         context: context,
-                        builder: (context) => Registerpopup(
-                              imgwidth: 400,
-                              imgheight: 375,
-                            ));
+                        builder: (context) => Registerpopup());
                     /*
                     Navigator.push(
                         context,
@@ -172,8 +159,6 @@ class Loginpopup extends StatelessWidget {
 class Registerpopup extends StatelessWidget {
   Registerpopup({
     super.key,
-    required double imgwidth,
-    required double imgheight,
   });
   double imgwidth = 500;
   double imgheight = 375;
@@ -225,16 +210,11 @@ class Registerpopup extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                     showModalBottomSheet(
-                        constraints:
-                            const BoxConstraints(maxHeight: 400, maxWidth: 375),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         context: context,
-                        builder: (context) => Loginpopup(
-                              imgwidth: 400,
-                              imgheight: 375,
-                            ));
+                        builder: (context) => Loginpopup());
                   },
                   child: const Text('Register',
                       style: TextStyle(

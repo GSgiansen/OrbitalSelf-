@@ -11,8 +11,6 @@ var heightImg = image.width?.toDouble();
 Widget LoginForm(BuildContext context, bool login) {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  
-
   return SingleChildScrollView(
     child: Form(
       child: Container(
@@ -48,18 +46,21 @@ class RegisterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
     return OutlinedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF338a3e)),
-          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-            const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-          ),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25),
+        style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
             ),
-          ),
-        ),
+            foregroundColor: Colors.white,
+            side: const BorderSide(width: 3.0, color: Colors.white),
+            backgroundColor: const Color(0xFF377256),
+            padding:
+                const EdgeInsets.symmetric(vertical: 13.0, horizontal: 30.0),
+            textStyle: TextStyle(
+              fontSize: ratio * height * 0.5,
+              fontFamily: 'Rotorcap',
+            )),
         child: const Text(
           'Register',
           style: TextStyle(color: Colors.white),
@@ -87,20 +88,17 @@ class RegisterButton extends StatelessWidget {
             _emailController.text,
             _passwordController.text,
           )
-              .then(
-                (value) => Authservices.signinUser(
+              .then((value) => Authservices.signinUser(
                     _emailController.text,
                     _passwordController.text,
                   ).then((value) => {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    MyHomePage(user: value))),
+                                builder: (context) => MyHomePage(user: value))),
                         FireStoreFunctions.addNewUser(
                             _emailController.text, _passwordController.text)
-                      })
-                      )
+                      }))
               .then((value) => value == "email-already-in-use"
                   ? ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Email already in use"),
@@ -113,7 +111,6 @@ class RegisterButton extends StatelessWidget {
 }
 
 class LoginButton extends StatelessWidget {
-  
   const LoginButton({
     super.key,
     required TextEditingController emailController,
@@ -169,8 +166,7 @@ class LoginButton extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  MyHomePage(user: value))),
+                              builder: (context) => MyHomePage(user: value))),
                       print('email is ${_emailController.text}'),
                     });
           print('email is ${_emailController.text}');
@@ -196,7 +192,6 @@ class PasswordField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 20),
-
           FittedBox(
             fit: BoxFit.contain,
             child: Text(
@@ -216,7 +211,6 @@ class PasswordField extends StatelessWidget {
               fit: BoxFit.contain,
               child: SizedBox(
                 width: 0.3 * width * 1.3,
-          
                 child: TextFormField(
                   key: const ValueKey('password'),
                   controller: _passwordController,
@@ -225,8 +219,8 @@ class PasswordField extends StatelessWidget {
                     border: InputBorder.none,
                     filled: true,
                     fillColor: const Color(0xFFd9d9d9),
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 12),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(15),
@@ -293,8 +287,8 @@ class EmailField extends StatelessWidget {
                     border: InputBorder.none,
                     filled: true,
                     fillColor: const Color(0xFFd9d9d9),
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 12),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(15),
