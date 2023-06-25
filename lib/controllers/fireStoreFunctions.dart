@@ -69,6 +69,23 @@ class FireStoreFunctions {
         
   }
 
+    static removeOldPurchase(User? user, String item) async {
+    var email = user?.email;
+    
+    return db
+        .collection("users")
+        .doc(email)
+        .update(
+          {
+            "items.${item}.number":FieldValue.increment(-1)
+          }
+        )
+        .then((value) => print("Purchase Removed"))
+        .catchError((error) => print("Failed to add purchase: $error"));
+        
+  }
+
+
   static addNewCurrency(String email, int currency) {
     return db
         .collection("users")

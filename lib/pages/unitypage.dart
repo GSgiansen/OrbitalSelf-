@@ -235,6 +235,8 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
 
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
+    print("creatying unity controller");
+    print(jsonString);
     setState(() {
       _unityWidgetController = controller;
       loadSceneFromFirebase(_unityWidgetController, jsonString);

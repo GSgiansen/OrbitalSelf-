@@ -10,6 +10,8 @@ MonoImporter:
       type: 3}
   - plantPrefab: {fileID: 3371103908360940911, guid: ded2bc4c1ea0946b894a2dc01c27179d,
       type: 3}
+  - chairPrefab: {fileID: 2495105774481037469, guid: f4bd7245f00674463965ed41a944218f,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

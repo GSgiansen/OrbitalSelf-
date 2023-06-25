@@ -19,8 +19,8 @@ public class JsonLoader : MonoBehaviour
     void OnMessage(string message) {
         UnityMessageManager.Instance.SendMessageToFlutter("message is " + message.Substring(0, 27));
         LoadSceneFromJson(message);
-        GameObject cube = Resources.Load("Tree") as GameObject;
-        Instantiate(cube, new Vector3(1, 0.5f, 1), Quaternion.identity);
+        //GameObject cube = Resources.Load("Tree") as GameObject;
+        //Instantiate(cube, new Vector3(1, 0.5f, 1), Quaternion.identity);
         //message would be the json string
         //save the json string to a file
         //load the scene from the file
