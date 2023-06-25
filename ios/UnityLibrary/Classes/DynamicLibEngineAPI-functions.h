@@ -92,7 +92,7 @@ UnityExternCall(void,             UnityNotifyHideHomeButtonChange);
 UnityExternCall(void,             UnityNotifyDeferSystemGesturesChange);
 
 // UI/StoreReview.m
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
 UnityExternCall(bool,             UnityRequestStoreReview);
 #endif
 
@@ -147,7 +147,7 @@ UnityExternCall(void,             UnitySetBrightness, float);
 UnityExternCall(float,            UnityGetBrightness);
 UnityExternCall(bool,             UnityIsFullscreen);
 
-#if SUPPORT_MULTIPLE_DISPLAYS || PLATFORM_IOS
+#if SUPPORT_MULTIPLE_DISPLAYS || PLATFORM_IOS || PLATFORM_BRATWURST
 UnityExternCall(int,              UnityDisplayManager_DisplayCount);
 UnityExternCall(void,             UnityDisplayManager_DisplayRenderingResolution, void*, int*, int*);
 UnityExternCall(int,              UnityDisplayManager_PrimaryDisplayIndex);

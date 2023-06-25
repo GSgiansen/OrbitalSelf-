@@ -6,7 +6,6 @@ import 'package:orbital_test_space/main.dart';
 import 'package:orbital_test_space/models/item.dart';
 
 class ShopCard extends StatelessWidget {
-  final int cost = 110;
   final User? user;
   CurrencyNotifier currencyNotifier;
   ItemsOwned itemsOwned;
@@ -20,6 +19,7 @@ class ShopCard extends StatelessWidget {
   //test data with Item Object
   @override
   Widget build(BuildContext context) {
+    final cost = item.price;
     return Center(
       child: Card(
         child: Padding(
@@ -55,9 +55,13 @@ class ShopCard extends StatelessWidget {
                                 insufficientFunds(context),
                             context: context);
                       } else {
+                        print(cost);
+                        print(currencyNotifier.currency.value);
+
                         currencyNotifier.decreaseCurrency(cost);
                         FireStoreFunctions.removeOldCurrency(user, currencyNotifier.currency.value as int);
                         FireStoreFunctions.addNewPurchase(user, item.name);
+                        print(item.name);
                         itemsOwned.addItem(item);
                         print("Currency is ${currencyNotifier.currency.value}");
                         

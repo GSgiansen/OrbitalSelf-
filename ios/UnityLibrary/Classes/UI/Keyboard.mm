@@ -27,7 +27,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     // in case of multi-line input we use UITextView with UIToolbar as accessory view
     // tvOS does not support multiline input thus only UITextField option is implemented
     // tvOS does not support UIToolbar so we rely on tvOS default processing
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
     UITextView*     textView;
 
     UIToolbar*      viewToolbar;
@@ -92,7 +92,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     return YES;
 }
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
 - (void)textInputModeDidChange:(NSNotification*)notification
 {
     [self setPendingSelectionRequest];
@@ -159,7 +159,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     return YES;
 }
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
@@ -265,7 +265,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     _keyboard = nil;
 }
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
 - (UIToolbar*)createToolbarWithItems:(NSArray*)items
 {
     UIToolbar* toolbar = [[UIToolbar alloc] initWithFrame: CGRectMake(0, 840, 320, kToolBarHeight)];
@@ -321,7 +321,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     self = [super init];
     if (self)
     {
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
         textView = [[UITextView alloc] initWithFrame: CGRectMake(0, 840, 480, 30)];
         textView.delegate = self;
         textView.font = [UIFont systemFontOfSize: 18.0];
@@ -339,17 +339,17 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
         textField.font = [UIFont systemFontOfSize: kSingleLineFontSize];
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
         widthConstraint = [NSLayoutConstraint constraintWithItem: textField attribute: NSLayoutAttributeWidth relatedBy: NSLayoutRelationEqual toItem: nil attribute: NSLayoutAttributeNotAnAttribute multiplier: 1.0 constant: textField.frame.size.width];
         [textField addConstraint: widthConstraint];
 #endif
         [textField addTarget: self action: @selector(textFieldDidChange:) forControlEvents: UIControlEventEditingChanged];
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
         [self createToolbars];
 #endif
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
         [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object: nil];
         [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardDidShow:) name: UIKeyboardDidShowNotification object: nil];
         [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object: nil];
@@ -428,7 +428,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
     _characterLimit = param.characterLimit;
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
     _multiline = param.multiline;
     if (_multiline)
     {
@@ -522,7 +522,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     _active = editView.isFirstResponder;
     editView.hidden = YES;
 
-    #if PLATFORM_IOS
+    #if PLATFORM_IOS || PLATFORM_BRATWURST
     viewToolbar.hidden = YES;
     #endif
 
@@ -549,7 +549,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
     textField.returnKeyType = _inputHidden ? UIReturnKeyDone : UIReturnKeyDefault;
 
-    #if PLATFORM_IOS
+    #if PLATFORM_IOS || PLATFORM_BRATWURST
     viewToolbar.hidden  = !_multiline || _inputHidden ? YES : NO;
     #endif
     editView.hidden     = _inputHidden ? YES : NO;
@@ -557,7 +557,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
     [self setTextInputTraits: textField withParam: cachedKeyboardParam];
 }
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
 - (void)positionInput:(CGRect)kbRect x:(float)x y:(float)y
 {
     const float safeAreaInsetLeft = [UnityGetGLView() safeAreaInsets].left;
@@ -669,7 +669,7 @@ extern "C" void UnityKeyboard_LayoutChanged(NSString* layout);
 
 - (void)setText:(NSString*)newText
 {
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
     if (_multiline)
         textView.text = newText;
     else
@@ -761,7 +761,7 @@ static bool StringContainsEmoji(NSString *string);
 
         NSString* newText = [currentText stringByReplacingCharactersInRange: range withString: newReplacementText];
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
         if (_multiline)
             [textView setText: newText];
         else
@@ -787,7 +787,7 @@ static bool StringContainsEmoji(NSString *string);
         if (_inputHidden && _hiddenSelection.length > 0)
         {
             NSString* newText = [currentText stringByReplacingCharactersInRange: _hiddenSelection withString: text_];
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
             if (_multiline)
                 [textView setText: newText];
             else

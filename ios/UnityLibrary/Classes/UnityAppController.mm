@@ -46,7 +46,7 @@ UnityAppController* GetAppController()
 bool _ios81orNewer = false, _ios82orNewer = false, _ios83orNewer = false, _ios90orNewer = false, _ios91orNewer = false;
 bool _ios100orNewer = false, _ios101orNewer = false, _ios102orNewer = false, _ios103orNewer = false;
 bool _ios110orNewer = false, _ios111orNewer = false, _ios112orNewer = false;
-bool _ios130orNewer = false, _ios140orNewer = false;
+bool _ios130orNewer = false, _ios140orNewer = false, _ios150orNewer = false, _ios160orNewer = false;
 
 // was unity rendering already inited: we should not touch rendering while this is false
 bool    _renderingInited        = false;
@@ -477,12 +477,6 @@ extern "C" void UnityCleanupTrampoline()
     _didResignActive = true;
 }
 
-- (void)applicationDidReceiveMemoryWarning:(UIApplication*)application
-{
-    ::printf("WARNING -> applicationDidReceiveMemoryWarning()\n");
-    UnityLowMemory();
-}
-
 - (void)applicationWillTerminate:(UIApplication*)application
 {
     ::printf("-> applicationWillTerminate()\n");
@@ -605,7 +599,8 @@ void UnityInitTrampoline()
     _ios90orNewer  = CHECK_VER(@"9.0");  _ios91orNewer  = CHECK_VER(@"9.1");
     _ios100orNewer = CHECK_VER(@"10.0"); _ios101orNewer = CHECK_VER(@"10.1"); _ios102orNewer = CHECK_VER(@"10.2"); _ios103orNewer = CHECK_VER(@"10.3");
     _ios110orNewer = CHECK_VER(@"11.0"); _ios111orNewer = CHECK_VER(@"11.1"); _ios112orNewer = CHECK_VER(@"11.2");
-    _ios130orNewer  = CHECK_VER(@"13.0"); _ios140orNewer = CHECK_VER(@"14.0");
+    _ios130orNewer  = CHECK_VER(@"13.0"); _ios140orNewer = CHECK_VER(@"14.0"); _ios150orNewer = CHECK_VER(@"15.0");
+    _ios160orNewer = CHECK_VER(@"16.0");
 #undef CHECK_VER
 
     AddNewAPIImplIfNeeded();
@@ -630,6 +625,8 @@ extern "C" bool UnityiOS111orNewer() { return _ios111orNewer; }
 extern "C" bool UnityiOS112orNewer() { return _ios112orNewer; }
 extern "C" bool UnityiOS130orNewer() { return _ios130orNewer; }
 extern "C" bool UnityiOS140orNewer() { return _ios140orNewer; }
+extern "C" bool UnityiOS150orNewer() { return _ios150orNewer; }
+extern "C" bool UnityiOS160orNewer() { return _ios160orNewer; }
 
 // sometimes apple adds new api with obvious fallback on older ios.
 // in that case we simply add these functions ourselves to simplify code

@@ -1202,6 +1202,14 @@
           }
         }
       },
+      "Bee.Stevedore.Program/0.0.0.0": {
+        "runtime": {
+          "Bee.Stevedore.Program.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "Mono.Cecil.Rocks/0.10.0.0": {
         "runtime": {
           "Mono.Cecil.Rocks.dll": {
@@ -1237,14 +1245,6 @@
       "Bee.VisualStudioSolution/0.0.0.0": {
         "runtime": {
           "Bee.VisualStudioSolution.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "Bee.Stevedore.Program/0.0.0.0": {
-        "runtime": {
-          "Bee.Stevedore.Program.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -1558,6 +1558,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Bee.Stevedore.Program/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Mono.Cecil.Rocks/0.10.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1579,11 +1584,6 @@
       "sha512": ""
     },
     "Bee.VisualStudioSolution/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Bee.Stevedore.Program/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

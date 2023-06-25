@@ -249,7 +249,7 @@ CGRect ComputeSafeArea(UIView* view)
     float insetLeft = insets.left, insetBottom = insets.bottom;
     float insetWidth = insetLeft + insets.right, insetHeight = insetBottom + insets.top;
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
     // pre-iOS 15 there is a bug with safeAreaInsets when coupled with the way unity handles forced orientation
     // when we create/show new ViewController with fixed orientation, safeAreaInsets include status bar always
     // alas, we did not find a good way to work around that (this can be seen even in View Debugging: Safe Area would have status bar accounted for)

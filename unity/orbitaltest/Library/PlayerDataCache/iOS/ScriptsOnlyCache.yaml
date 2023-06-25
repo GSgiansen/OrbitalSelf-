@@ -6,10 +6,13 @@ ScriptsOnlyBuild:
     - Rotatecamera
     - addCube
     - changeColor
+    Assembly-CSharp-Editor.dll:
+    - ReadmeEditor
     Assembly-CSharp.dll:
     - CameraController
     - FlutterUnityIntegration.UnityMessageManager
     - JsonLoader
+    - Readme
     - Rotatecamera
     - SceneToJsonConverter
     Unity.AdaptivePerformance.Editor.dll:
@@ -58,19 +61,19 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 18328}
+      Script: {instanceID: 18338}
     - Class: 114
-      Script: {instanceID: 18518}
+      Script: {instanceID: 18528}
     - Class: 114
-      Script: {instanceID: 19218}
+      Script: {instanceID: 19224}
     - Class: 114
       Script: {instanceID: 20196}
     - Class: 114
       Script: {instanceID: 20200}
     - Class: 114
-      Script: {instanceID: 22290}
+      Script: {instanceID: 22286}
     - Class: 114
-      Script: {instanceID: 22386}
+      Script: {instanceID: 22380}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -698,12 +701,6 @@ ScriptsOnlyBuild:
     className: GlobalMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 892b5093967522535ba980d28ce42084
-    assemblyName: UnityEngine.UI
-    namespaceName: UnityEngine.UI
-    className: Slider
-  - hash:
-      serializedVersion: 2
       Hash: 41ac98c9880a6f3758ca69dbaa1e7777
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -1170,7 +1167,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 892b5093967522535ba980d28ce42084
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: Slider
   platform: 9
   scenePathNames:
   - Assets/Scenes/blank.unity
-  playerPath: /Users/tangiansen/Desktop/MobileAppDev.nosync/orbital_test_space/ios/UnityLibrary
+  playerPath: /Users/tangiansen/Desktop/development/OrbitalSelf-/ios/UnityLibrary

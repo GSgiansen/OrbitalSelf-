@@ -34,10 +34,11 @@ class FireStoreFunctions {
 
   static addNewUser(String email, String password) {
     Map<String, dynamic> itemsMap = {
-    'cat': {'name': 'Cat', 'number': 3},
-    'dog': {'name': 'Dog', 'number': 5},
-    'plant': {'name': 'Plant', 'number': 1},
-    'chair': {'name': 'Chair', 'number': 2},
+    'chair': {'name': 'Chair', 'number': 0},
+    'cat': {'name': 'Cat', 'number': 0},
+    'dog': {'name': 'Dog', 'number': 0},
+    'plant': {'name': 'Plant', 'number': 0},
+    
   };
     return db
        .collection("users")

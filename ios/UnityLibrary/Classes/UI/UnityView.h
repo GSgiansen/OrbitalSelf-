@@ -45,7 +45,7 @@
 - (void)boundsUpdated;
 @end
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
     #include "UnityView+iOS.h"
 #elif PLATFORM_TVOS
     #include "UnityView+tvOS.h"

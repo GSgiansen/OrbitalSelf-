@@ -43,16 +43,19 @@
 #define PLATFORM_IOS 1
     #define PLATFORM_OSX    0
 #define PLATFORM_TVOS 0
+#define PLATFORM_BRATWURST 0
 #elif defined(TARGET_OS_OSX) && TARGET_OS_OSX
 #define PLATFORM_IOS 1
     #define PLATFORM_OSX    1
 #define PLATFORM_TVOS 0
+#define PLATFORM_BRATWURST 0
 #elif defined(TARGET_OS_TV) && TARGET_OS_TV
 #define PLATFORM_IOS 1
     #define PLATFORM_OSX    0
 #define PLATFORM_TVOS 0
+#define PLATFORM_BRATWURST 0
 #else
-    #error one of TARGET_OS_IOS, TARGET_OS_OSX, TARGET_OS_TV should be defined
+    #error one of TARGET_OS_IOS, TARGET_OS_OSX, TARGET_OS_TV (add bratwurst code here) should be defined
 #endif
 
 
@@ -192,7 +195,7 @@
     #define UNITY_TVOS_ORIENTATION landscapeLeft
 #endif
 
-#if PLATFORM_IOS || PLATFORM_TVOS
+#if PLATFORM_IOS || PLATFORM_TVOS || PLATFORM_BRATWURST
     #define UNITY_REPLAY_KIT_AVAILABLE UNITY_USES_REPLAY_KIT
 #else
     #define UNITY_REPLAY_KIT_AVAILABLE 0
