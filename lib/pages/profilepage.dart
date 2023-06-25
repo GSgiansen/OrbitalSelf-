@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:orbital_test_space/pages/login.dart';
+import 'package:orbital_test_space/pages/cover.dart';
 import 'package:orbital_test_space/pages/purchasehistory.dart';
 import 'package:orbital_test_space/pages/unitypage.dart';
 
@@ -36,12 +36,6 @@ class _ProfilePageState extends State<ProfilePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               ElevatedButton(
-                onPressed: () {
-                },
-                child: const Text('Back'),
-              ),
-              const SizedBox(height: 10),  
-              ElevatedButton(
                 onPressed: () async {
                   await FirebaseAuth.instance
                       .signOut()
@@ -49,12 +43,12 @@ class _ProfilePageState extends State<ProfilePage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const MyLoginPage(title: "login")),
+                                    const MyCoverPage(title: 'test')),
                           ));
                 },
                 child: const Text('get out'),
               ),
-              const SizedBox(height: 10),  
+              const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -67,22 +61,21 @@ class _ProfilePageState extends State<ProfilePage> {
                 },
                 child: const Text('My Items'),
               ),
-              const SizedBox(height: 10),  
+              const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => UnityDemoScreen(
-                        user: widget.user,
-                        currencyNotifier: widget.currencyNotifier,
-                        itemsOwned: widget.itemsOwned,
-                        )),
+                              user: widget.user,
+                              currencyNotifier: widget.currencyNotifier,
+                              itemsOwned: widget.itemsOwned,
+                            )),
                   );
                 },
                 child: const Text('Unity'),
               ),
-
             ],
           ),
         ),

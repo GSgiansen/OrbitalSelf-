@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/header.dart';
@@ -15,6 +14,7 @@ import 'package:provider/provider.dart';
 import 'controllers/fireStoreFunctions.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +32,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context,
+        designSize: const Size(430, 932),
+        minTextAdapt: true,
+        splitScreenMode: false);
     return ChangeNotifierProvider(
         create: (context) => TaskProvider(),
         child: MaterialApp(
