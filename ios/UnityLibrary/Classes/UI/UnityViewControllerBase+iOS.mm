@@ -159,78 +159,92 @@ ScreenOrientation _currentOrientation;
 
 @end
 
-@implementation UnityPortraitOnlyViewController
+@interface UnityFixedOrientationViewController()
+{
+    UIInterfaceOrientation _fixedOrientation;
+}
+
+@end
+
+@implementation UnityFixedOrientationViewController
+
+- (instancetype)initWithOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    self = [super init];
+    if (self) {
+        _fixedOrientation = interfaceOrientation;
+    }
+    return self;
+}
+
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return 1 << UIInterfaceOrientationPortrait;
+    return 1 << _fixedOrientation;
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
-    return UIInterfaceOrientationPortrait;
+    return _fixedOrientation;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [GetAppController() updateAppOrientation: UIInterfaceOrientationPortrait];
+    [GetAppController() updateAppOrientation: _fixedOrientation];
     [super viewWillAppear: animated];
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    // Adding a call to notify about changed orientation. In iOS16 there was a runtime change where view controller
+    // is not fully set up as soon as we make the view controller change in AppController at -transitionToViewController:.
+    // And instead iOS calls this method, in other cases this method is not called. So we want to call
+    // didTransitionToViewController here as this is the place where we get updated orientation.
+    //
+    // NB: Look for additional explanation at UnityAppController+ViewHandling.mm method -transitionToViewController: before
+    // call to same method.
+    [GetAppController() didTransitionToViewController:self fromViewController:self];
+    
+    [super viewWillTransitionToSize: size withTransitionCoordinator: coordinator];
+}
+
+@end
+
+@implementation UnityPortraitOnlyViewController
+
+- (instancetype)init
+{
+    self = [super initWithOrientation:UIInterfaceOrientationPortrait];
+    return self;
 }
 
 @end
 
 @implementation UnityPortraitUpsideDownOnlyViewController
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return 1 << UIInterfaceOrientationPortraitUpsideDown;
-}
 
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+- (instancetype)init
 {
-    return UIInterfaceOrientationPortraitUpsideDown;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [GetAppController() updateAppOrientation: UIInterfaceOrientationPortraitUpsideDown];
-    [super viewWillAppear: animated];
+    self = [super initWithOrientation:UIInterfaceOrientationPortraitUpsideDown];
+    return self;
 }
 
 @end
 
 @implementation UnityLandscapeLeftOnlyViewController
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return 1 << UIInterfaceOrientationLandscapeLeft;
-}
 
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+- (instancetype)init
 {
-    return UIInterfaceOrientationLandscapeLeft;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [GetAppController() updateAppOrientation: UIInterfaceOrientationLandscapeLeft];
-    [super viewWillAppear: animated];
+    self = [super initWithOrientation:UIInterfaceOrientationLandscapeLeft];
+    return self;
 }
 
 @end
 
 @implementation UnityLandscapeRightOnlyViewController
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return 1 << UIInterfaceOrientationLandscapeRight;
-}
 
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+- (instancetype)init
 {
-    return UIInterfaceOrientationLandscapeRight;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [GetAppController() updateAppOrientation: UIInterfaceOrientationLandscapeRight];
-    [super viewWillAppear: animated];
+    self = [super initWithOrientation:UIInterfaceOrientationLandscapeRight];
+    return self;
 }
 
 @end

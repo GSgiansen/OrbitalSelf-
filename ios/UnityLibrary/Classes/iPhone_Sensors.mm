@@ -411,8 +411,9 @@ extern "C" void UnityInitJoysticks()
 
         for (int i = 0; i < BTN_COUNT; i++)
         {
-            char buf[128];
-            sprintf(buf, "joystick button %d", i);
+            const int bufSize = 128;
+            char buf[bufSize];
+            snprintf(buf, bufSize, "joystick button %d", i);
 
             gAggregatedJoystickState[i].buttonCode = UnityStringToKey(buf);
             gAggregatedJoystickState[i].state = false;
@@ -445,8 +446,9 @@ static void HandleAggregatedJoystickState()
 
 static void SetJoystickButtonState(int joyNum, int buttonNum, int state)
 {
-    char buf[128];
-    sprintf(buf, "joystick %d button %d", joyNum, buttonNum);
+    const int bufSize = 128;
+    char buf[bufSize];
+    snprintf(buf, bufSize, "joystick %d button %d", joyNum, buttonNum);
     UnitySetKeyState(UnityStringToKey(buf), state);
     if (state && buttonNum < BTN_COUNT)
     {

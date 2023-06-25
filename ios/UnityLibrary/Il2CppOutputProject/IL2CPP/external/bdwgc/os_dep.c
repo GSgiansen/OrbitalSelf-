@@ -2056,9 +2056,8 @@ void GC_register_data_segments(void)
           if ((word)DATASTART < (word)p)
             GC_add_roots_inner(DATASTART, p, FALSE);
         }
-#     elif defined(HOST_ANDROID) && !defined(DYNAMIC_LOADING) && defined(GC_DONT_REGISTER_MAIN_STATIC_DATA)
-        /* avoid even referencing DATASTART & DATAEND as they are       */
-        /* unnecessary and cause linker errors when bitcode is enabled  */
+#     elif defined(GC_DONT_REGISTER_MAIN_STATIC_DATA)
+        /* avoid referencing DATASTART & DATAEND as they may be invalid */
 #     else
         if ((word)DATASTART - 1U >= (word)DATAEND) {
                                 /* Subtract one to check also for NULL  */

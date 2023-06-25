@@ -20,7 +20,7 @@ extern "C" void InitRenderingMTL()
 static MTLPixelFormat GetColorFormatForSurface(const UnityDisplaySurfaceMTL* surface)
 {
     MTLPixelFormat colorFormat = surface->srgb ? MTLPixelFormatBGRA8Unorm_sRGB : MTLPixelFormatBGRA8Unorm;
-#if PLATFORM_IOS || PLATFORM_TVOS
+#if PLATFORM_IOS || PLATFORM_TVOS || PLATFORM_BRATWURST
     if (surface->wideColor && UnityIsWideColorSupported())
         colorFormat = surface->srgb ? MTLPixelFormatBGR10_XR_sRGB : MTLPixelFormatBGR10_XR;
 #elif PLATFORM_OSX
@@ -41,7 +41,7 @@ static uint32_t GetCVPixelFormatForSurface(const UnityDisplaySurfaceMTL* surface
 {
     // this makes sense only for ios (at least we dont support this on macos)
     uint32_t colorFormat = kCVPixelFormatType_32BGRA;
-#if PLATFORM_IOS || PLATFORM_TVOS
+#if PLATFORM_IOS || PLATFORM_TVOS || PLATFORM_BRATWURST
     if (surface->wideColor && UnityIsWideColorSupported())
         colorFormat = kCVPixelFormatType_30RGB;
 #endif
@@ -120,7 +120,7 @@ extern "C" void CreateSystemRenderingSurfaceMTL(UnityDisplaySurfaceMTL* surface)
             surface->drawableProxyRT[i] = [surface->device newTextureWithDescriptor: txDesc];
             surface->drawableProxyRT[i].label = @"DrawableProxy";
 
-        #if PLATFORM_IOS || PLATFORM_TVOS
+        #if PLATFORM_IOS || PLATFORM_TVOS || PLATFORM_BRATWURST
             [surface->drawableProxyRT[i] setPurgeableState: MTLPurgeableStateEmpty];
         #endif
 
@@ -142,7 +142,7 @@ extern "C" void CreateRenderingSurfaceMTL(UnityDisplaySurfaceMTL* surface)
 
     if (w != surface->systemW || h != surface->systemH || surface->useCVTextureCache)
     {
-#if PLATFORM_IOS || PLATFORM_TVOS
+#if PLATFORM_IOS || PLATFORM_TVOS || PLATFORM_BRATWURST
         if (surface->useCVTextureCache)
             surface->cvTextureCache = CreateCVTextureCache();
 
@@ -223,7 +223,7 @@ extern "C" void CreateSharedDepthbufferMTL(UnityDisplaySurfaceMTL* surface)
     MTLTextureDescriptor* depthTexDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat: pixelFormat width: surface->targetW height: surface->targetH mipmapped: NO];
     depthTexDesc.resourceOptions = MTLResourceStorageModePrivate;
 
-#if PLATFORM_IOS || PLATFORM_TVOS
+#if PLATFORM_IOS || PLATFORM_TVOS || PLATFORM_BRATWURST
     if (surface->memorylessDepth)
         depthTexDesc.storageMode = MTLStorageModeMemoryless;
 #endif
@@ -334,7 +334,7 @@ extern "C" void PresentMTL(UnityDisplaySurfaceMTL* surface)
     if (surface->drawable)
     {
         // for some reason presentDrawable: afterMinimumDuration: is missing from simulator headers completely in xcode 12
-    #if (PLATFORM_IOS || PLATFORM_TVOS) && !(TARGET_IPHONE_SIMULATOR || TARGET_TVOS_SIMULATOR)
+    #if (PLATFORM_IOS || PLATFORM_TVOS || PLATFORM_BRATWURST) && !(TARGET_IPHONE_SIMULATOR || TARGET_TVOS_SIMULATOR)
         const int targetFPS = UnityGetTargetFPS(); assert(targetFPS > 0);
         [UnityCurrentMTLCommandBuffer() presentDrawable: surface->drawable afterMinimumDuration: 1.0 / targetFPS];
         return;

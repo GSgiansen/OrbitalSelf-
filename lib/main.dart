@@ -100,9 +100,17 @@ class _MyHomePageState extends State<MyHomePage> {
   void waitForUserCreation() async {
     if (widget.user != null) {
       await FireStoreFunctions.getCurrentUserCurrency(user: widget.user)
-          .then((value) => widget.currencyNotifier.setValue(value));
+          .then((value) => {
+                if (value != null ) {
+                  widget.currencyNotifier.setValue(value),
+                }
+                else {
+                  widget.currencyNotifier.setValue(0),
+                }
+              });
+          }
     }
-  }
+  
 
   Future<DocumentSnapshot> getUserData() async {
     // Fetch user data from Firebase

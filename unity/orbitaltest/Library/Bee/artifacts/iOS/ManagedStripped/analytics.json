@@ -17,7 +17,7 @@
     "attribute_total_count_require_implementors": 0,
     "attribute_total_count_required_interface": 0,
     "attribute_marked_count_require_attribute_usages": 0,
-    "attribute_total_count_require_attribute_usages": 0,
+    "attribute_total_count_require_attribute_usages": 1,
     "attribute_total_count_dynamic_dependency": 0,
     "attribute_marked_count_dynamic_dependency": 108,
     "attribute_swept_count_dynamic_dependency": -108,

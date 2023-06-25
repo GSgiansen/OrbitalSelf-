@@ -1,4 +1,4 @@
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
 
 #import "UnityView.h"
 #import "UnityAppController+Rendering.h"
@@ -46,4 +46,4 @@ extern bool _unityAppReady;
 
 @end
 
-#endif // PLATFORM_IOS
+#endif // PLATFORM_IOS || PLATFORM_BRATWURST

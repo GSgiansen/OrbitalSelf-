@@ -103,11 +103,12 @@ extern bool _unityAppReady;
 #if UNITY_SUPPORT_ROTATION
     // when transitioning between view controllers ios will not send reorient events (because they are bound to controllers, not view)
     // so we imitate them here so unity view can update its size/orientation
-    [_unityView willRotateToOrientation: UIViewControllerInterfaceOrientation(toController) fromOrientation: ConvertToIosScreenOrientation(_unityView.contentOrientation)];
+    UIInterfaceOrientation newOrientation = UIViewControllerInterfaceOrientation(toController);
+    [_unityView willRotateToOrientation:newOrientation  fromOrientation: ConvertToIosScreenOrientation(_unityView.contentOrientation)];
     [_unityView didRotate];
 
     // NB: this is both important and insane at the same time (that we have several places to keep current orentation and we need to sync them)
-    _curOrientation = UIViewControllerInterfaceOrientation(toController);
+    _curOrientation = newOrientation;
 #endif
 }
 
@@ -204,6 +205,7 @@ extern bool _unityAppReady;
     [UIView setAnimationsEnabled: YES];
 }
 
+#if UNITY_SUPPORT_ROTATION
 - (void)transitionToViewController:(UIViewController*)vc
 {
     [self willTransitionToViewController: vc fromViewController: _rootController];
@@ -234,11 +236,22 @@ extern bool _unityAppReady;
     // third: restore window as key and layout subviews to finalize size changes
     [_window makeKeyAndVisible];
     [_window layoutSubviews];
-
-    [self didTransitionToViewController: vc fromViewController: _rootController];
+    
+    // In iOS16+ after we setup a new contoller and when we have multiple windows visible, iOS not fully prepares
+    // view controller according it's orientation requirements. And then inside didTransitionToViewController:
+    // from UIViewControllerInterfaceOrientation we get bad orientation as it uses scree.coordinationSpace which is not
+    // yet changed. So we want to delay didTransitionToViewController call. And in this case we get a call to view
+    // controllers -viewWillTransitionToSize: method and at this time the orientation change is already happened and
+    // then we send didTransitionToViewController. If view controller changes are setup correctly from iOS, then iOS do
+    // not call -viewWillTransitionToSize:.
+    UIInterfaceOrientation newOrientation = UIViewControllerInterfaceOrientation(vc);
+    BOOL orientationChangedToSupported = vc.supportedInterfaceOrientations & (1 << newOrientation);
+    if ( !UnityiOS160orNewer() || orientationChangedToSupported )
+    {
+        [self didTransitionToViewController: vc fromViewController: _rootController];
+    }
 }
 
-#if UNITY_SUPPORT_ROTATION
 - (void)interfaceWillChangeOrientationTo:(UIInterfaceOrientation)toInterfaceOrientation
 {
     UIInterfaceOrientation fromInterfaceOrientation = _curOrientation;
@@ -256,7 +269,7 @@ extern bool _unityAppReady;
 
 - (void)notifyHideHomeButtonChange
 {
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
     // setNeedsUpdateOfHomeIndicatorAutoHidden is not implemented on iOS 11.0.
     // The bug has been fixed in iOS 11.0.1. See http://www.openradar.me/35127134
     if ([_rootController respondsToSelector: @selector(setNeedsUpdateOfHomeIndicatorAutoHidden)])
@@ -266,7 +279,7 @@ extern bool _unityAppReady;
 
 - (void)notifyDeferSystemGesturesChange
 {
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
     [_rootController setNeedsUpdateOfScreenEdgesDeferringSystemGestures];
 #endif
 }

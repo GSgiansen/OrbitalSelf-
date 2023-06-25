@@ -3,7 +3,7 @@
 #import <UIKit/UIKit.h>
 #import "PluginBase/UnityViewControllerListener.h"
 
-#if PLATFORM_IOS
+#if PLATFORM_IOS || PLATFORM_BRATWURST
     #define UNITY_VIEW_CONTROLLER_BASE_CLASS UIViewController
 #elif PLATFORM_TVOS
     #import <GameController/GCController.h>
@@ -29,6 +29,8 @@
 #include "UnityViewControllerBase+iOS.h"
 #elif PLATFORM_TVOS
 #include "UnityViewControllerBase+tvOS.h"
+#elif PLATFORM_BRATWURST
+#include "UnityViewControllerBase+bratwurst.h"
 #endif
 
 // this should be used to create view controller that plays nicely with unity and account for player settings

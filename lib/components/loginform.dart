@@ -84,7 +84,7 @@ class RegisterButton extends StatelessWidget {
             );
             return;
           }
-          String check = Authservices.createUser(
+          Authservices.createUser(
             _emailController.text,
             _passwordController.text,
           )
