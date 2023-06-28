@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using FlutterUnityIntegration;
 
 public class CameraController : MonoBehaviour
@@ -50,10 +49,10 @@ public class CameraController : MonoBehaviour
         }
 
         // Smoothly move the camera towards the target position
-        transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        //transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
         // Smoothly adjust the orthographic size
-        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetOrthographicSize, zoomSpeed * Time.deltaTime);
+        //Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetOrthographicSize, zoomSpeed * Time.deltaTime);
     }
 
     void OnMessage(string message)
@@ -72,6 +71,8 @@ public class CameraController : MonoBehaviour
     {
         targetPosition = position;
         targetOrthographicSize = orthographicSize;
+        transform.position = targetPosition;
+        Camera.main.orthographicSize = targetOrthographicSize;
     }
 
     public void ZoomIn()
@@ -113,7 +114,6 @@ public class CameraController : MonoBehaviour
         {
             treeSpawned = false;
             //UnityMessageManager.Instance.SendMessageToFlutter("treeNotpawned");
-
         }
     }
 }

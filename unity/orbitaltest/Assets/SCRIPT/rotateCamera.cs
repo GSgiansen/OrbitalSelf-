@@ -1,39 +1,79 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FlutterUnityIntegration;
 
-
-public class Rotatecamera : MonoBehaviour
+public class CameraRotation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField] private Vector3 targetRotation = new Vector3(45f, 0f, 0f); // Set the desired rotation angle
-    public float rotationSpeed = 10f;
+    public Transform target; // The central point of rotation
+    public float rotationSpeed =10f; // Speed of rotation
 
-    void Start()
+    private Vector3 offset; // Distance between camera and target
+    private bool mainIslandFound = false;
+
+    private void Start()
     {
+
+
         UnityMessageManager.Instance.OnMessage += OnMessage;
-
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-    }
-    void OnMessage(string message) {
-        if (message == "RotateCameraLeft")
+        // Check for input from the left arrow key (KeyCode.LeftArrow)
+        SetMainIsland();
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             RotateCamera(-rotationSpeed);
         }
-        else if (message == "RotateCameraRight")
+        // Check for input from the right arrow key (KeyCode.RightArrow)
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             RotateCamera(rotationSpeed);
         }
     }
 
-    public void RotateCamera(float rotationAmount) {
-                // Get the reference to the main camera
-        transform.Rotate(Vector3.up, rotationAmount * Time.deltaTime);
+    public void OnMessage(string message)
+    {
+        if (message == "rotateLeft")
+        {
+            RotateCamera(-rotationSpeed);
+        }
+        else if (message == "rotateRight")
+        {
+            RotateCamera(rotationSpeed);
+        }
     }
 
+    private void RotateCamera(float direction)
+    {
+        // Calculate the desired position in the circular path
+        float angle = Time.time * direction * 4;
+        Vector3 desiredPosition = target.position + Quaternion.Euler(0f, angle, 0f) * offset;
+
+        // Rotate the camera smoothly towards the desired position
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * rotationSpeed);
+
+        // Make the camera look at the target
+        transform.LookAt(target);
+    }
+
+    private void SetMainIsland()
+    {
+        // Get the main island
+        GameObject mainIsland = GameObject.FindWithTag("MainIsland");
+
+        // Set the target to the main island
+        if (mainIsland != null) {
+            target = mainIsland.transform;
+            if (mainIslandFound == false) {
+                UnityMessageManager.Instance.SendMessageToFlutter("mainIslandFound");
+                mainIslandFound = true;
+                Debug.Log("Main island found");
+                offset = transform.position - target.position;
+            }
+
+            
+        }
+    }
 }
+
+

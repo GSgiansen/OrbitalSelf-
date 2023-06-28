@@ -3,17 +3,14 @@ ScriptsOnlyBuild:
     Assembly-CSharp:
     - FlutterUnityIntegration.UnityMessageManager
     - JsonLoader
-    - Rotatecamera
     - addCube
     - changeColor
     Assembly-CSharp.dll:
     - CameraController
+    - CameraRotation
     - FlutterUnityIntegration.UnityMessageManager
     - JsonLoader
-    - Rotatecamera
     - SceneToJsonConverter
-    - addCube
-    - changeColor
     Unity.AdaptivePerformance.Editor.dll:
     - UnityEditor.AdaptivePerformance.Editor.AdaptivePerformanceGeneralSettingsPerBuildTarget
     Unity.AdaptivePerformance.dll:
@@ -72,7 +69,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 22306}
     - Class: 114
-      Script: {instanceID: 22402}
+      Script: {instanceID: 22404}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -1066,10 +1063,10 @@ ScriptsOnlyBuild:
     className: IAdaptivePerformanceSettings
   - hash:
       serializedVersion: 2
-      Hash: d3b41637f3c3bbc203cf194263b93390
+      Hash: c6711b39eae72264db3b1130c46ea660
     assemblyName: Assembly-CSharp
     namespaceName: 
-    className: Rotatecamera
+    className: CameraRotation
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
