@@ -19,7 +19,7 @@ void RotateCameraLeft(UnityWidgetController? _unityWidgetController) {
       ?.postMessage(
         'MainCamera',
         'OnMessage',
-        'RotateCameraLeft',
+        'rotateLeft',
       )
       ?.then(
         (value) => print("rotate camera left"),
@@ -31,7 +31,7 @@ void RotateCameraRight(UnityWidgetController? _unityWidgetController) {
       ?.postMessage(
         'MainCamera',
         'OnMessage',
-        'RotateCameraRight',
+        'rotateRight',
       )
       ?.then(
         (value) => print("rotate camera right"),

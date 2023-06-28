@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5912141852678972900}
   - component: {fileID: 2597188271763011739}
   - component: {fileID: 4271663728501587829}
-  - component: {fileID: 5880640218824855772}
   m_Layer: 0
   m_Name: Abovegras
   m_TagString: Untagged
@@ -119,20 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f0d555a552e429a9e36a2bec4c1faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5880640218824855772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864103732095595561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c76005ad2c44249998a1262d7c52b32c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetRotation: {x: 45, y: 0, z: 0}
-  rotationSpeed: 10
 --- !u!1 &4303787096160430572
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +133,7 @@ GameObject:
   - component: {fileID: 1015022425179644632}
   m_Layer: 0
   m_Name: MainIsland
-  m_TagString: Untagged
+  m_TagString: MainIsland
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +152,7 @@ Transform:
   m_Children:
   - {fileID: 4285578722386053981}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8206883871858486477
 MeshFilter:
