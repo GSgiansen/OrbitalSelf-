@@ -43,6 +43,9 @@ extern void changeColor_OnMessage_m0BA07A5F0DDC0935850A91AE764DAB4ECEBD3668 (voi
 extern void changeColor_UpdateColor_mB747922CE98FF71702D307DCABE38DD2B46094E4 (void);
 extern void changeColor_GenerateCubeToRight_m3F080822A47F3F7C8522C0617FFCD87A79BDEBD9 (void);
 extern void changeColor__ctor_m31295285FCA0F687164DFB8BB421447E044BD1A9 (void);
+extern void ChangeColorOnTouch_Start_mD5149832574ACE3D46718B48B6F4AFF06835E175 (void);
+extern void ChangeColorOnTouch_Update_m4E237AE8078DD2C5128A4705FEABDBE0040DAB40 (void);
+extern void ChangeColorOnTouch__ctor_mE10F948A883E30C52573895B4FECA43CF4C00BC0 (void);
 extern void AssetToJsonConverter_Start_mCA225ED341BC4154B126B10F9DB70D8C61E28325 (void);
 extern void AssetToJsonConverter_ConvertAssetsToJson_mF2EEA39FBE6DCDE781A8D3CA7A3D38979EF20E52 (void);
 extern void AssetToJsonConverter_ExtractAssetData_m085AEFBCAB7ADBE7C755371AB6ABCB1A4504D2DA (void);
@@ -146,7 +149,7 @@ extern void MessageHandlerDelegate__ctor_m287CBD25D77011FC5A52D1090F6CC31353AB63
 extern void MessageHandlerDelegate_Invoke_mD1EC9E1841D5014C40A26D4C4BA076482FFC8A4B (void);
 extern void MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D (void);
 extern void MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16 (void);
-static Il2CppMethodPointer s_methodPointers[151] = 
+static Il2CppMethodPointer s_methodPointers[154] = 
 {
 	NULL,
 	NULL,
@@ -187,6 +190,9 @@ static Il2CppMethodPointer s_methodPointers[151] =
 	changeColor_UpdateColor_mB747922CE98FF71702D307DCABE38DD2B46094E4,
 	changeColor_GenerateCubeToRight_m3F080822A47F3F7C8522C0617FFCD87A79BDEBD9,
 	changeColor__ctor_m31295285FCA0F687164DFB8BB421447E044BD1A9,
+	ChangeColorOnTouch_Start_mD5149832574ACE3D46718B48B6F4AFF06835E175,
+	ChangeColorOnTouch_Update_m4E237AE8078DD2C5128A4705FEABDBE0040DAB40,
+	ChangeColorOnTouch__ctor_mE10F948A883E30C52573895B4FECA43CF4C00BC0,
 	AssetToJsonConverter_Start_mCA225ED341BC4154B126B10F9DB70D8C61E28325,
 	AssetToJsonConverter_ConvertAssetsToJson_mF2EEA39FBE6DCDE781A8D3CA7A3D38979EF20E52,
 	AssetToJsonConverter_ExtractAssetData_m085AEFBCAB7ADBE7C755371AB6ABCB1A4504D2DA,
@@ -300,7 +306,7 @@ static Il2CppMethodPointer s_methodPointers[151] =
 	MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D,
 	MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16,
 };
-static const int32_t s_InvokerIndices[151] = 
+static const int32_t s_InvokerIndices[154] = 
 {
 	0,
 	0,
@@ -338,6 +344,9 @@ static const int32_t s_InvokerIndices[151] =
 	1957,
 	1957,
 	1725,
+	1957,
+	1957,
+	1957,
 	1957,
 	1957,
 	1957,
@@ -457,11 +466,11 @@ static const int32_t s_InvokerIndices[151] =
 static const Il2CppTokenRangePair s_rgctxIndices[6] = 
 {
 	{ 0x02000002, { 0, 29 } },
-	{ 0x02000021, { 38, 11 } },
-	{ 0x06000031, { 29, 3 } },
-	{ 0x06000032, { 32, 3 } },
-	{ 0x06000033, { 35, 3 } },
-	{ 0x0600007D, { 49, 2 } },
+	{ 0x02000022, { 38, 11 } },
+	{ 0x06000034, { 29, 3 } },
+	{ 0x06000035, { 32, 3 } },
+	{ 0x06000036, { 35, 3 } },
+	{ 0x06000080, { 49, 2 } },
 };
 extern const uint32_t g_rgctx_U3CU3Ef__AnonymousType0_4_t93FD0713D40011506D6B5581D9D5064D1A1A31B8;
 extern const uint32_t g_rgctx_U3CidU3Ej__TPar_tB4283D6614B0A1B9713411CF590AE6445EC76C76;
@@ -573,7 +582,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	151,
+	154,
 	s_methodPointers,
 	0,
 	NULL,

@@ -326,6 +326,7 @@
 "Assets/FlutterUnityIntegration/UnityMessageManager.cs"
 "Assets/SCRIPT/addCube.cs"
 "Assets/SCRIPT/changeColor.cs"
+"Assets/SCRIPT/colourOnTouch.cs"
 "Assets/SCRIPT/convertResourcesToUnity.cs"
 "Assets/SCRIPT/findFileinApp.cs"
 "Assets/SCRIPT/JsonHelper.cs"

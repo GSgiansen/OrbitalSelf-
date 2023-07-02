@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp:
+    - ChangeColorOnTouch
     - FlutterUnityIntegration.UnityMessageManager
     - JsonLoader
     - addCube
@@ -8,9 +9,23 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - CameraController
     - CameraRotation
+    - ChangeColorOnTouch
     - FlutterUnityIntegration.UnityMessageManager
     - JsonLoader
     - SceneToJsonConverter
+    - addCube
+    - changeColor
+    Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
+    - UnityEditor.Tilemaps.GridPaintingState
+    - UnityEditor.Tilemaps.GridPaletteBrushes
+    - UnityEditor.Tilemaps.GridPalettes
+    - UnityEditor.Tilemaps.SceneViewGridManager
+    - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
+    - UnityEditor.Tilemaps.TileDragAndDropManager
+    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
+    - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.AdaptivePerformance.Editor.dll:
     - UnityEditor.AdaptivePerformance.Editor.AdaptivePerformanceGeneralSettingsPerBuildTarget
     Unity.AdaptivePerformance.dll:
@@ -70,6 +85,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 22306}
     - Class: 114
       Script: {instanceID: 22404}
+    - Class: 114
+      Script: {instanceID: 25462}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -1169,6 +1186,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ChangeColorOnTouch
   platform: 9
   scenePathNames:
   - Assets/Scenes/blank.unity
