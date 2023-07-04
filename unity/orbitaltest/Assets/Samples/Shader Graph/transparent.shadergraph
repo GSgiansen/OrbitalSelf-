@@ -288,8 +288,8 @@
     "m_ShaderOutputName": "_tiling",
     "m_StageCapability": 2,
     "m_Value": {
-        "x": 10.0,
-        "y": 10.0
+        "x": 6.0,
+        "y": 6.0
     },
     "m_DefaultValue": {
         "x": 0.0,

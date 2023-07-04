@@ -1541,19 +1541,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR IntegratedSubsystem_t990160A89854D87C0836DC58
 	DECLARE_METHOD_PARAMS(methodExecutionContextParameters, (&___0_ptr));
 	DECLARE_METHOD_LOCALS(methodExecutionContextLocals, (&V_1));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemManager_GetIntegratedSubsystemByPtr_mC117FBE03DF764DB78D48B11AD5AC324F223BDE7_RuntimeMethod_var, NULL, methodExecutionContextParameters, methodExecutionContextLocals);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 155));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 156));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 187));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 188));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 157));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 158));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 159));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 189));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 190));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 191));
 		il2cpp_codegen_runtime_class_init_inline(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var);
 		List_1_t78E7232867D713AA9907E71F6C5B19B226F0B180* L_0 = ((SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var))->___s_IntegratedSubsystems;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 160));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 192));
 		NullCheck(L_0);
 		Enumerator_tD6B2BE598D993043B077F2F05D86E7B739EBAC30 L_1;
 		L_1 = List_1_GetEnumerator_mE5E7D70B9DD3C8B2695C78B5176420BEC09D3FAA(L_0, List_1_GetEnumerator_mE5E7D70B9DD3C8B2695C78B5176420BEC09D3FAA_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 160));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 192));
 		V_0 = L_1;
 	}
 	{
@@ -1563,10 +1563,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR IntegratedSubsystem_t990160A89854D87C0836DC58
 FINALLY_0038:
 			{
 				STORE_TRY_ID(methodExecutionContext, -1);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 172));
-				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 173));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 204));
+				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 205));
 				Enumerator_Dispose_m201FC29315140F56FD039B953C177A973D9FF991((&V_0), Enumerator_Dispose_m201FC29315140F56FD039B953C177A973D9FF991_RuntimeMethod_var);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 173));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 205));
 				return;
 			}
 		});
@@ -1574,30 +1574,30 @@ FINALLY_0038:
 		{
 			STORE_TRY_ID(methodExecutionContext, 0);
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 161));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 193));
 				goto IL_002d_1;
 			}
 
 IL_000f_1:
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 162));
-				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 163));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 194));
+				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 195));
 				IntegratedSubsystem_t990160A89854D87C0836DC589B720231C02D4CE3* L_2;
 				L_2 = Enumerator_get_Current_m4801E04900108AE27A0B90D7C72DC91E12C7F6D9_inline((&V_0), Enumerator_get_Current_m4801E04900108AE27A0B90D7C72DC91E12C7F6D9_RuntimeMethod_var);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 163));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 195));
 				V_1 = L_2;
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 164));
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 165));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 196));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 197));
 				IntegratedSubsystem_t990160A89854D87C0836DC589B720231C02D4CE3* L_3 = V_1;
 				NullCheck(L_3);
 				intptr_t L_4 = L_3->___m_Ptr;
 				intptr_t L_5 = ___0_ptr;
-				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 166));
+				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 198));
 				bool L_6;
 				L_6 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_4, L_5, NULL);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 166));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 198));
 				V_2 = L_6;
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 167));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 199));
 				bool L_7 = V_2;
 				if (!L_7)
 				{
@@ -1605,7 +1605,7 @@ IL_000f_1:
 				}
 			}
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 168));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 200));
 				IntegratedSubsystem_t990160A89854D87C0836DC589B720231C02D4CE3* L_8 = V_1;
 				V_3 = L_8;
 				goto IL_004b;
@@ -1613,16 +1613,16 @@ IL_000f_1:
 
 IL_002c_1:
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 169));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 201));
 			}
 
 IL_002d_1:
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 170));
-				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 171));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 202));
+				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 203));
 				bool L_9;
 				L_9 = Enumerator_MoveNext_m3D17618D315143F28601C5D18E2A3FCD02EFA1E7((&V_0), Enumerator_MoveNext_m3D17618D315143F28601C5D18E2A3FCD02EFA1E7_RuntimeMethod_var);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 171));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 203));
 				if (L_9)
 				{
 					goto IL_000f_1;
@@ -1640,14 +1640,14 @@ IL_002d_1:
 
 IL_0047:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 174));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 206));
 		V_3 = (IntegratedSubsystem_t990160A89854D87C0836DC589B720231C02D4CE3*)NULL;
 		goto IL_004b;
 	}
 
 IL_004b:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 175));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 207));
 		IntegratedSubsystem_t990160A89854D87C0836DC589B720231C02D4CE3* L_10 = V_3;
 		return L_10;
 	}
@@ -1672,37 +1672,37 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemManager_RemoveIntegratedSubsyst
 	DECLARE_METHOD_PARAMS(methodExecutionContextParameters, (&___0_ptr));
 	DECLARE_METHOD_LOCALS(methodExecutionContextLocals, (&V_0));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemManager_RemoveIntegratedSubsystemByPtr_mBFD54C173F757CAF38E897250D05D517D08D4784_RuntimeMethod_var, NULL, methodExecutionContextParameters, methodExecutionContextLocals);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 176));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 177));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 208));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 209));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 178));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 179));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 210));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 211));
 		V_0 = 0;
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 180));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 212));
 		goto IL_0049;
 	}
 
 IL_0005:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 181));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 182));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 213));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 214));
 		il2cpp_codegen_runtime_class_init_inline(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var);
 		List_1_t78E7232867D713AA9907E71F6C5B19B226F0B180* L_0 = ((SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var))->___s_IntegratedSubsystems;
 		int32_t L_1 = V_0;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 183));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 215));
 		NullCheck(L_0);
 		IntegratedSubsystem_t990160A89854D87C0836DC589B720231C02D4CE3* L_2;
 		L_2 = List_1_get_Item_mA0C7AE870DA1E6D582A090A721DBCCC35B13E3C8(L_0, L_1, List_1_get_Item_mA0C7AE870DA1E6D582A090A721DBCCC35B13E3C8_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 183));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 215));
 		NullCheck(L_2);
 		intptr_t L_3 = L_2->___m_Ptr;
 		intptr_t L_4 = ___0_ptr;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 184));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 216));
 		bool L_5;
 		L_5 = IntPtr_op_Inequality_m90EFC9C4CAD9A33E309F2DDF98EE4E1DD253637B(L_3, L_4, NULL);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 184));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 216));
 		V_1 = L_5;
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 185));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 217));
 		bool L_6 = V_1;
 		if (!L_6)
 		{
@@ -1710,54 +1710,54 @@ IL_0005:
 		}
 	}
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 186));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 218));
 		goto IL_0045;
 	}
 
 IL_0022:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 187));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 219));
 		il2cpp_codegen_runtime_class_init_inline(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var);
 		List_1_t78E7232867D713AA9907E71F6C5B19B226F0B180* L_7 = ((SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var))->___s_IntegratedSubsystems;
 		int32_t L_8 = V_0;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 188));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 220));
 		NullCheck(L_7);
 		IntegratedSubsystem_t990160A89854D87C0836DC589B720231C02D4CE3* L_9;
 		L_9 = List_1_get_Item_mA0C7AE870DA1E6D582A090A721DBCCC35B13E3C8(L_7, L_8, List_1_get_Item_mA0C7AE870DA1E6D582A090A721DBCCC35B13E3C8_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 188));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 220));
 		NullCheck(L_9);
 		L_9->___m_Ptr = 0;
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 189));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 221));
 		List_1_t78E7232867D713AA9907E71F6C5B19B226F0B180* L_10 = ((SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var))->___s_IntegratedSubsystems;
 		int32_t L_11 = V_0;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 190));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 222));
 		NullCheck(L_10);
 		List_1_RemoveAt_m0F5CB5AFBF750066FF73E38CDD87AD0CF80FA4C8(L_10, L_11, List_1_RemoveAt_m0F5CB5AFBF750066FF73E38CDD87AD0CF80FA4C8_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 190));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 191));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 222));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 223));
 		goto IL_005a;
 	}
 
 IL_0045:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 192));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 224));
 		int32_t L_12 = V_0;
 		V_0 = ((int32_t)il2cpp_codegen_add(L_12, 1));
 	}
 
 IL_0049:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 193));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 225));
 		int32_t L_13 = V_0;
 		il2cpp_codegen_runtime_class_init_inline(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var);
 		List_1_t78E7232867D713AA9907E71F6C5B19B226F0B180* L_14 = ((SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var))->___s_IntegratedSubsystems;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 194));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 226));
 		NullCheck(L_14);
 		int32_t L_15;
 		L_15 = List_1_get_Count_m7E0401B70301939E63AFB1AEA0070D31D156608F_inline(L_14, List_1_get_Count_m7E0401B70301939E63AFB1AEA0070D31D156608F_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 194));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 226));
 		V_2 = (bool)((((int32_t)L_13) < ((int32_t)L_15))? 1 : 0);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 195));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 227));
 		bool L_16 = V_2;
 		if (L_16)
 		{
@@ -1767,7 +1767,7 @@ IL_0049:
 
 IL_005a:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 196));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 228));
 		return;
 	}
 }
@@ -1785,26 +1785,26 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SubsystemManager_RemoveStandaloneSubsyst
 	bool V_0 = false;
 	DECLARE_METHOD_PARAMS(methodExecutionContextParameters, (&___0_subsystem));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemManager_RemoveStandaloneSubsystem_m61CD473221C4A3210629379D92018723301E982A_RuntimeMethod_var, NULL, methodExecutionContextParameters, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 197));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 198));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 229));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 230));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 199));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 200));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 231));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 232));
 		il2cpp_codegen_runtime_class_init_inline(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var);
 		List_1_tD834E8FB7FDC0D4243FBCF922D7FE4E3C707AAC3* L_0 = ((SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var))->___s_StandaloneSubsystems;
 		SubsystemWithProvider_tC72E35EE2D413A4B0635B058154BABF265F31242* L_1 = ___0_subsystem;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 201));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 233));
 		NullCheck(L_0);
 		bool L_2;
 		L_2 = List_1_Remove_m1AB528898A1843AF5F1A53260C5C0F7C447F36BD(L_0, L_1, List_1_Remove_m1AB528898A1843AF5F1A53260C5C0F7C447F36BD_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 201));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 233));
 		V_0 = L_2;
 		goto IL_000f;
 	}
 
 IL_000f:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 202));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 234));
 		bool L_3 = V_0;
 		return L_3;
 	}
@@ -1821,17 +1821,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemManager_AddDeprecatedSubsystem_
 	}
 	DECLARE_METHOD_PARAMS(methodExecutionContextParameters, (&___0_subsystem));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemManager_AddDeprecatedSubsystem_mC6604918A68F43B78A009B896E2CD8AF2251AE0C_RuntimeMethod_var, NULL, methodExecutionContextParameters, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 203));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 204));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 241));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 242));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 205));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 243));
 		il2cpp_codegen_runtime_class_init_inline(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var);
 		List_1_t9E8CCD70A25458CE30A64503B35F06ECA62E3052* L_0 = ((SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var))->___s_DeprecatedSubsystems;
 		Subsystem_t5E67EE95D848FB950AD5D76325BF8959A6F7C7D7* L_1 = ___0_subsystem;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 206));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 244));
 		NullCheck(L_0);
 		List_1_Add_m2A451A7B29D15F8BB11A55359ADC8B3B61677A64_inline(L_0, L_1, List_1_Add_m2A451A7B29D15F8BB11A55359ADC8B3B61677A64_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 206));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 244));
 		return;
 	}
 }
@@ -1847,18 +1847,18 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SubsystemManager_RemoveDeprecatedSubsyst
 	}
 	DECLARE_METHOD_PARAMS(methodExecutionContextParameters, (&___0_subsystem));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemManager_RemoveDeprecatedSubsystem_mBD8928FA7AE2FFC79D2768ED6F707FF61F65092D_RuntimeMethod_var, NULL, methodExecutionContextParameters, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 207));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 208));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 245));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 246));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 209));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 247));
 		il2cpp_codegen_runtime_class_init_inline(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var);
 		List_1_t9E8CCD70A25458CE30A64503B35F06ECA62E3052* L_0 = ((SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var))->___s_DeprecatedSubsystems;
 		Subsystem_t5E67EE95D848FB950AD5D76325BF8959A6F7C7D7* L_1 = ___0_subsystem;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 210));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 248));
 		NullCheck(L_0);
 		bool L_2;
 		L_2 = List_1_Remove_mE2E3E5D3C559D3D0FA209C8FF52F2AC4AB2BDA9D(L_0, L_1, List_1_Remove_mE2E3E5D3C559D3D0FA209C8FF52F2AC4AB2BDA9D_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 210));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 248));
 		return L_2;
 	}
 }
@@ -1886,19 +1886,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Subsystem_t5E67EE95D848FB950AD5D76325BF8959A6
 	DECLARE_METHOD_PARAMS(methodExecutionContextParameters, (&___0_descriptor));
 	DECLARE_METHOD_LOCALS(methodExecutionContextLocals, (&V_1));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemManager_FindDeprecatedSubsystemByDescriptor_m1FC7CA04E19DE606423B76F493E18DB4C2699522_RuntimeMethod_var, NULL, methodExecutionContextParameters, methodExecutionContextLocals);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 211));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 212));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 249));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 250));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 213));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 214));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 215));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 251));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 252));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 253));
 		il2cpp_codegen_runtime_class_init_inline(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var);
 		List_1_t9E8CCD70A25458CE30A64503B35F06ECA62E3052* L_0 = ((SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var))->___s_DeprecatedSubsystems;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 216));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 254));
 		NullCheck(L_0);
 		Enumerator_t6749D4F0AA4210FBB708D01F9F8A69CFD96F7624 L_1;
 		L_1 = List_1_GetEnumerator_m393201803D76EDC3FD5247BEB9ADDF72563DB95C(L_0, List_1_GetEnumerator_m393201803D76EDC3FD5247BEB9ADDF72563DB95C_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 216));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 254));
 		V_0 = L_1;
 	}
 	{
@@ -1908,10 +1908,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Subsystem_t5E67EE95D848FB950AD5D76325BF8959A6
 FINALLY_0035:
 			{
 				STORE_TRY_ID(methodExecutionContext, -1);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 227));
-				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 228));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 265));
+				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 266));
 				Enumerator_Dispose_m7BCAB2A4422A7377A71CC71B49F613674282796F((&V_0), Enumerator_Dispose_m7BCAB2A4422A7377A71CC71B49F613674282796F_RuntimeMethod_var);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 228));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 266));
 				return;
 			}
 		});
@@ -1919,26 +1919,26 @@ FINALLY_0035:
 		{
 			STORE_TRY_ID(methodExecutionContext, 0);
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 217));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 255));
 				goto IL_002a_1;
 			}
 
 IL_000f_1:
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 218));
-				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 219));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 256));
+				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 257));
 				Subsystem_t5E67EE95D848FB950AD5D76325BF8959A6F7C7D7* L_2;
 				L_2 = Enumerator_get_Current_mEA91A2B3FBC3FFA6C7BA2C9674CB35F483F23CB6_inline((&V_0), Enumerator_get_Current_mEA91A2B3FBC3FFA6C7BA2C9674CB35F483F23CB6_RuntimeMethod_var);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 219));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 257));
 				V_1 = L_2;
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 220));
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 221));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 258));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 259));
 				Subsystem_t5E67EE95D848FB950AD5D76325BF8959A6F7C7D7* L_3 = V_1;
 				NullCheck(L_3);
 				RuntimeObject* L_4 = L_3->___m_SubsystemDescriptor;
 				SubsystemDescriptor_tF417D2751C69A8B0DD86162EBCE55F84D3493A71* L_5 = ___0_descriptor;
 				V_2 = (bool)((((RuntimeObject*)(RuntimeObject*)L_4) == ((RuntimeObject*)(SubsystemDescriptor_tF417D2751C69A8B0DD86162EBCE55F84D3493A71*)L_5))? 1 : 0);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 222));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 260));
 				bool L_6 = V_2;
 				if (!L_6)
 				{
@@ -1946,7 +1946,7 @@ IL_000f_1:
 				}
 			}
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 223));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 261));
 				Subsystem_t5E67EE95D848FB950AD5D76325BF8959A6F7C7D7* L_7 = V_1;
 				V_3 = L_7;
 				goto IL_0048;
@@ -1954,16 +1954,16 @@ IL_000f_1:
 
 IL_0029_1:
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 224));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 262));
 			}
 
 IL_002a_1:
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 225));
-				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 226));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 263));
+				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 264));
 				bool L_8;
 				L_8 = Enumerator_MoveNext_m2BEED2A84F743AD0D708EB36722D8034CE2C2B85((&V_0), Enumerator_MoveNext_m2BEED2A84F743AD0D708EB36722D8034CE2C2B85_RuntimeMethod_var);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 226));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 264));
 				if (L_8)
 				{
 					goto IL_000f_1;
@@ -1981,14 +1981,14 @@ IL_002a_1:
 
 IL_0044:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 229));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 267));
 		V_3 = (Subsystem_t5E67EE95D848FB950AD5D76325BF8959A6F7C7D7*)NULL;
 		goto IL_0048;
 	}
 
 IL_0048:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 230));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 268));
 		Subsystem_t5E67EE95D848FB950AD5D76325BF8959A6F7C7D7* L_9 = V_3;
 		return L_9;
 	}
@@ -2013,24 +2013,24 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemDescriptorStore_InitializeManag
 	}
 	DECLARE_METHOD_PARAMS(methodExecutionContextParameters, (&___0_ptr), (&___1_desc));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemDescriptorStore_InitializeManagedDescriptor_m74418769D7CDE1CED4F07A179A9173E6F0ECD12C_RuntimeMethod_var, NULL, methodExecutionContextParameters, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 231));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 232));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 269));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 270));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 233));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 234));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 271));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 272));
 		IntegratedSubsystemDescriptor_t9232963B842E01748A8E032928DC8E35DF00C10D* L_0 = ___1_desc;
 		intptr_t L_1 = ___0_ptr;
 		NullCheck(L_0);
 		L_0->___m_Ptr = L_1;
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 235));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 273));
 		il2cpp_codegen_runtime_class_init_inline(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var);
 		List_1_tACFC79734710927A89702FFC38900223BB85B5A6* L_2 = ((SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var))->___s_IntegratedDescriptors;
 		IntegratedSubsystemDescriptor_t9232963B842E01748A8E032928DC8E35DF00C10D* L_3 = ___1_desc;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 236));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 274));
 		NullCheck(L_2);
 		List_1_Add_m6B6700A3B4946F7E50020E1F0A6DA7FD0A2CBC0F_inline(L_2, L_3, List_1_Add_m6B6700A3B4946F7E50020E1F0A6DA7FD0A2CBC0F_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 236));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 237));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 274));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 275));
 		return;
 	}
 }
@@ -2055,19 +2055,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemDescriptorStore_ClearManagedDes
 	IntegratedSubsystemDescriptor_t9232963B842E01748A8E032928DC8E35DF00C10D* V_1 = NULL;
 	DECLARE_METHOD_LOCALS(methodExecutionContextLocals, (&V_1));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemDescriptorStore_ClearManagedDescriptors_m14AEFE442EDDC8BD082F300C7054FE185E1EA1D5_RuntimeMethod_var, NULL, NULL, methodExecutionContextLocals);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 238));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 239));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 276));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 277));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 240));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 241));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 242));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 278));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 279));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 280));
 		il2cpp_codegen_runtime_class_init_inline(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var);
 		List_1_tACFC79734710927A89702FFC38900223BB85B5A6* L_0 = ((SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var))->___s_IntegratedDescriptors;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 243));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 281));
 		NullCheck(L_0);
 		Enumerator_t8C50AA02704BDA130627B3A891AD19AAE70DE82D L_1;
 		L_1 = List_1_GetEnumerator_m7655E0C1B1C7A52FE8D303DB4054EA8175408F36(L_0, List_1_GetEnumerator_m7655E0C1B1C7A52FE8D303DB4054EA8175408F36_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 243));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 281));
 		V_0 = L_1;
 	}
 	{
@@ -2077,10 +2077,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemDescriptorStore_ClearManagedDes
 FINALLY_002d:
 			{
 				STORE_TRY_ID(methodExecutionContext, -1);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 250));
-				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 251));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 288));
+				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 289));
 				Enumerator_Dispose_m3155DE7FAE64064D242AD56FA4205E69D37BF5FA((&V_0), Enumerator_Dispose_m3155DE7FAE64064D242AD56FA4205E69D37BF5FA_RuntimeMethod_var);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 251));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 289));
 				return;
 			}
 		});
@@ -2088,19 +2088,19 @@ FINALLY_002d:
 		{
 			STORE_TRY_ID(methodExecutionContext, 0);
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 244));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 282));
 				goto IL_0022_1;
 			}
 
 IL_000f_1:
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 245));
-				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 246));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 283));
+				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 284));
 				IntegratedSubsystemDescriptor_t9232963B842E01748A8E032928DC8E35DF00C10D* L_2;
 				L_2 = Enumerator_get_Current_m75A153EE5B1A494ECA6C9A68F1A35642CE486BF7_inline((&V_0), Enumerator_get_Current_m75A153EE5B1A494ECA6C9A68F1A35642CE486BF7_RuntimeMethod_var);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 246));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 284));
 				V_1 = L_2;
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 247));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 285));
 				IntegratedSubsystemDescriptor_t9232963B842E01748A8E032928DC8E35DF00C10D* L_3 = V_1;
 				NullCheck(L_3);
 				L_3->___m_Ptr = 0;
@@ -2108,11 +2108,11 @@ IL_000f_1:
 
 IL_0022_1:
 			{
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 248));
-				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 249));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 286));
+				STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 287));
 				bool L_4;
 				L_4 = Enumerator_MoveNext_m12584CD93CF1B39E17FDD6908B4A9B696F7A785C((&V_0), Enumerator_MoveNext_m12584CD93CF1B39E17FDD6908B4A9B696F7A785C_RuntimeMethod_var);
-				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 249));
+				CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 287));
 				if (L_4)
 				{
 					goto IL_000f_1;
@@ -2130,14 +2130,14 @@ IL_0022_1:
 
 IL_003c:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 252));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 290));
 		il2cpp_codegen_runtime_class_init_inline(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var);
 		List_1_tACFC79734710927A89702FFC38900223BB85B5A6* L_5 = ((SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var))->___s_IntegratedDescriptors;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 253));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 291));
 		NullCheck(L_5);
 		List_1_Clear_m224C03F9D69D2C07810899A1853A75AB4F3059C5_inline(L_5, List_1_Clear_m224C03F9D69D2C07810899A1853A75AB4F3059C5_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 253));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 254));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 291));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 292));
 		return;
 	}
 }
@@ -2161,16 +2161,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemDescriptorStore_RegisterDepreca
 	}
 	DECLARE_METHOD_PARAMS(methodExecutionContextParameters, (&___0_descriptor));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemDescriptorStore_RegisterDeprecatedDescriptor_m0314598F5A51921C9C9B254B4E82C1191FC4D4B1_RuntimeMethod_var, NULL, methodExecutionContextParameters, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 317));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 318));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 355));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 356));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 319));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 357));
 		SubsystemDescriptor_tF417D2751C69A8B0DD86162EBCE55F84D3493A71* L_0 = ___0_descriptor;
 		il2cpp_codegen_runtime_class_init_inline(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var);
 		List_1_t15AD773D34D3739AFB67421B6DFFACEA7638F64E* L_1 = ((SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var))->___s_DeprecatedDescriptors;
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 320));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 358));
 		SubsystemDescriptorStore_RegisterDescriptor_TisSubsystemDescriptor_tF417D2751C69A8B0DD86162EBCE55F84D3493A71_TisSubsystemDescriptor_tF417D2751C69A8B0DD86162EBCE55F84D3493A71_mCF1619B4D56F76AA321A1F5E1AF643181FFC1F22(L_0, L_1, SubsystemDescriptorStore_RegisterDescriptor_TisSubsystemDescriptor_tF417D2751C69A8B0DD86162EBCE55F84D3493A71_TisSubsystemDescriptor_tF417D2751C69A8B0DD86162EBCE55F84D3493A71_mCF1619B4D56F76AA321A1F5E1AF643181FFC1F22_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 320));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 358));
 		return;
 	}
 }
@@ -2190,28 +2190,28 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemDescriptorStore__cctor_mE267CA7
 		s_Il2CppMethodInitialized = true;
 	}
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemDescriptorStore__cctor_mE267CA787BE559BD490D9ED8BD2D55F4E8DE6A14_RuntimeMethod_var, NULL, NULL, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 321));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 322));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 359));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 360));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 323));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 324));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 361));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 362));
 		List_1_tACFC79734710927A89702FFC38900223BB85B5A6* L_0 = (List_1_tACFC79734710927A89702FFC38900223BB85B5A6*)il2cpp_codegen_object_new(List_1_tACFC79734710927A89702FFC38900223BB85B5A6_il2cpp_TypeInfo_var);
 		List_1__ctor_m4A21E1F505E2382B316D355A18E9BB8D1E0F14BE(L_0, List_1__ctor_m4A21E1F505E2382B316D355A18E9BB8D1E0F14BE_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 324));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 362));
 		((SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var))->___s_IntegratedDescriptors = L_0;
 		Il2CppCodeGenWriteBarrier((void**)(&((SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var))->___s_IntegratedDescriptors), (void*)L_0);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 325));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 326));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 363));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 364));
 		List_1_t2D19D6F759F401FE6C5460698E5B8249E470E044* L_1 = (List_1_t2D19D6F759F401FE6C5460698E5B8249E470E044*)il2cpp_codegen_object_new(List_1_t2D19D6F759F401FE6C5460698E5B8249E470E044_il2cpp_TypeInfo_var);
 		List_1__ctor_m7E8FF6F78C88AE050351D828A57A12B0BD6970FE(L_1, List_1__ctor_m7E8FF6F78C88AE050351D828A57A12B0BD6970FE_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 326));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 364));
 		((SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var))->___s_StandaloneDescriptors = L_1;
 		Il2CppCodeGenWriteBarrier((void**)(&((SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var))->___s_StandaloneDescriptors), (void*)L_1);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 327));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 328));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 365));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 366));
 		List_1_t15AD773D34D3739AFB67421B6DFFACEA7638F64E* L_2 = (List_1_t15AD773D34D3739AFB67421B6DFFACEA7638F64E*)il2cpp_codegen_object_new(List_1_t15AD773D34D3739AFB67421B6DFFACEA7638F64E_il2cpp_TypeInfo_var);
 		List_1__ctor_mA786A401DCD46DAD7257EF6A3E5E9EF105C4C1ED(L_2, List_1__ctor_mA786A401DCD46DAD7257EF6A3E5E9EF105C4C1ED_RuntimeMethod_var);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 328));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 366));
 		((SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var))->___s_DeprecatedDescriptors = L_2;
 		Il2CppCodeGenWriteBarrier((void**)(&((SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_StaticFields*)il2cpp_codegen_static_fields_for(SubsystemDescriptorStore_tEF3761B84B8C25EA4B93F94A487551820B268250_il2cpp_TypeInfo_var))->___s_DeprecatedDescriptors), (void*)L_2);
 		return;
@@ -2236,10 +2236,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* SubsystemDescriptorWithProvider_get
 	}
 	DECLARE_METHOD_THIS(methodExecutionContextThis, (&__this));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemDescriptorWithProvider_get_id_m9E92FDF45FE9BFB0B28C2AE3EFE475998D01BBC7_RuntimeMethod_var, methodExecutionContextThis, NULL, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 329));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 330));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 367));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 368));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 331));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 369));
 		String_t* L_0 = __this->___U3CidU3Ek__BackingField;
 		return L_0;
 	}
@@ -2255,14 +2255,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SubsystemDescriptorWithProvide
 	}
 	DECLARE_METHOD_THIS(methodExecutionContextThis, (&__this));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemDescriptorWithProvider_UnityEngine_ISubsystemDescriptor_Create_m93889530D53B9658319E5EF704F277AC3B03B336_RuntimeMethod_var, methodExecutionContextThis, NULL, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 332));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 333));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 370));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 371));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 334));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 335));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 372));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 373));
 		RuntimeObject* L_0;
 		L_0 = VirtualFuncInvoker0< RuntimeObject* >::Invoke(6, __this);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 335));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 373));
 		return L_0;
 	}
 }
@@ -2310,17 +2310,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemWithProvider_Start_m720DC3EDB91
 	bool V_0 = false;
 	DECLARE_METHOD_THIS(methodExecutionContextThis, (&__this));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemWithProvider_Start_m720DC3EDB918F58D65CA4B12017D395788934644_RuntimeMethod_var, methodExecutionContextThis, NULL, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 336));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 337));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 374));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 375));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 338));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 339));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 340));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 376));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 377));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 378));
 		bool L_0;
 		L_0 = SubsystemWithProvider_get_running_m6BF31FC3BDA38C56C0F60FEA37767A4151B22C44_inline(__this, NULL);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 340));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 378));
 		V_0 = L_0;
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 341));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 379));
 		bool L_1 = V_0;
 		if (!L_1)
 		{
@@ -2328,32 +2328,32 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemWithProvider_Start_m720DC3EDB91
 		}
 	}
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 342));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 380));
 		goto IL_0028;
 	}
 
 IL_000d:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 343));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 344));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 381));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 382));
 		VirtualActionInvoker0::Invoke(7, __this);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 344));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 345));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 346));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 382));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 383));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 384));
 		SubsystemProvider_tE1865B8FE698C81A59AED35E0E536BD53F402455* L_2;
 		L_2 = SubsystemWithProvider_get_providerBase_m8229B40F322D44A2E22B0AD62C581D284813410A_inline(__this, NULL);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 346));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 384));
 		NullCheck(L_2);
 		L_2->___m_Running = (bool)1;
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 347));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 348));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 385));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 386));
 		SubsystemWithProvider_set_running_mBEF44DA55F99B873A21E2003CDE06981E0348477_inline(__this, (bool)1, NULL);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 348));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 386));
 	}
 
 IL_0028:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 349));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 387));
 		return;
 	}
 }
@@ -2370,17 +2370,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemWithProvider_Stop_mB22AB4811D26
 	bool V_0 = false;
 	DECLARE_METHOD_THIS(methodExecutionContextThis, (&__this));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemWithProvider_Stop_mB22AB4811D2636FCB317C0E54E8A7139D81A8E16_RuntimeMethod_var, methodExecutionContextThis, NULL, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 350));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 351));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 388));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 389));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 352));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 353));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 354));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 390));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 391));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 392));
 		bool L_0;
 		L_0 = SubsystemWithProvider_get_running_m6BF31FC3BDA38C56C0F60FEA37767A4151B22C44_inline(__this, NULL);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 354));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 392));
 		V_0 = (bool)((((int32_t)L_0) == ((int32_t)0))? 1 : 0);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 355));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 393));
 		bool L_1 = V_0;
 		if (!L_1)
 		{
@@ -2388,32 +2388,32 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemWithProvider_Stop_mB22AB4811D26
 		}
 	}
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 356));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 394));
 		goto IL_002b;
 	}
 
 IL_0010:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 357));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 358));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 395));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 396));
 		VirtualActionInvoker0::Invoke(8, __this);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 358));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 359));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 360));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 396));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 397));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 398));
 		SubsystemProvider_tE1865B8FE698C81A59AED35E0E536BD53F402455* L_2;
 		L_2 = SubsystemWithProvider_get_providerBase_m8229B40F322D44A2E22B0AD62C581D284813410A_inline(__this, NULL);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 360));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 398));
 		NullCheck(L_2);
 		L_2->___m_Running = (bool)0;
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 361));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 362));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 399));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 400));
 		SubsystemWithProvider_set_running_mBEF44DA55F99B873A21E2003CDE06981E0348477_inline(__this, (bool)0, NULL);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 362));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 400));
 	}
 
 IL_002b:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 363));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 401));
 		return;
 	}
 }
@@ -2431,22 +2431,22 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemWithProvider_Destroy_m8161D5B71
 	bool V_0 = false;
 	DECLARE_METHOD_THIS(methodExecutionContextThis, (&__this));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemWithProvider_Destroy_m8161D5B71C856F836660430CED8550AA17438BAF_RuntimeMethod_var, methodExecutionContextThis, NULL, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 364));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 365));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 402));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 403));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 366));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 367));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 368));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 404));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 405));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 406));
 		SubsystemWithProvider_Stop_mB22AB4811D2636FCB317C0E54E8A7139D81A8E16(__this, NULL);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 368));
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 369));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 370));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 406));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 407));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 408));
 		il2cpp_codegen_runtime_class_init_inline(SubsystemManager_t9A7261E4D0B53B996F04B8707D8E1C33AB65E824_il2cpp_TypeInfo_var);
 		bool L_0;
 		L_0 = SubsystemManager_RemoveStandaloneSubsystem_m61CD473221C4A3210629379D92018723301E982A(__this, NULL);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 370));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 408));
 		V_0 = L_0;
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 371));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 409));
 		bool L_1 = V_0;
 		if (!L_1)
 		{
@@ -2454,15 +2454,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemWithProvider_Destroy_m8161D5B71
 		}
 	}
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 372));
-		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 373));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 410));
+		STORE_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 411));
 		VirtualActionInvoker0::Invoke(9, __this);
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 373));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 411));
 	}
 
 IL_0019:
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 374));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 412));
 		return;
 	}
 }
@@ -2477,10 +2477,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SubsystemWithProvider_get_running_m6BF31
 	}
 	DECLARE_METHOD_THIS(methodExecutionContextThis, (&__this));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemWithProvider_get_running_m6BF31FC3BDA38C56C0F60FEA37767A4151B22C44_RuntimeMethod_var, methodExecutionContextThis, NULL, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 375));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 376));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 413));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 414));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 377));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 415));
 		bool L_0 = __this->___U3CrunningU3Ek__BackingField;
 		return L_0;
 	}
@@ -2497,10 +2497,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SubsystemWithProvider_set_running_mBEF44
 	DECLARE_METHOD_THIS(methodExecutionContextThis, (&__this));
 	DECLARE_METHOD_PARAMS(methodExecutionContextParameters, (&___0_value));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemWithProvider_set_running_mBEF44DA55F99B873A21E2003CDE06981E0348477_RuntimeMethod_var, methodExecutionContextThis, methodExecutionContextParameters, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 378));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 379));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 416));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 417));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 380));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 418));
 		bool L_0 = ___0_value;
 		__this->___U3CrunningU3Ek__BackingField = L_0;
 		return;
@@ -2517,10 +2517,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR SubsystemProvider_tE1865B8FE698C81A59AED35E0E
 	}
 	DECLARE_METHOD_THIS(methodExecutionContextThis, (&__this));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemWithProvider_get_providerBase_m8229B40F322D44A2E22B0AD62C581D284813410A_RuntimeMethod_var, methodExecutionContextThis, NULL, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 381));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 382));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 419));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 420));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 383));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 421));
 		SubsystemProvider_tE1865B8FE698C81A59AED35E0E536BD53F402455* L_0 = __this->___U3CproviderBaseU3Ek__BackingField;
 		return L_0;
 	}
@@ -2559,10 +2559,10 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool SubsystemWithProvider_get_ru
 	}
 	DECLARE_METHOD_THIS(methodExecutionContextThis, (&__this));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemWithProvider_get_running_m6BF31FC3BDA38C56C0F60FEA37767A4151B22C44_RuntimeMethod_var, methodExecutionContextThis, NULL, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 375));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 376));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 413));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 414));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 377));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 415));
 		bool L_0 = __this->___U3CrunningU3Ek__BackingField;
 		return L_0;
 	}
@@ -2578,10 +2578,10 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SubsystemProvider_tE1865B8FE698C8
 	}
 	DECLARE_METHOD_THIS(methodExecutionContextThis, (&__this));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemWithProvider_get_providerBase_m8229B40F322D44A2E22B0AD62C581D284813410A_RuntimeMethod_var, methodExecutionContextThis, NULL, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 381));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 382));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 419));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 420));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 383));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 421));
 		SubsystemProvider_tE1865B8FE698C81A59AED35E0E536BD53F402455* L_0 = __this->___U3CproviderBaseU3Ek__BackingField;
 		return L_0;
 	}
@@ -2598,10 +2598,10 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void SubsystemWithProvider_set_ru
 	DECLARE_METHOD_THIS(methodExecutionContextThis, (&__this));
 	DECLARE_METHOD_PARAMS(methodExecutionContextParameters, (&___0_value));
 	DECLARE_METHOD_EXEC_CTX(methodExecutionContext, SubsystemWithProvider_set_running_mBEF44DA55F99B873A21E2003CDE06981E0348477_RuntimeMethod_var, methodExecutionContextThis, methodExecutionContextParameters, NULL);
-	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 378));
-	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 379));
+	CHECK_METHOD_ENTRY_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 416));
+	CHECK_METHOD_EXIT_SEQ_POINT(methodExitChecker, methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 417));
 	{
-		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 380));
+		CHECK_SEQ_POINT(methodExecutionContext, (g_sequencePointsUnityEngine_SubsystemsModule + 418));
 		bool L_0 = ___0_value;
 		__this->___U3CrunningU3Ek__BackingField = L_0;
 		return;
@@ -2672,7 +2672,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Clear_mD615D1BCB2C9DD
 		int32_t L_0 = __this->____version;
 		__this->____version = ((int32_t)il2cpp_codegen_add(L_0, 1));
 		bool L_1;
-		L_1 = il2cpp_codegen_is_reference_or_contains_references(il2cpp_rgctx_method(method->klass->rgctx_data, 22));
+		L_1 = il2cpp_codegen_is_reference_or_contains_references(il2cpp_rgctx_method(method->klass->rgctx_data, 25));
 		if (!L_1)
 		{
 			goto IL_0035;

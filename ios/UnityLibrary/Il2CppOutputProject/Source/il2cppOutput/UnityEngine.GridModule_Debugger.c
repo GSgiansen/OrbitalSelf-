@@ -23,8 +23,12 @@ static const char* g_methodExecutionContextInfoStrings[1] = { NULL };
 static const char* g_methodExecutionContextInfoStrings[1] = { NULL };
 #endif
 #if IL2CPP_MONO_DEBUGGER
-static const Il2CppMethodExecutionContextInfoIndex g_methodExecutionContextInfoIndexes[1] = 
+static const Il2CppMethodExecutionContextInfoIndex g_methodExecutionContextInfoIndexes[5] = 
 {
+	{ 0, 0 },
+	{ 0, 0 },
+	{ 0, 0 },
+	{ 0, 0 },
 	{ 0, 0 },
 };
 #else
@@ -34,10 +38,10 @@ static const Il2CppMethodExecutionContextInfoIndex g_methodExecutionContextInfoI
 IL2CPP_EXTERN_C Il2CppSequencePoint g_sequencePointsUnityEngine_GridModule[];
 Il2CppSequencePoint g_sequencePointsUnityEngine_GridModule[4] = 
 {
-	{ 42465, 0, 0, 0, 0, 0, -1, kSequencePointKind_Normal, 0, 0 },
-	{ 42465, 0, 0, 0, 0, 0, 16777215, kSequencePointKind_Normal, 0, 1 },
-	{ 42465, 1, 92, 92, 34, 35, 0, kSequencePointKind_Normal, 0, 2 },
-	{ 42465, 1, 92, 92, 35, 36, 1, kSequencePointKind_Normal, 0, 3 },
+	{ 42874, 0, 0, 0, 0, 0, -1, kSequencePointKind_Normal, 0, 0 },
+	{ 42874, 0, 0, 0, 0, 0, 16777215, kSequencePointKind_Normal, 0, 1 },
+	{ 42874, 1, 92, 92, 34, 35, 0, kSequencePointKind_Normal, 0, 2 },
+	{ 42874, 1, 92, 92, 35, 36, 1, kSequencePointKind_Normal, 0, 3 },
 };
 #else
 extern Il2CppSequencePoint g_sequencePointsUnityEngine_GridModule[];
@@ -59,7 +63,7 @@ static const Il2CppSequencePointSourceFile g_sequencePointSourceFiles[1] = { NUL
 #if IL2CPP_MONO_DEBUGGER
 static const Il2CppTypeSourceFilePair g_typeSourceFiles[1] = 
 {
-	{ 6736, 1 },
+	{ 6831, 1 },
 };
 #else
 static const Il2CppTypeSourceFilePair g_typeSourceFiles[1] = { { 0, 0 } };
@@ -70,8 +74,12 @@ static const Il2CppMethodScope g_methodScopes[1] = { { 0, 0 } };
 static const Il2CppMethodScope g_methodScopes[1] = { { 0, 0 } };
 #endif
 #if IL2CPP_MONO_DEBUGGER
-static const Il2CppMethodHeaderInfo g_methodHeaderInfos[1] = 
+static const Il2CppMethodHeaderInfo g_methodHeaderInfos[5] = 
 {
+	{ 0, 0, 0 },
+	{ 0, 0, 0 },
+	{ 0, 0, 0 },
+	{ 0, 0, 0 },
 	{ 0, 0, 0 },
 };
 #else
