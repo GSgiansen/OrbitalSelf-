@@ -33,6 +33,7 @@ extern void InputManager_remove_OnClicked_m78FEC96F491047815ABE6C5BBB1889F81843A
 extern void InputManager_add_OnExit_m44C7A5278B000A50E350FA37AC9D2E9A71E98CDB (void);
 extern void InputManager_remove_OnExit_m04F2105EF2C82ED78ADAF0DB4D5194FBE994E434 (void);
 extern void InputManager_GetSelectedMapPositon_m69ED6495052E926D1D3AF0703F24175A51195788 (void);
+extern void InputManager_RoundToNearestGridCenter_m11F36AC2C656951EFBCE7C2263875D519F1FDD75 (void);
 extern void InputManager_Update_m5CEF4B04E7336E0F24B004F98C71799F3DFD5656 (void);
 extern void InputManager_IsMouseOverUI_mFC07B5C3C7920C8E6A71114D551172B85A4D9A95 (void);
 extern void InputManager__ctor_m52D2F3B9FA0D50C52BCC92486F49B300E9334C2A (void);
@@ -51,6 +52,7 @@ extern void CameraRotation_RotateCamera_mA7DD319B9007CEF17F507E028929EDCAAC3A7A7
 extern void CameraRotation_SetMainIsland_m8AD03CA57206C716DD759A406A057A27C910EC18 (void);
 extern void CameraRotation__ctor_mBB3EFD7D1494DB3E377C676EB4141EF6FCBAD4D6 (void);
 extern void CameraSwipeRotation_Update_m2CE5B428F73BC2CC2DCB6D63A6582F126AFDABE1 (void);
+extern void CameraSwipeRotation_SetTreeSpawned_m9F06C8D5C50E8775408FC684434C6F7D5E8FE9EE (void);
 extern void CameraSwipeRotation__ctor_m6523D0AF1BB42B87ACFC8AB49AF209402A61CCE1 (void);
 extern void CameraController_Start_m8EAAC188934ECCBD009EC00751280DCFF4D96C71 (void);
 extern void CameraController_Update_mBCB871B23DBA60444D43AB56D780478BA3D355E6 (void);
@@ -150,7 +152,7 @@ extern void MessageHandlerDelegate__ctor_m287CBD25D77011FC5A52D1090F6CC31353AB63
 extern void MessageHandlerDelegate_Invoke_mD1EC9E1841D5014C40A26D4C4BA076482FFC8A4B (void);
 extern void MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D (void);
 extern void MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16 (void);
-static Il2CppMethodPointer s_methodPointers[155] = 
+static Il2CppMethodPointer s_methodPointers[157] = 
 {
 	NULL,
 	NULL,
@@ -181,6 +183,7 @@ static Il2CppMethodPointer s_methodPointers[155] =
 	InputManager_add_OnExit_m44C7A5278B000A50E350FA37AC9D2E9A71E98CDB,
 	InputManager_remove_OnExit_m04F2105EF2C82ED78ADAF0DB4D5194FBE994E434,
 	InputManager_GetSelectedMapPositon_m69ED6495052E926D1D3AF0703F24175A51195788,
+	InputManager_RoundToNearestGridCenter_m11F36AC2C656951EFBCE7C2263875D519F1FDD75,
 	InputManager_Update_m5CEF4B04E7336E0F24B004F98C71799F3DFD5656,
 	InputManager_IsMouseOverUI_mFC07B5C3C7920C8E6A71114D551172B85A4D9A95,
 	InputManager__ctor_m52D2F3B9FA0D50C52BCC92486F49B300E9334C2A,
@@ -199,6 +202,7 @@ static Il2CppMethodPointer s_methodPointers[155] =
 	CameraRotation_SetMainIsland_m8AD03CA57206C716DD759A406A057A27C910EC18,
 	CameraRotation__ctor_mBB3EFD7D1494DB3E377C676EB4141EF6FCBAD4D6,
 	CameraSwipeRotation_Update_m2CE5B428F73BC2CC2DCB6D63A6582F126AFDABE1,
+	CameraSwipeRotation_SetTreeSpawned_m9F06C8D5C50E8775408FC684434C6F7D5E8FE9EE,
 	CameraSwipeRotation__ctor_m6523D0AF1BB42B87ACFC8AB49AF209402A61CCE1,
 	CameraController_Start_m8EAAC188934ECCBD009EC00751280DCFF4D96C71,
 	CameraController_Update_mBCB871B23DBA60444D43AB56D780478BA3D355E6,
@@ -308,7 +312,7 @@ static Il2CppMethodPointer s_methodPointers[155] =
 	MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D,
 	MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16,
 };
-static const int32_t s_InvokerIndices[155] = 
+static const int32_t s_InvokerIndices[157] = 
 {
 	0,
 	0,
@@ -339,6 +343,7 @@ static const int32_t s_InvokerIndices[155] =
 	1743,
 	1743,
 	1972,
+	1646,
 	1977,
 	1872,
 	1977,
@@ -354,6 +359,7 @@ static const int32_t s_InvokerIndices[155] =
 	1977,
 	1743,
 	1766,
+	1977,
 	1977,
 	1977,
 	1977,
@@ -470,10 +476,10 @@ static const Il2CppTokenRangePair s_rgctxIndices[6] =
 {
 	{ 0x02000002, { 0, 29 } },
 	{ 0x02000020, { 38, 11 } },
-	{ 0x06000039, { 29, 3 } },
-	{ 0x0600003A, { 32, 3 } },
-	{ 0x0600003B, { 35, 3 } },
-	{ 0x06000081, { 49, 2 } },
+	{ 0x0600003B, { 29, 3 } },
+	{ 0x0600003C, { 32, 3 } },
+	{ 0x0600003D, { 35, 3 } },
+	{ 0x06000083, { 49, 2 } },
 };
 extern const uint32_t g_rgctx_U3CU3Ef__AnonymousType0_4_t93FD0713D40011506D6B5581D9D5064D1A1A31B8;
 extern const uint32_t g_rgctx_U3CidU3Ej__TPar_tB4283D6614B0A1B9713411CF590AE6445EC76C76;
@@ -585,7 +591,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	155,
+	157,
 	s_methodPointers,
 	0,
 	NULL,

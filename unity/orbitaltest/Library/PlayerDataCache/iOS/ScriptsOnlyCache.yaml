@@ -1,7 +1,6 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp:
-    - ChangeColorOnTouch
     - FlutterUnityIntegration.UnityMessageManager
     - JsonLoader
     - addCube
@@ -9,6 +8,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - CameraController
     - CameraRotation
+    - CameraSwipeRotation
     - FlutterUnityIntegration.UnityMessageManager
     - InputManager
     - JsonLoader
@@ -67,10 +67,7 @@ ScriptsOnlyBuild:
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.ShaderGraph.Editor.dll:
-    - UnityEditor.Graphing.GraphObject
     - UnityEditor.ShaderGraph.Drawing.MaterialGraphEditWindow
-    - UnityEditor.ShaderGraph.ShaderGraphProjectSettings
-    - UnityEditor.ShaderGraph.SubGraphAsset
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -300,8 +297,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 22852}
     - Class: 114
-      Script: {instanceID: 22924}
-    - Class: 114
       Script: {instanceID: 22956}
     - Class: 114
       Script: {instanceID: 23094}
@@ -315,6 +310,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 23504}
     - Class: 114
       Script: {instanceID: 23900}
+    - Class: 114
+      Script: {instanceID: 24018}
     - Class: 114
       Script: {instanceID: 24344}
     - Class: 114

@@ -23,7 +23,19 @@ public class CameraSwipeRotation : MonoBehaviour
 
             float rotationAmount = direction.x * rotationSpeed;
 
+            SetTreeSpawned();
+
             transform.RotateAround(target.position, Vector3.up, rotationAmount);
+        }
+    }
+
+    public void SetTreeSpawned()
+    {
+        GameObject treeObject = GameObject.FindWithTag("Tree");
+        if (treeObject != null)
+        {
+            target = treeObject.transform;
+            //UnityMessageManager.Instance.SendMessageToFlutter("treeSpawned");
         }
     }
 }
