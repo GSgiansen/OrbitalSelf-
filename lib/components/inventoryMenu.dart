@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
-import 'package:orbital_test_space/components/inventory.dart';
 import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
 import 'package:orbital_test_space/controllers/unityContoller.dart';
 

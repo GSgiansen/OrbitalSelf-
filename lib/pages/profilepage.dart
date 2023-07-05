@@ -25,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromARGB(255, 25, 139, 84),
         title: Text(widget.user!.email!),
       ),
       body: Center(
@@ -53,6 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => PurchaseHistoryPage(
+                            user: widget.user,
                             currencyNotifier: widget.currencyNotifier)),
                   );
                 },

@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
-import 'package:orbital_test_space/components/inventory.dart';
+import 'package:orbital_test_space/components/inventoryCard.dart';
 import 'package:orbital_test_space/components/inventoryMenu.dart';
 import 'package:orbital_test_space/controllers/unityfirebaseFunctions.dart';
 import 'package:orbital_test_space/main.dart';

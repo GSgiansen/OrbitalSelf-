@@ -40,8 +40,9 @@ class MyApp extends StatelessWidget {
         create: (context) => TaskProvider(),
         child: MaterialApp(
           theme: ThemeData(
-            textTheme:
-                const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
+            fontFamily: 'Rotorcap',
+            // textTheme:
+            //     const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
             primarySwatch: Colors.green,
           ),
           home: StreamBuilder(
@@ -130,7 +131,6 @@ class _MyHomePageState extends State<MyHomePage> {
             FutureBuilder(
           future: getUserData(), //Call the function to fetch user data
           builder: (context, snapshot) {
-            print(snapshot);
             if (snapshot.connectionState == ConnectionState.waiting) {
               // Display a loading indicator while fetching data
               return Center(child: CircularProgressIndicator());
