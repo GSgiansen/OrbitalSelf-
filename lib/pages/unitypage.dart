@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:async';
 import 'dart:typed_data';
 import 'dart:convert';
 import 'dart:io';
@@ -30,12 +31,13 @@ class UnityDemoScreen extends StatefulWidget {
 }
 
 class __UnityDemoScreenState extends State<UnityDemoScreen> {
-  static final GlobalKey<ScaffoldState> _scaffoldKey =
-      GlobalKey<ScaffoldState>();
+  // static final GlobalKey<ScaffoldState> _scaffoldKey =
+  //      GlobalKey<ScaffoldState>();
   UnityWidgetController? _unityWidgetController;
   List<int> templateSceneData = [];
   final storage = FirebaseStorage.instance;
   String jsonString = "";
+
 
   var UID = FirebaseAuth.instance.currentUser!.uid;
   //query if user exists in the database
@@ -44,6 +46,11 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   void initState() {
     super.initState();
     future();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Future<void> future() async {
@@ -105,10 +112,10 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
     //local pat file
     Directory appDir = await getApplicationDocumentsDirectory();
     String localPath = '${appDir.path}/scene1.json';
-    print(jsonstring);
+    print(jsonstring.toString());
     // Create the JSON file
     File jsonFile = File(localPath);
-    await jsonFile.writeAsString(jsonstring);
+    await jsonFile.writeAsString(jsonstring.toString());
 
     try {
       // Upload raw data.
@@ -187,9 +194,12 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
         child: CircularProgressIndicator(),
       );
     }
-    return MaterialApp(
+
+    else {
+
+      return MaterialApp(
         home: Scaffold(
-            key: _scaffoldKey,
+            // key: _scaffoldKey,
             bottomNavigationBar: 
             UnityMenu(
               
@@ -218,6 +228,8 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
               ]),
               
     )));
+
+    }
   }
 
   // Communication from Unity to Flutter
@@ -235,12 +247,19 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
 
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
-    print("creatying unity controller");
-    print(jsonString);
-    setState(() {
+
+    print("creating unity controller");
+    var _timer = new Timer(const Duration(milliseconds: 1000), () {
+      setState(() {
       _unityWidgetController = controller;
+      
       loadSceneFromFirebase(_unityWidgetController, jsonString);
+
     });
+    });
+    _unityWidgetController?.resume();
+    
+
   }
 
   // Communication from Unity when new scene is loaded to Flutter

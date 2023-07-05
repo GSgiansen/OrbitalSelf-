@@ -113,15 +113,21 @@ class _UnityMenuState extends State<UnityMenu> {
                 if (user == null) {
                   user = FirebaseAuth.instance.currentUser;
                 }
-                return InventoryMenu(user: widget.user, unityWidgetController: widget.unityWidgetController,);
+                return InventoryMenu(
+                  user: widget.user,
+                  unityWidgetController: widget.unityWidgetController,
+                );
               });
         },
       ),
       IconButton(
         tooltip: "Back to Profile",
         icon: Icon(Icons.person),
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          widget.unityWidgetController?.dispose();
+          widget.unityWidgetController?.unload();
+
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (context) => MyHomePage(
