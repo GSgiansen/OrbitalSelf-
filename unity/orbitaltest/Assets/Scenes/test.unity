@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18029517, g: 0.22573823, b: 0.30694664, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018535, g: 0.22559482, b: 0.30677685, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -263,6 +263,7 @@ MonoBehaviour:
     type: 3}
   chairPrefab: {fileID: 2495105774481037469, guid: f4bd7245f00674463965ed41a944218f,
     type: 3}
+  catPrefab: {fileID: 0}
 --- !u!1 &116600303
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76005ad2c44249998a1262d7c52b32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: {x: 45, y: 0, z: 0}
+  target: {fileID: 0}
   rotationSpeed: 10
 --- !u!1 &705507993
 GameObject:
@@ -821,7 +822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76005ad2c44249998a1262d7c52b32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: {x: 45, y: 0, z: 0}
+  target: {fileID: 0}
   rotationSpeed: 10
 --- !u!114 &963194230
 MonoBehaviour:
@@ -1469,6 +1470,7 @@ MonoBehaviour:
   dogPrefab: {fileID: 0}
   plantPrefab: {fileID: 0}
   chairPrefab: {fileID: 0}
+  catPrefab: {fileID: 0}
 --- !u!114 &1979579420
 MonoBehaviour:
   m_ObjectHideFlags: 0

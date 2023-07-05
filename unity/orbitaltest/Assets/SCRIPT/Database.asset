@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0f69aa5fba940329b2e6ab56bc87eb, type: 3}
+  m_Name: Database
+  m_EditorClassIdentifier: 
+  objectsData:
+  - <Name>k__BackingField: chair
+    <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 1, y: 0}
+    <Prefab>k__BackingField: {fileID: 2495105774481037469, guid: f4bd7245f00674463965ed41a944218f,
+      type: 3}
+  - <Name>k__BackingField: cat
+    <ID>k__BackingField: 1
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 87696461381117046, guid: dad9909f622b646ff93a579cd37e8bbc,
+      type: 3}
+  - <Name>k__BackingField: dog
+    <ID>k__BackingField: 2
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 6049355975015384687, guid: e58f6051c824b48e39151e9ae550f809,
+      type: 3}
+  - <Name>k__BackingField: pot
+    <ID>k__BackingField: 3
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 3371103908360940911, guid: ded2bc4c1ea0946b894a2dc01c27179d,
+      type: 3}

@@ -95,7 +95,10 @@ void loadSceneFromFirebase(UnityWidgetController? _unityWidgetController, String
         jsonstring,
       )
       ?.then(
-        (value) => print("loaded scene from firebase"),
+        (value) => 
+        {
+          print("loaded scene from firebase")
+        }
       );
 }
 
