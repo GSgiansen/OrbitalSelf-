@@ -11,11 +11,9 @@ class ShopPage extends StatefulWidget {
   const ShopPage(
       {super.key,
       required this.user,
-      required this.currencyNotifier,
-      required this.itemsOwned});
+      required this.currencyNotifier,});
   final User? user;
   final CurrencyNotifier currencyNotifier;
-  final ItemsOwned itemsOwned;
 
   @override
   State<ShopPage> createState() => _ShopPageState();
@@ -54,8 +52,7 @@ class _ShopPageState extends State<ShopPage> {
                     ShopCard(
                         item: lst[j],
                         user: widget.user,
-                        currencyNotifier: widget.currencyNotifier,
-                        itemsOwned: widget.itemsOwned),
+                        currencyNotifier: widget.currencyNotifier,),
                     const Spacer(),
                   ],
                 ),

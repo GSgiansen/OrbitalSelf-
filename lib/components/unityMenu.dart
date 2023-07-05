@@ -17,12 +17,10 @@ class UnityMenu extends StatefulWidget {
   final User? user;
   final UnityWidgetController? unityWidgetController;
   final CurrencyNotifier currencyNotifier;
-  final ItemsOwned itemsOwned;
   const UnityMenu(
       {super.key,
       required this.user,
       required this.currencyNotifier,
-      required this.itemsOwned,
       required this.unityWidgetController});
 
   @override

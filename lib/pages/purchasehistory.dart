@@ -5,9 +5,8 @@ import 'package:orbital_test_space/main.dart';
 import '../components/header.dart';
 
 class PurchaseHistoryPage extends StatefulWidget {
-  final ItemsOwned itemsOwned;
   CurrencyNotifier currencyNotifier;
-  PurchaseHistoryPage({super.key, required this.itemsOwned,
+  PurchaseHistoryPage({super.key,
   required this.currencyNotifier});
   @override
   _PurchaseHistoryPageState createState() => _PurchaseHistoryPageState();
@@ -22,8 +21,6 @@ class _PurchaseHistoryPageState extends State<PurchaseHistoryPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            for (var item in widget.itemsOwned.items) 
-            InventoryCard(item: item),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
