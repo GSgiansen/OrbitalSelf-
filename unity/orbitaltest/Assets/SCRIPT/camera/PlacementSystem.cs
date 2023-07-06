@@ -14,9 +14,19 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private GameObject gridVisualisation;
 
+    private GridData floorData, itemsData;
+
+    private Renderer previewRenderer;
+
+    private List<GameObject> placedObjects = new List<GameObject>();
+
     private void Start()
     {
         StopPlacement();
+        floorData = new GridData();
+        itemsData = new GridData();
+        previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
+
     }
 
     private void StopPlacement()
@@ -38,8 +48,17 @@ public class PlacementSystem : MonoBehaviour
         print("check if can place");
         Vector3 mousePos = inputManager.GetSelectedMapPositon();
         Vector3Int gridPos = grid.WorldToCell(mousePos);
+        bool placementValidty = CheckPlacementValidty(gridPos, selectedObjectID);
+        if (placementValidty == false) {
+            return;
+        }
+
+
         GameObject gameObject = Instantiate(database.objectsData[selectedObjectID].Prefab);
         gameObject.transform.position = grid.CellToWorld(gridPos);
+        placedObjects.Add(gameObject);
+        GridData selectedData = database.objectsData[selectedObjectID].ID == 0 ? floorData : itemsData;
+        selectedData.AddObjectAt(gridPos, database.objectsData[selectedObjectID].Size, database.objectsData[selectedObjectID].ID, placedObjects.Count - 1);
 
     }
 
@@ -68,8 +87,21 @@ public class PlacementSystem : MonoBehaviour
         }
         Vector3 mousePos = inputManager.GetSelectedMapPositon();
         Vector3Int gridPos = grid.WorldToCell(mousePos);
+
+        bool placementValidty = CheckPlacementValidty(gridPos, selectedObjectID);
+        previewRenderer.material.color = placementValidty ? Color.white: Color.red;
+
+
+
         mouseIndicator.transform.position = mousePos;
         cellIndicator.transform.position = grid.CellToWorld(gridPos);
 
+    }
+
+    private bool CheckPlacementValidty(Vector3Int gridPos, int selectedObjectID)
+    {
+        GridData selectedData = database.objectsData[selectedObjectID].ID == 0 ? floorData : itemsData;
+       
+        return selectedData.CanPlaceObjectsAt(gridPos, database.objectsData[selectedObjectID].Size);
     }
 }
