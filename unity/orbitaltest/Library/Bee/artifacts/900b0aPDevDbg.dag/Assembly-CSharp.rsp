@@ -339,6 +339,7 @@
 "Assets/SCRIPT/spawning/addCube.cs"
 "Assets/SCRIPT/spawning/changeColor.cs"
 "Assets/SCRIPT/spawning/colourOnTouch.cs"
+"Assets/SCRIPT/spawning/GridData.cs"
 "Assets/SCRIPT/spawning/loadTemplateScene.cs"
 "Assets/SCRIPT/spawning/objectDatatbaseSO.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
