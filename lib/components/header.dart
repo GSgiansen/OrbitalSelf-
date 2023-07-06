@@ -5,8 +5,9 @@ AppBar header(
     BuildContext context, CurrencyNotifier currencyNotifier, bool isAppTitle) {
   return AppBar(
     automaticallyImplyLeading: false,
-    backgroundColor: Colors.blue,
+    //separate elements to 2 furthest ends
     title: const Text("Self++"),
+    backgroundColor: Color.fromARGB(255, 25, 139, 84),
     actions: <Widget>[
       ValueListenableBuilder(
           valueListenable: currencyNotifier.currency,

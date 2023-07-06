@@ -20,11 +20,9 @@ import '../main.dart';
 class UnityDemoScreen extends StatefulWidget {
   UnityDemoScreen(      {super.key,
       required this.user,
-      required this.currencyNotifier,
-      required this.itemsOwned});
+      required this.currencyNotifier,});
   User? user;
   final CurrencyNotifier currencyNotifier;
-  final ItemsOwned itemsOwned;
 
   @override
   State<UnityDemoScreen> createState() => __UnityDemoScreenState();
@@ -202,10 +200,8 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
             // key: _scaffoldKey,
             bottomNavigationBar: 
             UnityMenu(
-              
               user: widget.user,
               currencyNotifier: widget.currencyNotifier,
-              itemsOwned: widget.itemsOwned,
               unityWidgetController: _unityWidgetController,
             ),
             body: Card(

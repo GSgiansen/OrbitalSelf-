@@ -8,10 +8,8 @@ import 'package:orbital_test_space/models/item.dart';
 class ShopCard extends StatelessWidget {
   final User? user;
   CurrencyNotifier currencyNotifier;
-  ItemsOwned itemsOwned;
   Item item;
   ShopCard({super.key, required this.currencyNotifier, 
-            required this.itemsOwned,
             required this.user,
             required this.item,
             });
@@ -61,8 +59,6 @@ class ShopCard extends StatelessWidget {
                         currencyNotifier.decreaseCurrency(cost);
                         FireStoreFunctions.removeOldCurrency(user, currencyNotifier.currency.value as int);
                         FireStoreFunctions.addNewPurchase(user, item.name);
-                        print(item.name);
-                        itemsOwned.addItem(item);
                         print("Currency is ${currencyNotifier.currency.value}");
                         
                         

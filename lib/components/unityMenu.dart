@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
-import 'package:orbital_test_space/components/inventory.dart';
+import 'package:orbital_test_space/components/inventoryCard.dart';
 import 'package:orbital_test_space/components/inventoryMenu.dart';
 import 'package:orbital_test_space/controllers/unityfirebaseFunctions.dart';
 import 'package:orbital_test_space/main.dart';
@@ -17,12 +17,10 @@ class UnityMenu extends StatefulWidget {
   final User? user;
   final UnityWidgetController? unityWidgetController;
   final CurrencyNotifier currencyNotifier;
-  final ItemsOwned itemsOwned;
   const UnityMenu(
       {super.key,
       required this.user,
       required this.currencyNotifier,
-      required this.itemsOwned,
       required this.unityWidgetController});
 
   @override

@@ -40,8 +40,9 @@ class MyApp extends StatelessWidget {
         create: (context) => TaskProvider(),
         child: MaterialApp(
           theme: ThemeData(
-            textTheme:
-                const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
+            fontFamily: 'Rotorcap',
+            // textTheme:
+            //     const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
             primarySwatch: Colors.green,
           ),
           home: StreamBuilder(
@@ -83,7 +84,6 @@ class MyHomePage extends StatefulWidget {
 
   CurrencyNotifier currencyNotifier = CurrencyNotifier();
 
-  ItemsOwned itemsOwned = ItemsOwned();
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   widget.currencyNotifier.setValue(value),
                 }
                 else {
-                  widget.currencyNotifier.setValue(0),
+                  widget.currencyNotifier.setValue(100),
                 }
               });
           }
@@ -131,7 +131,6 @@ class _MyHomePageState extends State<MyHomePage> {
             FutureBuilder(
           future: getUserData(), //Call the function to fetch user data
           builder: (context, snapshot) {
-            print(snapshot);
             if (snapshot.connectionState == ConnectionState.waiting) {
               // Display a loading indicator while fetching data
               return Center(child: CircularProgressIndicator());
@@ -180,7 +179,6 @@ class _MyHomePageState extends State<MyHomePage> {
       case 0:
         return ShopPage(
           currencyNotifier: widget.currencyNotifier,
-          itemsOwned: widget.itemsOwned,
           user: widget.user,
         );
       case 1:
@@ -188,8 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 4:
         return ProfilePage(
             user: widget.user,
-            currencyNotifier: widget.currencyNotifier,
-            itemsOwned: widget.itemsOwned);
+            currencyNotifier: widget.currencyNotifier,);
     }
     return Container();
   }
@@ -208,17 +205,5 @@ class CurrencyNotifier {
 
   void setValue(int value) {
     currency.value = value;
-  }
-}
-
-class ItemsOwned {
-  List<Item> items = [];
-
-  void addItem(Item item) {
-    items.add(item);
-  }
-
-  void removeItem(Item item) {
-    items.remove(item);
   }
 }

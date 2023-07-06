@@ -9,12 +9,10 @@ import '../main.dart';
 class ProfilePage extends StatefulWidget {
   final User? user;
   final CurrencyNotifier currencyNotifier;
-  final ItemsOwned itemsOwned;
   const ProfilePage(
       {super.key,
       required this.user,
-      required this.currencyNotifier,
-      required this.itemsOwned});
+      required this.currencyNotifier,});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -27,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromARGB(255, 25, 139, 84),
         title: Text(widget.user!.email!),
       ),
       body: Center(
@@ -55,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => PurchaseHistoryPage(
-                            itemsOwned: widget.itemsOwned,
+                            user: widget.user,
                             currencyNotifier: widget.currencyNotifier)),
                   );
                 },
@@ -70,7 +68,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         builder: (context) => UnityDemoScreen(
                               user: widget.user,
                               currencyNotifier: widget.currencyNotifier,
-                              itemsOwned: widget.itemsOwned,
                             )),
                   );
                 },
