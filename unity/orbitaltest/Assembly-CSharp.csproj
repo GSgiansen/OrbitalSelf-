@@ -53,38 +53,39 @@
     <UnityVersion>2022.3.3f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Analyzers/Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.3f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll" />
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.3f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/SCRIPT/loadTemplateScene.cs" />
-    <Compile Include="Assets/SCRIPT/JsonToScene.cs" />
-    <Compile Include="Assets/SCRIPT/loadAssetsFromJson.cs" />
+    <Compile Include="Assets/SCRIPT/spawning/colourOnTouch.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/NativeAPI.cs" />
-    <Compile Include="Assets/SCRIPT/loodStorage.cs" />
+    <Compile Include="Assets/SCRIPT/spawning/loadTemplateScene.cs" />
+    <Compile Include="Assets/SCRIPT/camera/testSwipe.cs" />
+    <Compile Include="Assets/SCRIPT/spawning/addCube.cs" />
+    <Compile Include="Assets/SCRIPT/jsonFolder/JsonToScene.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/Demo/GameManager.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/SingletonMonoBehaviour.cs" />
-    <Compile Include="Assets/SCRIPT/JsonToSceneLocal.cs" />
-    <Compile Include="Assets/SCRIPT/addCube.cs" />
-    <Compile Include="Assets/SCRIPT/findFileinApp.cs" />
+    <Compile Include="Assets/SCRIPT/jsonFolder/JsonToFlutter.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
-    <Compile Include="Assets/SCRIPT/changeColor.cs" />
-    <Compile Include="Assets/SCRIPT/sceneToJson.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/Demo/SceneLoader.cs" />
-    <Compile Include="Assets/SCRIPT/loadNewScene.cs" />
-    <Compile Include="Assets/SCRIPT/JsonHelper.cs" />
-    <Compile Include="Assets/SCRIPT/zoomCamera.cs" />
-    <Compile Include="Assets/SCRIPT/rotateCamera.cs" />
+    <Compile Include="Assets/SCRIPT/jsonFolder/sceneToJson.cs" />
+    <Compile Include="Assets/SCRIPT/spawning/changeColor.cs" />
+    <Compile Include="Assets/SCRIPT/jsonFolder/JsonHelper.cs" />
+    <Compile Include="Assets/SCRIPT/spawning/objectDatatbaseSO.cs" />
+    <Compile Include="Assets/SCRIPT/camera/PlacementSystem.cs" />
+    <Compile Include="Assets/SCRIPT/camera/zoomCamera.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/UnityMessageManager.cs" />
-    <Compile Include="Assets/SCRIPT/convertResourcesToUnity.cs" />
+    <Compile Include="Assets/SCRIPT/camera/InputManager.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/Demo/Rotate.cs" />
-    <Compile Include="Assets/SCRIPT/JsonToFlutter.cs" />
+    <Compile Include="Assets/SCRIPT/camera/rotateCamera.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/FlutterUnityIntegration/JsonDotNet/link.xml" />
     <None Include="Assets/FlutterUnityIntegration/JsonDotNet/Assemblies/AOT/Newtonsoft.Json.dll" />
     <None Include="Assets/FlutterUnityIntegration/README.txt" />
     <None Include="Assets/FlutterUnityIntegration/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll.txt" />
+    <None Include="Assets/_Shaders/Skybox Gradient Shader/Skybox Gradient.shader" />
     <None Include="Assets/FlutterUnityIntegration/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.XML" />
     <None Include="Assets/FlutterUnityIntegration/JsonDotNet/Assemblies/AOT/Newtonsoft.Json.XML" />
     <None Include="Assets/FlutterUnityIntegration/JsonDotNet/Assemblies/Windows/Newtonsoft.Json.XML" />
@@ -343,15 +344,6 @@
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Common">
       <HintPath>/Applications/Unity/Hub/Editor/2022.3.3f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>/Applications/Unity/Hub/Editor/2022.3.3f1/PlaybackEngines/AndroidPlayer/Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>/Applications/Unity/Hub/Editor/2022.3.3f1/PlaybackEngines/AndroidPlayer/Unity.Android.Gradle.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.GradleProject">
-      <HintPath>/Applications/Unity/Hub/Editor/2022.3.3f1/PlaybackEngines/AndroidPlayer/Unity.Android.GradleProject.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>/Applications/Unity/Hub/Editor/2022.3.3f1/Unity.app/Contents/NetStandard/ref/2.1.0/netstandard.dll</HintPath>
@@ -719,8 +711,14 @@
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Hub/Editor/2022.3.3f1/Unity.app/Contents/NetStandard/compat/2.1.0/shims/netfx/mscorlib.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Notifications">
       <HintPath>Library/ScriptAssemblies/Unity.Notifications.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AI.Navigation">
       <HintPath>Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
@@ -733,6 +731,9 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AdaptivePerformance">
       <HintPath>Library/ScriptAssemblies/Unity.AdaptivePerformance.dll</HintPath>
@@ -776,11 +777,17 @@
     <Reference Include="Unity.VisualScripting.Flow.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Subsystem.Registration">
       <HintPath>Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
@@ -800,6 +807,9 @@
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Searcher.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.AdaptivePerformance.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.AdaptivePerformance.Editor.dll</HintPath>
     </Reference>
@@ -817,6 +827,9 @@
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Profiling.Core">
       <HintPath>Library/ScriptAssemblies/Unity.Profiling.Core.dll</HintPath>
