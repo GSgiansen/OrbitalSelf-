@@ -95,7 +95,7 @@ class Loginpopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
@@ -142,11 +142,14 @@ class Loginpopup extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                     showModalBottomSheet(
+                        isScrollControlled: true,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         context: context,
-                        builder: (context) => Registerpopup());
+                        builder: (context) => Container(
+                            height: MediaQuery.of(context).size.height * 0.75,
+                            child: Registerpopup()));
                     /*
                     Navigator.push(
                         context,
@@ -220,13 +223,16 @@ class Registerpopup extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                     showModalBottomSheet(
+                        isScrollControlled: true,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         context: context,
-                        builder: (context) => Loginpopup());
+                        builder: (context) => Container(
+                            height: MediaQuery.of(context).size.height * 0.75,
+                            child: Loginpopup()));
                   },
-                  child: const Text('Register',
+                  child: const Text('LOG IN',
                       style: TextStyle(
                           color: Colors.black,
                           fontFamily: 'Rotorcap',
