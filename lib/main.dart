@@ -124,54 +124,62 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: header(context, widget.currencyNotifier, true),
-        body:
-            // a previously-obtained Future<String> or null
-            FutureBuilder(
-          future: getUserData(), //Call the function to fetch user data
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              // Display a loading indicator while fetching data
-              return Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              // Handle error case
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else {
-              // User data is loaded, build the UI
-              return Center(child: _buildSelectedScreen());
-            }
-          },
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.green,
-          currentIndex: currentPageIndex,
-          onTap: (index) => setState(() => currentPageIndex = index),
-          type: BottomNavigationBarType.fixed,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.store), // shop
-              label: "Shop",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.bookMedical), //heath_and_safety
-              label: "My Health",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.house),
-              label: "My Island",
-              activeIcon: FaIcon(FontAwesomeIcons.houseChimney),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.people),
-              label: "My Friends",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              label: "My Account",
-            )
-          ],
-        ));
+    return MaterialApp(
+      theme:ThemeData(
+        fontFamily: 'Rotorcap',
+        // textTheme:
+        //     const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
+        primarySwatch: Colors.green,
+      ),
+      home: Scaffold(
+          appBar: header(context, widget.currencyNotifier, true),
+          body:
+              // a previously-obtained Future<String> or null
+              FutureBuilder(
+            future: getUserData(), //Call the function to fetch user data
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                // Display a loading indicator while fetching data
+                return Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                // Handle error case
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else {
+                // User data is loaded, build the UI
+                return Center(child: _buildSelectedScreen());
+              }
+            },
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: Colors.green,
+            currentIndex: currentPageIndex,
+            onTap: (index) => setState(() => currentPageIndex = index),
+            type: BottomNavigationBarType.fixed,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.store), // shop
+                label: "Shop",
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.bookMedical), //heath_and_safety
+                label: "My Health",
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.house),
+                label: "My Island",
+                activeIcon: FaIcon(FontAwesomeIcons.houseChimney),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.people),
+                label: "My Friends",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle),
+                label: "My Account",
+              )
+            ],
+          )),
+    );
   }
 
   Widget _buildSelectedScreen() {

@@ -124,8 +124,7 @@ class _UnityMenuState extends State<UnityMenu> {
         onPressed: () async {
           widget.unityWidgetController?.dispose();
           widget.unityWidgetController?.unload();
-
-          Navigator.pushReplacement(
+          Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => MyHomePage(

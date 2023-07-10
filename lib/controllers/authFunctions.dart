@@ -6,7 +6,7 @@ class Authservices {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       print('authServices success');
-      print(FirebaseAuth.instance.currentUser);
+      // print(FirebaseAuth.instance.currentUser);
       return FirebaseAuth.instance.currentUser;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -18,6 +18,9 @@ class Authservices {
         return "wrong password";
 
       }
+      else {
+        return "error";
+      }
     }
   }
   static createUser(String email, password) async {
@@ -25,15 +28,15 @@ class Authservices {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       
-      return print('success');
+      return 'success';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print( 'The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        return print('The account already exists for that email.');
+        return 'email-already-in-use';
       }
     } catch (e) {
-      return print('Error creating user');
+      return 'Error creating user';
     }
   }
 }
