@@ -16,65 +16,72 @@ class _MyCoverPageState extends State<MyCoverPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(children: <Widget>[
-      Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage('web/forest.jpg'))),
-      ),
-      Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-            const Text('SELF++',
-                style: TextStyle(
-                    fontFamily: 'Rotorcap', fontSize: 95, color: Colors.white)),
-            const SizedBox(height: 10.0),
-            RichText(
-                textAlign: TextAlign.center,
-                text: const TextSpan(
-                  style: TextStyle(
-                      fontFamily: 'Rotorcap',
-                      fontSize: 22,
-                      color: Colors.white),
-                  children: [
-                    TextSpan(text: 'EMBARK ON YOUR JOURNEY TO\n'),
-                    WidgetSpan(child: SizedBox(height: 25)),
-                    TextSpan(text: 'LEVEL UP YOUR LIFESTYLE.')
-                  ],
-                )),
-            const SizedBox(height: 24),
-            OutlinedButton(
-              onPressed: () {
-                showModalBottomSheet(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    context: context,
-                    builder: (context) => Loginpopup());
-                /* 
+          Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(image: AssetImage('web/forest.jpg'))),
+          ),
+          Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                const Text('SELF++',
+                    style: TextStyle(
+                        fontFamily: 'Rotorcap',
+                        fontSize: 95,
+                        color: Colors.white)),
+                const SizedBox(height: 10.0),
+                RichText(
+                    textAlign: TextAlign.center,
+                    text: const TextSpan(
+                      style: TextStyle(
+                          fontFamily: 'Rotorcap',
+                          fontSize: 22,
+                          color: Colors.white),
+                      children: [
+                        TextSpan(text: 'EMBARK ON YOUR JOURNEY TO\n'),
+                        WidgetSpan(child: SizedBox(height: 25)),
+                        TextSpan(text: 'LEVEL UP YOUR LIFESTYLE.')
+                      ],
+                    )),
+                const SizedBox(height: 24),
+                OutlinedButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        context: context,
+                        builder: (context) => Container(
+                              height: MediaQuery.of(context).size.height * 0.75,
+                              child: Loginpopup(),
+                            ));
+                    /* 
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const MyLoginPage(title: "login")),
                 );
                 */
-              },
-              style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  foregroundColor: Colors.white,
-                  side: const BorderSide(width: 3.0, color: Colors.white),
-                  backgroundColor: const Color(0xFF377256),
-                  padding: const EdgeInsets.all(12.0),
-                  textStyle: const TextStyle(
-                    fontSize: 22,
-                    fontFamily: 'Rotorcap',
-                  )),
-              child: const Text('GET STARTED'),
-            ),
-          ]))
-    ]));
+                  },
+                  style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      foregroundColor: Colors.white,
+                      side: const BorderSide(width: 3.0, color: Colors.white),
+                      backgroundColor: const Color(0xFF377256),
+                      padding: const EdgeInsets.all(12.0),
+                      textStyle: const TextStyle(
+                        fontSize: 22,
+                        fontFamily: 'Rotorcap',
+                      )),
+                  child: const Text('GET STARTED'),
+                ),
+              ]))
+        ]));
   }
 }
 
@@ -132,11 +139,14 @@ class Loginpopup extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                     showModalBottomSheet(
+                        isScrollControlled: true,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         context: context,
-                        builder: (context) => Registerpopup());
+                        builder: (context) => Container(
+                            height: MediaQuery.of(context).size.height * 0.75,
+                            child: Registerpopup()));
                     /*
                     Navigator.push(
                         context,
@@ -210,13 +220,16 @@ class Registerpopup extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                     showModalBottomSheet(
+                        isScrollControlled: true,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         context: context,
-                        builder: (context) => Loginpopup());
+                        builder: (context) => Container(
+                            height: MediaQuery.of(context).size.height * 0.75,
+                            child: Loginpopup()));
                   },
-                  child: const Text('Register',
+                  child: const Text('LOG IN',
                       style: TextStyle(
                           color: Colors.black,
                           fontFamily: 'Rotorcap',

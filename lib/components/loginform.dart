@@ -4,7 +4,7 @@ import 'package:orbital_test_space/controllers/authFunctions.dart';
 import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
 import 'package:orbital_test_space/main.dart';
 
-const ratio = 0.03;
+const ratio = 0.02;
 Image image = Image.asset('web/forest_login.jpg');
 var heightImg = image.width?.toDouble();
 
@@ -58,7 +58,7 @@ class RegisterButton extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(vertical: 13.0, horizontal: 30.0),
             textStyle: TextStyle(
-              fontSize: ratio * height * 0.5,
+              fontSize: ratio * height,
               fontFamily: 'Rotorcap',
             )),
         child: const Text(
@@ -134,7 +134,7 @@ class LoginButton extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(vertical: 13.0, horizontal: 30.0),
             textStyle: TextStyle(
-              fontSize: ratio * height * 0.5,
+              fontSize: ratio * height,
               fontFamily: 'Rotorcap',
             )),
         child: const Text('LOGIN'),
@@ -204,13 +204,10 @@ class PasswordField extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Container(
-            constraints: const BoxConstraints(
-              maxWidth: 270,
-            ),
             child: FittedBox(
               fit: BoxFit.contain,
               child: SizedBox(
-                width: 0.3 * width * 1.3,
+                width: 0.75 * width,
                 child: TextFormField(
                   key: const ValueKey('password'),
                   controller: _passwordController,
@@ -273,13 +270,10 @@ class EmailField extends StatelessWidget {
             height: 10,
           ),
           Container(
-            constraints: const BoxConstraints(
-              maxWidth: 270,
-            ),
             child: FittedBox(
               fit: BoxFit.contain,
               child: SizedBox(
-                width: 0.3 * width * 1.3,
+                width: 0.75 * width,
                 child: TextFormField(
                   key: const ValueKey('email'),
                   controller: _emailController,
