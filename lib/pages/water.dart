@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class WaterIntakeApp extends StatelessWidget {
   @override
@@ -46,18 +48,35 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
   }
 
   _loadIntake() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _currentIntake = (prefs.getDouble('intake') ?? 0.0);
-      if (_currentIntake >= _dailyRequirement) {
-        _showCongratsText = true;
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .get();
+
+      if (userSnapshot.exists) {
+        Map<String, dynamic>? userData =
+            userSnapshot.data() as Map<String, dynamic>?;
+        setState(() {
+          _currentIntake = (userData?['Water'] ?? 0.0).toDouble();
+          if (_currentIntake >= _dailyRequirement) {
+            _showCongratsText = true;
+          }
+        });
       }
-    });
+    }
   }
 
   _updateIntake(double intake) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setDouble('intake', intake);
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .update({'Water': intake});
+    }
+
     setState(() {
       _currentIntake = intake;
       if (_currentIntake >= _dailyRequirement) {
