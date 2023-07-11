@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/controllers/authFunctions.dart';
 import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
@@ -11,6 +12,7 @@ var heightImg = image.width?.toDouble();
 Widget LoginForm(BuildContext context, bool login) {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool canLogin = true;
   return SingleChildScrollView(
     child: Form(
       child: Container(
@@ -34,7 +36,7 @@ Widget LoginForm(BuildContext context, bool login) {
 }
 
 class RegisterButton extends StatelessWidget {
-  const RegisterButton({
+  RegisterButton({
     super.key,
     required TextEditingController emailController,
     required TextEditingController passwordController,
@@ -65,8 +67,9 @@ class RegisterButton extends StatelessWidget {
           'Register',
           style: TextStyle(color: Colors.white),
         ),
-        onPressed: () {
+        onPressed: () async {
           if (!_emailController.text.contains('@')) {
+            Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Please enter a valid email'),
@@ -76,6 +79,9 @@ class RegisterButton extends StatelessWidget {
             return;
           }
           if ((_passwordController.text.trim().length < 6)) {
+            // print('password too short');
+            Navigator.pop(context);
+
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Password must be at least 6 characters'),
@@ -84,28 +90,27 @@ class RegisterButton extends StatelessWidget {
             );
             return;
           }
-          Authservices.createUser(
+          var check = await Authservices.createUser(
             _emailController.text,
             _passwordController.text,
-          )
-              .then((value) => Authservices.signinUser(
-                    _emailController.text,
-                    _passwordController.text,
-                  ).then((value) => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MyHomePage(user: value))),
-                        FireStoreFunctions.addNewUser(
-                            _emailController.text, _passwordController.text)
-                      }))
-              .then((value) => value == "email-already-in-use"
-                  ? ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Email already in use"),
-                      backgroundColor: Colors.red,
-                    ))
-                  : print("Registered and Signed up"));
-          print('user is being created with ${_emailController.text}');
+          );
+          if (check == "email-already-in-use") {
+            // print("email already in use");
+            Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Email already in use'),
+                backgroundColor: Colors.red,
+              ),
+            );
+          } else if (check == "success") {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MyHomePage(user: check)));
+            FireStoreFunctions.addNewUser(
+                _emailController.text, _passwordController.text);
+          }
         });
   }
 }
@@ -124,53 +129,61 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     return OutlinedButton(
-        style: OutlinedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+      style: OutlinedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          foregroundColor: Colors.white,
+          side: const BorderSide(width: 3.0, color: Colors.white),
+          backgroundColor: const Color(0xFF377256),
+          padding: const EdgeInsets.symmetric(vertical: 13.0, horizontal: 30.0),
+          textStyle: TextStyle(
+            fontSize: ratio * height,
+            fontFamily: 'Rotorcap',
+          )),
+      child: const Text('LOGIN'),
+      onPressed: () async {
+        if (!_emailController.text.contains('@')) {
+          Navigator.pop(context);
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Please enter a valid email'),
+              backgroundColor: Colors.red,
             ),
-            foregroundColor: Colors.white,
-            side: const BorderSide(width: 3.0, color: Colors.white),
-            backgroundColor: const Color(0xFF377256),
-            padding:
-                const EdgeInsets.symmetric(vertical: 13.0, horizontal: 30.0),
-            textStyle: TextStyle(
-              fontSize: ratio * height,
-              fontFamily: 'Rotorcap',
-            )),
-        child: const Text('LOGIN'),
-        onPressed: () async {
-          if (!_emailController.text.contains('@')) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Please enter a valid email'),
-                backgroundColor: Colors.red,
-              ),
-            );
-            return;
-          }
-          Authservices.signinUser(
-            _emailController.text,
-            _passwordController.text,
-          ).then((value) => value == "no user found"
-              ? ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text("User not found"),
-                  backgroundColor: Colors.red,
-                ))
-              : value == "wrong password"
-                  ? ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Wrong password"),
-                      backgroundColor: Colors.red,
-                    ))
-                  : {
-                      //login = true,
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyHomePage(user: value))),
-                      print('email is ${_emailController.text}'),
-                    });
+          );
+          return;
+        }
+        var check = await Authservices.signinUser(
+          _emailController.text,
+          _passwordController.text,
+        );
+
+        if (check == "no user found") {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("User not found"),
+            backgroundColor: Colors.red,
+          ));
+        } else if (check == "wrong password") {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Wrong password"),
+            backgroundColor: Colors.red,
+          ));
+        } else if (check == "error") {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Unknown errro"),
+            backgroundColor: Colors.red,
+          ));
+        } else {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => MyHomePage(user: check)));
           print('email is ${_emailController.text}');
-        });
+        }
+      },
+    );
   }
 }
 
@@ -239,7 +252,7 @@ class PasswordField extends StatelessWidget {
 }
 
 class EmailField extends StatelessWidget {
-  const EmailField({
+  EmailField({
     super.key,
     required TextEditingController emailController,
   }) : _emailController = emailController;
@@ -274,28 +287,34 @@ class EmailField extends StatelessWidget {
               fit: BoxFit.contain,
               child: SizedBox(
                 width: 0.75 * width,
-                child: TextFormField(
-                  key: const ValueKey('email'),
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    filled: true,
-                    fillColor: const Color(0xFFd9d9d9),
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 12),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15),
+                child: Stack(
+                  children: [
+                    TextFormField(
+                      key: const ValueKey('email'),
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        filled: true,
+                        fillColor: const Color(0xFFd9d9d9),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 12,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
+                  ],
                 ),
               ),
             ),
-          ),
+          )
         ],
       ),
     );
