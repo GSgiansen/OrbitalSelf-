@@ -232,7 +232,6 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   void onUnityMessage(message) {
     print('Received message from unity: ${message.toString()}');
     if (message.substring(0, 6) == 'upload') {
-      print(message.substring(6));
       var jsonString = message.substring(6);
       uploadJSONfromUnity(jsonString);
       print("made it here");

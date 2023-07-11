@@ -114,3 +114,16 @@ void loadChosenObject(UnityWidgetController? _unityWidgetController, String obje
       );
 
 }
+
+
+void loadInventory(UnityWidgetController? _unityWidgetController) {
+  _unityWidgetController
+      ?.postMessage(
+        'GameObject',
+        'OnMessage',
+        'loadInventory',
+      )
+      ?.then(
+        (value) => print("loaded inventory from firebase"),
+      );
+}
