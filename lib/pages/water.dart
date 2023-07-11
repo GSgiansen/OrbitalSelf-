@@ -29,6 +29,7 @@ class WaterIntakePage extends StatefulWidget {
 }
 
 class _WaterIntakePageState extends State<WaterIntakePage> {
+  int _selectedGlasses = 1;
   double _currentIntake = 0.0;
   final double _dailyRequirement =
       2000.0; // Assume daily requirement is 2000 ml
@@ -86,9 +87,18 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
   }
 
   _resetIntake() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('intake');
-    _loadIntake();
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .update({'Water': 0.0});
+    }
+
+    setState(() {
+      _currentIntake = 0.0;
+      _showCongratsText = false;
+    });
   }
 
   Widget _buildFaceIcon() {
@@ -103,6 +113,52 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
       return Icon(Icons.sentiment_very_satisfied,
           size: 80, color: Colors.green);
     }
+  }
+
+  Widget _buildDropdownForm() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('I just drank', style: TextStyle(fontSize: 14)),
+            SizedBox(width: 10),
+            DropdownButton<int>(
+              value: _selectedGlasses,
+              items: List.generate(5, (index) {
+                int glasses = index + 1;
+                return DropdownMenuItem<int>(
+                  value: glasses,
+                  child: Text('$glasses glass${glasses > 1 ? 'es' : ''}'),
+                );
+              }),
+              onChanged: (value) {
+                setState(() {
+                  _selectedGlasses = value!;
+                });
+              },
+            ),
+            SizedBox(width: 10),
+            Text('of water.', style: TextStyle(fontSize: 14)),
+            SizedBox(width: 10),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  final intake = _selectedGlasses * 100.0;
+                  _updateIntake(_currentIntake + intake);
+                });
+              },
+              child: Text('Log It!', style: TextStyle(fontSize: 14)),
+            ),
+          ],
+        ),
+        SizedBox(height: 10),
+        Text(
+          'A glass of water is approximately 100ml',
+          style: TextStyle(fontSize: 12),
+        ),
+      ],
+    );
   }
 
   @override
@@ -123,8 +179,8 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
             alignment: Alignment.center,
             children: <Widget>[
               SizedBox(
-                width: 300, // Increased width of the progress bar
-                height: 300, // Increased height of the progress bar
+                width: 300,
+                height: 300,
                 child: CircularProgressIndicator(
                   value: _currentIntake / _dailyRequirement,
                   strokeWidth: 20,
@@ -150,34 +206,8 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
             ],
           ),
           SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('I just drank', style: TextStyle(fontSize: 14)),
-              SizedBox(width: 10),
-              Container(
-                width: 100,
-                child: TextField(
-                  controller: _textController,
-                  keyboardType: TextInputType.number,
-                ),
-              ),
-              SizedBox(width: 10),
-              Text('amount of water.', style: TextStyle(fontSize: 14)),
-              SizedBox(width: 10),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    final intake = double.parse(_textController.text);
-                    _updateIntake(_currentIntake + intake);
-                  });
-                  _textController.clear();
-                },
-                child: Text('Log It!', style: TextStyle(fontSize: 14)),
-              ),
-            ],
-          ),
-          SizedBox(height: 20), // Added some spacing
+          _buildDropdownForm(),
+          SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               _resetIntake();

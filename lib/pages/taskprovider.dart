@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:orbital_test_space/models/task.dart';
 import 'package:uuid/uuid.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'dart:convert';
 
 class TaskProvider with ChangeNotifier {
@@ -11,20 +13,18 @@ class TaskProvider with ChangeNotifier {
 
   var uuid = Uuid();
 
-  void addTask(
-      String title, String description, String category, DateTime dateTime) {
-    _tasks.insert(
-      0,
-      Task(
-        id: uuid.v1(),
-        title: title,
-        description: description,
-        category: category,
-        dateTime: dateTime,
-        isDone: false,
-      ),
+  Future<void> addTask(String title, String description, String category,
+      DateTime dateTime) async {
+    Task newTask = Task(
+      id: uuid.v1(),
+      title: title,
+      description: description,
+      category: category,
+      dateTime: dateTime,
+      isDone: false,
     );
-    saveData();
+    _tasks.insert(0, newTask);
+    await saveData();
     notifyListeners();
   }
 
@@ -40,20 +40,39 @@ class TaskProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void loadData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> stringTasks = prefs.getStringList('tasks') ?? [];
-    _tasks = stringTasks.map((item) {
-      Map<String, dynamic> jsonTask = jsonDecode(item);
-      return Task.fromJson(jsonTask);
-    }).toList();
+  Future<void> loadData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .get();
+
+      if (userSnapshot.exists) {
+        Map<String, dynamic>? userData =
+            userSnapshot.data() as Map<String, dynamic>?;
+
+        if (userData != null) {
+          List<dynamic>? taskData = userData['todo'];
+          if (taskData != null) {
+            _tasks = taskData.map((data) => Task.fromMap(data)).toList();
+          }
+        }
+      }
+    }
     notifyListeners();
   }
 
-  void saveData() async {
-    List<String> stringTasks =
-        _tasks.map((item) => jsonEncode(item.toJson())).toList();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setStringList('tasks', stringTasks);
+  Future<void> saveData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      List<Map<String, dynamic>> taskData =
+          _tasks.map((task) => task.toMap()).toList();
+
+      await FirebaseFirestore.instance.collection('users').doc(user.email).set(
+        {'todo': taskData},
+        SetOptions(merge: true),
+      );
+    }
   }
 }
