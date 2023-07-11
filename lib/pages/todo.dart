@@ -13,11 +13,13 @@ class ToDoPage extends StatefulWidget {
 class _ToDoPageState extends State<ToDoPage> {
   String selectedCategory = 'All';
   DateTime? selectedDate;
+  Future<void>? _loadDataFuture;
 
   @override
   void initState() {
-    Provider.of<TaskProvider>(context, listen: false).loadData();
     super.initState();
+    _loadDataFuture =
+        Provider.of<TaskProvider>(context, listen: false).loadData();
   }
 
   @override

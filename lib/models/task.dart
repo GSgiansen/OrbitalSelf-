@@ -15,27 +15,27 @@ class Task {
     required this.isDone,
   });
 
-  factory Task.fromJson(Map<String, dynamic> json) {
-    return Task(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      category: json['category'],
-      dateTime: json['datetime'] != null
-          ? DateTime.parse(json['datetime'])
-          : DateTime.now(), // Provide a default value if it's null
-      isDone: json['isDone'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
+  // Convert Task to Map
+  Map<String, dynamic> toMap() {
     return {
       'id': id,
       'title': title,
       'description': description,
       'category': category,
-      'datetime': dateTime.toString(),
+      'dateTime': dateTime.toIso8601String(),
       'isDone': isDone,
     };
+  }
+
+  // Create Task from Map
+  factory Task.fromMap(Map<String, dynamic> map) {
+    return Task(
+      id: map['id'],
+      title: map['title'],
+      description: map['description'],
+      category: map['category'],
+      dateTime: DateTime.parse(map['dateTime']),
+      isDone: map['isDone'],
+    );
   }
 }

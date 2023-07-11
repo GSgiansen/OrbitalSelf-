@@ -17,6 +17,7 @@ class SleepLoggingPage extends StatefulWidget {
 }
 
 class _SleepLoggingPageState extends State<SleepLoggingPage> {
+  int _selectedHours = 7;
   List<SleepEntry> _sleepLog = [];
   final TextEditingController _textController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
@@ -82,48 +83,68 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
   }
 
   void _addSleepEntry() {
-    final selectedDateOnly =
-        DateTime(_selectedDate.year, _selectedDate.month, _selectedDate.day);
-
-    int existingEntryIndex = _sleepLog.indexWhere((entry) =>
-        DateTime(entry.date.year, entry.date.month, entry.date.day) ==
-        selectedDateOnly);
-
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Confirmation'),
-          content: Text('Are you sure you want to submit?'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text('Select the number of hours slept:',
+                  style: TextStyle(color: Colors.black)),
+              SizedBox(height: 10),
+              DropdownButton<int>(
+                value: _selectedHours,
+                items: List.generate(25, (index) {
+                  return DropdownMenuItem<int>(
+                    value: index,
+                    child: Text('$index hours',
+                        style: TextStyle(color: Colors.black)),
+                  );
+                }),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedHours = value!;
+                  });
+                },
+              ),
+            ],
+          ),
           actions: <Widget>[
             TextButton(
-              child: Text('Yes'),
+              child: Text('Submit'),
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
 
                 setState(() {
+                  final selectedDateOnly = DateTime(_selectedDate.year,
+                      _selectedDate.month, _selectedDate.day);
+                  int existingEntryIndex = _sleepLog.indexWhere((entry) =>
+                      DateTime(
+                          entry.date.year, entry.date.month, entry.date.day) ==
+                      selectedDateOnly);
+
                   if (existingEntryIndex != -1) {
                     // Update existing entry
                     _sleepLog[existingEntryIndex] = SleepEntry(
                       date: _selectedDate,
-                      hoursOfSleep: double.parse(_textController.text),
+                      hoursOfSleep: _selectedHours.toDouble(),
                     );
                   } else {
                     // Add new entry
                     _sleepLog.add(SleepEntry(
                       date: _selectedDate,
-                      hoursOfSleep: double.parse(_textController.text),
+                      hoursOfSleep: _selectedHours.toDouble(),
                     ));
                   }
 
                   _saveSleepLog();
                 });
-
-                _textController.clear();
               },
             ),
             TextButton(
-              child: Text('No'),
+              child: Text('Cancel'),
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
@@ -189,9 +210,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
         ),
         child: Column(
           children: <Widget>[
-            SizedBox(
-              height: 40,
-            ),
+            SizedBox(height: 40),
             FutureBuilder<void>(
               future: _loadDataFuture,
               builder: (context, snapshot) {
@@ -226,42 +245,63 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
               },
             ),
             SizedBox(height: 60),
-            Container(
-              width: 200,
-              height: 50,
-              child: TextField(
-                controller: _textController,
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d*')),
-                ],
-                decoration: InputDecoration(
-                  labelText: 'Hours of sleep',
-                  filled: true,
-                  fillColor: Colors.white,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'I slept for',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
-              ),
+                SizedBox(width: 10),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                    color: Colors.white,
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: DropdownButton<int>(
+                    isDense: true,
+                    value: _selectedHours,
+                    items: List.generate(25, (index) {
+                      return DropdownMenuItem<int>(
+                        value: index,
+                        child: Text('$index hours',
+                            style: TextStyle(color: Colors.black)),
+                      );
+                    }),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedHours = value!;
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  child: Text('Choose date',
-                      style: TextStyle(fontFamily: 'Rotorcap')),
-                  onPressed: _chooseDate,
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff5d6734)),
+                Text(
+                  'on',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  _selectedDate.toString().substring(0, 10),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
                 SizedBox(width: 10),
                 ElevatedButton(
-                  child: Text('Log sleep',
-                      style: TextStyle(fontFamily: 'Rotorcap')),
-                  onPressed: _addSleepEntry,
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff5d6734)),
+                  child: Text('Choose Date'),
+                  onPressed: _chooseDate,
                 ),
               ],
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              child: Text('Log Sleep'),
+              onPressed: _addSleepEntry,
             ),
             SizedBox(height: 200),
             Padding(
