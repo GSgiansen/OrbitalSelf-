@@ -58,6 +58,7 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.3f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/SCRIPT/spawning/GridData.cs" />
     <Compile Include="Assets/SCRIPT/spawning/colourOnTouch.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/NativeAPI.cs" />
     <Compile Include="Assets/SCRIPT/spawning/loadTemplateScene.cs" />
@@ -67,18 +68,23 @@
     <Compile Include="Assets/FlutterUnityIntegration/Demo/GameManager.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/SingletonMonoBehaviour.cs" />
     <Compile Include="Assets/SCRIPT/jsonFolder/JsonToFlutter.cs" />
+    <Compile Include="Assets/SCRIPT/PlacementSystems/PreviewSystem.cs" />
     <Compile Include="Assets/TutorialInfo/Scripts/Readme.cs" />
+    <Compile Include="Assets/SCRIPT/PlacementSystems/InputManager.cs" />
+    <Compile Include="Assets/SCRIPT/PlacementSystems/Objectplacer.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/Demo/SceneLoader.cs" />
     <Compile Include="Assets/SCRIPT/jsonFolder/sceneToJson.cs" />
+    <Compile Include="Assets/SCRIPT/PlacementSystems/RemovingState.cs" />
     <Compile Include="Assets/SCRIPT/spawning/changeColor.cs" />
     <Compile Include="Assets/SCRIPT/jsonFolder/JsonHelper.cs" />
     <Compile Include="Assets/SCRIPT/spawning/objectDatatbaseSO.cs" />
-    <Compile Include="Assets/SCRIPT/camera/PlacementSystem.cs" />
     <Compile Include="Assets/SCRIPT/camera/zoomCamera.cs" />
+    <Compile Include="Assets/SCRIPT/PlacementSystems/PlacementState.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/UnityMessageManager.cs" />
-    <Compile Include="Assets/SCRIPT/camera/InputManager.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/Demo/Rotate.cs" />
+    <Compile Include="Assets/SCRIPT/PlacementSystems/PlacementSystem.cs" />
     <Compile Include="Assets/SCRIPT/camera/rotateCamera.cs" />
+    <Compile Include="Assets/SCRIPT/PlacementSystems/IBuildingstate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/FlutterUnityIntegration/JsonDotNet/link.xml" />
