@@ -28,7 +28,7 @@ class Authservices {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       
-      return 'success';
+      return FirebaseAuth.instance.currentUser;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print( 'The password provided is too weak.');

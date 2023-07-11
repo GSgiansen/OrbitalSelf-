@@ -103,7 +103,19 @@ class RegisterButton extends StatelessWidget {
                 backgroundColor: Colors.red,
               ),
             );
-          } else if (check == "success") {
+          } 
+
+          else if (check == 'Error creating user') {
+            Navigator.pop(context);
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Email already in use'),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
+          
+          else {
             Navigator.push(
                 context,
                 MaterialPageRoute(
