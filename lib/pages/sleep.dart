@@ -6,6 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:orbital_test_space/models/sleepEntry.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'dart:convert';
 
 class SleepLoggingPage extends StatefulWidget {
@@ -26,15 +29,28 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
   }
 
   Future<void> _loadSleepLog() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String>? stringSleepLogs = prefs.getStringList('sleepLogs');
-    if (stringSleepLogs != null) {
-      setState(() {
-        _sleepLog = stringSleepLogs
-            .map((stringSleepEntry) =>
-                SleepEntry.fromMap(jsonDecode(stringSleepEntry)))
-            .toList();
-      });
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .get();
+
+      if (userSnapshot.exists) {
+        Map<String, dynamic>? userData =
+            userSnapshot.data() as Map<String, dynamic>?;
+
+        if (userData != null) {
+          List<dynamic>? sleepLogsData = userData['sleep'];
+          if (sleepLogsData != null) {
+            setState(() {
+              _sleepLog = sleepLogsData
+                  .map((data) => SleepEntry.fromMap(data))
+                  .toList();
+            });
+          }
+        }
+      }
     }
   }
 
@@ -53,22 +69,25 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
   }
 
   Future<void> _saveSleepLog() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> stringSleepLogs =
-        _sleepLog.map((entry) => jsonEncode(entry.toMap())).toList();
-    await prefs.setStringList('sleepLogs', stringSleepLogs);
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      List<Map<String, dynamic>> sleepLogsData =
+          _sleepLog.map((entry) => entry.toMap()).toList();
+
+      await FirebaseFirestore.instance.collection('users').doc(user.email).set(
+        {'sleep': sleepLogsData},
+        SetOptions(merge: true),
+      );
+    }
   }
 
   void _addSleepEntry() {
     final selectedDateOnly =
         DateTime(_selectedDate.year, _selectedDate.month, _selectedDate.day);
 
-    _sleepLog.removeWhere((entry) {
-      final entryDate = entry.date;
-      final entryDateOnly =
-          DateTime(entryDate.year, entryDate.month, entryDate.day);
-      return entryDateOnly == selectedDateOnly;
-    });
+    int existingEntryIndex = _sleepLog.indexWhere((entry) =>
+        DateTime(entry.date.year, entry.date.month, entry.date.day) ==
+        selectedDateOnly);
 
     showDialog(
       context: context,
@@ -81,13 +100,25 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
               child: Text('Yes'),
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
+
                 setState(() {
-                  _sleepLog.add(SleepEntry(
-                    date: _selectedDate,
-                    hoursOfSleep: double.parse(_textController.text),
-                  ));
+                  if (existingEntryIndex != -1) {
+                    // Update existing entry
+                    _sleepLog[existingEntryIndex] = SleepEntry(
+                      date: _selectedDate,
+                      hoursOfSleep: double.parse(_textController.text),
+                    );
+                  } else {
+                    // Add new entry
+                    _sleepLog.add(SleepEntry(
+                      date: _selectedDate,
+                      hoursOfSleep: double.parse(_textController.text),
+                    ));
+                  }
+
                   _saveSleepLog();
                 });
+
                 _textController.clear();
               },
             ),
