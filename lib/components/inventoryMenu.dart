@@ -80,7 +80,7 @@ class _InventoryMenuState extends State<InventoryMenu> {
                       String objectname = indiv["name"].toLowerCase();
                       loadChosenObject(widget.unityWidgetController, objectname);
                       print("object is" + objectname);
-                      FireStoreFunctions.removeOldPurchase(FirebaseAuth.instance.currentUser, objectname);
+                      // FireStoreFunctions.removeOldPurchase(FirebaseAuth.instance.currentUser, objectname);
                     },
                   ),
                 )

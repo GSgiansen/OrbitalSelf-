@@ -34,6 +34,23 @@ public class UpdateButtonText : MonoBehaviour
 
     }
 
+    void Update() {
+        Button[] buttons = FindObjectsOfType<Button>();
+        foreach (Button button in buttons)
+        {
+        Text buttonText = button.GetComponentInChildren<Text>();
+        if (buttonText.text == "X0") {
+                button.gameObject.SetActive(false);
+            }
+        if (buttonText.text == "X 0") {
+                button.gameObject.SetActive(false);
+            }
+        }
+    }
+
+        
+    
+
     void UpdateInventory(JsonInventory lst ){
         Button[] buttons = FindObjectsOfType<Button>();
 
@@ -41,6 +58,11 @@ public class UpdateButtonText : MonoBehaviour
         foreach (Button button in buttons)
         {
             Text buttonText = button.GetComponentInChildren<Text>();
+            print(buttonText.text);
+
+            if (buttonText.text == "X 0") {
+                button.gameObject.SetActive(false);
+            }
             // store the information in "X {number}" format
             if (button.tag == "cat") {
                 // int num = int.Parse(buttonText.text.Substring(1,2));
@@ -49,22 +71,46 @@ public class UpdateButtonText : MonoBehaviour
                 // num = newnum;
                 int num = lst.cat.number;
 
+                if (num > 0) {
+                    button.gameObject.SetActive(true);
+                }
+                else if (num <= 0) {
+                    button.gameObject.SetActive(false);
+                }
+
                 buttonText.text = "X" + num.ToString() ;
             }
             else if (button.tag == "dog") {
                 int num = lst.dog.number;
+                if (num > 0) {
+                    button.gameObject.SetActive(true);
+                }
+                else if (num <= 0) {
+                    button.gameObject.SetActive(false);
+                }
+
 
                 buttonText.text = "X" + num.ToString() ;
                 
             }
             else if (button.tag == "pot") {
                 int num = lst.pot.number;
-
+               if (num > 0) {
+                    button.gameObject.SetActive(true);
+                }
+                else if (num <= 0) {
+                    button.gameObject.SetActive(false);
+                }
                 buttonText.text = "X" + num.ToString() ;
             }
             else if (button.tag == "chair") {
                 int num = lst.chair.number;
-
+               if (num > 0) {
+                    button.gameObject.SetActive(true);
+                }
+                else if (num <= 0) {
+                    button.gameObject.SetActive(false);
+                }
                 buttonText.text = "X" + num.ToString() ;
             }
             else{
@@ -72,7 +118,9 @@ public class UpdateButtonText : MonoBehaviour
             }
         }
     }
-}
+
+    }
+
 
 public class JsonInventory {
     public InventoryItem cat;

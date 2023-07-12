@@ -11,6 +11,7 @@ ScriptsOnlyBuild:
     - CameraController
     - CameraRotation
     - CameraSwipeRotation
+    - DecreaseInventory
     - FlutterUnityIntegration.UnityMessageManager
     - InputManager
     - JsonLoader
@@ -127,17 +128,17 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle/ToggleEvent
   methodsToPreserve:
   - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartPlacement
-  - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartPlacement
-  - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartPlacement
-  - assembly: Assembly-CSharp
     fullTypeName: MenuButton
     methodName: ToggleMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
   - assembly: Assembly-CSharp
     fullTypeName: PlacementSystem
     methodName: StartPlacement
@@ -278,69 +279,71 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 20386}
     - Class: 114
-      Script: {instanceID: 21268}
+      Script: {instanceID: 20496}
     - Class: 114
-      Script: {instanceID: 21328}
+      Script: {instanceID: 21270}
     - Class: 114
-      Script: {instanceID: 21420}
+      Script: {instanceID: 21330}
     - Class: 114
-      Script: {instanceID: 21440}
+      Script: {instanceID: 21422}
     - Class: 114
-      Script: {instanceID: 21516}
+      Script: {instanceID: 21442}
     - Class: 114
-      Script: {instanceID: 21584}
+      Script: {instanceID: 21518}
     - Class: 114
-      Script: {instanceID: 21590}
+      Script: {instanceID: 21586}
     - Class: 114
-      Script: {instanceID: 21800}
+      Script: {instanceID: 21592}
     - Class: 114
-      Script: {instanceID: 21804}
+      Script: {instanceID: 21802}
     - Class: 114
-      Script: {instanceID: 21824}
+      Script: {instanceID: 21806}
     - Class: 114
-      Script: {instanceID: 21886}
+      Script: {instanceID: 21826}
     - Class: 114
-      Script: {instanceID: 22168}
+      Script: {instanceID: 21888}
     - Class: 114
-      Script: {instanceID: 22500}
+      Script: {instanceID: 22170}
     - Class: 114
-      Script: {instanceID: 22610}
+      Script: {instanceID: 22502}
     - Class: 114
-      Script: {instanceID: 22616}
+      Script: {instanceID: 22612}
     - Class: 114
-      Script: {instanceID: 22754}
+      Script: {instanceID: 22618}
     - Class: 114
-      Script: {instanceID: 22804}
+      Script: {instanceID: 22756}
     - Class: 114
-      Script: {instanceID: 22868}
+      Script: {instanceID: 22806}
     - Class: 114
-      Script: {instanceID: 22972}
+      Script: {instanceID: 22870}
     - Class: 114
-      Script: {instanceID: 23110}
+      Script: {instanceID: 22974}
     - Class: 114
-      Script: {instanceID: 23290}
+      Script: {instanceID: 23112}
     - Class: 114
-      Script: {instanceID: 23430}
+      Script: {instanceID: 23292}
     - Class: 114
-      Script: {instanceID: 23482}
+      Script: {instanceID: 23432}
     - Class: 114
-      Script: {instanceID: 23520}
+      Script: {instanceID: 23484}
     - Class: 114
-      Script: {instanceID: 23544}
+      Script: {instanceID: 23522}
     - Class: 114
-      Script: {instanceID: 23918}
+      Script: {instanceID: 23546}
     - Class: 114
-      Script: {instanceID: 24036}
+      Script: {instanceID: 23920}
     - Class: 114
-      Script: {instanceID: 24362}
+      Script: {instanceID: 24038}
     - Class: 114
-      Script: {instanceID: 24492}
+      Script: {instanceID: 24364}
     - Class: 114
-      Script: {instanceID: 24768}
+      Script: {instanceID: 24494}
     - Class: 114
-      Script: {instanceID: 25120}
+      Script: {instanceID: 24770}
     - Class: 114
-      Script: {instanceID: 25466}
+      Script: {instanceID: 25122}
+    - Class: 114
+      Script: {instanceID: 26872}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1010,6 +1013,12 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerEnumHistory
   - hash:
       serializedVersion: 2
+      Hash: d0a59b457963c3c0d4dec32a4f305785
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: UpdateButtonText
+  - hash:
+      serializedVersion: 2
       Hash: fcc569162a8d9bd9df34e8c9dee84212
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
@@ -1268,7 +1277,7 @@ ScriptsOnlyBuild:
     className: UnityOnDeselectMessageListener
   - hash:
       serializedVersion: 2
-      Hash: d2ea08b0f2d7ebab6218b68679b7f1a3
+      Hash: 2e0ec9f50be0a682244341e42d40d777
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlacementSystem
@@ -1754,10 +1763,10 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: d0a59b457963c3c0d4dec32a4f305785
+      Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Assembly-CSharp
     namespaceName: 
-    className: UpdateButtonText
+    className: DecreaseInventory
   platform: 9
   scenePathNames:
   - Assets/Scenes/blank.unity

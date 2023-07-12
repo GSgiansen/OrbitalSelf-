@@ -9,11 +9,13 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:orbital_test_space/components/unityMenu.dart';
+import 'package:orbital_test_space/controllers/inventoryToUnity.dart';
 import 'package:orbital_test_space/controllers/unityfirebaseFunctions.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
+import '../controllers/fireStoreFunctions.dart';
 import '../controllers/unityContoller.dart';
 import '../main.dart';
 
@@ -236,6 +238,22 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
       await uploadJSONfromUnity(jsonString);
       print("made it here");
     }
+
+    else if (message.length >= 10 && message.substring(0,17) == 'decreaseInventory') {
+      int num = int.parse(message.substring(17));
+      Map<int, String> data = {
+        0: "chair",
+        1: "cat",
+        2: "dog",
+        3: "pot"
+      };
+      print(num);
+      FireStoreFunctions.removeOldPurchase(FirebaseAuth.instance.currentUser, data[num]!);
+      loadInventoryFromFirebase(_unityWidgetController);
+
+      };
+
+    
 
     //_unityWidgetController?.postMessage('LoadScene', 'SampleScene', '');
   }

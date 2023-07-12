@@ -11,8 +11,9 @@ public class PlacementState: IBuildingstate
     objectDatatbaseSO database;
     GridData floorData, itemsData;
     Objectplacer objectplacer;
+    DecreaseInventory decreaseInventory;
 
-    public PlacementState(int ID, Grid grid, PreviewSystem preview, objectDatatbaseSO database, GridData floorData, GridData itemsData, Objectplacer objectplacer)
+    public PlacementState(int ID, Grid grid, PreviewSystem preview, objectDatatbaseSO database, GridData floorData, GridData itemsData, Objectplacer objectplacer, DecreaseInventory decreaseInventory)
     {
         this.ID = ID;
         this.grid = grid;
@@ -21,6 +22,7 @@ public class PlacementState: IBuildingstate
         this.floorData = floorData;
         this.itemsData = itemsData;
         this.objectplacer = objectplacer;
+        this.decreaseInventory = decreaseInventory;
 
         selectedObjectID = database.objectsData.FindIndex(x => x.ID == ID);
         if (selectedObjectID > -1)
@@ -52,6 +54,7 @@ public class PlacementState: IBuildingstate
         GridData selectedData = database.objectsData[selectedObjectID].ID == 0 ? floorData : itemsData;
         selectedData.AddObjectAt(gridPos, database.objectsData[selectedObjectID].Size, database.objectsData[selectedObjectID].ID, index);
         preview.UpdatePosition(grid.CellToWorld(gridPos),false);
+        decreaseInventory.InformFlutterDecrease(ID);
 
 
     }
