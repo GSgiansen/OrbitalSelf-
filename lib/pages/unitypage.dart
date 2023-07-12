@@ -245,7 +245,7 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
         0: "chair",
         1: "cat",
         2: "dog",
-        3: "pot"
+        3: "plant"
       };
       print(num);
       FireStoreFunctions.removeOldPurchase(FirebaseAuth.instance.currentUser, data[num]!);
@@ -267,6 +267,7 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
       _unityWidgetController = controller;
       
       loadSceneFromFirebase(_unityWidgetController, jsonString);
+      loadInventoryFromFirebase(_unityWidgetController);
 
     });
     });

@@ -726,7 +726,7 @@ struct JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608  : public Runtime
 {
 	InventoryItem_t8517153591805278C8567DD20BC40055682E5334* ___cat;
 	InventoryItem_t8517153591805278C8567DD20BC40055682E5334* ___dog;
-	InventoryItem_t8517153591805278C8567DD20BC40055682E5334* ___pot;
+	InventoryItem_t8517153591805278C8567DD20BC40055682E5334* ___plant;
 	InventoryItem_t8517153591805278C8567DD20BC40055682E5334* ___chair;
 };
 struct MainThreadCpuTime_tC1A727A521B5B261A3ED9290BF363C6BD57C4E85  : public RuntimeObject
@@ -7026,7 +7026,7 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6450[1] =
 	static_cast<int32_t>(offsetof(UpdateButtonText_tC70004E25D211C8BDA6DC2C74AFD280B50985C11, ___newText)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6451[4] = 
 {
-	static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___cat)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___dog)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___pot)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___chair)),};
+	static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___cat)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___dog)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___plant)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___chair)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6452[2] = 
 {
 	static_cast<int32_t>(offsetof(InventoryItem_t8517153591805278C8567DD20BC40055682E5334, ___name)),static_cast<int32_t>(offsetof(InventoryItem_t8517153591805278C8567DD20BC40055682E5334, ___number)),};

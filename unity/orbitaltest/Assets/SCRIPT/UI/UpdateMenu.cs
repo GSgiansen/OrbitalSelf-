@@ -94,7 +94,7 @@ public class UpdateButtonText : MonoBehaviour
                 
             }
             else if (button.tag == "pot") {
-                int num = lst.pot.number;
+                int num = lst.plant.number;
                if (num > 0) {
                     button.gameObject.SetActive(true);
                 }
@@ -125,7 +125,7 @@ public class UpdateButtonText : MonoBehaviour
 public class JsonInventory {
     public InventoryItem cat;
     public InventoryItem dog;
-    public InventoryItem pot;
+    public InventoryItem plant;
     public InventoryItem chair;
 
 }
