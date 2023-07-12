@@ -207,7 +207,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
                       onPressed: resetTimer,
                     ),
                     FloatingActionButton(
-                      heroTag: "settings",
+                      heroTag: "settings", //button to go to settings page
                       backgroundColor: Colors.green,
                       child: Icon(Icons.settings),
                       onPressed: () {
