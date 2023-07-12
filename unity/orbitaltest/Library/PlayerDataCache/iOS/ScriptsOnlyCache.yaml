@@ -3,10 +3,10 @@ ScriptsOnlyBuild:
     Assembly-CSharp:
     - FlutterUnityIntegration.UnityMessageManager
     - JsonLoader
+    - MenuButton
+    - UpdateButtonText
     - addCube
     - changeColor
-    Assembly-CSharp-Editor.dll:
-    - ReadmeEditor
     Assembly-CSharp.dll:
     - CameraController
     - CameraRotation
@@ -14,11 +14,12 @@ ScriptsOnlyBuild:
     - FlutterUnityIntegration.UnityMessageManager
     - InputManager
     - JsonLoader
+    - MenuButton
     - Objectplacer
     - PlacementSystem
     - PreviewSystem
-    - Readme
     - SceneToJsonConverter
+    - UpdateButtonText
     - objectDatatbaseSO
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
@@ -100,6 +101,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Text
   serializedClasses:
     Assembly-CSharp:
     - ObjectData
@@ -134,11 +136,14 @@ ScriptsOnlyBuild:
     fullTypeName: PlacementSystem
     methodName: StartPlacement
   - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartRemoving
+    fullTypeName: MenuButton
+    methodName: ToggleMenu
   - assembly: Assembly-CSharp
     fullTypeName: PlacementSystem
     methodName: StartPlacement
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartRemoving
   - assembly: Unity.RenderPipelines.Core.Runtime
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: OnScrollbarClicked
@@ -263,75 +268,79 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 19456}
     - Class: 114
-      Script: {instanceID: 19854}
+      Script: {instanceID: 19838}
     - Class: 114
-      Script: {instanceID: 19988}
+      Script: {instanceID: 19856}
     - Class: 114
-      Script: {instanceID: 20216}
+      Script: {instanceID: 19990}
     - Class: 114
-      Script: {instanceID: 20384}
+      Script: {instanceID: 20218}
     - Class: 114
-      Script: {instanceID: 21266}
+      Script: {instanceID: 20386}
     - Class: 114
-      Script: {instanceID: 21326}
+      Script: {instanceID: 21268}
     - Class: 114
-      Script: {instanceID: 21418}
+      Script: {instanceID: 21328}
     - Class: 114
-      Script: {instanceID: 21438}
+      Script: {instanceID: 21420}
     - Class: 114
-      Script: {instanceID: 21514}
+      Script: {instanceID: 21440}
     - Class: 114
-      Script: {instanceID: 21582}
+      Script: {instanceID: 21516}
     - Class: 114
-      Script: {instanceID: 21588}
+      Script: {instanceID: 21584}
     - Class: 114
-      Script: {instanceID: 21798}
+      Script: {instanceID: 21590}
     - Class: 114
-      Script: {instanceID: 21802}
+      Script: {instanceID: 21800}
     - Class: 114
-      Script: {instanceID: 21822}
+      Script: {instanceID: 21804}
     - Class: 114
-      Script: {instanceID: 21884}
+      Script: {instanceID: 21824}
     - Class: 114
-      Script: {instanceID: 22166}
+      Script: {instanceID: 21886}
     - Class: 114
-      Script: {instanceID: 22498}
+      Script: {instanceID: 22168}
     - Class: 114
-      Script: {instanceID: 22608}
+      Script: {instanceID: 22500}
     - Class: 114
-      Script: {instanceID: 22614}
+      Script: {instanceID: 22610}
     - Class: 114
-      Script: {instanceID: 22752}
+      Script: {instanceID: 22616}
     - Class: 114
-      Script: {instanceID: 22802}
+      Script: {instanceID: 22754}
     - Class: 114
-      Script: {instanceID: 22866}
+      Script: {instanceID: 22804}
     - Class: 114
-      Script: {instanceID: 22970}
+      Script: {instanceID: 22868}
     - Class: 114
-      Script: {instanceID: 23108}
+      Script: {instanceID: 22972}
     - Class: 114
-      Script: {instanceID: 23288}
+      Script: {instanceID: 23110}
     - Class: 114
-      Script: {instanceID: 23428}
+      Script: {instanceID: 23290}
     - Class: 114
-      Script: {instanceID: 23480}
+      Script: {instanceID: 23430}
     - Class: 114
-      Script: {instanceID: 23518}
+      Script: {instanceID: 23482}
     - Class: 114
-      Script: {instanceID: 23542}
+      Script: {instanceID: 23520}
     - Class: 114
-      Script: {instanceID: 23916}
+      Script: {instanceID: 23544}
     - Class: 114
-      Script: {instanceID: 24034}
+      Script: {instanceID: 23918}
     - Class: 114
-      Script: {instanceID: 24360}
+      Script: {instanceID: 24036}
     - Class: 114
-      Script: {instanceID: 24490}
+      Script: {instanceID: 24362}
     - Class: 114
-      Script: {instanceID: 24766}
+      Script: {instanceID: 24492}
     - Class: 114
-      Script: {instanceID: 25118}
+      Script: {instanceID: 24768}
+    - Class: 114
+      Script: {instanceID: 25120}
+    - Class: 114
+      Script: {instanceID: 25466}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -897,6 +906,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.AdaptivePerformance
     namespaceName: UnityEngine.AdaptivePerformance
     className: AdaptiveViewDistance
+  - hash:
+      serializedVersion: 2
+      Hash: 5d08b090fbeaf3dd5e11ceb94fa67859
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MenuButton
   - hash:
       serializedVersion: 2
       Hash: b18151310f999106767addd7177d1a99
@@ -1737,6 +1752,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: d0a59b457963c3c0d4dec32a4f305785
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: UpdateButtonText
   platform: 9
   scenePathNames:
   - Assets/Scenes/blank.unity

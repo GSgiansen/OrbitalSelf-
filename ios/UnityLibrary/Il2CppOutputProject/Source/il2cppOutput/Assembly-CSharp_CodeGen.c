@@ -150,6 +150,15 @@ extern void ObjectData_set_Size_m56A5672F949024A1063638BC2779357A9D3C4E36 (void)
 extern void ObjectData_get_Prefab_m3F1C318022BB9E23051E833F5B490A6311936581 (void);
 extern void ObjectData_set_Prefab_mD72B45268859886E94DCED874E47D16D8B03845B (void);
 extern void ObjectData__ctor_m49DC271285F602F017165903BC7B4CD55C85F31D (void);
+extern void MenuButton_Start_mEB9156052AF021F8D6AD0235EC12F29053354E7E (void);
+extern void MenuButton_ToggleMenu_mBB9830F6F69E68642C42CF8852B30CAE98832245 (void);
+extern void MenuButton__ctor_m7B1A8D9B840DADB408823BAE1A989B726FE13BC2 (void);
+extern void UpdateButtonText_Start_m568CC884972E78179CD0C6C2E0DD8CABDF0F26F1 (void);
+extern void UpdateButtonText_OnMessage_m65F77BD4E6BA10FD36033A47D845C9C08B4EC137 (void);
+extern void UpdateButtonText_UpdateInventory_mE4C6F3E4378BE63BE1A87E4BA5C84A0C6ADB24BA (void);
+extern void UpdateButtonText__ctor_mC76ECE2807B1D43B1F267EF3BBC2B540A308FEE5 (void);
+extern void JsonInventory__ctor_mCBEA50DE60C03B6B92857139B62AA6274C436A01 (void);
+extern void InventoryItem__ctor_m775807C9917B41C904F5B88DD55F6771AC7A8AB5 (void);
 extern void Readme__ctor_m69C325C4C171DCB0312B646A9034AA91EA8C39C6 (void);
 extern void Section__ctor_m5F732533E4DFC0167D965E5F5DB332E46055399B (void);
 extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033 (void);
@@ -189,7 +198,7 @@ extern void MessageHandlerDelegate__ctor_m287CBD25D77011FC5A52D1090F6CC31353AB63
 extern void MessageHandlerDelegate_Invoke_mD1EC9E1841D5014C40A26D4C4BA076482FFC8A4B (void);
 extern void MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D (void);
 extern void MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16 (void);
-static Il2CppMethodPointer s_methodPointers[197] = 
+static Il2CppMethodPointer s_methodPointers[206] = 
 {
 	NULL,
 	NULL,
@@ -344,6 +353,15 @@ static Il2CppMethodPointer s_methodPointers[197] =
 	ObjectData_get_Prefab_m3F1C318022BB9E23051E833F5B490A6311936581,
 	ObjectData_set_Prefab_mD72B45268859886E94DCED874E47D16D8B03845B,
 	ObjectData__ctor_m49DC271285F602F017165903BC7B4CD55C85F31D,
+	MenuButton_Start_mEB9156052AF021F8D6AD0235EC12F29053354E7E,
+	MenuButton_ToggleMenu_mBB9830F6F69E68642C42CF8852B30CAE98832245,
+	MenuButton__ctor_m7B1A8D9B840DADB408823BAE1A989B726FE13BC2,
+	UpdateButtonText_Start_m568CC884972E78179CD0C6C2E0DD8CABDF0F26F1,
+	UpdateButtonText_OnMessage_m65F77BD4E6BA10FD36033A47D845C9C08B4EC137,
+	UpdateButtonText_UpdateInventory_mE4C6F3E4378BE63BE1A87E4BA5C84A0C6ADB24BA,
+	UpdateButtonText__ctor_mC76ECE2807B1D43B1F267EF3BBC2B540A308FEE5,
+	JsonInventory__ctor_mCBEA50DE60C03B6B92857139B62AA6274C436A01,
+	InventoryItem__ctor_m775807C9917B41C904F5B88DD55F6771AC7A8AB5,
 	Readme__ctor_m69C325C4C171DCB0312B646A9034AA91EA8C39C6,
 	Section__ctor_m5F732533E4DFC0167D965E5F5DB332E46055399B,
 	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033,
@@ -389,7 +407,7 @@ static Il2CppMethodPointer s_methodPointers[197] =
 	MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D,
 	MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16,
 };
-static const int32_t s_InvokerIndices[197] = 
+static const int32_t s_InvokerIndices[206] = 
 {
 	0,
 	0,
@@ -546,6 +564,15 @@ static const int32_t s_InvokerIndices[197] =
 	1985,
 	1985,
 	1985,
+	1985,
+	1985,
+	1751,
+	1751,
+	1985,
+	1985,
+	1985,
+	1985,
+	1985,
 	3906,
 	1985,
 	3804,
@@ -592,11 +619,11 @@ static const int32_t s_InvokerIndices[197] =
 static const Il2CppTokenRangePair s_rgctxIndices[6] = 
 {
 	{ 0x02000002, { 0, 29 } },
-	{ 0x02000027, { 38, 11 } },
+	{ 0x0200002B, { 38, 11 } },
 	{ 0x0600002A, { 29, 3 } },
 	{ 0x0600002B, { 32, 3 } },
 	{ 0x0600002C, { 35, 3 } },
-	{ 0x060000AB, { 49, 2 } },
+	{ 0x060000B4, { 49, 2 } },
 };
 extern const uint32_t g_rgctx_U3CU3Ef__AnonymousType0_4_t93FD0713D40011506D6B5581D9D5064D1A1A31B8;
 extern const uint32_t g_rgctx_U3CidU3Ej__TPar_tB4283D6614B0A1B9713411CF590AE6445EC76C76;
@@ -708,7 +735,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	197,
+	206,
 	s_methodPointers,
 	0,
 	NULL,

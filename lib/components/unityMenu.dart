@@ -11,6 +11,7 @@ import 'package:orbital_test_space/main.dart';
 import 'package:orbital_test_space/pages/profilepage.dart';
 import 'package:http/http.dart' as http;
 
+import '../controllers/inventoryToUnity.dart';
 import '../controllers/unityContoller.dart';
 
 class UnityMenu extends StatefulWidget {
@@ -71,18 +72,13 @@ class _UnityMenuState extends State<UnityMenu> {
         },
       ),
       IconButton(
-        tooltip: "Rotate Camera Left",
-        icon: Icon(Icons.rotate_left),
-        onPressed: () {
-          RotateCameraLeft(widget.unityWidgetController);
+        tooltip: "load inventory menu ",
+        icon: Icon(Icons.local_dining),
+        onPressed: () async {
+          await loadInventoryFromFirebase(widget.unityWidgetController);
+          
         },
-      ),
-      IconButton(
-        tooltip: "Rotate Camera Right",
-        icon: Icon(Icons.rotate_right),
-        onPressed: () {
-          RotateCameraRight(widget.unityWidgetController);
-        },
+      
       ),
       IconButton(
         tooltip: "Zoom In",

@@ -116,12 +116,14 @@ void loadChosenObject(UnityWidgetController? _unityWidgetController, String obje
 }
 
 
-void loadInventory(UnityWidgetController? _unityWidgetController) {
+void loadInventoryToUnity(UnityWidgetController? _unityWidgetController, String jsonstring) {
+  var encodedmsg = 'loadInventory$jsonstring';
+  print("encoded msg is " + encodedmsg);
   _unityWidgetController
       ?.postMessage(
-        'GameObject',
+        'UpdatePanelNumbers',
         'OnMessage',
-        'loadInventory',
+        encodedmsg,
       )
       ?.then(
         (value) => print("loaded inventory from firebase"),

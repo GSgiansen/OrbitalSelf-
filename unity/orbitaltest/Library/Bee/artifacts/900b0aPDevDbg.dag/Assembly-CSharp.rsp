@@ -347,6 +347,8 @@
 "Assets/SCRIPT/spawning/GridData.cs"
 "Assets/SCRIPT/spawning/loadTemplateScene.cs"
 "Assets/SCRIPT/spawning/objectDatatbaseSO.cs"
+"Assets/SCRIPT/UI/MenuDisplay.cs"
+"Assets/SCRIPT/UI/UpdateMenu.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 

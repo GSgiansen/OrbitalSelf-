@@ -229,11 +229,11 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   }
 
   // Communication from Unity to Flutter
-  void onUnityMessage(message) {
+  void onUnityMessage(message) async{
     print('Received message from unity: ${message.toString()}');
-    if (message.substring(0, 6) == 'upload') {
+    if (message.length >= 5 && message.substring(0, 6) == 'upload') {
       var jsonString = message.substring(6);
-      uploadJSONfromUnity(jsonString);
+      await uploadJSONfromUnity(jsonString);
       print("made it here");
     }
 
