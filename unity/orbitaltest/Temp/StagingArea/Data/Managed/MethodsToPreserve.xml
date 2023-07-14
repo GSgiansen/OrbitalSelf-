@@ -10,6 +10,9 @@
 			<method name="StartPlacement"/>
 			<method name="StartRemoving"/>
 		</type>
+		<type fullname="UpdateButtonText">
+			<method name="AskFlutterForInventory"/>
+		</type>
 	</assembly>
 	<assembly fullname="Unity.RenderPipelines.Core.Runtime" ignoreIfMissing="1">
 		<type fullname="UnityEngine.Rendering.UI.DebugUIHandlerIntField">

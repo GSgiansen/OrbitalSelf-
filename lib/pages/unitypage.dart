@@ -239,7 +239,7 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
       print("made it here");
     }
 
-    else if (message.length >= 10 && message.substring(0,17) == 'decreaseInventory') {
+    else if (message.length >= 17 && message.substring(0,17) == 'decreaseInventory') {
       int num = int.parse(message.substring(17));
       Map<int, String> data = {
         0: "chair",
@@ -251,18 +251,24 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
       FireStoreFunctions.removeOldPurchase(FirebaseAuth.instance.currentUser, data[num]!);
       loadInventoryFromFirebase(_unityWidgetController);
 
-      };
+      }
+    else if (message == "ReqloadInventory")
+    {
+      print("requesting inventory");
+      loadInventoryFromFirebase(_unityWidgetController);
+    }
+  }
 
     
 
     //_unityWidgetController?.postMessage('LoadScene', 'SampleScene', '');
-  }
+  
 
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
 
     print("creating unity controller");
-    var _timer = new Timer(const Duration(milliseconds: 1000), () {
+    var _timer = Timer(const Duration(milliseconds: 1000), () {
       setState(() {
       _unityWidgetController = controller;
       

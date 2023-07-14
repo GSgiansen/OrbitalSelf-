@@ -47,6 +47,10 @@ public class UpdateButtonText : MonoBehaviour
             }
         }
     }
+    
+    public void AskFlutterForInventory() {
+        UnityMessageManager.Instance.SendMessageToFlutter("ReqloadInventory");
+    }
 
         
     

@@ -128,14 +128,14 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle/ToggleEvent
   methodsToPreserve:
   - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
+  - assembly: Assembly-CSharp
     fullTypeName: MenuButton
     methodName: ToggleMenu
   - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartPlacement
-  - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartPlacement
+    fullTypeName: UpdateButtonText
+    methodName: AskFlutterForInventory
   - assembly: Assembly-CSharp
     fullTypeName: PlacementSystem
     methodName: StartPlacement
@@ -145,6 +145,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: PlacementSystem
     methodName: StartRemoving
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
   - assembly: Unity.RenderPipelines.Core.Runtime
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: OnScrollbarClicked
@@ -303,47 +306,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 21888}
     - Class: 114
-      Script: {instanceID: 22170}
+      Script: {instanceID: 21996}
     - Class: 114
-      Script: {instanceID: 22502}
+      Script: {instanceID: 22172}
     - Class: 114
-      Script: {instanceID: 22612}
+      Script: {instanceID: 22504}
     - Class: 114
-      Script: {instanceID: 22618}
+      Script: {instanceID: 22614}
     - Class: 114
-      Script: {instanceID: 22756}
+      Script: {instanceID: 22620}
     - Class: 114
-      Script: {instanceID: 22806}
+      Script: {instanceID: 22758}
     - Class: 114
-      Script: {instanceID: 22870}
+      Script: {instanceID: 22808}
     - Class: 114
-      Script: {instanceID: 22974}
+      Script: {instanceID: 22872}
     - Class: 114
-      Script: {instanceID: 23112}
+      Script: {instanceID: 22976}
     - Class: 114
-      Script: {instanceID: 23292}
+      Script: {instanceID: 23114}
     - Class: 114
-      Script: {instanceID: 23432}
+      Script: {instanceID: 23294}
     - Class: 114
-      Script: {instanceID: 23484}
+      Script: {instanceID: 23434}
     - Class: 114
-      Script: {instanceID: 23522}
+      Script: {instanceID: 23486}
     - Class: 114
-      Script: {instanceID: 23546}
+      Script: {instanceID: 23524}
     - Class: 114
-      Script: {instanceID: 23920}
+      Script: {instanceID: 23548}
     - Class: 114
-      Script: {instanceID: 24038}
+      Script: {instanceID: 23922}
     - Class: 114
-      Script: {instanceID: 24364}
+      Script: {instanceID: 24040}
     - Class: 114
-      Script: {instanceID: 24494}
+      Script: {instanceID: 24366}
     - Class: 114
-      Script: {instanceID: 24770}
+      Script: {instanceID: 24496}
     - Class: 114
-      Script: {instanceID: 25122}
+      Script: {instanceID: 24772}
     - Class: 114
-      Script: {instanceID: 26872}
+      Script: {instanceID: 25124}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1283,6 +1286,12 @@ ScriptsOnlyBuild:
     className: PlacementSystem
   - hash:
       serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DecreaseInventory
+  - hash:
+      serializedVersion: 2
       Hash: 2c81785637bf4a534dde5530b6ec211c
     assemblyName: Unity.RenderPipelines.Core.Runtime
     namespaceName: UnityEngine.Rendering
@@ -1761,12 +1770,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 751e5bae2a317288c2ab58d66687092b
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: DecreaseInventory
   platform: 9
   scenePathNames:
   - Assets/Scenes/blank.unity

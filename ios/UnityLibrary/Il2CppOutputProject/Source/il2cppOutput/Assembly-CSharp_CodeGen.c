@@ -161,6 +161,7 @@ extern void MenuButton__ctor_m7B1A8D9B840DADB408823BAE1A989B726FE13BC2 (void);
 extern void UpdateButtonText_Start_m568CC884972E78179CD0C6C2E0DD8CABDF0F26F1 (void);
 extern void UpdateButtonText_OnMessage_m65F77BD4E6BA10FD36033A47D845C9C08B4EC137 (void);
 extern void UpdateButtonText_Update_m3D7AEF25BAD941F17349220FA0FDAB75C43CFB99 (void);
+extern void UpdateButtonText_AskFlutterForInventory_mE357E774EE5F20894C3C549F3DFDFFC2F8A6C122 (void);
 extern void UpdateButtonText_UpdateInventory_mE4C6F3E4378BE63BE1A87E4BA5C84A0C6ADB24BA (void);
 extern void UpdateButtonText__ctor_mC76ECE2807B1D43B1F267EF3BBC2B540A308FEE5 (void);
 extern void JsonInventory__ctor_mCBEA50DE60C03B6B92857139B62AA6274C436A01 (void);
@@ -204,7 +205,7 @@ extern void MessageHandlerDelegate__ctor_m287CBD25D77011FC5A52D1090F6CC31353AB63
 extern void MessageHandlerDelegate_Invoke_mD1EC9E1841D5014C40A26D4C4BA076482FFC8A4B (void);
 extern void MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D (void);
 extern void MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16 (void);
-static Il2CppMethodPointer s_methodPointers[212] = 
+static Il2CppMethodPointer s_methodPointers[213] = 
 {
 	NULL,
 	NULL,
@@ -370,6 +371,7 @@ static Il2CppMethodPointer s_methodPointers[212] =
 	UpdateButtonText_Start_m568CC884972E78179CD0C6C2E0DD8CABDF0F26F1,
 	UpdateButtonText_OnMessage_m65F77BD4E6BA10FD36033A47D845C9C08B4EC137,
 	UpdateButtonText_Update_m3D7AEF25BAD941F17349220FA0FDAB75C43CFB99,
+	UpdateButtonText_AskFlutterForInventory_mE357E774EE5F20894C3C549F3DFDFFC2F8A6C122,
 	UpdateButtonText_UpdateInventory_mE4C6F3E4378BE63BE1A87E4BA5C84A0C6ADB24BA,
 	UpdateButtonText__ctor_mC76ECE2807B1D43B1F267EF3BBC2B540A308FEE5,
 	JsonInventory__ctor_mCBEA50DE60C03B6B92857139B62AA6274C436A01,
@@ -419,7 +421,7 @@ static Il2CppMethodPointer s_methodPointers[212] =
 	MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D,
 	MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16,
 };
-static const int32_t s_InvokerIndices[212] = 
+static const int32_t s_InvokerIndices[213] = 
 {
 	0,
 	0,
@@ -585,6 +587,7 @@ static const int32_t s_InvokerIndices[212] =
 	1985,
 	1751,
 	1985,
+	1985,
 	1751,
 	1985,
 	1985,
@@ -641,7 +644,7 @@ static const Il2CppTokenRangePair s_rgctxIndices[6] =
 	{ 0x0600002A, { 29, 3 } },
 	{ 0x0600002B, { 32, 3 } },
 	{ 0x0600002C, { 35, 3 } },
-	{ 0x060000BA, { 49, 2 } },
+	{ 0x060000BB, { 49, 2 } },
 };
 extern const uint32_t g_rgctx_U3CU3Ef__AnonymousType0_4_t93FD0713D40011506D6B5581D9D5064D1A1A31B8;
 extern const uint32_t g_rgctx_U3CidU3Ej__TPar_tB4283D6614B0A1B9713411CF590AE6445EC76C76;
@@ -753,7 +756,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	212,
+	213,
 	s_methodPointers,
 	0,
 	NULL,
