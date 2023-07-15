@@ -123,6 +123,9 @@
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+-r:"/Applications/Unity/Hub/Editor/2022.3.3f1/PlaybackEngines/AndroidPlayer/Unity.Android.Gradle.dll"
+-r:"/Applications/Unity/Hub/Editor/2022.3.3f1/PlaybackEngines/AndroidPlayer/Unity.Android.GradleProject.dll"
+-r:"/Applications/Unity/Hub/Editor/2022.3.3f1/PlaybackEngines/AndroidPlayer/Unity.Android.Types.dll"
 -r:"/Applications/Unity/Hub/Editor/2022.3.3f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll"
 -r:"/Applications/Unity/Hub/Editor/2022.3.3f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll"
 -r:"/Applications/Unity/Hub/Editor/2022.3.3f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.CoreModule.dll"
@@ -398,6 +401,9 @@
 "Assets/SCRIPT/spawning/GridData.cs"
 "Assets/SCRIPT/spawning/loadTemplateScene.cs"
 "Assets/SCRIPT/spawning/objectDatatbaseSO.cs"
+"Assets/SCRIPT/UI/DecreaseInventory.cs"
+"Assets/SCRIPT/UI/MenuDisplay.cs"
+"Assets/SCRIPT/UI/UpdateMenu.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 

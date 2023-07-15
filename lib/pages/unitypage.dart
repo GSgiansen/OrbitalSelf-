@@ -9,11 +9,13 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:orbital_test_space/components/unityMenu.dart';
+import 'package:orbital_test_space/controllers/inventoryToUnity.dart';
 import 'package:orbital_test_space/controllers/unityfirebaseFunctions.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
+import '../controllers/fireStoreFunctions.dart';
 import '../controllers/unityContoller.dart';
 import '../main.dart';
 
@@ -229,27 +231,49 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   }
 
   // Communication from Unity to Flutter
-  void onUnityMessage(message) {
+  void onUnityMessage(message) async{
     print('Received message from unity: ${message.toString()}');
-    if (message.substring(0, 6) == 'upload') {
-      print(message.substring(6));
+    if (message.length >= 5 && message.substring(0, 6) == 'upload') {
       var jsonString = message.substring(6);
-      uploadJSONfromUnity(jsonString);
+      await uploadJSONfromUnity(jsonString);
       print("made it here");
     }
 
-    //_unityWidgetController?.postMessage('LoadScene', 'SampleScene', '');
+    else if (message.length >= 17 && message.substring(0,17) == 'decreaseInventory') {
+      int num = int.parse(message.substring(17));
+      Map<int, String> data = {
+        0: "chair",
+        1: "cat",
+        2: "dog",
+        3: "plant"
+      };
+      print(num);
+      FireStoreFunctions.removeOldPurchase(FirebaseAuth.instance.currentUser, data[num]!);
+      loadInventoryFromFirebase(_unityWidgetController);
+
+      }
+    else if (message == "ReqloadInventory")
+    {
+      print("requesting inventory");
+      loadInventoryFromFirebase(_unityWidgetController);
+    }
   }
+
+    
+
+    //_unityWidgetController?.postMessage('LoadScene', 'SampleScene', '');
+  
 
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
 
     print("creating unity controller");
-    var _timer = new Timer(const Duration(milliseconds: 1000), () {
+    var _timer = Timer(const Duration(milliseconds: 1000), () {
       setState(() {
       _unityWidgetController = controller;
       
       loadSceneFromFirebase(_unityWidgetController, jsonString);
+      loadInventoryFromFirebase(_unityWidgetController);
 
     });
     });

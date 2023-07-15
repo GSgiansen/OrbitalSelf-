@@ -24,6 +24,9 @@ public class PlacementSystem : MonoBehaviour
 
     IBuildingstate buildingstate;
 
+    [SerializeField]
+    DecreaseInventory decreaseInventory;
+
     private void Start()
     {
         StopPlacement();
@@ -65,7 +68,7 @@ public class PlacementSystem : MonoBehaviour
     {
         StopPlacement();
         gridVisualisation.SetActive(true);
-        buildingstate = new PlacementState(objectID, grid, preview, database, floorData, itemsData, objectplacer);
+        buildingstate = new PlacementState(objectID, grid, preview, database, floorData, itemsData, objectplacer,decreaseInventory);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
     }
