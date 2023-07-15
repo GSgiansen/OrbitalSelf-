@@ -17,6 +17,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   int _current = 25 * 60;
   bool _isResting = false;
   bool _isRunning = false;
+  bool _isPaused = false;
   bool _isPomodoroCompleted = false;
   bool _isReset = true;
 
@@ -58,9 +59,24 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     );
   }
 
+  void pauseTimer() {
+    _timer.cancel();
+    setState(() {
+      _isPaused = true;
+    });
+  }
+
+  void resumeTimer() {
+    setState(() {
+      _isPaused = false;
+    });
+    startTimer();
+  }
+
   void resetTimer() {
     _timer.cancel();
     _isRunning = false;
+    _isPaused = false;
     _isReset = true;
     setState(() {
       _isPomodoroCompleted = false;
@@ -70,16 +86,53 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     });
   }
 
+  Future<bool?> _showConfirmationDialog() async {
+    return showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmation'),
+          content: Text(
+              'Are you sure you want to leave? This will stop the current pomodoro session.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context)
+                    .pop(false); // Return false to indicate cancellation
+              },
+            ),
+            TextButton(
+              child: Text('Leave'),
+              onPressed: () {
+                Navigator.of(context)
+                    .pop(true); // Return true to indicate confirmation
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () async {
+        bool leaveConfirmed = await _showConfirmationDialog() ?? false;
+        return leaveConfirmed; // Return the confirmation result
+      },
+      child: Scaffold(
         appBar: AppBar(
           title: Text('Pomodoro Timer'),
           leading: IconButton(
             icon: Icon(Icons.chevron_left),
-            onPressed: () {
-              resetTimer(); // Cancel the timer and reset the state when the back button is pressed
-              Navigator.pop(context);
+            onPressed: () async {
+              bool leaveConfirmed = await _showConfirmationDialog() ?? false;
+              if (leaveConfirmed) {
+                resetTimer(); // Cancel the timer and reset the state
+                Navigator.pop(context);
+              }
             },
           ),
         ),
@@ -130,14 +183,23 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     FloatingActionButton(
-                        heroTag: "play",
-                        child: Icon(Icons.play_arrow),
-                        backgroundColor: Colors.green,
-                        onPressed: _isRunning
-                            ? null
-                            : _isReset
-                                ? startTimer
-                                : null),
+                      heroTag: "play",
+                      child: Icon(_isRunning && !_isPaused
+                          ? Icons.pause
+                          : Icons.play_arrow),
+                      backgroundColor: Colors.green,
+                      onPressed: () {
+                        if (_isRunning) {
+                          if (_isPaused) {
+                            resumeTimer();
+                          } else {
+                            pauseTimer();
+                          }
+                        } else {
+                          startTimer();
+                        }
+                      },
+                    ),
                     FloatingActionButton(
                       heroTag: "refresh",
                       backgroundColor: Colors.green,
@@ -145,12 +207,11 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
                       onPressed: resetTimer,
                     ),
                     FloatingActionButton(
-                      heroTag: "settings",
+                      heroTag: "settings", //button to go to settings page
                       backgroundColor: Colors.green,
                       child: Icon(Icons.settings),
                       onPressed: () {
-                        _timer.cancel();
-                        _isRunning = false;
+                        resetTimer(); // Cancel the timer and reset the state
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => SettingsPage(
@@ -177,6 +238,8 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
               ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

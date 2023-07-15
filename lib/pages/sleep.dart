@@ -91,24 +91,8 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text('Select the number of hours slept:',
+              Text('Are you sure you want to submit?',
                   style: TextStyle(color: Colors.black)),
-              SizedBox(height: 10),
-              DropdownButton<int>(
-                value: _selectedHours,
-                items: List.generate(25, (index) {
-                  return DropdownMenuItem<int>(
-                    value: index,
-                    child: Text('$index hours',
-                        style: TextStyle(color: Colors.black)),
-                  );
-                }),
-                onChanged: (value) {
-                  setState(() {
-                    _selectedHours = value!;
-                  });
-                },
-              ),
             ],
           ),
           actions: <Widget>[
@@ -303,7 +287,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
               child: Text('Log Sleep'),
               onPressed: _addSleepEntry,
             ),
-            SizedBox(height: 200),
+            SizedBox(height: 150),
             Padding(
               padding: EdgeInsets.only(left: 130),
               child: Container(
