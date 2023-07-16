@@ -24,13 +24,43 @@ class _FriendsPageState extends State<MyFriendsPage> {
   // getfriends will quert firebase for friends list
   //
 
-  //accepts a list of confirmed friend names, have to iterate across friends collection to get name
+  // //accepts a list of confirmed friend names, have to iterate across friends collection to get name
+  // getFriendNames(List<Map<String, dynamic>> friends) async {
+  //   print("friends is now " + friends.toString());
+  //   List<Friend> friendL = [];
+  //   final CollectionReference collection =
+  //       FirebaseFirestore.instance.collection('friends');
+  //   final QuerySnapshot querySnapshot = await collection.get();
+  //   for (Map<String, dynamic> friend in friends) {
+  //     print(friend);
+  //     for (var doc in querySnapshot.docs) {
+  //       print(doc.id);
+  //       if (doc.id == friend["friendID"]) {
+  //         print("Friend ID: ${friend}");
+  //         print("Friend Data: ${doc.data()}");
+
+  //         friendL.add(Friend(
+  //             id: friend["friendID"],
+  //             name: friend["friendemail"],
+  //             profileImage: 'assets/images/johncena.jpg',
+  //             status: friend["status"]));
+  //         break;
+  //       }
+  //     }
+  //   }
+  //   setState(() {
+  //     print("setting state to " + friendL.toString());
+  //     _state_friendList = friendL;
+  //   });
+  // }
+
   getFriendNames(List<Map<String, dynamic>> friends) async {
-    print("friends is now " + friends.toString());
-    final CollectionReference collection =
-        FirebaseFirestore.instance.collection('friends');
-    final QuerySnapshot querySnapshot = await collection.get();
-    List<Friend> friendL = [];
+  print("friends is now " + friends.toString());
+  List<Friend> friendL = [];
+  final CollectionReference collection =
+      FirebaseFirestore.instance.collection('friends');
+  
+  collection.get().then((QuerySnapshot querySnapshot) {
     for (Map<String, dynamic> friend in friends) {
       print(friend);
       for (var doc in querySnapshot.docs) {
@@ -40,19 +70,23 @@ class _FriendsPageState extends State<MyFriendsPage> {
           print("Friend Data: ${doc.data()}");
 
           friendL.add(Friend(
-              id: friend["friendID"],
-              name: friend["friendemail"],
-              profileImage: 'assets/images/johncena.jpg',
-              status: friend["status"]));
+            id: friend["friendID"],
+            name: friend["friendemail"],
+            profileImage: 'assets/images/johncena.jpg',
+            status: friend["status"],
+          ));
           break;
         }
       }
     }
+
     setState(() {
       print("setting state to " + friendL.toString());
       _state_friendList = friendL;
     });
-  }
+  });
+}
+
 
   getFriends() async {
     //gets the IDs associated with users from firebase
@@ -129,7 +163,8 @@ class _FriendsPageState extends State<MyFriendsPage> {
 
   void checkUserAndPromptConfirmation(
       BuildContext context, String friendId) async {
-    String userExists = await CheckAnotherUser(friendId);
+    String userExists = await CheckAnotherUser(friendId); //userexists is the email of the friend
+  
     if (userExists != '') {
       showConfirmationDialog(context, friendId, userExists);
     } else {
@@ -153,6 +188,7 @@ class _FriendsPageState extends State<MyFriendsPage> {
       );
     }
   }
+
 
   @override
   void initState() {
@@ -195,25 +231,51 @@ class _FriendsPageState extends State<MyFriendsPage> {
         if (_state_friendList.isEmpty)
           Text('You have no friends yet.')
         else
+
           Expanded(
-          child: ListView.builder(
-            itemCount: _state_friendList.length,
-            itemBuilder: (context, index) {
-              print(_state_friendList[index]);
-              return ListTile(
-                title: Text(_state_friendList[index].id),
-                subtitle: Text(_state_friendList[index].name),
-                leading: CircleAvatar(
-                  backgroundImage:
-                      AssetImage(_state_friendList[index].profileImage),
-                ),
-                trailing: Text(_state_friendList[index].status),
-              );
-            },
+            child: ListView.builder(
+              itemCount: _state_friendList.length,
+              itemBuilder: (context, index) {
+                if (_state_friendList[index].status == "pending")
+                  return ListTile(
+                    title: Text(_state_friendList[index].id),
+                    subtitle: Text(_state_friendList[index].name),
+                    leading: CircleAvatar(
+                      backgroundImage:
+                          AssetImage(_state_friendList[index].profileImage),
+                    ),
+                    trailing: OutlinedButton(
+                      onPressed: () {
+                        AcceptFriendRequest(_state_friendList[index].id, _state_friendList[index].name);
+                      },
+                      child: Text("Accept"),
+                    ),
+                  );
+                else
+                  return Container();
+              },
+            ),
           ),
-        ),
+          SizedBox(height: 16.0),
+          Text("Confirmed Friends"),
+          Expanded(
+            child: ListView.builder(
+              itemCount: _state_friendList.length,
+              itemBuilder: (context, index) {
+                if (_state_friendList[index].status == "confirmed") {
+                  return ListTile(
+                    title: Text(_state_friendList[index].id),
+                    subtitle: Text(_state_friendList[index].name),
+                    leading: CircleAvatar(
+                      backgroundImage:
+                          AssetImage(_state_friendList[index].profileImage),
+                    ),
+                  );
+                }
+              },
+            ),
+          ),
       ],
     );
   }
 }
-

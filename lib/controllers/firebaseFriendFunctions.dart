@@ -73,3 +73,62 @@ SendRequestToAnotherUser(
 
   
 }
+
+
+AcceptFriendRequest(String friendID, String friendemail) async {
+    //change the status of the friend request to accepted
+    User? user = FirebaseAuth.instance.currentUser;
+    String userID = '';
+    if (user != null) {
+      //add the friend to the user's friend list
+    DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .get();
+    if (userSnapshot.exists) {
+      Map<String, dynamic>? userData =
+            userSnapshot.data() as Map<String, dynamic>?;
+      if (userData != null) {
+        if (userData["id"] != null) {
+          userID = userData["id"];
+          }
+        }
+        List<Map<String, dynamic>> friends =
+                List<Map<String, dynamic>>.from(userData?["friends"]);
+        int index = friends.indexWhere((friend) => friend["friendID"] == friendID);
+        friends[index]["status"] = "confirmed";
+        FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .update({
+            'friends': friends
+          });
+      }
+    }
+
+    //add the user to the friend's friend list
+
+    DocumentSnapshot friendSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(friendemail)
+          .get();
+    if (friendSnapshot.exists) {
+      Map<String, dynamic>? friendData =
+            friendSnapshot.data() as Map<String, dynamic>?;
+      if (friendData != null) {
+        List<Map<String, dynamic>> friends2 =
+                List<Map<String, dynamic>>.from(friendData["friends"]);
+        int index = friends2.indexWhere((friend) => friend["friendID"] == userID);
+        friends2[index]["status"] = "confirmed";
+        FirebaseFirestore.instance
+          .collection('users')
+          .doc(friendemail)
+          .update({
+            'friends': friends2
+          });
+      }
+    }
+
+}
+
+  
