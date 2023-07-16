@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:orbital_test_space/components/header.dart';
 import 'package:orbital_test_space/models/item.dart';
 import 'package:orbital_test_space/pages/cover.dart';
+import 'package:orbital_test_space/pages/friends.dart';
 import 'package:orbital_test_space/pages/health.dart';
 import 'package:orbital_test_space/pages/profilepage.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
@@ -191,6 +192,8 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       case 1:
         return const MyHealthPage();
+      case 3:
+        return MyFriendsPage(user: widget.user);
       case 4:
         return ProfilePage(
             user: widget.user,
