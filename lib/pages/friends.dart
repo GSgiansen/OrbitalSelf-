@@ -16,38 +16,42 @@ class MyFriendsPage extends StatefulWidget {
 }
 
 class _FriendsPageState extends State<MyFriendsPage> {
-  List<dynamic> _state_friends = [];
+  List<Map<String, dynamic>> _state_friends =
+      []; //list of friends from firebase, obtained from the individual user
   final TextEditingController _friendIdController = TextEditingController();
-  List<Friend> _state_friendList = [];
+  List<Friend> _state_friendList = []; // list of friends from friend collection
 
   // getfriends will quert firebase for friends list
   //
 
   //accepts a list of confirmed friend names, have to iterate across friends collection to get name
-  getFriendNames(List<dynamic> friends) async {
+  getFriendNames(List<Map<String, dynamic>> friends) async {
+    print("friends is now " + friends.toString());
     final CollectionReference collection =
         FirebaseFirestore.instance.collection('friends');
     final QuerySnapshot querySnapshot = await collection.get();
     List<Friend> friendL = [];
-    for (var friend in friends) {
+    for (Map<String, dynamic> friend in friends) {
+      print(friend);
       for (var doc in querySnapshot.docs) {
-        if (doc.id == friend) {
+        print(doc.id);
+        if (doc.id == friend["friendID"]) {
           print("Friend ID: ${friend}");
           print("Friend Data: ${doc.data()}");
 
           friendL.add(Friend(
-              id: friend,
-              name: 'johncena',
+              id: friend["friendID"],
+              name: friend["friendemail"],
               profileImage: 'assets/images/johncena.jpg',
-              status: 'confirmed'));
+              status: friend["status"]));
           break;
         }
       }
-      setState(() {
-        print("friendlist is ");
-        _state_friendList = friendL;
-      });
     }
+    setState(() {
+      print("setting state to " + friendL.toString());
+      _state_friendList = friendL;
+    });
   }
 
   getFriends() async {
@@ -79,29 +83,26 @@ class _FriendsPageState extends State<MyFriendsPage> {
           }
 
           if (userData["friends"] != null) {
-            print(userData["friends"]);
+            List<Map<String, dynamic>> userDataFriends =
+                List<Map<String, dynamic>>.from(userData["friends"]);
             setState(() {
-              _state_friends = userData["friends"];
+              _state_friends = userDataFriends;
             });
-            await getFriendNames(_state_friends);
+            // await getFriendNames(_state_friends);
           } else {
             print("No friends");
-            List<Friend> friends = [];
+            List<Map<String, dynamic>> friends = [];
             FirebaseFirestore.instance
                 .collection('users')
                 .doc(user.email)
                 .update({'friends': friends});
-
-            setState(() {
-              friends = [];
-            });
           }
         }
       }
     }
   }
 
-  //check if input friendID exists, and if do send a request to them
+  //check if input friendID exists in friends collection, and if do send a request to them
   Future<String> CheckAnotherUser(String friendID) async {
     final CollectionReference collection =
         FirebaseFirestore.instance.collection('friends');
@@ -125,9 +126,6 @@ class _FriendsPageState extends State<MyFriendsPage> {
     }
     return friendemail;
   }
-
-
-
 
   void checkUserAndPromptConfirmation(
       BuildContext context, String friendId) async {
@@ -159,9 +157,12 @@ class _FriendsPageState extends State<MyFriendsPage> {
   @override
   void initState() {
     super.initState();
-    getFriends();
-    getFriendNames(_state_friends);
-    print(_state_friends);
+    waitForFirebase();
+  }
+
+  void waitForFirebase() async {
+    await getFriends();
+    await getFriendNames(_state_friends);
   }
 
   @override
@@ -191,7 +192,10 @@ class _FriendsPageState extends State<MyFriendsPage> {
           ),
         ),
         SizedBox(height: 16.0),
-        Expanded(
+        if (_state_friendList.isEmpty)
+          Text('You have no friends yet.')
+        else
+          Expanded(
           child: ListView.builder(
             itemCount: _state_friendList.length,
             itemBuilder: (context, index) {
@@ -212,3 +216,4 @@ class _FriendsPageState extends State<MyFriendsPage> {
     );
   }
 }
+
