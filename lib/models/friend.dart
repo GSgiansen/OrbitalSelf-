@@ -5,13 +5,15 @@ class Friend {
   final String id;
   final String name;
   final String profileImage;
-  final String status;
+  String status;
+  bool issued;
 
   Friend({
     required this.id,
     required this.name,
     required this.profileImage,
     required this.status,
+    this.issued = false,
   });
 }
 

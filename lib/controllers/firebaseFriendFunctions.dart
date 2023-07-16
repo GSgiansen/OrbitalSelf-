@@ -31,12 +31,14 @@ AddAnotherUserAsFriend(String friendID, String friendemail) async {
     'friendID': friendID,
     'friendemail': friendemail,
     'status': 'pending',
+    'issued' : false,
   };
 
   Map<String, dynamic> currUserInfo = {
     'friendID': userID,
     'friendemail': user?.email,
     'status': 'pending',
+    'issued' : true, //issued refer to if the user has issued the request
   };
   
 

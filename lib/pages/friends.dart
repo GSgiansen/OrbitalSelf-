@@ -20,71 +20,46 @@ class _FriendsPageState extends State<MyFriendsPage> {
       []; //list of friends from firebase, obtained from the individual user
   final TextEditingController _friendIdController = TextEditingController();
   List<Friend> _state_friendList = []; // list of friends from friend collection
+  final route = MaterialPageRoute(builder: (context) => MyFriendsPage(user: FirebaseAuth.instance.currentUser,));
 
-  // getfriends will quert firebase for friends list
-  //
 
-  // //accepts a list of confirmed friend names, have to iterate across friends collection to get name
-  // getFriendNames(List<Map<String, dynamic>> friends) async {
-  //   print("friends is now " + friends.toString());
-  //   List<Friend> friendL = [];
-  //   final CollectionReference collection =
-  //       FirebaseFirestore.instance.collection('friends');
-  //   final QuerySnapshot querySnapshot = await collection.get();
-  //   for (Map<String, dynamic> friend in friends) {
-  //     print(friend);
-  //     for (var doc in querySnapshot.docs) {
-  //       print(doc.id);
-  //       if (doc.id == friend["friendID"]) {
-  //         print("Friend ID: ${friend}");
-  //         print("Friend Data: ${doc.data()}");
-
-  //         friendL.add(Friend(
-  //             id: friend["friendID"],
-  //             name: friend["friendemail"],
-  //             profileImage: 'assets/images/johncena.jpg',
-  //             status: friend["status"]));
-  //         break;
-  //       }
-  //     }
-  //   }
-  //   setState(() {
-  //     print("setting state to " + friendL.toString());
-  //     _state_friendList = friendL;
-  //   });
-  // }
 
   getFriendNames(List<Map<String, dynamic>> friends) async {
-  print("friends is now " + friends.toString());
-  List<Friend> friendL = [];
-  final CollectionReference collection =
-      FirebaseFirestore.instance.collection('friends');
-  
-  collection.get().then((QuerySnapshot querySnapshot) {
-    for (Map<String, dynamic> friend in friends) {
-      print(friend);
-      for (var doc in querySnapshot.docs) {
-        print(doc.id);
-        if (doc.id == friend["friendID"]) {
-          print("Friend ID: ${friend}");
-          print("Friend Data: ${doc.data()}");
+    print("friends is now " + friends.toString());
+    List<Friend> friendL = [];
+    final CollectionReference collection =
+        FirebaseFirestore.instance.collection('friends');
+    
+    collection.get().then((QuerySnapshot querySnapshot) {
+      for (Map<String, dynamic> friend in friends) {
+        print(friend);
+        for (var doc in querySnapshot.docs) {
+          print(doc.id);
+          if (doc.id == friend["friendID"]) {
+            print("Friend ID: ${friend}");
+            print("Friend Data: ${doc.data()}");
 
-          friendL.add(Friend(
-            id: friend["friendID"],
-            name: friend["friendemail"],
-            profileImage: 'assets/images/johncena.jpg',
-            status: friend["status"],
-          ));
-          break;
+            friendL.add(Friend(
+              id: friend["friendID"],
+              name: friend["friendemail"],
+              profileImage: 'assets/images/cat.png',
+              status: friend["status"],
+              issued: friend["issued"],
+            ));
+            break;
+          }
         }
-      }
     }
 
     setState(() {
       print("setting state to " + friendL.toString());
       _state_friendList = friendL;
+      
     });
+    return friendL;
+    
   });
+  return [];
 }
 
 
@@ -122,6 +97,7 @@ class _FriendsPageState extends State<MyFriendsPage> {
             setState(() {
               _state_friends = userDataFriends;
             });
+            return userDataFriends;
             // await getFriendNames(_state_friends);
           } else {
             print("No friends");
@@ -130,6 +106,7 @@ class _FriendsPageState extends State<MyFriendsPage> {
                 .collection('users')
                 .doc(user.email)
                 .update({'friends': friends});
+            return friends;
           }
         }
       }
@@ -162,11 +139,11 @@ class _FriendsPageState extends State<MyFriendsPage> {
   }
 
   void checkUserAndPromptConfirmation(
-      BuildContext context, String friendId) async {
+      BuildContext context, String friendId, Function callback) async {
     String userExists = await CheckAnotherUser(friendId); //userexists is the email of the friend
   
     if (userExists != '') {
-      showConfirmationDialog(context, friendId, userExists);
+      showConfirmationDialog(context, friendId, userExists, callback);
     } else {
       // Display user not found message or handle the case accordingly
       showDialog(
@@ -201,6 +178,18 @@ class _FriendsPageState extends State<MyFriendsPage> {
     await getFriendNames(_state_friends);
   }
 
+  void setStateInAnotherFile() async {
+    setState(() async {
+      _state_friends = await getFriends();
+      getFriendNames(_state_friends);
+      // _state_friendList = [];
+
+    });
+  // Set the state in another file
+  // Your state update logic goes here
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -219,7 +208,12 @@ class _FriendsPageState extends State<MyFriendsPage> {
               ElevatedButton(
                 onPressed: () {
                   checkUserAndPromptConfirmation(
-                      context, _friendIdController.text);
+                      context, _friendIdController.text, setStateInAnotherFile);
+                  setState(() {
+                    _friendIdController.clear();
+                  
+
+                  });
                   // CheckAnotherUser(_friendIdController.text);
                 },
                 child: Text('Add Friend'),
@@ -236,7 +230,8 @@ class _FriendsPageState extends State<MyFriendsPage> {
             child: ListView.builder(
               itemCount: _state_friendList.length,
               itemBuilder: (context, index) {
-                if (_state_friendList[index].status == "pending")
+                if (_state_friendList[index].status == "pending" &&
+                    _state_friendList[index].issued) {
                   return ListTile(
                     title: Text(_state_friendList[index].id),
                     subtitle: Text(_state_friendList[index].name),
@@ -247,12 +242,27 @@ class _FriendsPageState extends State<MyFriendsPage> {
                     trailing: OutlinedButton(
                       onPressed: () {
                         AcceptFriendRequest(_state_friendList[index].id, _state_friendList[index].name);
+                        setStateInAnotherFile();
                       },
-                      child: Text("Accept"),
+                      child: const Text("Accept"),
                     ),
                   );
-                else
-                  return Container();
+                } else if (_state_friendList[index].status == "pending" &&
+                    !_state_friendList[index].issued)
+                    {
+                   return ListTile(
+                    title: Text(_state_friendList[index].id),
+                    subtitle: Text(_state_friendList[index].name),
+                    leading: CircleAvatar(
+                      backgroundImage:
+                          AssetImage(_state_friendList[index].profileImage),
+                    ),
+                    trailing: Text("Pending"),
+                  );
+                    }
+                else{
+                  return Container(); 
+                }
               },
             ),
           ),
