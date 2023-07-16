@@ -240,9 +240,11 @@ class _FriendsPageState extends State<MyFriendsPage> {
                           AssetImage(_state_friendList[index].profileImage),
                     ),
                     trailing: OutlinedButton(
-                      onPressed: () {
-                        AcceptFriendRequest(_state_friendList[index].id, _state_friendList[index].name);
-                        setStateInAnotherFile();
+                      onPressed: () async {
+                        await AcceptFriendRequest(_state_friendList[index].id, _state_friendList[index].name);
+                        setState(() {
+                          _state_friendList[index].status = "confirmed";
+                        });
                       },
                       child: const Text("Accept"),
                     ),
@@ -282,9 +284,13 @@ class _FriendsPageState extends State<MyFriendsPage> {
                     ),
                   );
                 }
+                else{
+                  return Container();
+                }
               },
             ),
           ),
+          
       ],
     );
   }
