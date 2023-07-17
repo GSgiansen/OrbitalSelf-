@@ -13,8 +13,6 @@ import 'package:orbital_test_space/controllers/inventoryToUnity.dart';
 import 'package:orbital_test_space/controllers/unityfirebaseFunctions.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
-import 'dart:io';
-
 import '../controllers/fireStoreFunctions.dart';
 import '../controllers/unityContoller.dart';
 import '../main.dart';
@@ -219,10 +217,10 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
             ),
           ]),
           Positioned(
-            top: 10,
+            top: 20,
             left: 10,
             child: Container(
-                width: 150,
+                width: 300,
                 height: 100,
                 child: Row(
                   children: [
@@ -262,6 +260,22 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
                         saveSceneToFirebase(_unityWidgetController);
                       },
                     ),
+                    SizedBox(width: 10),
+                    OutlinedButton(
+                      child: const Text('Load'),
+                      style: OutlinedButton.styleFrom(
+                        primary: Colors.white,
+                        backgroundColor: Colors.green,
+                        textStyle: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Rotorcap',
+                        ),
+                      ),
+                      onPressed: () {
+                        _unityWidgetController?.postMessage(
+                            'MY_GM', 'ChangeTheSceneNow', 'test');
+                      },
+                    ),
                   ],
                 )),
           ),
@@ -296,15 +310,19 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
     print("creating unity controller");
-    var _timer = Timer(const Duration(milliseconds: 1000), () {
-      setState(() {
-        _unityWidgetController = controller;
 
-        loadSceneFromFirebase(_unityWidgetController, jsonString);
-        loadInventoryFromFirebase(_unityWidgetController);
-      });
+    setState(() {
+      _unityWidgetController = controller;
+
+      // loadSceneFromFirebase(_unityWidgetController, jsonString);
+      // loadInventoryFromFirebase(_unityWidgetController);
     });
-    _unityWidgetController?.resume();
+    Timer(Duration(seconds: 1), () {
+      loadSceneFromFirebase(_unityWidgetController, jsonString);
+      loadInventoryFromFirebase(_unityWidgetController);
+    });
+
+    // _unityWidgetController?.resume();
   }
 
   // Communication from Unity when new scene is loaded to Flutter

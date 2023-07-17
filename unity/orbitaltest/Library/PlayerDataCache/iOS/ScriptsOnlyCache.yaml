@@ -16,6 +16,7 @@ ScriptsOnlyBuild:
     - InputManager
     - JsonLoader
     - MenuButton
+    - MyGameManager
     - Objectplacer
     - PlacementSystem
     - PreviewSystem
@@ -128,18 +129,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle/ToggleEvent
   methodsToPreserve:
   - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartRemoving
-  - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartPlacement
-  - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartPlacement
-  - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartPlacement
-  - assembly: Assembly-CSharp
     fullTypeName: MenuButton
     methodName: ToggleMenu
   - assembly: Assembly-CSharp
@@ -148,6 +137,18 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: PlacementSystem
     methodName: StartPlacement
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartRemoving
   - assembly: Unity.RenderPipelines.Core.Runtime
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: OnScrollbarClicked
@@ -340,13 +341,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 24040}
     - Class: 114
-      Script: {instanceID: 24366}
+      Script: {instanceID: 24270}
     - Class: 114
-      Script: {instanceID: 24496}
+      Script: {instanceID: 24368}
     - Class: 114
-      Script: {instanceID: 24772}
+      Script: {instanceID: 24498}
     - Class: 114
-      Script: {instanceID: 25124}
+      Script: {instanceID: 24774}
+    - Class: 114
+      Script: {instanceID: 25126}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -364,6 +367,47 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 156049354
+      Script: {instanceID: 0}
+    Assets/Scenes/test.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 19026}
+    - Class: 114
+      Script: {instanceID: 19276}
+    - Class: 114
+      Script: {instanceID: 20218}
+    - Class: 114
+      Script: {instanceID: 21592}
+    - Class: 114
+      Script: {instanceID: 24040}
+    - Class: 114
+      Script: {instanceID: 24270}
+    - Class: 114
+      Script: {instanceID: 24498}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -1622,6 +1666,12 @@ ScriptsOnlyBuild:
     className: UnityOnMoveMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MyGameManager
+  - hash:
+      serializedVersion: 2
       Hash: 5e4c2aa7f42449d4fb0ccbc0dea1ec34
     assemblyName: Unity.RenderPipelines.Core.Runtime
     namespaceName: UnityEngine
@@ -1773,4 +1823,5 @@ ScriptsOnlyBuild:
   platform: 9
   scenePathNames:
   - Assets/Scenes/blank.unity
+  - Assets/Scenes/test.unity
   playerPath: /Users/tangiansen/Desktop/development/OrbitalSelf-/ios/UnityLibrary
