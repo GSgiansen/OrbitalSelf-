@@ -394,6 +394,7 @@ MonoBehaviour:
   gridVisualisation: {fileID: 824947729}
   objectplacer: {fileID: 1710171965}
   preview: {fileID: 876806901}
+  decreaseInventory: {fileID: 0}
 --- !u!1001 &589465435
 PrefabInstance:
   m_ObjectHideFlags: 0

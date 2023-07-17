@@ -129,6 +129,15 @@ ScriptsOnlyBuild:
   methodsToPreserve:
   - assembly: Assembly-CSharp
     fullTypeName: PlacementSystem
+    methodName: StartRemoving
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
     methodName: StartPlacement
   - assembly: Assembly-CSharp
     fullTypeName: MenuButton
@@ -136,15 +145,6 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: UpdateButtonText
     methodName: AskFlutterForInventory
-  - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartPlacement
-  - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartPlacement
-  - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartRemoving
   - assembly: Assembly-CSharp
     fullTypeName: PlacementSystem
     methodName: StartPlacement
@@ -1016,7 +1016,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerEnumHistory
   - hash:
       serializedVersion: 2
-      Hash: d0a59b457963c3c0d4dec32a4f305785
+      Hash: 3c8c3ba8d08d243d43111dcd94118bf2
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: UpdateButtonText

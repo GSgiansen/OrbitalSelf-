@@ -4,6 +4,7 @@ using FlutterUnityIntegration;
 using System.Collections.Generic;
 public class UpdateButtonText : MonoBehaviour
 {
+    public PreviewSystem preview;
     public string newText = "New Text";
 
     private void Start()
@@ -80,6 +81,7 @@ public class UpdateButtonText : MonoBehaviour
                 }
                 else if (num <= 0) {
                     button.gameObject.SetActive(false);
+                    preview.StopShowingPreview();
                 }
 
                 buttonText.text = "X" + num.ToString() ;
@@ -91,6 +93,7 @@ public class UpdateButtonText : MonoBehaviour
                 }
                 else if (num <= 0) {
                     button.gameObject.SetActive(false);
+                    preview.StopShowingPreview();
                 }
 
 
@@ -104,8 +107,10 @@ public class UpdateButtonText : MonoBehaviour
                 }
                 else if (num <= 0) {
                     button.gameObject.SetActive(false);
+                    preview.StopShowingPreview();
                 }
                 buttonText.text = "X" + num.ToString() ;
+                
             }
             else if (button.tag == "chair") {
                 int num = lst.chair.number;
@@ -114,6 +119,7 @@ public class UpdateButtonText : MonoBehaviour
                 }
                 else if (num <= 0) {
                     button.gameObject.SetActive(false);
+                    preview.StopShowingPreview();
                 }
                 buttonText.text = "X" + num.ToString() ;
             }

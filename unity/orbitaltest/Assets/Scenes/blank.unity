@@ -989,7 +989,7 @@ PrefabInstance:
     - target: {fileID: 6819381397643168602, guid: 8ece0f0faf8317849a46eacc430a72b1,
         type: 3}
       propertyPath: m_Text
-      value: X 0
+      value: X 1
       objectReference: {fileID: 0}
     - target: {fileID: 7401616350368380843, guid: 8ece0f0faf8317849a46eacc430a72b1,
         type: 3}
@@ -2121,6 +2121,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpdatePanelNumbers
       objectReference: {fileID: 0}
+    - target: {fileID: 4989659475415230116, guid: 09e3633b2cd964c2fb7387593364a97d,
+        type: 3}
+      propertyPath: preview
+      value: 
+      objectReference: {fileID: 190557891}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
