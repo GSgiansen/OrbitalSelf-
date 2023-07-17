@@ -5,9 +5,117 @@ import 'package:orbital_test_space/pages/sleep.dart';
 import 'package:orbital_test_space/pages/todo.dart';
 import 'package:orbital_test_space/pages/water.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:orbital_test_space/models/sleepEntry.dart';
 
-class MyHealthPage extends StatelessWidget {
+class MyHealthPage extends StatefulWidget {
   const MyHealthPage({Key? key}) : super(key: key);
+
+  @override
+  _MyHealthPageState createState() => _MyHealthPageState();
+}
+
+class _MyHealthPageState extends State<MyHealthPage> {
+  double _waterProgress = 0.0;
+  double _sleepProgress = 0.0;
+  double _productivityProgress = 0.0;
+  int _completedPomodoroSessions = 0;
+  int _completedSleepDays = 0;
+  bool _isMounted = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isMounted = true;
+    _fetchData();
+  }
+
+  @override
+  void dispose() {
+    _isMounted = false;
+    super.dispose();
+  }
+
+  Stream<DocumentSnapshot> _getUserDataStream() {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      return FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .snapshots();
+    }
+    return Stream.empty();
+  }
+
+  void _fetchData() async {
+    await for (DocumentSnapshot snapshot in _getUserDataStream()) {
+      if (snapshot.exists) {
+        Map<String, dynamic>? userData =
+            snapshot.data() as Map<String, dynamic>?;
+
+        if (userData != null) {
+          List<dynamic>? sleepLogsData = userData['sleep'];
+          if (sleepLogsData != null) {
+            List<SleepEntry> sleepEntries =
+                sleepLogsData.map((data) => SleepEntry.fromMap(data)).toList();
+            _calculateSleepProgress(sleepEntries);
+          }
+
+          double waterIntake = (userData?['Water'] ?? 0.0).toDouble();
+          _calculateWaterProgress(waterIntake);
+
+          int pomodoros = userData?['Pomodoro'] ?? 0;
+          _calculateProductivityProgress(pomodoros);
+        }
+      }
+    }
+  }
+
+  void _calculateWaterProgress(double waterIntake) {
+    const double dailyGoal = 2000.0;
+    double progress = waterIntake / dailyGoal;
+    if (progress > 1.0) {
+      progress = 1.0;
+    }
+    if (_isMounted) {
+      setState(() {
+        _waterProgress = progress;
+      });
+    }
+  }
+
+  void _calculateSleepProgress(List<SleepEntry> sleepEntries) {
+    DateTime today = DateTime.now();
+    DateTime weekAgo = today.subtract(const Duration(days: 7));
+    int sleepDays = 0;
+
+    for (SleepEntry entry in sleepEntries) {
+      if (entry.date.isAfter(weekAgo) && entry.date.isBefore(today)) {
+        if (entry.hoursOfSleep >= 7) {
+          sleepDays++;
+        }
+      }
+    }
+    if (_isMounted) {
+      setState(() {
+        _completedSleepDays = sleepDays;
+        _sleepProgress = sleepDays / 7;
+      });
+    }
+  }
+
+  void _calculateProductivityProgress(int pomodoros) {
+    double progress = pomodoros / 4;
+    if (progress > 1.0) {
+      progress = 1.0;
+    }
+    if (_isMounted) {
+      setState(() {
+        _productivityProgress = progress;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +140,10 @@ class MyHealthPage extends StatelessWidget {
                 children: [
                   Text('Sleep'),
                   GFProgressBar(
-                    percentage: 0.5,
+                    percentage: _sleepProgress,
                     lineHeight: 20,
                     alignment: MainAxisAlignment.spaceBetween,
-                    child: const Text('50%',
+                    child: Text('${(_sleepProgress * 100).toStringAsFixed(0)}%',
                         textAlign: TextAlign.end,
                         style: TextStyle(fontSize: 16, color: Colors.black)),
                     backgroundColor: Colors.greenAccent,
@@ -44,9 +152,40 @@ class MyHealthPage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 16),
-              _buildProgress('Water', 0.5),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Water'),
+                  GFProgressBar(
+                    percentage: _waterProgress,
+                    lineHeight: 20,
+                    alignment: MainAxisAlignment.spaceBetween,
+                    child: Text('${(_waterProgress * 100).toStringAsFixed(0)}%',
+                        textAlign: TextAlign.end,
+                        style: TextStyle(fontSize: 16, color: Colors.black)),
+                    backgroundColor: Colors.greenAccent,
+                    progressBarColor: Colors.green,
+                  ),
+                ],
+              ),
               SizedBox(height: 16),
-              _buildProgress('Productivity', 0.5),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Productivity'),
+                  GFProgressBar(
+                    percentage: _productivityProgress,
+                    lineHeight: 20,
+                    alignment: MainAxisAlignment.spaceBetween,
+                    child: Text(
+                        '${(_productivityProgress * 100).toStringAsFixed(0)}%',
+                        textAlign: TextAlign.end,
+                        style: TextStyle(fontSize: 16, color: Colors.black)),
+                    backgroundColor: Colors.greenAccent,
+                    progressBarColor: Colors.green,
+                  ),
+                ],
+              ),
               SizedBox(height: 77.0),
               Column(
                 children: [

@@ -63,6 +63,7 @@
     <Compile Include="Assets/FlutterUnityIntegration/NativeAPI.cs" />
     <Compile Include="Assets/SCRIPT/spawning/loadTemplateScene.cs" />
     <Compile Include="Assets/SCRIPT/camera/testSwipe.cs" />
+    <Compile Include="Assets/SCRIPT/UI/UpdateMenu.cs" />
     <Compile Include="Assets/SCRIPT/spawning/addCube.cs" />
     <Compile Include="Assets/SCRIPT/jsonFolder/JsonToScene.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/Demo/GameManager.cs" />
@@ -78,9 +79,11 @@
     <Compile Include="Assets/SCRIPT/spawning/changeColor.cs" />
     <Compile Include="Assets/SCRIPT/jsonFolder/JsonHelper.cs" />
     <Compile Include="Assets/SCRIPT/spawning/objectDatatbaseSO.cs" />
+    <Compile Include="Assets/SCRIPT/UI/DecreaseInventory.cs" />
     <Compile Include="Assets/SCRIPT/camera/zoomCamera.cs" />
     <Compile Include="Assets/SCRIPT/PlacementSystems/PlacementState.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/UnityMessageManager.cs" />
+    <Compile Include="Assets/SCRIPT/UI/MenuDisplay.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/Demo/Rotate.cs" />
     <Compile Include="Assets/SCRIPT/PlacementSystems/PlacementSystem.cs" />
     <Compile Include="Assets/SCRIPT/camera/rotateCamera.cs" />
