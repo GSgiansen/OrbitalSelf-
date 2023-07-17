@@ -22,6 +22,31 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   bool _isPaused = false;
   bool _isPomodoroCompleted = false;
   bool _isReset = true;
+  int _totalPomodoros = 0;
+
+  Future<void> _fetchTotalPomodoros() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .get();
+      if (snapshot.exists) {
+        Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
+        if (data != null && data.containsKey('Pomodoro')) {
+          setState(() {
+            _totalPomodoros = data['Pomodoro'] ?? 0;
+          });
+        }
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchTotalPomodoros();
+  }
 
   Future<void> _updatePomodoroCount() async {
     User? user = FirebaseAuth.instance.currentUser;
@@ -192,7 +217,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
                   '${_current ~/ 60}:${(_current % 60).toString().padLeft(2, '0')}',
                   style: TextStyle(fontSize: 60),
                 ),
-                SizedBox(height: 160),
+                SizedBox(height: 130),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -249,6 +274,13 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Today's Completed Pomodoros: $_totalPomodoros",
+                  style: TextStyle(fontSize: 18, color: Colors.black),
+                )
               ],
             ),
           ),

@@ -106,9 +106,13 @@ class _MyHealthPageState extends State<MyHealthPage> {
   }
 
   void _calculateProductivityProgress(int pomodoros) {
+    double progress = pomodoros / 4;
+    if (progress > 1.0) {
+      progress = 1.0;
+    }
     if (_isMounted) {
       setState(() {
-        _productivityProgress = pomodoros / 4;
+        _productivityProgress = progress;
       });
     }
   }
