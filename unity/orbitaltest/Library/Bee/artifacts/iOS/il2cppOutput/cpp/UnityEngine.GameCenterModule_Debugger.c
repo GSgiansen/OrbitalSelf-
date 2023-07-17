@@ -19,7 +19,7 @@ static const Il2CppMethodExecutionContextInfo g_methodExecutionContextInfos[13] 
 	{ 11026, 1,  33 },
 	{ 7468, 0,  37 },
 	{ 11026, 1,  38 },
-	{ 16723, 2,  40 },
+	{ 16724, 2,  40 },
 	{ 11398, 3,  47 },
 	{ 10150, 4,  47 },
 	{ 7480, 5,  47 },

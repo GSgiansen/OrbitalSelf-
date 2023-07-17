@@ -79,6 +79,6 @@ app.*.map.json
 !**/ios/**/default.perspectivev3
 !/unitypackages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
-/ios/UnityLibrary/
+*/ios/UnityLibrary/
 /android/UnityLibrary/
 /web/UnityLibrary/

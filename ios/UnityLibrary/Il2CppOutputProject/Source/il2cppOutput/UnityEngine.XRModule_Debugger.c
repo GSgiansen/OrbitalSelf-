@@ -16,11 +16,11 @@
 static const Il2CppMethodExecutionContextInfo g_methodExecutionContextInfos[6] = 
 {
 	{ 2427, 0,  0 },
-	{ 15391, 1,  0 },
+	{ 15392, 1,  0 },
 	{ 11090, 2,  27 },
-	{ 15382, 3,  27 },
+	{ 15383, 3,  27 },
 	{ 11090, 2,  28 },
-	{ 15382, 3,  28 },
+	{ 15383, 3,  28 },
 };
 #else
 static const Il2CppMethodExecutionContextInfo g_methodExecutionContextInfos[1] = { { 0, 0, 0 } };

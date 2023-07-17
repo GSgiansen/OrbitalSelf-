@@ -5481,6 +5481,7 @@ struct Tilemap_t18C4166D0AC702D5BFC0C411FA73C4B61D9D1751  : public GridLayout_tA
 };
 struct UpdateButtonText_tC70004E25D211C8BDA6DC2C74AFD280B50985C11  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
+	PreviewSystem_t2EB4B7E66492BB283134F6EAD4B5EAE3BC8F2BA6* ___preview;
 	String_t* ___newText;
 };
 struct addCube_t54073F12AB540103852061131E32B4FBEE9F4884  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
@@ -7021,9 +7022,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6447[4] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6449[3] = 
 {
 	static_cast<int32_t>(offsetof(MenuButton_t5FBBD57E4378A9FCDB747615454A243C197C42A2, ___menuPage)),static_cast<int32_t>(offsetof(MenuButton_t5FBBD57E4378A9FCDB747615454A243C197C42A2, ___arrowUpImage)),static_cast<int32_t>(offsetof(MenuButton_t5FBBD57E4378A9FCDB747615454A243C197C42A2, ___isMenuOpen)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6450[1] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6450[2] = 
 {
-	static_cast<int32_t>(offsetof(UpdateButtonText_tC70004E25D211C8BDA6DC2C74AFD280B50985C11, ___newText)),};
+	static_cast<int32_t>(offsetof(UpdateButtonText_tC70004E25D211C8BDA6DC2C74AFD280B50985C11, ___preview)),static_cast<int32_t>(offsetof(UpdateButtonText_tC70004E25D211C8BDA6DC2C74AFD280B50985C11, ___newText)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6451[4] = 
 {
 	static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___cat)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___dog)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___plant)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___chair)),};
