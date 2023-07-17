@@ -20,16 +20,18 @@ class _FriendsPageState extends State<MyFriendsPage> {
       []; //list of friends from firebase, obtained from the individual user
   final TextEditingController _friendIdController = TextEditingController();
   List<Friend> _state_friendList = []; // list of friends from friend collection
-  final route = MaterialPageRoute(builder: (context) => MyFriendsPage(user: FirebaseAuth.instance.currentUser,));
-
-
+  final route = MaterialPageRoute(
+      builder: (context) => MyFriendsPage(
+            user: FirebaseAuth.instance.currentUser,
+          ));
+  String? userID = '';
 
   getFriendNames(List<Map<String, dynamic>> friends) async {
     print("friends is now " + friends.toString());
     List<Friend> friendL = [];
     final CollectionReference collection =
         FirebaseFirestore.instance.collection('friends');
-    
+
     collection.get().then((QuerySnapshot querySnapshot) {
       for (Map<String, dynamic> friend in friends) {
         print(friend);
@@ -49,19 +51,16 @@ class _FriendsPageState extends State<MyFriendsPage> {
             break;
           }
         }
-    }
+      }
 
-    setState(() {
-      print("setting state to " + friendL.toString());
-      _state_friendList = friendL;
-      
+      setState(() {
+        print("setting state to " + friendL.toString());
+        _state_friendList = friendL;
+      });
+      return friendL;
     });
-    return friendL;
-    
-  });
-  return [];
-}
-
+    return [];
+  }
 
   getFriends() async {
     //gets the IDs associated with users from firebase
@@ -140,8 +139,9 @@ class _FriendsPageState extends State<MyFriendsPage> {
 
   void checkUserAndPromptConfirmation(
       BuildContext context, String friendId, Function callback) async {
-    String userExists = await CheckAnotherUser(friendId); //userexists is the email of the friend
-  
+    String userExists = await CheckAnotherUser(
+        friendId); //userexists is the email of the friend
+
     if (userExists != '') {
       showConfirmationDialog(context, friendId, userExists, callback);
     } else {
@@ -166,6 +166,30 @@ class _FriendsPageState extends State<MyFriendsPage> {
     }
   }
 
+  Future<String>? getUserID() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    String userID = '';
+    DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user?.email)
+        .get();
+
+    if (userSnapshot.exists) {
+      print("entered here");
+      Map<String, dynamic>? userData =
+          userSnapshot.data() as Map<String, dynamic>?;
+      if (userData != null) {
+        if (userData["id"] != null) {
+          print("USER DATA IS " + userData["id"]);
+          userID = userData["id"];
+          setState(() {
+            userID = userData["id"];
+          });
+        }
+      }
+    }
+    return userID;
+  }
 
   @override
   void initState() {
@@ -176,19 +200,21 @@ class _FriendsPageState extends State<MyFriendsPage> {
   void waitForFirebase() async {
     await getFriends();
     await getFriendNames(_state_friends);
+    String? id = await getUserID(); // Await the getUserID call
+    setState(() {
+      userID = id; // Assign the returned value to the userID variable
+    });
+
   }
 
   void setStateInAnotherFile() async {
     setState(() async {
       _state_friends = await getFriends();
       getFriendNames(_state_friends);
+      getUserID();
       // _state_friendList = [];
-
     });
-  // Set the state in another file
-  // Your state update logic goes here
-}
-
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -198,9 +224,16 @@ class _FriendsPageState extends State<MyFriendsPage> {
           padding: EdgeInsets.all(8.0),
           child: Column(
             children: [
+              Text("Your code is :" + userID.toString(),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                // Add other text style properties as needed
+              )
+              ),
               TextField(
                 controller: _friendIdController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Friend ID',
                 ),
               ),
@@ -211,12 +244,10 @@ class _FriendsPageState extends State<MyFriendsPage> {
                       context, _friendIdController.text, setStateInAnotherFile);
                   setState(() {
                     _friendIdController.clear();
-                  
-
                   });
                   // CheckAnotherUser(_friendIdController.text);
                 },
-                child: Text('Add Friend'),
+                child: const Text('Add Friend'),
               ),
             ],
           ),
@@ -225,7 +256,6 @@ class _FriendsPageState extends State<MyFriendsPage> {
         if (_state_friendList.isEmpty)
           Text('You have no friends yet.')
         else
-
           Expanded(
             child: ListView.builder(
               itemCount: _state_friendList.length,
@@ -241,7 +271,8 @@ class _FriendsPageState extends State<MyFriendsPage> {
                     ),
                     trailing: OutlinedButton(
                       onPressed: () async {
-                        await AcceptFriendRequest(_state_friendList[index].id, _state_friendList[index].name);
+                        await AcceptFriendRequest(_state_friendList[index].id,
+                            _state_friendList[index].name);
                         setState(() {
                           _state_friendList[index].status = "confirmed";
                         });
@@ -250,9 +281,8 @@ class _FriendsPageState extends State<MyFriendsPage> {
                     ),
                   );
                 } else if (_state_friendList[index].status == "pending" &&
-                    !_state_friendList[index].issued)
-                    {
-                   return ListTile(
+                    !_state_friendList[index].issued) {
+                  return ListTile(
                     title: Text(_state_friendList[index].id),
                     subtitle: Text(_state_friendList[index].name),
                     leading: CircleAvatar(
@@ -261,36 +291,33 @@ class _FriendsPageState extends State<MyFriendsPage> {
                     ),
                     trailing: Text("Pending"),
                   );
-                    }
-                else{
-                  return Container(); 
-                }
-              },
-            ),
-          ),
-          SizedBox(height: 16.0),
-          Text("Confirmed Friends"),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _state_friendList.length,
-              itemBuilder: (context, index) {
-                if (_state_friendList[index].status == "confirmed") {
-                  return ListTile(
-                    title: Text(_state_friendList[index].id),
-                    subtitle: Text(_state_friendList[index].name),
-                    leading: CircleAvatar(
-                      backgroundImage:
-                          AssetImage(_state_friendList[index].profileImage),
-                    ),
-                  );
-                }
-                else{
+                } else {
                   return Container();
                 }
               },
             ),
           ),
-          
+        SizedBox(height: 16.0),
+        Text("Confirmed Friends"),
+        Expanded(
+          child: ListView.builder(
+            itemCount: _state_friendList.length,
+            itemBuilder: (context, index) {
+              if (_state_friendList[index].status == "confirmed") {
+                return ListTile(
+                  title: Text(_state_friendList[index].id),
+                  subtitle: Text(_state_friendList[index].name),
+                  leading: CircleAvatar(
+                    backgroundImage:
+                        AssetImage(_state_friendList[index].profileImage),
+                  ),
+                );
+              } else {
+                return Container();
+              }
+            },
+          ),
+        ),
       ],
     );
   }
