@@ -224,13 +224,18 @@ class _FriendsPageState extends State<MyFriendsPage> {
           padding: EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Text("Your code is :" + userID.toString(),
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                // Add other text style properties as needed
-              )
-              ),
+              if (userID != null)
+              
+                Text("Your code is : " + userID.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  // Add other text style properties as needed
+                )
+                )
+              else 
+                Text("Loading..."),
+
               TextField(
                 controller: _friendIdController,
                 decoration: const InputDecoration(
