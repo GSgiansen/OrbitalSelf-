@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:orbital_test_space/pages/settings.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class PomodoroTimerPage extends StatefulWidget {
   @override
@@ -21,6 +23,17 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   bool _isPomodoroCompleted = false;
   bool _isReset = true;
 
+  Future<void> _updatePomodoroCount() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentReference userDoc =
+          FirebaseFirestore.instance.collection('users').doc(user.email);
+
+      await userDoc
+          .set({'Pomodoro': FieldValue.increment(1)}, SetOptions(merge: true));
+    }
+  }
+
   void startTimer() {
     _isRunning = true;
     _isPomodoroCompleted = false;
@@ -35,6 +48,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
               // If resting, start next work session or stop if no more sessions
               _isResting = false;
               _currentSession++;
+              _updatePomodoroCount();
               if (_currentSession >= _numSessions) {
                 _currentSession = 0;
                 _isPomodoroCompleted = true; // Reset sessions
