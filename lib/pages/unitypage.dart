@@ -20,9 +20,11 @@ import '../controllers/unityContoller.dart';
 import '../main.dart';
 
 class UnityDemoScreen extends StatefulWidget {
-  UnityDemoScreen(      {super.key,
-      required this.user,
-      required this.currencyNotifier,});
+  UnityDemoScreen({
+    super.key,
+    required this.user,
+    required this.currencyNotifier,
+  });
   User? user;
   final CurrencyNotifier currencyNotifier;
 
@@ -37,7 +39,6 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   List<int> templateSceneData = [];
   final storage = FirebaseStorage.instance;
   String jsonString = "";
-
 
   var UID = FirebaseAuth.instance.currentUser!.uid;
   //query if user exists in the database
@@ -193,93 +194,117 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
       return const Center(
         child: CircularProgressIndicator(),
       );
-    }
-
-    else {
-
+    } else {
       return MaterialApp(
-        home: Scaffold(
-            // key: _scaffoldKey,
-            bottomNavigationBar: 
-            UnityMenu(
-              user: widget.user,
-              currencyNotifier: widget.currencyNotifier,
-              unityWidgetController: _unityWidgetController,
+          home: Scaffold(
+              // key: _scaffoldKey,
+              // bottomNavigationBar: UnityMenu(
+              //   user: widget.user,
+              //   currencyNotifier: widget.currencyNotifier,
+              //   unityWidgetController: _unityWidgetController,
+              // ),
+              body: Card(
+        // margin: const EdgeInsets.all(8),
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Stack(children: <Widget>[
+          Stack(children: <Widget>[
+            UnityWidget(
+              onUnityCreated: onUnityCreated,
+              onUnityMessage: onUnityMessage,
+              onUnitySceneLoaded: onUnitySceneLoaded,
+              fullscreen: true,
             ),
-            body: Card(
-              margin: const EdgeInsets.all(8),
-              clipBehavior: Clip.antiAlias,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              child: 
-              
-              Stack(children: <Widget>[
-                Stack(children: <Widget>[
-                  UnityWidget(
-                    onUnityCreated: onUnityCreated,
-                    onUnityMessage: onUnityMessage,
-                    onUnitySceneLoaded: onUnitySceneLoaded,
-                    fullscreen: true,
-                  ),
-                ]),
-              ]),
-              
-    )));
-
+          ]),
+          Positioned(
+            top: 10,
+            left: 10,
+            child: Container(
+                width: 150,
+                height: 100,
+                child: Row(
+                  children: [
+                    OutlinedButton(
+                      child: const Text('Back'),
+                      style: OutlinedButton.styleFrom(
+                        primary: Colors.white,
+                        backgroundColor: Colors.green,
+                        textStyle: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Rotorcap',
+                        ),
+                      ),
+                      onPressed: () async {
+                        _unityWidgetController?.dispose();
+                        _unityWidgetController?.unload();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyHomePage(
+                                      user: widget.user,
+                                    )));
+                      },
+                    ),
+                    SizedBox(width: 10),
+                    OutlinedButton(
+                      child: const Text('Save'),
+                      style: OutlinedButton.styleFrom(
+                        primary: Colors.white,
+                        backgroundColor: Colors.green,
+                        textStyle: TextStyle(
+                          fontSize: 14,
+                          fontFamily: 'Rotorcap',
+                        ),
+                      ),
+                      onPressed: () {
+                        saveSceneToFirebase(_unityWidgetController);
+                      },
+                    ),
+                  ],
+                )),
+          ),
+        ]),
+      )));
     }
   }
 
   // Communication from Unity to Flutter
-  void onUnityMessage(message) async{
+  void onUnityMessage(message) async {
     print('Received message from unity: ${message.toString()}');
     if (message.length >= 5 && message.substring(0, 6) == 'upload') {
       var jsonString = message.substring(6);
       await uploadJSONfromUnity(jsonString);
       print("made it here");
-    }
-
-    else if (message.length >= 17 && message.substring(0,17) == 'decreaseInventory') {
+    } else if (message.length >= 17 &&
+        message.substring(0, 17) == 'decreaseInventory') {
       int num = int.parse(message.substring(17));
-      Map<int, String> data = {
-        0: "chair",
-        1: "cat",
-        2: "dog",
-        3: "plant"
-      };
+      Map<int, String> data = {0: "chair", 1: "cat", 2: "dog", 3: "plant"};
       print(num);
-      FireStoreFunctions.removeOldPurchase(FirebaseAuth.instance.currentUser, data[num]!);
+      FireStoreFunctions.removeOldPurchase(
+          FirebaseAuth.instance.currentUser, data[num]!);
       loadInventoryFromFirebase(_unityWidgetController);
-
-      }
-    else if (message == "ReqloadInventory")
-    {
+    } else if (message == "ReqloadInventory") {
       print("requesting inventory");
       loadInventoryFromFirebase(_unityWidgetController);
     }
   }
 
-    
-
-    //_unityWidgetController?.postMessage('LoadScene', 'SampleScene', '');
-  
+  //_unityWidgetController?.postMessage('LoadScene', 'SampleScene', '');
 
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
-
     print("creating unity controller");
     var _timer = Timer(const Duration(milliseconds: 1000), () {
       setState(() {
-      _unityWidgetController = controller;
-      
-      loadSceneFromFirebase(_unityWidgetController, jsonString);
-      loadInventoryFromFirebase(_unityWidgetController);
+        _unityWidgetController = controller;
 
-    });
+        loadSceneFromFirebase(_unityWidgetController, jsonString);
+        loadInventoryFromFirebase(_unityWidgetController);
+      });
     });
     _unityWidgetController?.resume();
-    
-
   }
 
   // Communication from Unity when new scene is loaded to Flutter

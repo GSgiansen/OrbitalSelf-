@@ -125,7 +125,8 @@ class _UnityMenuState extends State<UnityMenu> {
               MaterialPageRoute(
                   builder: (context) => MyHomePage(
                         user: widget.user,
-                      )));
+                      ))
+          );
         },
       )
     ]));

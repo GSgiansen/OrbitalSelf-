@@ -131,6 +131,12 @@ ScriptsOnlyBuild:
     fullTypeName: PlacementSystem
     methodName: StartPlacement
   - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
+  - assembly: Assembly-CSharp
+    fullTypeName: PlacementSystem
+    methodName: StartPlacement
+  - assembly: Assembly-CSharp
     fullTypeName: MenuButton
     methodName: ToggleMenu
   - assembly: Assembly-CSharp
@@ -141,13 +147,7 @@ ScriptsOnlyBuild:
     methodName: StartPlacement
   - assembly: Assembly-CSharp
     fullTypeName: PlacementSystem
-    methodName: StartPlacement
-  - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
     methodName: StartRemoving
-  - assembly: Assembly-CSharp
-    fullTypeName: PlacementSystem
-    methodName: StartPlacement
   - assembly: Unity.RenderPipelines.Core.Runtime
     fullTypeName: UnityEngine.Rendering.UI.DebugUIHandlerPanel
     methodName: OnScrollbarClicked
