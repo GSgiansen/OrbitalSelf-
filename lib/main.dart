@@ -96,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     waitForUserCreation();
+    UpdateUserUID();
   }
 
   void waitForUserCreation() async {
@@ -111,6 +112,16 @@ class _MyHomePageState extends State<MyHomePage> {
               });
           }
     }
+
+void UpdateUserUID() async {
+  if (widget.user != null) {
+    String uid = widget.user!.uid;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(widget.user!.email)
+        .update({'uid': uid});
+  }
+}
   
 
   Future<DocumentSnapshot> getUserData() async {

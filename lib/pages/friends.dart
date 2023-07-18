@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:orbital_test_space/models/friend.dart';
+import 'package:orbital_test_space/pages/friendsislandview.dart';
 
 import '../components/friendconfirmadd.dart';
 import '../controllers/firebaseFriendFunctions.dart';
@@ -34,9 +35,9 @@ class _FriendsPageState extends State<MyFriendsPage> {
 
     collection.get().then((QuerySnapshot querySnapshot) {
       for (Map<String, dynamic> friend in friends) {
-        print(friend);
+        // print(friend);
         for (var doc in querySnapshot.docs) {
-          print(doc.id);
+          // print(doc.id);
           if (doc.id == friend["friendID"]) {
             print("Friend ID: ${friend}");
             print("Friend Data: ${doc.data()}");
@@ -54,7 +55,7 @@ class _FriendsPageState extends State<MyFriendsPage> {
       }
 
       setState(() {
-        print("setting state to " + friendL.toString());
+        // print("setting state to " + friendL.toString());
         _state_friendList = friendL;
       });
       return friendL;
@@ -131,7 +132,7 @@ class _FriendsPageState extends State<MyFriendsPage> {
     }
 
     if (found) {
-      print("Friend exists");
+      // print("Friend exists");
       return friendemail;
     }
     return friendemail;
@@ -180,7 +181,7 @@ class _FriendsPageState extends State<MyFriendsPage> {
           userSnapshot.data() as Map<String, dynamic>?;
       if (userData != null) {
         if (userData["id"] != null) {
-          print("USER DATA IS " + userData["id"]);
+          // print("USER DATA IS " + userData["id"]);
           userID = userData["id"];
           setState(() {
             userID = userData["id"];
@@ -215,6 +216,8 @@ class _FriendsPageState extends State<MyFriendsPage> {
       // _state_friendList = [];
     });
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -315,6 +318,20 @@ class _FriendsPageState extends State<MyFriendsPage> {
                   leading: CircleAvatar(
                     backgroundImage:
                         AssetImage(_state_friendList[index].profileImage),
+                    
+                  ),
+                  trailing: OutlinedButton(
+                    child: const Text("View Island"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FriendsIslandView(
+                            friendID: _state_friendList[index].id,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 );
               } else {

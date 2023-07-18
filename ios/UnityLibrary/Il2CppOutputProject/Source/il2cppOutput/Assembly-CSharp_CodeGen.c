@@ -123,6 +123,8 @@ extern void changeColor__ctor_m31295285FCA0F687164DFB8BB421447E044BD1A9 (void);
 extern void ChangeColorOnTouch_Start_mD5149832574ACE3D46718B48B6F4AFF06835E175 (void);
 extern void ChangeColorOnTouch_Update_m4E237AE8078DD2C5128A4705FEABDBE0040DAB40 (void);
 extern void ChangeColorOnTouch__ctor_mE10F948A883E30C52573895B4FECA43CF4C00BC0 (void);
+extern void MyGameManager_ChangeTheSceneNow_m6C3590C25F82C817C12DFCEB89BD47189385A483 (void);
+extern void MyGameManager__ctor_m089A2276AC27534ABDD539A53ABEE3DFD4D8A915 (void);
 extern void GridData_AddObjectAt_mB5ACA3C5DF1AC66EFF2CFDE61863637C687A91D7 (void);
 extern void GridData_CalculatePositions_mBF3C7E675A337ABF698B199849549314CF94687D (void);
 extern void GridData_CanPlaceObjectsAt_m939453408D3181A0638B863BB0371A50F03446CC (void);
@@ -205,7 +207,7 @@ extern void MessageHandlerDelegate__ctor_m287CBD25D77011FC5A52D1090F6CC31353AB63
 extern void MessageHandlerDelegate_Invoke_mD1EC9E1841D5014C40A26D4C4BA076482FFC8A4B (void);
 extern void MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D (void);
 extern void MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16 (void);
-static Il2CppMethodPointer s_methodPointers[213] = 
+static Il2CppMethodPointer s_methodPointers[215] = 
 {
 	NULL,
 	NULL,
@@ -333,6 +335,8 @@ static Il2CppMethodPointer s_methodPointers[213] =
 	ChangeColorOnTouch_Start_mD5149832574ACE3D46718B48B6F4AFF06835E175,
 	ChangeColorOnTouch_Update_m4E237AE8078DD2C5128A4705FEABDBE0040DAB40,
 	ChangeColorOnTouch__ctor_mE10F948A883E30C52573895B4FECA43CF4C00BC0,
+	MyGameManager_ChangeTheSceneNow_m6C3590C25F82C817C12DFCEB89BD47189385A483,
+	MyGameManager__ctor_m089A2276AC27534ABDD539A53ABEE3DFD4D8A915,
 	GridData_AddObjectAt_mB5ACA3C5DF1AC66EFF2CFDE61863637C687A91D7,
 	GridData_CalculatePositions_mBF3C7E675A337ABF698B199849549314CF94687D,
 	GridData_CanPlaceObjectsAt_m939453408D3181A0638B863BB0371A50F03446CC,
@@ -421,7 +425,7 @@ static Il2CppMethodPointer s_methodPointers[213] =
 	MessageHandlerDelegate_BeginInvoke_m0CC5C5B29E11DD03F1726B49E4B1E516479AC58D,
 	MessageHandlerDelegate_EndInvoke_mAD2746E001DB9A3D18A1D806610542321FE0CF16,
 };
-static const int32_t s_InvokerIndices[213] = 
+static const int32_t s_InvokerIndices[215] = 
 {
 	0,
 	0,
@@ -549,6 +553,8 @@ static const int32_t s_InvokerIndices[213] =
 	1985,
 	1985,
 	1985,
+	1751,
+	1985,
 	571,
 	1077,
 	963,
@@ -640,11 +646,11 @@ static const int32_t s_InvokerIndices[213] =
 static const Il2CppTokenRangePair s_rgctxIndices[6] = 
 {
 	{ 0x02000002, { 0, 29 } },
-	{ 0x0200002C, { 38, 11 } },
+	{ 0x0200002D, { 38, 11 } },
 	{ 0x0600002A, { 29, 3 } },
 	{ 0x0600002B, { 32, 3 } },
 	{ 0x0600002C, { 35, 3 } },
-	{ 0x060000BB, { 49, 2 } },
+	{ 0x060000BD, { 49, 2 } },
 };
 extern const uint32_t g_rgctx_U3CU3Ef__AnonymousType0_4_t93FD0713D40011506D6B5581D9D5064D1A1A31B8;
 extern const uint32_t g_rgctx_U3CidU3Ej__TPar_tB4283D6614B0A1B9713411CF590AE6445EC76C76;
@@ -756,7 +762,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	213,
+	215,
 	s_methodPointers,
 	0,
 	NULL,
