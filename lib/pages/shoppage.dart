@@ -35,11 +35,12 @@ class _ShopPageState extends State<ShopPage> {
           List<Item> lst = [];
           for (var element in snapshot.data!.docs) {
             Map<String, dynamic> data = element.data() as Map<String, dynamic>;
+            print('item is here');      
             Item item = Item(
               name: data["name"],
               price: data["cost"],
               description: data["description"],
-              image: data["image"],
+              image: 'assets/images/${data["name"]}.png',
               inventory: data["inventory"] // represents if shld spawn object into the game or not
             );
             lst.add(item);
