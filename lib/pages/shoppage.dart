@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:orbital_test_space/components/shopcard.dart';
+import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
 import 'package:orbital_test_space/main.dart';
 
 import '../models/item.dart';
@@ -58,7 +59,16 @@ class _ShopPageState extends State<ShopPage> {
                 ),
               ),
               floatingActionButton: FloatingActionButton(
-                onPressed: widget.currencyNotifier.increaseCurrency,
+                onPressed: () {
+                  widget.currencyNotifier.increaseCurrency();
+                  String email = '';
+                  if (widget.user != null){
+                    email = widget.user!.email.toString();
+                  }
+
+                  FireStoreFunctions.addNewCurrency(
+                      email , widget.currencyNotifier.currency.value);
+                },
                 child: const FaIcon(FontAwesomeIcons.plus),
               ));
           } else {
