@@ -23,6 +23,13 @@ class _FriendsIslandViewState extends State<FriendsIslandView> {
   String friendemail = '';
   String friendUID = '';
 
+  //To Do
+  //1. check if the friend alr exists in the friends collection
+  // if its there then make it unable to add friend
+
+
+
+
   @override
   void initState() {
     super.initState();

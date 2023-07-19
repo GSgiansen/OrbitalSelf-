@@ -97,7 +97,7 @@ class _FriendsPageState extends State<MyFriendsPage> {
             setState(() {
               _state_friends = userDataFriends;
             });
-            return userDataFriends;
+            // return userDataFriends;
             // await getFriendNames(_state_friends);
           } else {
             print("No friends");
@@ -106,7 +106,7 @@ class _FriendsPageState extends State<MyFriendsPage> {
                 .collection('users')
                 .doc(user.email)
                 .update({'friends': friends});
-            return friends;
+            // return friends;
           }
         }
       }
@@ -209,8 +209,8 @@ class _FriendsPageState extends State<MyFriendsPage> {
   }
 
   void setStateInAnotherFile() async {
-    setState(() async {
-      _state_friends = await getFriends();
+    setState(() {
+      _state_friends = getFriends();
       getFriendNames(_state_friends);
       getUserID();
       // _state_friendList = [];

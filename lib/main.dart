@@ -93,8 +93,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   User? user;
   int currentPageIndex = 2;
+  
   @override
   void initState() {
+    super.initState();
     waitForUserCreation();
     UpdateUserUID();
   }
