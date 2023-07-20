@@ -1,16 +1,24 @@
+import 'dart:async';
+import 'dart:math';
+
+import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
+import 'package:orbital_test_space/main.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:orbital_test_space/pages/pomodoro.dart';
-import 'package:orbital_test_space/pages/sleep.dart';
-import 'package:orbital_test_space/pages/todo.dart';
-import 'package:orbital_test_space/pages/water.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:orbital_test_space/models/sleepEntry.dart';
+import 'package:orbital_test_space/pages/pomodoro.dart';
+import 'package:orbital_test_space/pages/sleep.dart';
+import 'package:orbital_test_space/pages/todo.dart';
+import 'package:orbital_test_space/pages/water.dart';
 
 class MyHealthPage extends StatefulWidget {
-  const MyHealthPage({Key? key}) : super(key: key);
+  const MyHealthPage(
+      {super.key, required this.user, required this.currencyNotifier});
+  final User? user;
+  final CurrencyNotifier currencyNotifier;
 
   @override
   _MyHealthPageState createState() => _MyHealthPageState();
@@ -23,17 +31,28 @@ class _MyHealthPageState extends State<MyHealthPage> {
   int _completedPomodoroSessions = 0;
   int _completedSleepDays = 0;
   bool _isMounted = false;
+  bool isTaskCompleted = false;
+  String currentTask = '';
+  List<String> tasks = ['Productivity', 'Sleep', 'Water'];
+
+  Timer? _resetTaskTimer;
 
   @override
   void initState() {
     super.initState();
     _isMounted = true;
     _fetchData();
+
+    final now = DateTime.now();
+    final resetTime = DateTime(now.year, now.month, now.day + 1);
+    final difference = resetTime.difference(now);
+    _resetTaskTimer = Timer(difference, _resetTask);
   }
 
   @override
   void dispose() {
     _isMounted = false;
+    _resetTaskTimer?.cancel();
     super.dispose();
   }
 
@@ -67,8 +86,44 @@ class _MyHealthPageState extends State<MyHealthPage> {
 
           int pomodoros = userData?['Pomodoro'] ?? 0;
           _calculateProductivityProgress(pomodoros);
+
+          isTaskCompleted = userData?['CompletedTask'] ?? false;
+          String task = userData?['dailyTask'] ?? "";
+          if (task == "" && _isMounted) {
+            final random = Random();
+            setState(() {
+              currentTask = tasks[random.nextInt(tasks.length)];
+              _updateDailyTask();
+            });
+          } else {
+            if (_isMounted) {
+              setState(() {
+                currentTask = task;
+              });
+            }
+          }
         }
       }
+    }
+  }
+
+  void _updateDailyTask() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .update({'dailyTask': currentTask});
+    }
+  }
+
+  void _updateTaskCompletion() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .update({'CompletedTask': true});
     }
   }
 
@@ -117,6 +172,50 @@ class _MyHealthPageState extends State<MyHealthPage> {
     }
   }
 
+  void _completeTask() {
+    if (currentTask == 'Productivity') {
+      if (_productivityProgress == 1.0) {
+        _provideCoins(currentTask);
+        setState(() {
+          _updateTaskCompletion();
+          isTaskCompleted = true;
+        });
+      }
+      ;
+    } else if (currentTask == 'Sleep') {
+      if (_sleepProgress == 1.0) {
+        _provideCoins(currentTask);
+        setState(() {
+          _updateTaskCompletion();
+          isTaskCompleted = true;
+        });
+      }
+      ;
+    } else if (currentTask == 'Water') {
+      if (_waterProgress == 1.0) {
+        _provideCoins(currentTask);
+        setState(() {
+          _updateTaskCompletion();
+          isTaskCompleted = true;
+        });
+      }
+    }
+  }
+
+  void _provideCoins(String task) {
+    widget.currencyNotifier.increaseByTask(task);
+    FireStoreFunctions.addNewCurrency(
+        widget.user!.email.toString(), widget.currencyNotifier.currency.value);
+  }
+
+  void _resetTask() {
+    if (mounted) {
+      setState(() {
+        isTaskCompleted = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,7 +233,6 @@ class _MyHealthPageState extends State<MyHealthPage> {
               SizedBox(height: 16),
               _buildTitleBox('Health'),
               SizedBox(height: 20.0),
-              //_buildProgress('Sleep', 0.5),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -143,9 +241,11 @@ class _MyHealthPageState extends State<MyHealthPage> {
                     percentage: _sleepProgress,
                     lineHeight: 20,
                     alignment: MainAxisAlignment.spaceBetween,
-                    child: Text('${(_sleepProgress * 100).toStringAsFixed(0)}%',
-                        textAlign: TextAlign.end,
-                        style: TextStyle(fontSize: 16, color: Colors.black)),
+                    child: Text(
+                      '${(_sleepProgress * 100).toStringAsFixed(0)}%',
+                      textAlign: TextAlign.end,
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                    ),
                     backgroundColor: Colors.greenAccent,
                     progressBarColor: Colors.green,
                   ),
@@ -160,9 +260,11 @@ class _MyHealthPageState extends State<MyHealthPage> {
                     percentage: _waterProgress,
                     lineHeight: 20,
                     alignment: MainAxisAlignment.spaceBetween,
-                    child: Text('${(_waterProgress * 100).toStringAsFixed(0)}%',
-                        textAlign: TextAlign.end,
-                        style: TextStyle(fontSize: 16, color: Colors.black)),
+                    child: Text(
+                      '${(_waterProgress * 100).toStringAsFixed(0)}%',
+                      textAlign: TextAlign.end,
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                    ),
                     backgroundColor: Colors.greenAccent,
                     progressBarColor: Colors.green,
                   ),
@@ -178,9 +280,10 @@ class _MyHealthPageState extends State<MyHealthPage> {
                     lineHeight: 20,
                     alignment: MainAxisAlignment.spaceBetween,
                     child: Text(
-                        '${(_productivityProgress * 100).toStringAsFixed(0)}%',
-                        textAlign: TextAlign.end,
-                        style: TextStyle(fontSize: 16, color: Colors.black)),
+                      '${(_productivityProgress * 100).toStringAsFixed(0)}%',
+                      textAlign: TextAlign.end,
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                    ),
                     backgroundColor: Colors.greenAccent,
                     progressBarColor: Colors.green,
                   ),
@@ -205,9 +308,11 @@ class _MyHealthPageState extends State<MyHealthPage> {
                         color: Color(0xffffdf88),
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PomodoroTimerPage()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PomodoroTimerPage(),
+                            ),
+                          );
                         },
                       ),
                       _HealthCard(
@@ -216,9 +321,11 @@ class _MyHealthPageState extends State<MyHealthPage> {
                         color: Color(0xffffdf88),
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SleepLoggingPage()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SleepLoggingPage(),
+                            ),
+                          );
                         },
                       ),
                       _HealthCard(
@@ -227,9 +334,11 @@ class _MyHealthPageState extends State<MyHealthPage> {
                         color: Color(0xffffdf88),
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => WaterIntakeApp()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => WaterIntakeApp(),
+                            ),
+                          );
                         },
                       ),
                       _HealthCard(
@@ -238,28 +347,53 @@ class _MyHealthPageState extends State<MyHealthPage> {
                         color: Color(0xffffdf88),
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ToDoPage()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ToDoPage(),
+                            ),
+                          );
                         },
                       ),
                     ],
                   ),
                 ],
               ),
-              SizedBox(height: 60),
+              SizedBox(height: 50),
               Padding(
-                  padding: EdgeInsets.only(left: 150),
-                  child: Container(
-                      height: 30,
-                      width: 200,
-                      child: AnimatedTextKit(
-                        repeatForever: true,
-                        animatedTexts: [
-                          TypewriterAnimatedText(
-                              "Today's goal: Complete 3 pomodoro sessions."),
-                        ],
-                      )))
+                padding: EdgeInsets.only(left: 170),
+                child: Container(
+                  height: 75,
+                  width: 250,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: AnimatedTextKit(
+                          repeatForever: true,
+                          animatedTexts: [
+                            TypewriterAnimatedText(
+                              isTaskCompleted
+                                  ? "Today's task has been completed!"
+                                  : "Today's goal: Complete $currentTask bar.",
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (!isTaskCompleted)
+                        Container(
+                          height: 30,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _completeTask();
+                            },
+                            child: Text('Complete'),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -272,27 +406,11 @@ class _MyHealthPageState extends State<MyHealthPage> {
       decoration: BoxDecoration(color: Colors.transparent),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text(title, style: TextStyle(fontSize: 20, color: Colors.white)),
+        child: Text(
+          title,
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
       ),
-    );
-  }
-
-  Widget _buildProgress(String label, double progress) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(label),
-        GFProgressBar(
-          percentage: 0.5,
-          lineHeight: 20,
-          alignment: MainAxisAlignment.spaceBetween,
-          child: const Text('50%',
-              textAlign: TextAlign.end,
-              style: TextStyle(fontSize: 16, color: Colors.black)),
-          backgroundColor: Colors.greenAccent,
-          progressBarColor: Colors.green,
-        )
-      ],
     );
   }
 }

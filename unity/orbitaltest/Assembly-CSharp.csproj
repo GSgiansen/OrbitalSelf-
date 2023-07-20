@@ -74,6 +74,7 @@
     <Compile Include="Assets/SCRIPT/PlacementSystems/InputManager.cs" />
     <Compile Include="Assets/SCRIPT/PlacementSystems/Objectplacer.cs" />
     <Compile Include="Assets/FlutterUnityIntegration/Demo/SceneLoader.cs" />
+    <Compile Include="Assets/SCRIPT/spawning/GameManager.cs" />
     <Compile Include="Assets/SCRIPT/jsonFolder/sceneToJson.cs" />
     <Compile Include="Assets/SCRIPT/PlacementSystems/RemovingState.cs" />
     <Compile Include="Assets/SCRIPT/spawning/changeColor.cs" />
