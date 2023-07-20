@@ -83,6 +83,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
           int pomodoros = userData?['Pomodoro'] ?? 0;
           _calculateProductivityProgress(pomodoros);
 
+          isTaskCompleted = userData?['CompletedTask'] ?? false;
           String task = userData?['dailyTask'] ?? "";
           if (task == "" && _isMounted) {
             final random = Random();
@@ -109,6 +110,16 @@ class _MyHealthPageState extends State<MyHealthPage> {
           .collection('users')
           .doc(user.email)
           .update({'dailyTask': currentTask});
+    }
+  }
+
+  void _updateTaskCompletion() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .update({'CompletedTask': true});
     }
   }
 
@@ -162,6 +173,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
       if (_productivityProgress == 1.0) {
         _provideCoins();
         setState(() {
+          _updateTaskCompletion();
           isTaskCompleted = true;
         });
       }
@@ -170,6 +182,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
       if (_sleepProgress == 1.0) {
         _provideCoins();
         setState(() {
+          _updateTaskCompletion();
           isTaskCompleted = true;
         });
       }
@@ -178,6 +191,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
       if (_waterProgress == 1.0) {
         _provideCoins();
         setState(() {
+          _updateTaskCompletion();
           isTaskCompleted = true;
         });
       }
@@ -185,7 +199,6 @@ class _MyHealthPageState extends State<MyHealthPage> {
   }
 
   void _provideCoins() {
-    // TODO: Implement coin reward logic
     CurrencyNotifier().increaseCurrency();
   }
 
