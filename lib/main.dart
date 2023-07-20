@@ -92,7 +92,6 @@ class MyHomePage extends StatefulWidget {
 
   CurrencyNotifier currencyNotifier = CurrencyNotifier();
 
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -100,7 +99,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   User? user;
   int currentPageIndex = 2;
-  
+
   @override
   void initState() {
     super.initState();
@@ -112,26 +111,27 @@ class _MyHomePageState extends State<MyHomePage> {
     if (widget.user != null) {
       await FireStoreFunctions.getCurrentUserCurrency(user: widget.user)
           .then((value) => {
-                if (value != null ) {
-                  widget.currencyNotifier.setValue(value),
-                }
-                else {
-                  widget.currencyNotifier.setValue(100),
-                }
+                if (value != null)
+                  {
+                    widget.currencyNotifier.setValue(value),
+                  }
+                else
+                  {
+                    widget.currencyNotifier.setValue(100),
+                  }
               });
-          }
     }
-
-void UpdateUserUID() async {
-  if (widget.user != null) {
-    String uid = widget.user!.uid;
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(widget.user!.email)
-        .update({'uid': uid});
   }
-}
-  
+
+  void UpdateUserUID() async {
+    if (widget.user != null) {
+      String uid = widget.user!.uid;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(widget.user!.email)
+          .update({'uid': uid});
+    }
+  }
 
   Future<DocumentSnapshot> getUserData() async {
     // Fetch user data from Firebase
@@ -146,7 +146,7 @@ void UpdateUserUID() async {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme:ThemeData(
+      theme: ThemeData(
         fontFamily: 'Rotorcap',
         // textTheme:
         //     const TextTheme(bodyMedium: TextStyle(fontFamily: 'Rotorcap')),
@@ -211,13 +211,17 @@ void UpdateUserUID() async {
           user: widget.user,
         );
       case 1:
-        return const MyHealthPage();
+        return MyHealthPage(
+          user: widget.user,
+          currencyNotifier: widget.currencyNotifier,
+        );
       case 3:
         return MyFriendsPage(user: widget.user);
       case 4:
         return ProfilePage(
-            user: widget.user,
-            currencyNotifier: widget.currencyNotifier,);
+          user: widget.user,
+          currencyNotifier: widget.currencyNotifier,
+        );
     }
     return Container();
   }
@@ -236,5 +240,13 @@ class CurrencyNotifier {
 
   void setValue(int value) {
     currency.value = value;
+  }
+
+  void increaseByTask(String task) {
+    if (task == "Sleep") {
+      currency.value += 150;
+    } else {
+      currency.value += 100;
+    }
   }
 }
