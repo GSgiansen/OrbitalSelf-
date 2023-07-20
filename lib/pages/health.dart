@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
 import 'package:orbital_test_space/main.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,10 @@ import 'package:orbital_test_space/pages/todo.dart';
 import 'package:orbital_test_space/pages/water.dart';
 
 class MyHealthPage extends StatefulWidget {
-  const MyHealthPage({Key? key}) : super(key: key);
+  const MyHealthPage(
+      {super.key, required this.user, required this.currencyNotifier});
+  final User? user;
+  final CurrencyNotifier currencyNotifier;
 
   @override
   _MyHealthPageState createState() => _MyHealthPageState();
@@ -171,7 +175,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
   void _completeTask() {
     if (currentTask == 'Productivity') {
       if (_productivityProgress == 1.0) {
-        _provideCoins();
+        _provideCoins(currentTask);
         setState(() {
           _updateTaskCompletion();
           isTaskCompleted = true;
@@ -180,7 +184,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
       ;
     } else if (currentTask == 'Sleep') {
       if (_sleepProgress == 1.0) {
-        _provideCoins();
+        _provideCoins(currentTask);
         setState(() {
           _updateTaskCompletion();
           isTaskCompleted = true;
@@ -189,7 +193,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
       ;
     } else if (currentTask == 'Water') {
       if (_waterProgress == 1.0) {
-        _provideCoins();
+        _provideCoins(currentTask);
         setState(() {
           _updateTaskCompletion();
           isTaskCompleted = true;
@@ -198,8 +202,10 @@ class _MyHealthPageState extends State<MyHealthPage> {
     }
   }
 
-  void _provideCoins() {
-    CurrencyNotifier().increaseCurrency();
+  void _provideCoins(String task) {
+    widget.currencyNotifier.increaseByTask(task);
+    FireStoreFunctions.addNewCurrency(
+        widget.user!.email.toString(), widget.currencyNotifier.currency.value);
   }
 
   void _resetTask() {
