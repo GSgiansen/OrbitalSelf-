@@ -132,7 +132,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     });
   }
 
-  Future<bool?> showConfirmationDialog() async {
+  Future<bool?> _showConfirmationDialog() async {
     return showDialog<bool>(
       context: context,
       builder: (BuildContext context) {
@@ -151,6 +151,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
             TextButton(
               child: Text('Leave'),
               onPressed: () {
+                resetTimer();
                 Navigator.of(context)
                     .pop(true); // Return true to indicate confirmation
               },
@@ -165,20 +166,20 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        bool leaveConfirmed = await showConfirmationDialog() ?? false;
-        return leaveConfirmed; // Return the confirmation result
+        if (_isRunning) {
+          bool leaveConfirmed = await _showConfirmationDialog() ?? false;
+          return leaveConfirmed; // Return the confirmation result
+        } else {
+          return true;
+        }
       },
       child: Scaffold(
         appBar: AppBar(
           title: Text('Pomodoro Timer'),
           leading: IconButton(
             icon: Icon(Icons.chevron_left),
-            onPressed: () async {
-              bool leaveConfirmed = await showConfirmationDialog() ?? false;
-              if (leaveConfirmed) {
-                resetTimer(); // Cancel the timer and reset the state
-                Navigator.pop(context);
-              }
+            onPressed: () {
+              Navigator.maybePop(context);
             },
           ),
         ),
