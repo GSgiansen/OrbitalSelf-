@@ -25,7 +25,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   int _totalPomodoros = 0;
   StreamSubscription<DocumentSnapshot>? _pomodoroCountSubscription;
 
-  Future<void> _fetchTotalPomodoros() async {
+  Future<void> fetchTotalPomodoros() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       DocumentReference userDoc =
@@ -46,7 +46,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   @override
   void initState() {
     super.initState();
-    _fetchTotalPomodoros();
+    fetchTotalPomodoros();
   }
 
   @override
@@ -55,7 +55,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     super.dispose();
   }
 
-  Future<void> _updatePomodoroCount() async {
+  Future<void> updatePomodoroCount() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       DocumentReference userDoc =
@@ -80,7 +80,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
               // If resting, start next work session or stop if no more sessions
               _isResting = false;
               _currentSession++;
-              _updatePomodoroCount();
+              updatePomodoroCount();
               if (_currentSession >= _numSessions) {
                 _currentSession = 0;
                 _isPomodoroCompleted = true; // Reset sessions
@@ -132,7 +132,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     });
   }
 
-  Future<bool?> _showConfirmationDialog() async {
+  Future<bool?> showConfirmationDialog() async {
     return showDialog<bool>(
       context: context,
       builder: (BuildContext context) {
@@ -165,7 +165,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        bool leaveConfirmed = await _showConfirmationDialog() ?? false;
+        bool leaveConfirmed = await showConfirmationDialog() ?? false;
         return leaveConfirmed; // Return the confirmation result
       },
       child: Scaffold(
@@ -174,7 +174,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
           leading: IconButton(
             icon: Icon(Icons.chevron_left),
             onPressed: () async {
-              bool leaveConfirmed = await _showConfirmationDialog() ?? false;
+              bool leaveConfirmed = await showConfirmationDialog() ?? false;
               if (leaveConfirmed) {
                 resetTimer(); // Cancel the timer and reset the state
                 Navigator.pop(context);
