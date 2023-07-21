@@ -222,6 +222,10 @@ class _FriendsPageState extends State<MyFriendsPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Rotorcap',
+        primarySwatch: Colors.green,
+      ),
       home: Scaffold(
         body: SingleChildScrollView(
           child: Column(
