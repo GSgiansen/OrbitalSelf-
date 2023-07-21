@@ -259,173 +259,175 @@ class _MyHealthPageState extends State<MyHealthPage> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 16),
-              _buildTitleBox('Health'),
-              SizedBox(height: 20.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Sleep'),
-                  GFProgressBar(
-                    percentage: _sleepProgress,
-                    lineHeight: 20,
-                    alignment: MainAxisAlignment.spaceBetween,
-                    child: Text(
-                      '${(_sleepProgress * 100).toStringAsFixed(0)}%',
-                      textAlign: TextAlign.end,
-                      style: TextStyle(fontSize: 16, color: Colors.black),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 16),
+                _buildTitleBox('Health'),
+                SizedBox(height: 20.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Sleep'),
+                    GFProgressBar(
+                      percentage: _sleepProgress,
+                      lineHeight: 20,
+                      alignment: MainAxisAlignment.spaceBetween,
+                      child: Text(
+                        '${(_sleepProgress * 100).toStringAsFixed(0)}%',
+                        textAlign: TextAlign.end,
+                        style: TextStyle(fontSize: 16, color: Colors.black),
+                      ),
+                      backgroundColor: Colors.greenAccent,
+                      progressBarColor: Colors.green,
                     ),
-                    backgroundColor: Colors.greenAccent,
-                    progressBarColor: Colors.green,
-                  ),
-                ],
-              ),
-              SizedBox(height: 16),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Water'),
-                  GFProgressBar(
-                    percentage: _waterProgress,
-                    lineHeight: 20,
-                    alignment: MainAxisAlignment.spaceBetween,
-                    child: Text(
-                      '${(_waterProgress * 100).toStringAsFixed(0)}%',
-                      textAlign: TextAlign.end,
-                      style: TextStyle(fontSize: 16, color: Colors.black),
+                  ],
+                ),
+                SizedBox(height: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Water'),
+                    GFProgressBar(
+                      percentage: _waterProgress,
+                      lineHeight: 20,
+                      alignment: MainAxisAlignment.spaceBetween,
+                      child: Text(
+                        '${(_waterProgress * 100).toStringAsFixed(0)}%',
+                        textAlign: TextAlign.end,
+                        style: TextStyle(fontSize: 16, color: Colors.black),
+                      ),
+                      backgroundColor: Colors.greenAccent,
+                      progressBarColor: Colors.green,
                     ),
-                    backgroundColor: Colors.greenAccent,
-                    progressBarColor: Colors.green,
-                  ),
-                ],
-              ),
-              SizedBox(height: 16),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Productivity'),
-                  GFProgressBar(
-                    percentage: _productivityProgress,
-                    lineHeight: 20,
-                    alignment: MainAxisAlignment.spaceBetween,
-                    child: Text(
-                      '${(_productivityProgress * 100).toStringAsFixed(0)}%',
-                      textAlign: TextAlign.end,
-                      style: TextStyle(fontSize: 16, color: Colors.black),
+                  ],
+                ),
+                SizedBox(height: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Productivity'),
+                    GFProgressBar(
+                      percentage: _productivityProgress,
+                      lineHeight: 20,
+                      alignment: MainAxisAlignment.spaceBetween,
+                      child: Text(
+                        '${(_productivityProgress * 100).toStringAsFixed(0)}%',
+                        textAlign: TextAlign.end,
+                        style: TextStyle(fontSize: 16, color: Colors.black),
+                      ),
+                      backgroundColor: Colors.greenAccent,
+                      progressBarColor: Colors.green,
                     ),
-                    backgroundColor: Colors.greenAccent,
-                    progressBarColor: Colors.green,
-                  ),
-                ],
-              ),
-              SizedBox(height: 77.0),
-              Column(
-                children: [
-                  _buildTitleBox('Tools'),
-                  SizedBox(height: 20.0),
-                  GridView.count(
-                    crossAxisCount: 2,
-                    childAspectRatio: 18.0 / 9.0,
-                    mainAxisSpacing: 5.0,
-                    crossAxisSpacing: 5.0,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: <Widget>[
-                      _HealthCard(
-                        title: 'Pomodoro',
-                        imagePath: 'web/timer.png',
-                        color: Color(0xffffdf88),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PomodoroTimerPage(),
-                            ),
-                          );
-                        },
-                      ),
-                      _HealthCard(
-                        title: 'Sleep',
-                        imagePath: 'web/sleep.png',
-                        color: Color(0xffffdf88),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SleepLoggingPage(),
-                            ),
-                          );
-                        },
-                      ),
-                      _HealthCard(
-                        title: 'Water',
-                        imagePath: 'web/water.png',
-                        color: Color(0xffffdf88),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => WaterIntakeApp(),
-                            ),
-                          );
-                        },
-                      ),
-                      _HealthCard(
-                        title: 'To Do List',
-                        imagePath: 'web/book.png',
-                        color: Color(0xffffdf88),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ToDoPage(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 50),
-              Padding(
-                padding: EdgeInsets.only(left: 170),
-                child: Container(
-                  height: 75,
-                  width: 250,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: AnimatedTextKit(
-                          repeatForever: true,
-                          animatedTexts: [
-                            TypewriterAnimatedText(
-                              isTaskCompleted
-                                  ? "Today's task has been completed!"
-                                  : "Today's goal: Complete $currentTask bar.",
-                            ),
-                          ],
+                  ],
+                ),
+                SizedBox(height: 77.0),
+                Column(
+                  children: [
+                    _buildTitleBox('Tools'),
+                    SizedBox(height: 20.0),
+                    GridView.count(
+                      crossAxisCount: 2,
+                      childAspectRatio: 18.0 / 9.0,
+                      mainAxisSpacing: 5.0,
+                      crossAxisSpacing: 5.0,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      children: <Widget>[
+                        _HealthCard(
+                          title: 'Pomodoro',
+                          imagePath: 'web/timer.png',
+                          color: Color(0xffffdf88),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PomodoroTimerPage(),
+                              ),
+                            );
+                          },
                         ),
-                      ),
-                      if (!isTaskCompleted)
-                        Container(
-                          height: 30,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              _completeTask();
-                            },
-                            child: Text('Complete'),
+                        _HealthCard(
+                          title: 'Sleep',
+                          imagePath: 'web/sleep.png',
+                          color: Color(0xffffdf88),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SleepLoggingPage(),
+                              ),
+                            );
+                          },
+                        ),
+                        _HealthCard(
+                          title: 'Water',
+                          imagePath: 'web/water.png',
+                          color: Color(0xffffdf88),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WaterIntakeApp(),
+                              ),
+                            );
+                          },
+                        ),
+                        _HealthCard(
+                          title: 'To Do List',
+                          imagePath: 'web/book.png',
+                          color: Color(0xffffdf88),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ToDoPage(),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 50),
+                Padding(
+                  padding: EdgeInsets.only(left: 170),
+                  child: Container(
+                    height: 75,
+                    width: 250,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: AnimatedTextKit(
+                            repeatForever: true,
+                            animatedTexts: [
+                              TypewriterAnimatedText(
+                                isTaskCompleted
+                                    ? "Today's task has been completed!"
+                                    : "Today's goal: Complete $currentTask bar.",
+                              ),
+                            ],
                           ),
                         ),
-                    ],
+                        if (!isTaskCompleted)
+                          Container(
+                            height: 30,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                _completeTask();
+                              },
+                              child: Text('Complete'),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

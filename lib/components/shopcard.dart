@@ -26,7 +26,11 @@ class ShopCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               ListTile(
-                leading: const Text("imag"),
+                leading: CircleAvatar(
+                      backgroundImage:
+                          AssetImage(item.image),
+                      radius: 25,
+                    ),
                 title: Text(item.name),
                 subtitle: Text(item.description),
               ),
