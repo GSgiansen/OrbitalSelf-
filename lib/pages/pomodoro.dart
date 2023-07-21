@@ -23,32 +23,39 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   bool _isPomodoroCompleted = false;
   bool _isReset = true;
   int _totalPomodoros = 0;
+  StreamSubscription<DocumentSnapshot>? _pomodoroCountSubscription;
 
-  Future<void> _fetchTotalPomodoros() async {
+  Future<void> fetchTotalPomodoros() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      DocumentSnapshot snapshot = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.email)
-          .get();
-      if (snapshot.exists) {
-        Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
-        if (data != null && data.containsKey('Pomodoro')) {
-          setState(() {
-            _totalPomodoros = data['Pomodoro'] ?? 0;
-          });
+      DocumentReference userDoc =
+          FirebaseFirestore.instance.collection('users').doc(user.email);
+      _pomodoroCountSubscription = userDoc.snapshots().listen((snapshot) {
+        if (snapshot.exists) {
+          Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
+          if (data != null && data.containsKey('Pomodoro')) {
+            setState(() {
+              _totalPomodoros = data['Pomodoro'] ?? 0;
+            });
+          }
         }
-      }
+      });
     }
   }
 
   @override
   void initState() {
     super.initState();
-    _fetchTotalPomodoros();
+    fetchTotalPomodoros();
   }
 
-  Future<void> _updatePomodoroCount() async {
+  @override
+  void dispose() {
+    _pomodoroCountSubscription?.cancel();
+    super.dispose();
+  }
+
+  Future<void> updatePomodoroCount() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       DocumentReference userDoc =
@@ -73,7 +80,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
               // If resting, start next work session or stop if no more sessions
               _isResting = false;
               _currentSession++;
-              _updatePomodoroCount();
+              updatePomodoroCount();
               if (_currentSession >= _numSessions) {
                 _currentSession = 0;
                 _isPomodoroCompleted = true; // Reset sessions
@@ -144,6 +151,37 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
             TextButton(
               child: Text('Leave'),
               onPressed: () {
+                resetTimer();
+                Navigator.of(context)
+                    .pop(true); // Return true to indicate confirmation
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<bool?> _showConfirmationDialogSettings() async {
+    return showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmation'),
+          content: Text(
+              'Are you sure you want to leave? This will stop the current pomodoro session.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context)
+                    .pop(false); // Return false to indicate cancellation
+              },
+            ),
+            TextButton(
+              child: Text('Leave'),
+              onPressed: () {
+                resetTimer();
                 Navigator.of(context)
                     .pop(true); // Return true to indicate confirmation
               },
@@ -158,20 +196,20 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        bool leaveConfirmed = await _showConfirmationDialog() ?? false;
-        return leaveConfirmed; // Return the confirmation result
+        if (_isRunning) {
+          bool leaveConfirmed = await _showConfirmationDialog() ?? false;
+          return leaveConfirmed; // Return the confirmation result
+        } else {
+          return true;
+        }
       },
       child: Scaffold(
         appBar: AppBar(
           title: Text('Pomodoro Timer'),
           leading: IconButton(
             icon: Icon(Icons.chevron_left),
-            onPressed: () async {
-              bool leaveConfirmed = await _showConfirmationDialog() ?? false;
-              if (leaveConfirmed) {
-                resetTimer(); // Cancel the timer and reset the state
-                Navigator.pop(context);
-              }
+            onPressed: () {
+              Navigator.maybePop(context);
             },
           ),
         ),
