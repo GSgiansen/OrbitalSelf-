@@ -162,6 +162,36 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     );
   }
 
+  Future<bool?> _showConfirmationDialogSettings() async {
+    return showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmation'),
+          content: Text(
+              'Are you sure you want to leave? This will stop the current pomodoro session.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context)
+                    .pop(false); // Return false to indicate cancellation
+              },
+            ),
+            TextButton(
+              child: Text('Leave'),
+              onPressed: () {
+                resetTimer();
+                Navigator.of(context)
+                    .pop(true); // Return true to indicate confirmation
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
