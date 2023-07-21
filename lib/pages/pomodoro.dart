@@ -23,22 +23,23 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   bool _isPomodoroCompleted = false;
   bool _isReset = true;
   int _totalPomodoros = 0;
+  StreamSubscription<DocumentSnapshot>? _pomodoroCountSubscription;
 
   Future<void> _fetchTotalPomodoros() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      DocumentSnapshot snapshot = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.email)
-          .get();
-      if (snapshot.exists) {
-        Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
-        if (data != null && data.containsKey('Pomodoro')) {
-          setState(() {
-            _totalPomodoros = data['Pomodoro'] ?? 0;
-          });
+      DocumentReference userDoc =
+          FirebaseFirestore.instance.collection('users').doc(user.email);
+      _pomodoroCountSubscription = userDoc.snapshots().listen((snapshot) {
+        if (snapshot.exists) {
+          Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
+          if (data != null && data.containsKey('Pomodoro')) {
+            setState(() {
+              _totalPomodoros = data['Pomodoro'] ?? 0;
+            });
+          }
         }
-      }
+      });
     }
   }
 
@@ -46,6 +47,12 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   void initState() {
     super.initState();
     _fetchTotalPomodoros();
+  }
+
+  @override
+  void dispose() {
+    _pomodoroCountSubscription?.cancel();
+    super.dispose();
   }
 
   Future<void> _updatePomodoroCount() async {
