@@ -35,7 +35,6 @@ class __UnityDemoScreenState extends State<UnityDemoScreen> {
   //      GlobalKey<ScaffoldState>();
   UnityWidgetController? _unityWidgetController;
   List<int> templateSceneData = [];
-  final storage = FirebaseStorage.instance;
   String jsonString = "";
 
   var UID = FirebaseAuth.instance.currentUser!.uid;

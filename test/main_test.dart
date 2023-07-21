@@ -10,6 +10,11 @@ import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mockito/mockito.dart';
 import 'package:orbital_test_space/main.dart';
+import 'package:orbital_test_space/pages/friends.dart';
+import 'package:orbital_test_space/pages/friendsislandview.dart';
+import 'package:orbital_test_space/pages/health.dart';
+import 'package:orbital_test_space/pages/profilepage.dart';
+import 'package:orbital_test_space/pages/unitypage.dart';
 
 class MockUser extends Mock implements User {
   final String uid;
@@ -24,6 +29,8 @@ class MockUser extends Mock implements User {
     this.isAnonymous = false,
   });
 }
+
+
 
 typedef Callback = void Function(MethodCall call);
 
@@ -50,6 +57,7 @@ void main() {
   setUpAll(() async {
     await Firebase.initializeApp();
   });
+
 
     group('Home page checks', () {
       testWidgets('Checking for header and bottom navbar', (tester) async {
@@ -94,67 +102,75 @@ void main() {
     });
 
     group('Health checks', () {
-      test('Checking for local currency increase', () => null);
+      CurrencyNotifier currencyNotifier = CurrencyNotifier();
+      testWidgets('Checking if all the health cards load properly', (tester) async {
+    // Create the widget by telling the tester to build it.
+          await tester.pumpWidget(MaterialApp(
+            home: MyHealthPage(user: user, currencyNotifier: currencyNotifier,)
+            ));
 
+          final pomodoroFinder = find.text('Pomodoro');
+          expect(pomodoroFinder, findsOneWidget);
+
+          final sleepFinder = find.text('Sleep');
+          expect(sleepFinder, findsNWidgets(2));
+
+          final waterFinder = find.text('Water');
+          expect(waterFinder, findsNWidgets(2));
+
+          final todoFinder = find.text('To Do List');
+          expect(todoFinder, findsOneWidget);
+
+          final toolsFinder = find.text('Tools');
+          expect(toolsFinder, findsOneWidget);
+
+          final completeButtonFinder = find.text('Complete');
+          expect(completeButtonFinder, findsOneWidget);
+      });
     });
+    
+    group('Checking if friends page loads as intended', () {
+      CurrencyNotifier currencyNotifier = CurrencyNotifier();
+      testWidgets('Checking if friends buttons are loaded properly', (tester) async {
+    // Create the widget by telling the tester to build it.
+          await tester.pumpWidget(
+            MaterialApp(
+              home: MyFriendsPage(user: user)
+            )
+          );
 
-    group('Friend checks', () {
+          final addFinder = find.text('Friend ID');
+          expect(addFinder, findsOneWidget);
+
+          final removeFinder = find.text('Add Friend');
+          expect(removeFinder, findsOneWidget);
+
+          final searchFinder = find.text('Confirmed Friends');
+          expect(searchFinder, findsOneWidget);
+      });
       
     });
 
-    group('Shop checks', () {
+    group('Checking if profile page loads as intended', () {
+      CurrencyNotifier currencyNotifier = CurrencyNotifier();
+      testWidgets('Checking if profile buttons are loaded properly', (tester) async {
+    // Create the widget by telling the tester to build it.
+          await tester.pumpWidget(
+            MaterialApp(
+              home: ProfilePage(user: user, currencyNotifier: currencyNotifier,)
+            )
+          );
 
-      
-    });
+          final outFinder = find.text('get out');
+          expect(outFinder, findsOneWidget);
 
-    group('TaskProvider checks', () {
-      test('Checking for task provider', () => null);
+          final itemsFinder = find.text('My Items');
+          expect(itemsFinder, findsOneWidget);
+      });
+
     });
+  
+
+
 }
-
-
-
-
-
-var user1 = {
-  "id": "12345678",
-  "email": "johndoe@gmail.com", 
-  "Water": 0,
-  "Sleep": <Map<String, dynamic>>[],
-  "Todo": <Map<String, dynamic>>[],
-  "uid": "clown1",
-};
-
-
-Map<String,dynamic>  user2 = {
-  "id": "23456789",
-  "email": "giansen@gmail.com", 
-  "Water": 0,
-  "Sleep": <Map<String, dynamic>>[],
-  "Todo": <Map<String, dynamic>>[],
-  "uid": "clown2",
-};
-
-
-
-Map<String,dynamic>  user3 = {
-  "id": "345678910",
-  "email": "jason@gmail.com", 
-  "Water": 0,
-  "Sleep": <Map<String, dynamic>>[],
-  "Todo": <Map<String, dynamic>>[],
-  "uid": "clown3",
-};
-
-
-
-
-Map<String,dynamic>  user4 = {
-  "id": "4567891011",
-  "email": "mike@gmail.com", 
-  "Water": 0,
-  "Sleep": <Map<String, dynamic>>[],
-  "Todo": <Map<String, dynamic>>[],
-  "uid": "clown4",
-};
 
