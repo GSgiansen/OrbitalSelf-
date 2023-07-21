@@ -117,6 +117,7 @@ class Loginpopup extends StatelessWidget {
         const SizedBox(height: 5),
         LoginForm(context, true),
         const SizedBox(height: 5),
+        /*
         TextButton(
           style: TextButton.styleFrom(
             backgroundColor: const Color(0xFFF4F4F4),
@@ -126,6 +127,7 @@ class Loginpopup extends StatelessWidget {
               style: TextStyle(
                   color: Colors.black, fontFamily: 'Rotorcap', fontSize: 16)),
         ),
+        */
         Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -198,6 +200,7 @@ class Registerpopup extends StatelessWidget {
         const SizedBox(height: 5),
         LoginForm(context, false),
         const SizedBox(height: 5),
+        /*
         TextButton(
           style: TextButton.styleFrom(
             backgroundColor: const Color(0xFFF4F4F4),
@@ -207,6 +210,7 @@ class Registerpopup extends StatelessWidget {
               style: TextStyle(
                   color: Colors.black, fontFamily: 'Rotorcap', fontSize: 16)),
         ),
+        */
         Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

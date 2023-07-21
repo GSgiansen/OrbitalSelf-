@@ -91,10 +91,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
           String task = userData?['dailyTask'] ?? "";
           if (task == "" && _isMounted) {
             final random = Random();
-            setState(() {
-              currentTask = tasks[random.nextInt(tasks.length)];
-              _updateDailyTask();
-            });
+            _updateDailyTask();
           } else {
             if (_isMounted) {
               setState(() {
@@ -102,12 +99,46 @@ class _MyHealthPageState extends State<MyHealthPage> {
               });
             }
           }
+          DateTime dateTimenow = DateTime.now();
+          String dateToday =
+              DateTime(dateTimenow.year, dateTimenow.month, dateTimenow.day)
+                  .toIso8601String();
+          String now = userData['date'] ?? "";
+          if (now == "" || now != dateToday) {
+            refreshData();
+            updateDate();
+            _updateDailyTask();
+          }
         }
       }
     }
   }
 
+  void refreshData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .update({'Pomodoro': 0, 'Water': 0, 'CompletedTask': false});
+    }
+  }
+
+  void updateDate() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    DateTime now = DateTime.now();
+    String dateToday = DateTime(now.year, now.month, now.day).toIso8601String();
+    if (user != null) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.email)
+          .update({'date': dateToday});
+    }
+  }
+
   void _updateDailyTask() async {
+    final random = Random();
+    currentTask = tasks[random.nextInt(tasks.length)];
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       await FirebaseFirestore.instance
