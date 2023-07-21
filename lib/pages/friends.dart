@@ -28,7 +28,6 @@ class _FriendsPageState extends State<MyFriendsPage> {
   String? userID = '';
 
   getFriendNames(List<Map<String, dynamic>> friends) async {
-    print("friends is now " + friends.toString());
     List<Friend> friendL = [];
     final CollectionReference collection =
         FirebaseFirestore.instance.collection('friends');
@@ -275,7 +274,7 @@ class _FriendsPageState extends State<MyFriendsPage> {
               else
                 SizedBox(
                   width: 1000,
-                  height: 1000,
+                  height: 300,
                   child: Column(
                     children: [
                       Expanded(
@@ -327,7 +326,7 @@ class _FriendsPageState extends State<MyFriendsPage> {
               Text("Confirmed Friends"),
               SizedBox(
                 width: 1000,
-                height: 1000,
+                height: 500,
                 child: Column(
                   children: [
                     Expanded(
