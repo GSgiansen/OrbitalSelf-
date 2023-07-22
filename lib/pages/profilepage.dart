@@ -60,20 +60,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 },
                 child: const Text('My Items'),
               ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => UnityDemoScreen(
-                              user: widget.user,
-                              currencyNotifier: widget.currencyNotifier,
-                            )),
-                  );
-                },
-                child: const Text('Unity'),
-              ),
             ],
           ),
         ),
