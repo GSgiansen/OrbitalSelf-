@@ -252,7 +252,8 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: DropdownButton<int>(
-                    isDense: true,
+                    isDense: false,
+                    menuMaxHeight: 300,
                     value: _selectedHours,
                     items: List.generate(25, (index) {
                       return DropdownMenuItem<int>(
@@ -295,7 +296,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
               child: Text('Log Sleep'),
               onPressed: _addSleepEntry,
             ),
-            SizedBox(height: 150),
+            SizedBox(height: 130),
             Padding(
               padding: EdgeInsets.only(left: 130),
               child: Container(
