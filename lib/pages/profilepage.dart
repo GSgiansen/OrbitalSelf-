@@ -9,10 +9,11 @@ import '../main.dart';
 class ProfilePage extends StatefulWidget {
   final User? user;
   final CurrencyNotifier currencyNotifier;
-  const ProfilePage(
-      {super.key,
-      required this.user,
-      required this.currencyNotifier,});
+  const ProfilePage({
+    super.key,
+    required this.user,
+    required this.currencyNotifier,
+  });
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -44,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     const MyCoverPage(title: 'test')),
                           ));
                 },
-                child: const Text('get out'),
+                child: const Text('Log Out'),
               ),
               const SizedBox(height: 10),
               ElevatedButton(

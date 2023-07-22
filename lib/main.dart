@@ -6,6 +6,7 @@ import 'package:orbital_test_space/models/item.dart';
 import 'package:orbital_test_space/pages/cover.dart';
 import 'package:orbital_test_space/pages/friends.dart';
 import 'package:orbital_test_space/pages/health.dart';
+import 'package:orbital_test_space/pages/island.dart';
 import 'package:orbital_test_space/pages/profilepage.dart';
 import 'package:orbital_test_space/pages/shoppage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -182,13 +183,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 label: "Shop",
               ),
               BottomNavigationBarItem(
-                icon: FaIcon(FontAwesomeIcons.bookMedical), //heath_and_safety
-                label: "My Health",
-              ),
-              BottomNavigationBarItem(
                 icon: FaIcon(FontAwesomeIcons.house),
                 label: "My Island",
                 activeIcon: FaIcon(FontAwesomeIcons.houseChimney),
+              ),
+              BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.bookMedical), //heath_and_safety
+                label: "My Health",
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.people),
@@ -211,6 +212,12 @@ class _MyHomePageState extends State<MyHomePage> {
           user: widget.user,
         );
       case 1:
+        return IslandPage(
+          user: widget.user,
+          currencyNotifier: widget.currencyNotifier,
+        );
+
+      case 2:
         return MyHealthPage(
           user: widget.user,
           currencyNotifier: widget.currencyNotifier,
