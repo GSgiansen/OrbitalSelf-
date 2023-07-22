@@ -1,9 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class AdjustableNumberField extends StatelessWidget {
   final String title;
   final int value;
   final ValueChanged<int> onChanged;
+  late Timer _timer;
 
   AdjustableNumberField({
     required this.title,
@@ -17,13 +20,23 @@ class AdjustableNumberField extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(title),
-        IconButton(
-          icon: Icon(Icons.remove),
-          onPressed: value > 1
+        GestureDetector(
+          child: Container(child: Icon(Icons.remove)),
+          onTap: value > 1
               ? () {
                   onChanged(value - 1);
                 }
               : null,
+          onLongPress: () => {
+            _timer = Timer.periodic(Duration(milliseconds: 100), (t) {
+              value > 1
+                  ? () {
+                      onChanged(value - 1);
+                    }
+                  : null;
+            })
+          },
+          onLongPressEnd: (_) => {_timer.cancel()},
         ),
         Text('$value'),
         IconButton(
