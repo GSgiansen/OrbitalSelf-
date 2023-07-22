@@ -144,11 +144,17 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
       return 'No sleep data for the past week.';
     }
 
-    double sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+    double sumX = 0,
+        sumY = 0,
+        sumXY = 0,
+        sumX2 = 0,
+        minHour = pastWeekEntries[0].hoursOfSleep;
     for (var i = 0; i < pastWeekEntries.length; i++) {
       double x = i.toDouble(); // We use the index as the x-coordinate
       double y = pastWeekEntries[i].hoursOfSleep;
-
+      if (y < minHour) {
+        minHour = y;
+      }
       sumX += x;
       sumY += y;
       sumXY += x * y;
@@ -161,6 +167,8 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
 
     if (slope > 0) {
       return 'Great job! You\'re getting more sleep!';
+    } else if (slope < 0 && minHour >= 7) {
+      return 'You\'re still getting at leasty 7 hours of sleep. Keep it up!';
     } else if (slope < 0) {
       return 'You\'ve been getting less sleep lately... Try to get more sleep to feel refreshed!';
     } else if (yIntercept >= 7) {
