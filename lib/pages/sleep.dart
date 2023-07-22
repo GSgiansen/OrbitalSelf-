@@ -206,9 +206,10 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   return SfCartesianChart(
+                    enableAxisAnimation: true,
                     primaryXAxis: DateTimeAxis(
-                      visibleMinimum: weekAgo,
-                      visibleMaximum: today,
+                      minimum: weekAgo,
+                      maximum: today,
                       labelStyle: TextStyle(color: Colors.white, fontSize: 14),
                       majorGridLines: MajorGridLines(width: 0),
                     ),
