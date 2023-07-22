@@ -204,7 +204,6 @@ class _FriendsPageState extends State<MyFriendsPage> {
     setState(() {
       userID = id; // Assign the returned value to the userID variable
     });
-
   }
 
   void setStateInAnotherFile() async {
@@ -216,159 +215,145 @@ class _FriendsPageState extends State<MyFriendsPage> {
     });
   }
 
-  
+  ScrollController _scrollController = ScrollController();
+  ScrollController _scrollControllerPending = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        fontFamily: 'Rotorcap',
-        primarySwatch: Colors.green,
-      ),
-      home: Scaffold(
+    return Scaffold(
         body: SingleChildScrollView(
+      child: Column(children: [
+        Padding(
+          padding: EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    if (userID != null)
-                    
-                      Text("Your code is : " + userID.toString(),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        // Add other text style properties as needed
-                      )
-                      )
-                    else 
-                      Text("Loading..."),
-        
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                      controller: _friendIdController,
-                      decoration: const InputDecoration(
-                        labelText: 'Friend ID',
-                      ),
-                    )),
-                    SizedBox(height: 16.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        checkUserAndPromptConfirmation(
-                            context, _friendIdController.text, setStateInAnotherFile);
-                        setState(() {
-                          _friendIdController.clear();
-                        });
-                        // CheckAnotherUser(_friendIdController.text);
-                      },
-                      child: const Text('Add Friend'),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16.0),
-              if (_state_friendList.isEmpty)
-                Text('You have no friends yet.')
+              if (userID != null)
+                Text("Your code is : " + userID.toString(),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      // Add other text style properties as needed
+                    ))
               else
-                SizedBox(
-                  width: 1000,
-                  height: 300,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        
-                        child: ListView.builder(
-                          itemCount: _state_friendList.length,
-                          itemBuilder: (context, index) {
-                            if (_state_friendList[index].status == "pending" &&
-                                _state_friendList[index].issued) {
-                              return ListTile(
-                                title: Text(_state_friendList[index].id),
-                                subtitle: Text(_state_friendList[index].name),
-                                leading: CircleAvatar(
-                                  backgroundImage:
-                                      AssetImage(_state_friendList[index].profileImage),
-                                ),
-                                trailing: OutlinedButton(
-                                  onPressed: () async {
-                                    await AcceptFriendRequest(_state_friendList[index].id,
-                                        _state_friendList[index].name);
-                                    setState(() {
-                                      _state_friendList[index].status = "confirmed";
-                                    });
-                                  },
-                                  child: const Text("Accept"),
-                                ),
-                              );
-                            } else if (_state_friendList[index].status == "pending" &&
-                                !_state_friendList[index].issued) {
-                              return ListTile(
-                                title: Text(_state_friendList[index].id),
-                                subtitle: Text(_state_friendList[index].name),
-                                leading: CircleAvatar(
-                                  backgroundImage:
-                                      AssetImage(_state_friendList[index].profileImage),
-                                ),
-                                trailing: Text("Pending"),
-                              );
-                            } else {
-                              return Container();
-                            }
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              SizedBox(height: 16.0),
-              Text("Confirmed Friends"),
-              SizedBox(
-                width: 1000,
-                height: 500,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: _state_friendList.length,
-                        itemBuilder: (context, index) {
-                          if (_state_friendList[index].status == "confirmed") {
-                            return ListTile(
-                              title: Text(_state_friendList[index].id),
-                              subtitle: Text(_state_friendList[index].name),
-                              leading: CircleAvatar(
-                                backgroundImage:
-                                    AssetImage(_state_friendList[index].profileImage),
-                                
-                              ),
-                              trailing: OutlinedButton(
-                                child: const Text("View Island"),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => FriendsIslandView(
-                                        friendID: _state_friendList[index].id,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            );
-                          } else {
-                            return Container();
-                          }
-                        },
-                      ),
+                Text("Loading..."),
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _friendIdController,
+                    decoration: const InputDecoration(
+                      labelText: 'Friend ID',
                     ),
-                  ],
-                ),
+                  )),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  checkUserAndPromptConfirmation(
+                      context, _friendIdController.text, setStateInAnotherFile);
+                  setState(() {
+                    _friendIdController.clear();
+                  });
+                  // CheckAnotherUser(_friendIdController.text);
+                },
+                child: const Text('Add Friend'),
               ),
             ],
           ),
         ),
-      ),
-    );
+        SizedBox(height: 16.0),
+        if (_state_friendList.isEmpty)
+          Text('You have no friends yet.')
+        else
+          SizedBox(
+            width: 1000,
+            height: 300,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: _state_friendList.length,
+              itemBuilder: (context, index) {
+                if (_state_friendList[index].status == "pending" &&
+                    _state_friendList[index].issued) {
+                  return ListTile(
+                    title: Text(_state_friendList[index].id),
+                    subtitle: Text(_state_friendList[index].name),
+                    leading: CircleAvatar(
+                      backgroundImage:
+                          AssetImage(_state_friendList[index].profileImage),
+                    ),
+                    trailing: OutlinedButton(
+                      onPressed: () async {
+                        await AcceptFriendRequest(_state_friendList[index].id,
+                            _state_friendList[index].name);
+                        setState(() {
+                          _state_friendList[index].status = "confirmed";
+                        });
+                      },
+                      child: const Text("Accept"),
+                    ),
+                  );
+                } else if (_state_friendList[index].status == "pending" &&
+                    !_state_friendList[index].issued) {
+                  return ListTile(
+                    title: Text(_state_friendList[index].id),
+                    subtitle: Text(_state_friendList[index].name),
+                    leading: CircleAvatar(
+                      backgroundImage:
+                          AssetImage(_state_friendList[index].profileImage),
+                    ),
+                    trailing: Text("Pending"),
+                  );
+                } else {
+                  return Container();
+                }
+              },
+            ),
+          ),
+        SizedBox(height: 16.0),
+        Text("Confirmed Friends"),
+        SizedBox(
+          width: 1000,
+          child: SingleChildScrollView(
+            controller:
+                _scrollController, // Set the ScrollController to the SingleChildScrollView
+            child: Column(
+              children: [
+                ListView.builder(
+                  shrinkWrap: true,
+                  controller:
+                      _scrollController, // Set the ScrollController to the ListView.builder
+                  itemCount: _state_friendList.length,
+                  itemBuilder: (context, index) {
+                    if (_state_friendList[index].status == "confirmed") {
+                      return ListTile(
+                        title: Text(_state_friendList[index].id),
+                        subtitle: Text(_state_friendList[index].name),
+                        leading: CircleAvatar(
+                          backgroundImage:
+                              AssetImage(_state_friendList[index].profileImage),
+                        ),
+                        trailing: OutlinedButton(
+                          child: const Text("View Island"),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FriendsIslandView(
+                                  friendID: _state_friendList[index].id,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ]),
+    ));
   }
 }
