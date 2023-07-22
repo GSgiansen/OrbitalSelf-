@@ -197,7 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle),
-                label: "My Account",
+                label: "My Profile",
               )
             ],
           )),

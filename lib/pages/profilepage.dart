@@ -35,6 +35,19 @@ class _ProfilePageState extends State<ProfilePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PurchaseHistoryPage(
+                            user: widget.user,
+                            currencyNotifier: widget.currencyNotifier)),
+                  );
+                },
+                child: const Text('My Inventory'),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
                 onPressed: () async {
                   await FirebaseAuth.instance
                       .signOut()
@@ -46,19 +59,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           ));
                 },
                 child: const Text('Log Out'),
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PurchaseHistoryPage(
-                            user: widget.user,
-                            currencyNotifier: widget.currencyNotifier)),
-                  );
-                },
-                child: const Text('My Items'),
               ),
             ],
           ),
