@@ -178,7 +178,7 @@ class _FriendsIslandViewState extends State<FriendsIslandView> {
       _unityWidgetController = controller;
     });
     _unityWidgetController?.postMessage('MY_GM', 'ChangeTheSceneNow', 'test');
-    Timer(const Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 2), () {
       loadSceneFromFirebase(_unityWidgetController, jsonString);
     });
   }
