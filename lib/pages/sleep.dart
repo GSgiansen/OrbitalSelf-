@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/services.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:orbital_test_space/models/sleepEntry.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -208,9 +206,10 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   return SfCartesianChart(
+                    enableAxisAnimation: true,
                     primaryXAxis: DateTimeAxis(
-                      visibleMinimum: weekAgo,
-                      visibleMaximum: today,
+                      minimum: weekAgo,
+                      maximum: today,
                       labelStyle: TextStyle(color: Colors.white, fontSize: 14),
                       majorGridLines: MajorGridLines(width: 0),
                     ),
@@ -252,7 +251,8 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: DropdownButton<int>(
-                    isDense: true,
+                    isDense: false,
+                    menuMaxHeight: 300,
                     value: _selectedHours,
                     items: List.generate(25, (index) {
                       return DropdownMenuItem<int>(
@@ -295,7 +295,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
               child: Text('Log Sleep'),
               onPressed: _addSleepEntry,
             ),
-            SizedBox(height: 150),
+            SizedBox(height: 130),
             Padding(
               padding: EdgeInsets.only(left: 130),
               child: Container(

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:orbital_test_space/controllers/fireStoreFunctions.dart';
 import 'package:orbital_test_space/main.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -262,13 +263,35 @@ class _MyHealthPageState extends State<MyHealthPage> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 16),
                 _buildTitleBox('Health'),
-                SizedBox(height: 20.0),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Sleep'),
+                    Row(children: [
+                      Text('Sleep'),
+                      SizedBox(width: 10),
+                      SizedBox(
+                        height: 30,
+                        width: 60,
+                        child: ElevatedButton(
+                            child: FaIcon(FontAwesomeIcons.question),
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20)))),
+                            onPressed: () => showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    content: Text(
+                                        "To increase your sleep progress bar, try to get at least 7 hours of sleep for a week."),
+                                  );
+                                })),
+                      )
+                    ]),
+                    SizedBox(height: 5),
                     GFProgressBar(
                       percentage: _sleepProgress,
                       lineHeight: 20,
@@ -276,18 +299,42 @@ class _MyHealthPageState extends State<MyHealthPage> {
                       child: Text(
                         '${(_sleepProgress * 100).toStringAsFixed(0)}%',
                         textAlign: TextAlign.end,
-                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
-                      backgroundColor: Colors.greenAccent,
+                      backgroundColor: Colors.grey,
                       progressBarColor: Colors.green,
                     ),
                   ],
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 5),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Water'),
+                    Row(children: [
+                      Text('Water'),
+                      SizedBox(width: 10),
+                      SizedBox(
+                        height: 30,
+                        width: 60,
+                        child: ElevatedButton(
+                            child: FaIcon(FontAwesomeIcons.question),
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20)))),
+                            onPressed: () => showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    content: Text(
+                                        "To increase your water progress bar, make sure to finish drinking the daily goal of 2000ml."),
+                                  );
+                                })),
+                      )
+                    ]),
+                    SizedBox(height: 5),
                     GFProgressBar(
                       percentage: _waterProgress,
                       lineHeight: 20,
@@ -295,18 +342,42 @@ class _MyHealthPageState extends State<MyHealthPage> {
                       child: Text(
                         '${(_waterProgress * 100).toStringAsFixed(0)}%',
                         textAlign: TextAlign.end,
-                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
-                      backgroundColor: Colors.greenAccent,
+                      backgroundColor: Colors.grey,
                       progressBarColor: Colors.green,
                     ),
                   ],
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 5),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Productivity'),
+                    Row(children: [
+                      Text('Productivity'),
+                      SizedBox(width: 10),
+                      SizedBox(
+                        height: 30,
+                        width: 60,
+                        child: ElevatedButton(
+                            child: FaIcon(FontAwesomeIcons.question),
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20)))),
+                            onPressed: () => showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    content: Text(
+                                        "To increase your productivity progress bar, aim to finish 4 pomodoros a day."),
+                                  );
+                                })),
+                      )
+                    ]),
+                    SizedBox(height: 5),
                     GFProgressBar(
                       percentage: _productivityProgress,
                       lineHeight: 20,
@@ -314,14 +385,14 @@ class _MyHealthPageState extends State<MyHealthPage> {
                       child: Text(
                         '${(_productivityProgress * 100).toStringAsFixed(0)}%',
                         textAlign: TextAlign.end,
-                        style: TextStyle(fontSize: 16, color: Colors.black),
+                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
-                      backgroundColor: Colors.greenAccent,
+                      backgroundColor: Colors.grey,
                       progressBarColor: Colors.green,
                     ),
                   ],
                 ),
-                SizedBox(height: 77.0),
+                SizedBox(height: 55.0),
                 Column(
                   children: [
                     _buildTitleBox('Tools'),

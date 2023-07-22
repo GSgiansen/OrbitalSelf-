@@ -8,17 +8,22 @@ class WaterIntakeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Water Intake Tracker'),
-          leading: IconButton(
-            icon: Icon(Icons.chevron_left),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+          appBar: AppBar(
+            title: Text(
+              'Water Intake Tracker',
+              style: TextStyle(fontFamily: 'Rotorcap'),
+            ),
+            leading: IconButton(
+              icon: Icon(Icons.chevron_left),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
           ),
-        ),
-        body: WaterIntakePage(),
-      ),
+          body: Theme(
+            data: ThemeData(fontFamily: "Rotorcap"),
+            child: WaterIntakePage(),
+          )),
     );
   }
 }
@@ -121,7 +126,8 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('I just drank', style: TextStyle(fontSize: 14)),
+            Text('I just drank',
+                style: TextStyle(fontSize: 14, fontFamily: "Rotorcap")),
             SizedBox(width: 10),
             DropdownButton<int>(
               value: _selectedGlasses,
@@ -129,7 +135,10 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
                 int glasses = index + 1;
                 return DropdownMenuItem<int>(
                   value: glasses,
-                  child: Text('$glasses glass${glasses > 1 ? 'es' : ''}'),
+                  child: Text(
+                    '$glasses glass${glasses > 1 ? 'es' : ''}',
+                    style: TextStyle(fontFamily: "Rotorcap"),
+                  ),
                 );
               }),
               onChanged: (value) {
@@ -139,7 +148,8 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
               },
             ),
             SizedBox(width: 10),
-            Text('of water.', style: TextStyle(fontSize: 14)),
+            Text('of water.',
+                style: TextStyle(fontSize: 14, fontFamily: "Rotorcap")),
             SizedBox(width: 10),
             ElevatedButton(
               onPressed: () {
@@ -148,14 +158,15 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
                   _updateIntake(_currentIntake + intake);
                 });
               },
-              child: Text('Log It!', style: TextStyle(fontSize: 14)),
+              child: Text('Log It!',
+                  style: TextStyle(fontSize: 14, fontFamily: "Rotorcap")),
             ),
           ],
         ),
         SizedBox(height: 10),
         Text(
           'A glass of water is approximately 100ml',
-          style: TextStyle(fontSize: 12),
+          style: TextStyle(fontSize: 12, fontFamily: "Rotorcap"),
         ),
       ],
     );
@@ -170,10 +181,11 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
           if (_showCongratsText)
             Text(
               "You're a certified hydrohomie!",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 24, fontFamily: "Rotorcap"),
             ),
           SizedBox(height: 20),
-          Text('Daily Water Intake', style: TextStyle(fontSize: 24)),
+          Text('Daily Water Intake',
+              style: TextStyle(fontSize: 24, fontFamily: "Rotorcap")),
           SizedBox(height: 50),
           Stack(
             alignment: Alignment.center,
@@ -194,12 +206,12 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
                   SizedBox(height: 10),
                   Text(
                     '${(_currentIntake / _dailyRequirement * 100).toStringAsFixed(0)}%',
-                    style: TextStyle(fontSize: 24),
+                    style: TextStyle(fontSize: 24, fontFamily: "Rotorcap"),
                   ),
                   SizedBox(height: 10),
                   Text(
                     '${_currentIntake.toStringAsFixed(1)} / $_dailyRequirement ml',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16, fontFamily: "Rotorcap"),
                   ),
                 ],
               ),

@@ -9,10 +9,11 @@ import '../main.dart';
 class ProfilePage extends StatefulWidget {
   final User? user;
   final CurrencyNotifier currencyNotifier;
-  const ProfilePage(
-      {super.key,
-      required this.user,
-      required this.currencyNotifier,});
+  const ProfilePage({
+    super.key,
+    required this.user,
+    required this.currencyNotifier,
+  });
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -34,6 +35,19 @@ class _ProfilePageState extends State<ProfilePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PurchaseHistoryPage(
+                            user: widget.user,
+                            currencyNotifier: widget.currencyNotifier)),
+                  );
+                },
+                child: const Text('My Inventory'),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
                 onPressed: () async {
                   await FirebaseAuth.instance
                       .signOut()
@@ -44,34 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     const MyCoverPage(title: 'test')),
                           ));
                 },
-                child: const Text('get out'),
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PurchaseHistoryPage(
-                            user: widget.user,
-                            currencyNotifier: widget.currencyNotifier)),
-                  );
-                },
-                child: const Text('My Items'),
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => UnityDemoScreen(
-                              user: widget.user,
-                              currencyNotifier: widget.currencyNotifier,
-                            )),
-                  );
-                },
-                child: const Text('Unity'),
+                child: const Text('Log Out'),
               ),
             ],
           ),
