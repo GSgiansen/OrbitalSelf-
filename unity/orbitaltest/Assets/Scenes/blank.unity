@@ -2170,6 +2170,11 @@ PrefabInstance:
       propertyPath: preview
       value: 
       objectReference: {fileID: 190557891}
+    - target: {fileID: 4989659475415230116, guid: 09e3633b2cd964c2fb7387593364a97d,
+        type: 3}
+      propertyPath: placementSystem
+      value: 
+      objectReference: {fileID: 1137258162}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

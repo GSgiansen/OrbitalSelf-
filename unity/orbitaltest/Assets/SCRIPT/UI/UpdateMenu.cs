@@ -6,6 +6,7 @@ public class UpdateButtonText : MonoBehaviour
 {
     public PreviewSystem preview;
     public string newText = "New Text";
+    public PlacementSystem placementSystem;
 
     private void Start()
     {
@@ -82,6 +83,8 @@ public class UpdateButtonText : MonoBehaviour
                 else if (num <= 0) {
                     button.gameObject.SetActive(false);
                     preview.StopShowingPreview();
+                    placementSystem.StopPlacement();
+
                 }
 
                 buttonText.text = "X" + num.ToString() ;
@@ -94,6 +97,7 @@ public class UpdateButtonText : MonoBehaviour
                 else if (num <= 0) {
                     button.gameObject.SetActive(false);
                     preview.StopShowingPreview();
+                    placementSystem.StopPlacement();
                 }
 
 
@@ -108,6 +112,7 @@ public class UpdateButtonText : MonoBehaviour
                 else if (num <= 0) {
                     button.gameObject.SetActive(false);
                     preview.StopShowingPreview();
+                    placementSystem.StopPlacement();
                 }
                 buttonText.text = "X" + num.ToString() ;
                 
@@ -120,6 +125,7 @@ public class UpdateButtonText : MonoBehaviour
                 else if (num <= 0) {
                     button.gameObject.SetActive(false);
                     preview.StopShowingPreview();
+                    placementSystem.StopPlacement();
                 }
                 buttonText.text = "X" + num.ToString() ;
             }

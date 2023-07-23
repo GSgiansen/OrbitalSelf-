@@ -76,7 +76,7 @@ void main() {
           final islandFinder = find.text('My Island');
           expect(islandFinder, findsOneWidget);
 
-          final accountFinder = find.text('My Account');
+          final accountFinder = find.text('My Profile');
           expect(accountFinder, findsOneWidget);
       });
 
@@ -161,10 +161,10 @@ void main() {
             )
           );
 
-          final outFinder = find.text('get out');
+          final outFinder = find.text('Log Out');
           expect(outFinder, findsOneWidget);
 
-          final itemsFinder = find.text('My Items');
+          final itemsFinder = find.text('My Inventory');
           expect(itemsFinder, findsOneWidget);
       });
 

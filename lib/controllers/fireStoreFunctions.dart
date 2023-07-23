@@ -71,6 +71,12 @@ class FireStoreFunctions {
 
     static removeOldPurchase(User? user, String item) async {
     var email = user?.email;
+
+    int number = await db.collection('users').doc(email).get().then((value) => value.data()!['items'][item]['number']);
+
+    if (number <= 0) {
+      return;
+    }
     
     return db
         .collection("users")

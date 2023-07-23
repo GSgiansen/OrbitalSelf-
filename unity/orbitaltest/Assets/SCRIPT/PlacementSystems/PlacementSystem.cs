@@ -36,7 +36,7 @@ public class PlacementSystem : MonoBehaviour
 
     }
 
-    private void StopPlacement()
+    public void StopPlacement()
     {
         if (buildingstate == null)
         {

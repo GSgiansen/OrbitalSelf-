@@ -262,6 +262,7 @@ struct PerformanceBoostChangeHandler_t2878325EFEEE20AE35ADD54DEE76A30C369F4F68;
 struct PerformanceBottleneckChangeHandler_t518F882C3C63B33DDD6EA909F410EC02322E7F61;
 struct PerformanceLevelChangeHandler_t5EAB4599B89899249588C08442DED430FB8ACF8B;
 struct PerformanceStateTracker_tDF46D2D9CE3326E210493B3F4171DD715E6DBB43;
+struct PlacementSystem_t4411BC868806C832CF5BD6B3C2E7FEF930F36331;
 struct Position_tB64FC298B6BB082C817D6A63D76AD323A23EEE9D;
 struct PreviewSystem_t2EB4B7E66492BB283134F6EAD4B5EAE3BC8F2BA6;
 struct ProfilingSampler_t420D4672EDB44E0EF980B31ADFD9E5747200FECE;
@@ -5483,6 +5484,7 @@ struct UpdateButtonText_tC70004E25D211C8BDA6DC2C74AFD280B50985C11  : public Mono
 {
 	PreviewSystem_t2EB4B7E66492BB283134F6EAD4B5EAE3BC8F2BA6* ___preview;
 	String_t* ___newText;
+	PlacementSystem_t4411BC868806C832CF5BD6B3C2E7FEF930F36331* ___placementSystem;
 };
 struct addCube_t54073F12AB540103852061131E32B4FBEE9F4884  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
@@ -7022,9 +7024,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6448[4] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6450[3] = 
 {
 	static_cast<int32_t>(offsetof(MenuButton_t5FBBD57E4378A9FCDB747615454A243C197C42A2, ___menuPage)),static_cast<int32_t>(offsetof(MenuButton_t5FBBD57E4378A9FCDB747615454A243C197C42A2, ___arrowUpImage)),static_cast<int32_t>(offsetof(MenuButton_t5FBBD57E4378A9FCDB747615454A243C197C42A2, ___isMenuOpen)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6451[2] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6451[3] = 
 {
-	static_cast<int32_t>(offsetof(UpdateButtonText_tC70004E25D211C8BDA6DC2C74AFD280B50985C11, ___preview)),static_cast<int32_t>(offsetof(UpdateButtonText_tC70004E25D211C8BDA6DC2C74AFD280B50985C11, ___newText)),};
+	static_cast<int32_t>(offsetof(UpdateButtonText_tC70004E25D211C8BDA6DC2C74AFD280B50985C11, ___preview)),static_cast<int32_t>(offsetof(UpdateButtonText_tC70004E25D211C8BDA6DC2C74AFD280B50985C11, ___newText)),static_cast<int32_t>(offsetof(UpdateButtonText_tC70004E25D211C8BDA6DC2C74AFD280B50985C11, ___placementSystem)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6452[4] = 
 {
 	static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___cat)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___dog)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___plant)),static_cast<int32_t>(offsetof(JsonInventory_tB7B2E7BF74113EB0DF196452BEA351951E714608, ___chair)),};
