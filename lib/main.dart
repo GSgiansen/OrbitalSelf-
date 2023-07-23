@@ -251,7 +251,7 @@ class CurrencyNotifier {
 
   void increaseByTask(String task) {
     if (task == "Sleep") {
-      currency.value += 150;
+      currency.value += 300;
     } else {
       currency.value += 100;
     }
