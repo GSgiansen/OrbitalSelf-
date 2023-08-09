@@ -132,7 +132,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     });
   }
 
-  Future<bool?> _showConfirmationDialog() async {
+  Future<bool?> showConfirmationDialog() async {
     return showDialog<bool>(
       context: context,
       builder: (BuildContext context) {
@@ -162,7 +162,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     );
   }
 
-  Future<bool?> _showConfirmationDialogSettings() async {
+  Future<bool?> showConfirmationDialogSettings() async {
     return showDialog<bool>(
       context: context,
       builder: (BuildContext context) {
@@ -197,7 +197,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     return WillPopScope(
       onWillPop: () async {
         if (_isRunning) {
-          bool leaveConfirmed = await _showConfirmationDialog() ?? false;
+          bool leaveConfirmed = await showConfirmationDialog() ?? false;
           return leaveConfirmed; // Return the confirmation result
         } else {
           return true;

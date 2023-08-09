@@ -1,16 +1,11 @@
 import 'dart:convert';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
-import 'package:orbital_test_space/components/inventoryCard.dart';
 import 'package:orbital_test_space/components/inventoryMenu.dart';
-import 'package:orbital_test_space/controllers/unityfirebaseFunctions.dart';
 import 'package:orbital_test_space/main.dart';
-import 'package:orbital_test_space/pages/profilepage.dart';
 import 'package:http/http.dart' as http;
-
 import '../controllers/inventoryToUnity.dart';
 import '../controllers/unityContoller.dart';
 
@@ -76,9 +71,7 @@ class _UnityMenuState extends State<UnityMenu> {
         icon: Icon(Icons.local_dining),
         onPressed: () async {
           await loadInventoryFromFirebase(widget.unityWidgetController);
-          
         },
-      
       ),
       IconButton(
         tooltip: "Zoom In",
@@ -125,8 +118,7 @@ class _UnityMenuState extends State<UnityMenu> {
               MaterialPageRoute(
                   builder: (context) => MyHomePage(
                         user: widget.user,
-                      ))
-          );
+                      )));
         },
       )
     ]));

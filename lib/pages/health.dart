@@ -42,12 +42,12 @@ class _MyHealthPageState extends State<MyHealthPage> {
   void initState() {
     super.initState();
     _isMounted = true;
-    _fetchData();
+    fetchData();
 
     final now = DateTime.now();
     final resetTime = DateTime(now.year, now.month, now.day + 1);
     final difference = resetTime.difference(now);
-    _resetTaskTimer = Timer(difference, _resetTask);
+    _resetTaskTimer = Timer(difference, resetTask);
   }
 
   @override
@@ -57,7 +57,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
     super.dispose();
   }
 
-  Stream<DocumentSnapshot> _getUserDataStream() {
+  Stream<DocumentSnapshot> getUserDataStream() {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       return FirebaseFirestore.instance
@@ -68,8 +68,8 @@ class _MyHealthPageState extends State<MyHealthPage> {
     return Stream.empty();
   }
 
-  void _fetchData() async {
-    await for (DocumentSnapshot snapshot in _getUserDataStream()) {
+  void fetchData() async {
+    await for (DocumentSnapshot snapshot in getUserDataStream()) {
       if (snapshot.exists) {
         Map<String, dynamic>? userData =
             snapshot.data() as Map<String, dynamic>?;
@@ -79,20 +79,20 @@ class _MyHealthPageState extends State<MyHealthPage> {
           if (sleepLogsData != null) {
             List<SleepEntry> sleepEntries =
                 sleepLogsData.map((data) => SleepEntry.fromMap(data)).toList();
-            _calculateSleepProgress(sleepEntries);
+            calculateSleepProgress(sleepEntries);
           }
 
           double waterIntake = (userData?['Water'] ?? 0.0).toDouble();
-          _calculateWaterProgress(waterIntake);
+          calculateWaterProgress(waterIntake);
 
           int pomodoros = userData?['Pomodoro'] ?? 0;
-          _calculateProductivityProgress(pomodoros);
+          calculateProductivityProgress(pomodoros);
 
           isTaskCompleted = userData?['CompletedTask'] ?? false;
           String task = userData?['dailyTask'] ?? "";
           if (task == "" && _isMounted) {
             final random = Random();
-            _updateDailyTask();
+            updateDailyTask();
           } else {
             if (_isMounted) {
               setState(() {
@@ -108,7 +108,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
           if (now == "" || now != dateToday) {
             refreshData();
             updateDate();
-            _updateDailyTask();
+            updateDailyTask();
           }
         }
       }
@@ -137,7 +137,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
     }
   }
 
-  void _updateDailyTask() async {
+  void updateDailyTask() async {
     final random = Random();
     currentTask = tasks[random.nextInt(tasks.length)];
     User? user = FirebaseAuth.instance.currentUser;
@@ -159,7 +159,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
     }
   }
 
-  void _calculateWaterProgress(double waterIntake) {
+  void calculateWaterProgress(double waterIntake) {
     const double dailyGoal = 2000.0;
     double progress = waterIntake / dailyGoal;
     if (progress > 1.0) {
@@ -172,7 +172,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
     }
   }
 
-  void _calculateSleepProgress(List<SleepEntry> sleepEntries) {
+  void calculateSleepProgress(List<SleepEntry> sleepEntries) {
     DateTime today = DateTime.now();
     DateTime weekAgo = today.subtract(const Duration(days: 7));
     int sleepDays = 0;
@@ -192,7 +192,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
     }
   }
 
-  void _calculateProductivityProgress(int pomodoros) {
+  void calculateProductivityProgress(int pomodoros) {
     double progress = pomodoros / 4;
     if (progress > 1.0) {
       progress = 1.0;
@@ -204,10 +204,10 @@ class _MyHealthPageState extends State<MyHealthPage> {
     }
   }
 
-  void _completeTask() {
+  void completeTask() {
     if (currentTask == 'Productivity') {
       if (_productivityProgress == 1.0) {
-        _provideCoins(currentTask);
+        provideCoins(currentTask);
         setState(() {
           _updateTaskCompletion();
           isTaskCompleted = true;
@@ -216,7 +216,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
       ;
     } else if (currentTask == 'Sleep') {
       if (_sleepProgress == 1.0) {
-        _provideCoins(currentTask);
+        provideCoins(currentTask);
         setState(() {
           _updateTaskCompletion();
           isTaskCompleted = true;
@@ -225,7 +225,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
       ;
     } else if (currentTask == 'Water') {
       if (_waterProgress == 1.0) {
-        _provideCoins(currentTask);
+        provideCoins(currentTask);
         setState(() {
           _updateTaskCompletion();
           isTaskCompleted = true;
@@ -234,13 +234,13 @@ class _MyHealthPageState extends State<MyHealthPage> {
     }
   }
 
-  void _provideCoins(String task) {
+  void provideCoins(String task) {
     widget.currencyNotifier.increaseByTask(task);
     FireStoreFunctions.addNewCurrency(
         widget.user!.email.toString(), widget.currencyNotifier.currency.value);
   }
 
-  void _resetTask() {
+  void resetTask() {
     if (mounted) {
       setState(() {
         isTaskCompleted = false;
@@ -488,7 +488,7 @@ class _MyHealthPageState extends State<MyHealthPage> {
                             height: 30,
                             child: ElevatedButton(
                               onPressed: () {
-                                _completeTask();
+                                completeTask();
                               },
                               child: Text('Complete'),
                             ),

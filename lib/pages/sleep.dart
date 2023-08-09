@@ -1,13 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:orbital_test_space/models/sleepEntry.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'dart:convert';
 
 class SleepLoggingPage extends StatefulWidget {
   @override
@@ -24,10 +20,10 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
   @override
   void initState() {
     super.initState();
-    _loadDataFuture = _loadSleepLog();
+    _loadDataFuture = loadSleepLog();
   }
 
-  Future<void> _loadSleepLog() async {
+  Future<void> loadSleepLog() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
@@ -53,7 +49,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
     }
   }
 
-  void _chooseDate() async {
+  void chooseDate() async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: _selectedDate,
@@ -67,7 +63,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
     }
   }
 
-  Future<void> _saveSleepLog() async {
+  Future<void> saveSleepLog() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       List<Map<String, dynamic>> sleepLogsData =
@@ -80,7 +76,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
     }
   }
 
-  void _addSleepEntry() {
+  void addSleepEntry() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -121,7 +117,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
                     ));
                   }
 
-                  _saveSleepLog();
+                  saveSleepLog();
                 });
               },
             ),
@@ -166,7 +162,7 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
     if (slope > 0) {
       return 'Great job! You\'re getting more sleep!';
     } else if (slope < 0 && minHour >= 7) {
-      return 'You\'re still getting at leasty 7 hours of sleep. Keep it up!';
+      return 'You\'re still getting at least 7 hours of sleep. Keep it up!';
     } else if (slope < 0) {
       return 'You\'ve been getting less sleep lately... Try to get more sleep to feel refreshed!';
     } else if (yIntercept >= 7) {
@@ -286,14 +282,14 @@ class _SleepLoggingPageState extends State<SleepLoggingPage> {
                 SizedBox(width: 10),
                 ElevatedButton(
                   child: Text('Choose Date'),
-                  onPressed: _chooseDate,
+                  onPressed: chooseDate,
                 ),
               ],
             ),
             SizedBox(height: 20),
             ElevatedButton(
               child: Text('Log Sleep'),
-              onPressed: _addSleepEntry,
+              onPressed: addSleepEntry,
             ),
             SizedBox(height: 130),
             Padding(

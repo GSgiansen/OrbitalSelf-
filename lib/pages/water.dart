@@ -44,7 +44,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
   @override
   void initState() {
     super.initState();
-    _loadIntake();
+    loadIntake();
   }
 
   @override
@@ -53,7 +53,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
     super.dispose();
   }
 
-  _loadIntake() async {
+  loadIntake() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
@@ -74,7 +74,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
     }
   }
 
-  _updateIntake(double intake) async {
+  updateIntake(double intake) async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       FirebaseFirestore.instance
@@ -91,7 +91,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
     });
   }
 
-  _resetIntake() async {
+  resetIntake() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       FirebaseFirestore.instance
@@ -106,7 +106,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
     });
   }
 
-  Widget _buildFaceIcon() {
+  Widget buildFaceIcon() {
     final double percentage = _currentIntake / _dailyRequirement;
 
     if (percentage <= 0.3) {
@@ -120,7 +120,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
     }
   }
 
-  Widget _buildDropdownForm() {
+  Widget buildDropdownForm() {
     return Column(
       children: [
         Row(
@@ -155,7 +155,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
               onPressed: () {
                 setState(() {
                   final intake = _selectedGlasses * 100.0;
-                  _updateIntake(_currentIntake + intake);
+                  updateIntake(_currentIntake + intake);
                 });
               },
               child: Text('Log It!',
@@ -202,7 +202,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  _buildFaceIcon(),
+                  buildFaceIcon(),
                   SizedBox(height: 10),
                   Text(
                     '${(_currentIntake / _dailyRequirement * 100).toStringAsFixed(0)}%',
@@ -218,14 +218,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
             ],
           ),
           SizedBox(height: 30),
-          _buildDropdownForm(),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              _resetIntake();
-            },
-            child: Text('Reset', style: TextStyle(fontSize: 14)),
-          ),
+          buildDropdownForm(),
         ],
       ),
     );
